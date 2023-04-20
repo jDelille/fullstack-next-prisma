@@ -1,3 +1,6 @@
+
+import ClientOnly from './components/ClientOnly'
+import Modal from './components/modals/Modal'
 import './globals.css'
 
 export const metadata = {
@@ -13,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* NAVBAR */}
+        <ClientOnly>
+          {/* <Modal isOpen /> */}
+          {/* NAVBAR */}
+        </ClientOnly>
         {children}
       </body>
     </html>
