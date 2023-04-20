@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ClientOnly>
-          {/* <Modal isOpen /> */}
+          <Modal isOpen />
           {/* NAVBAR */}
         </ClientOnly>
         {children}

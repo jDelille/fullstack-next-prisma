@@ -1,0 +1,26 @@
+.overlay {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 99999999;
+	outline: none;
+	background-color: rgba(48, 48, 48, 0.7);
+}
+
+.modal {
+	position: relative;
+	width: 40%;
+	height: fit-content;
+	padding: 1rem;
+	border-radius: 4px;
+	background-color: #f1f2f3;
+	.modalContent {
+	}
+}

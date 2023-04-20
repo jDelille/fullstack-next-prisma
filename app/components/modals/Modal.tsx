@@ -1,5 +1,9 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
+import styles from './Modal.module.scss';
+import Button from '../button/Button';
+import { IoMdClose } from 'react-icons/io'
+
 
 type ModalProps = {
  isOpen?: boolean;
@@ -60,7 +64,15 @@ const Modal: React.FC<ModalProps> = ({
  }
 
  return <>
-  <div></div>
+  <div className={styles.overlay}>
+   <div className={styles.modal}>
+    {/* content */}
+    <div className={styles.modalContent}>
+     <Button label='Button' icon={IoMdClose} />
+    </div>
+   </div>
+  </div>
+
  </>;
 };
 
