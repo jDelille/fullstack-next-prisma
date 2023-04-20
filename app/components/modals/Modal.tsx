@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import styles from './Modal.module.scss';
 import Button from '../button/Button';
-import { IoMdClose } from 'react-icons/io'
-
+import { IoMdClose } from 'react-icons/io';
+import { IconType } from 'react-icons';
 
 type ModalProps = {
  isOpen?: boolean;
@@ -15,6 +15,8 @@ type ModalProps = {
  footer?: React.ReactElement;
  actionLabel?: string;
  disabled?: boolean;
+ icon?: IconType
+
 };
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,7 +28,8 @@ const Modal: React.FC<ModalProps> = ({
  footer,
  actionLabel,
  disabled,
- secondaryAction
+ icon: Icon,
+ secondaryAction,
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -39,41 +42,53 @@ const Modal: React.FC<ModalProps> = ({
    return;
   }
 
-  setShowModal(false)
+  setShowModal(false);
   setTimeout(() => {
    onClose();
-  }, 300)
- }, [disabled, onClose])
+  }, 300);
+ }, [disabled, onClose]);
 
  const handleSubmit = useCallback(() => {
   if (disabled) {
    return;
   }
-  onSubmit()
- }, [disabled, onSubmit])
+  onSubmit();
+ }, [disabled, onSubmit]);
 
  const handleSecondaryAction = useCallback(() => {
   if (disabled || !secondaryAction) {
    return;
   }
   secondaryAction();
- }, [disabled, secondaryAction])
+ }, [disabled, secondaryAction]);
 
  if (!isOpen) {
   return null;
  }
 
- return <>
-  <div className={styles.overlay}>
-   <div className={styles.modal}>
-    {/* content */}
-    <div className={styles.modalContent}>
-     <Button label='Button' icon={IoMdClose} />
+ return (
+  <>
+   <div className={styles.overlay}>
+    <div className={styles.modal}>
+     {/* content */}
+     <div className={styles.modalContent}>
+      <div className={styles.modalHeader}>
+       {Icon && <Icon size={18} className={styles.modalIcon} onClick={handleClose} />}
+       {title}
+      </div>
+      <div className={styles.modalBody}>
+       {body}
+      </div>
+      <Button
+       label={actionLabel}
+       onClick={handleSubmit}
+       disabled={disabled}
+      />
+     </div>
     </div>
    </div>
-  </div>
-
- </>;
+  </>
+ );
 };
 
 export default Modal;

@@ -21,6 +21,24 @@
 	padding: 1rem;
 	border-radius: 4px;
 	background-color: #f1f2f3;
+
 	.modalContent {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		.modalHeader {
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-bottom: 1px solid lightgray;
+			position: relative;
+			.modalIcon {
+				position: absolute;
+				left: 10px;
+				cursor: pointer;
+			}
+		}
 	}
 }

@@ -2,7 +2,7 @@
 import { IconType } from 'react-icons'
 import styles from './Button.module.scss';
 type ButtonProps = {
- label: string;
+ label?: string;
  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
  disabled?: boolean;
  icon?: IconType
