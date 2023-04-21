@@ -78,25 +78,23 @@ const BetModal = () => {
    return onNext();
   }
 
-  console.log(data)
+  setIsLoading(true);
 
-  // setIsLoading(true);
-
-  // axios
-  //  .post('/api/bet', data)
-  //  .then(() => {
-  //   toast.success('Bet posted');
-  //   router.refresh();
-  //   reset();
-  //   setStep(STEPS.LEAGUE);
-  //   betModal.onClose();
-  //  })
-  //  .catch(() => {
-  //   toast.error('Something went wrong');
-  //  })
-  //  .finally(() => {
-  //   setIsLoading(false);
-  //  });
+  axios
+   .post('/api/bet', data)
+   .then(() => {
+    toast.success('Bet posted');
+    router.refresh();
+    reset();
+    setStep(STEPS.LEAGUE);
+    betModal.onClose();
+   })
+   .catch(() => {
+    toast.error('Something went wrong');
+   })
+   .finally(() => {
+    setIsLoading(false);
+   });
  };
 
  const actionLabel = useMemo(() => {
