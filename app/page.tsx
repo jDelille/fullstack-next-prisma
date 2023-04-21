@@ -9,7 +9,7 @@ export default function Home() {
       <div className="mainFeed">
         <CreatePostInput />
       </div>
-      <div className="rightSidebar"></div>
+      {/* <div className="rightSidebar"></div> */}
     </main>
   )
 }

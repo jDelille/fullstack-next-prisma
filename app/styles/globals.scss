@@ -1,5 +1,7 @@
 @import './variables';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+@import './breakpoints';
+
 * {
 	margin: 0;
 	padding: 0;
@@ -15,15 +17,24 @@ body {
 .sidebarContainer {
 	background-color: $gray;
 	border: 2px solid $lightGray;
-	height: 450px;
-	width: 350px;
+	height: 100vh;
+	width: 280px;
 	position: fixed;
 	left: 0;
-	top: 105px;
+	top: 0px;
 	z-index: 2;
-	margin-top: 2rem;
-	margin-left: 2rem;
-	border-radius: 12px;
+	@include breakpoint(md) {
+		max-width: 280px;
+		min-width: 280px;
+	}
+
+	@include breakpoint(sm) {
+	}
+
+	@include breakpoint(xs) {
+		max-width: 0;
+		display: none;
+	}
 }
 
 .gamebarContainer {
@@ -32,7 +43,7 @@ body {
 	height: 105px;
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 280px;
 	width: 100vw;
 	z-index: 2;
 }
@@ -50,26 +61,55 @@ body {
 	width: 100%;
 
 	.mainFeed {
+		flex-grow: 1;
 		background-color: $black;
 		border: 2px solid $lightGray;
-		max-width: 830px;
+		max-width: 833px;
 		position: relative;
 		top: 105px;
 		height: calc(100vh - 105px);
-		margin: 0 auto;
-		margin-top: 2rem;
+		margin: 0 520px;
+		padding: 2rem;
+		@include breakpoint(xl) {
+			margin: 0 320px;
+		}
+		@include breakpoint(lg) {
+			margin: 0 320px;
+		}
+		@include breakpoint(md) {
+			margin-left: 280px;
+			min-width: calc(100% - 280px);
+			max-width: 720px;
+			min-width: 720px;
+		}
+		@include breakpoint(sm) {
+			margin: 0 280px;
+			min-width: calc(100% - 280px);
+		}
+		@include breakpoint(xs) {
+			margin: 0;
+			padding: 0 1rem;
+		}
 	}
 	.rightSidebar {
 		background-color: $gray;
 		border: 2px solid $lightGray;
-		width: 350px;
+		width: 280px;
 		height: 70vh;
 		margin-left: auto;
 		position: fixed;
 		right: 0;
 		top: 105px;
 		margin-top: 2rem;
-		margin-right: 2rem;
+		margin-left: 2rem;
 		border-radius: 12px;
+		margin-right: 1rem;
+
+		@include breakpoint(md) {
+			display: none;
+		}
+		@include breakpoint(sm) {
+			display: none;
+		}
 	}
 }
