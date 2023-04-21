@@ -1,12 +1,10 @@
-@import '../../styles/variables';
 @import '../../styles/mixins';
 
-.bordered,
-.noBorder {
+.match,
+.borderedMatch {
 	@include button();
-
 }
 
-.bordered {
+.borderedMatch {
 	border: 1px solid dodgerblue;
 }

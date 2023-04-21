@@ -54,9 +54,21 @@
 				gap: 1rem;
 				max-height: 400px;
 				margin-top: 1rem;
-				.leagueIcon {
-					
-				}
+			}
+			.chooseMatch {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				gap: 1rem;
+				max-height: 400px;
+				margin-top: 1rem;
+			}
+		}
+		.buttonsContainer {
+			display: flex;
+			gap: 1rem;
+			button {
+				width: 100%;
 			}
 		}
 	}

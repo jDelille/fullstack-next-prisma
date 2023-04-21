@@ -12,10 +12,12 @@ import styles from './Modal.module.scss';
 
 import LeagueInput from '../league-input/LeagueInput';
 import { FieldValue, FieldValues, useForm } from 'react-hook-form';
+import MatchSelect from '../match-select/MatchSelect';
 enum STEPS {
  LEAGUE = 0,
  MATCH = 1,
- REVIEW = 2
+ ODDS = 2,
+ REVIEW = 3
 }
 
 const BetModal = () => {
@@ -35,11 +37,13 @@ const BetModal = () => {
  })
 
  const league = watch('league')
+ const match = watch('match')
 
  const setCustomValue = (id: string, value: any) => {
   setValue(id, value, {
    shouldDirty: true, shouldValidate: true, shouldTouch: true
   })
+
  }
 
 
@@ -50,8 +54,6 @@ const BetModal = () => {
  const onNext = () => {
   setStep((value) => value + 1);
  }
-
-
 
  const actionLabel = useMemo(() => {
   if (step === STEPS.REVIEW) {
@@ -69,7 +71,7 @@ const BetModal = () => {
   return 'Back';
  }, [step]);
 
- const bodyContent = (
+ let bodyContent = (
   <div>
    <Heading title='Choose a league' />
    <div className={styles.chooseLeague}>
@@ -87,6 +89,14 @@ const BetModal = () => {
   </div>
  );
 
+ if (step === STEPS.MATCH) {
+  bodyContent = (
+   <div className={styles.chooseMatch}>
+    <MatchSelect selected={match} onClick={(value) => setCustomValue('match', value)} />
+   </div>
+  )
+ }
+
  return (
   <Modal
    body={bodyContent}
@@ -94,7 +104,7 @@ const BetModal = () => {
    onClose={betModal.onClose}
    disabled={isLoading}
    icon={IoMdClose}
-   onSubmit={() => { }}
+   onSubmit={onNext}
    title='Post a bet'
    actionLabel={actionLabel}
    secondaryActionLabel={secondaryActionLabel}

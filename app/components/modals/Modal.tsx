@@ -82,18 +82,21 @@ const Modal: React.FC<ModalProps> = ({
       <div className={styles.modalBody}>
        {body}
       </div>
-      {secondaryAction && secondaryActionLabel && (
+      <div className={styles.buttonsContainer}>
+       {secondaryAction && secondaryActionLabel && (
+        <Button
+         disabled={disabled}
+         label={secondaryActionLabel}
+         onClick={handleSecondaryAction}
+        />
+       )}
        <Button
+        label={actionLabel}
+        onClick={handleSubmit}
         disabled={disabled}
-        label={secondaryActionLabel}
-        onClick={handleSecondaryAction}
        />
-      )}
-      <Button
-       label={actionLabel}
-       onClick={handleSubmit}
-       disabled={disabled}
-      />
+      </div>
+
       {footer}
      </div>
     </div>
