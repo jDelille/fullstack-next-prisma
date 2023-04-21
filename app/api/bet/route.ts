@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 	const newPost = await prisma.post.create({
 		data: {
 			userId: currentUser.id,
-			betId: newBet.id,
+			b
 		},
 	});
 

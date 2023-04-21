@@ -72,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({
  return (
   <>
    <div className={styles.overlay}>
-    <div className={styles.modal}>
+    <div className={showModal ? styles.modal : styles.hideModal}>
      {/* content */}
      <div className={styles.modalContent}>
       <div className={styles.modalHeader}>

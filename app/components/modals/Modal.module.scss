@@ -14,17 +14,21 @@
 	left: 0;
 	z-index: 99999999;
 	outline: none;
-	background-color: rgba(48, 48, 48, 0.7);
+	background-color: rgba(3, 3, 3, 0.7);
 }
 
-.modal {
-	position: relative;
+.modal,
+.hideModal {
+	position: fixed;
 	width: 35%;
 	height: fit-content;
 	padding: 1rem;
 	border-radius: 4px;
 	background-color: $black;
 	color: $white;
+	// transform: translateY(100px);
+	transition: 300ms ease-in-out;
+	opacity: 1;
 	@include breakpoint(xs) {
 		width: 95%;
 	}
@@ -47,15 +51,9 @@
 			}
 		}
 		.modalBody {
-			.chooseLeague {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: wrap;
-				gap: 1rem;
-				max-height: 400px;
-				margin-top: 1rem;
-			}
-			.chooseMatch {
+			.chooseLeague,
+			.chooseMatch,
+			.chooseOdds {
 				display: flex;
 				flex-direction: column;
 				flex-wrap: wrap;
@@ -64,12 +62,7 @@
 				margin-top: 1rem;
 			}
 			.chooseOdds {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: wrap;
-				gap: 1rem;
-				// height: 400px;
-				margin-top: 1rem;
+				height: unset;
 			}
 		}
 		.buttonsContainer {
@@ -80,4 +73,9 @@
 			}
 		}
 	}
+}
+
+.hideModal {
+	transform: translateY(300px);
+	opacity: 0;
 }
