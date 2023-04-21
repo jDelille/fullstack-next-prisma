@@ -2,7 +2,7 @@
 
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.scss';
-
+import { BiDollar } from 'react-icons/bi'
 type InputProps = {
  id: string;
  label: string;
@@ -11,6 +11,7 @@ type InputProps = {
  required?: boolean;
  register: UseFormRegister<FieldValues>;
  errors: FieldErrors;
+ formatPrice?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -21,11 +22,12 @@ const Input: React.FC<InputProps> = ({
  required,
  register,
  errors,
+ formatPrice
 }) => {
  return (
   <div className={styles.inputWrapper}>
    <label className={styles.inputLabel}>{label}</label>
-
+   {/* TODO - add money icon if wager */}
    <input
     id={id}
     disabled={disabled}

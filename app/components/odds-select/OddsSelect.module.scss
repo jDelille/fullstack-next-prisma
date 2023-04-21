@@ -1,0 +1,26 @@
+@import '../../styles/mixins';
+
+.odds {
+	display: flex;
+	gap: 1rem;
+}
+.oddsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+	label {
+		font-size: 12px;
+	}
+}
+.homeOdd,
+.awayOdd,
+.awayOddBordered,
+.homeOddBordered {
+	@include button();
+}
+
+.awayOddBordered,
+.homeOddBordered {
+	border: 1px solid dodgerblue;
+}

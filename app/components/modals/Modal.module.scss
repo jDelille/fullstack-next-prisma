@@ -19,7 +19,7 @@
 
 .modal {
 	position: relative;
-	width: 55%;
+	width: 35%;
 	height: fit-content;
 	padding: 1rem;
 	border-radius: 4px;
@@ -61,6 +61,14 @@
 				flex-wrap: wrap;
 				gap: 1rem;
 				max-height: 400px;
+				margin-top: 1rem;
+			}
+			.chooseOdds {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				gap: 1rem;
+				// height: 400px;
 				margin-top: 1rem;
 			}
 		}

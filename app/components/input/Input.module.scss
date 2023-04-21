@@ -1,12 +1,23 @@
+@import '../../styles/variables';
+
 .inputWrapper {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	label {
+		font-size: 12px;
+		margin-top: 10px;
+	}
 	.input {
 		width: 100%;
 		padding: 10px;
 		border-radius: 4px;
 		outline: none;
 		height: 45px;
-		border: 1px solid lightgray;
+		border: 1px solid $lightGray;
+		background-color: $black;
+		color: $white;
 		:disabled {
 			cursor: not-allowed;
 		}
