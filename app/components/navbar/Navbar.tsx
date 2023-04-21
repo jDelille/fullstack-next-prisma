@@ -1,17 +1,19 @@
+'use client'
+import { SafeUser } from "@/app/types";
 import Button from "../button/Button";
 import UserMenu from "./UserMenu";
 
 type NavbarProps = {
-
+ currentUser?: SafeUser | null
 }
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
  return (
   <div>
    <div>
     Logo
    </div>
-   <UserMenu />
+   <UserMenu currentUser={currentUser} />
   </div>
  );
 }
