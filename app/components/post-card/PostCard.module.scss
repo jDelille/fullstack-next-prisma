@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.post {
+	width: 100%;
+	padding: 1rem;
+	border-radius: 6px;
+	background-color: $black;
+	border: 2px solid $lightGray;
+	color: $white;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.postHeader {
+		display: flex;
+		gap: 1rem;
+		.profilePicture {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: skyblue;
+		}
+		.userName {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			span {
+				color: $secondaryText;
+				font-size: 13px;
+			}
+		}
+	}
+	.postBody {
+	}
+	.postBet {
+		padding: 1rem;
+		background-color: $gray;
+		border-radius: 6px;
+		.postBetHeader {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+			.betLeague {
+				font-weight: 600;
+			}
+			.betOdds {
+				padding: 10px 30px;
+				max-width: fit-content;
+				border-radius: 4px;
+				margin-left: auto;
+				background-color: $lightGray;
+				color: dodgerblue;
+				font-weight: 600;
+			}
+		}
+	}
+}

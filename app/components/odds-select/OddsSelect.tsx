@@ -36,8 +36,6 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
   }
  }, []);
 
- console.log(odds)
-
  return (
   <>
    {odds && (
