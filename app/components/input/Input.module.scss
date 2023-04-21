@@ -1,0 +1,16 @@
+.inputWrapper {
+	position: relative;
+	.input {
+		width: 100%;
+		padding: 10px;
+		border-radius: 4px;
+		outline: none;
+		height: 45px;
+		border: 1px solid lightgray;
+		:disabled {
+			cursor: not-allowed;
+		}
+	}
+	.inputLabel {
+	}
+}
