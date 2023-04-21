@@ -16,6 +16,8 @@ model Post {
   userId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
+  Bet       Bet?     @relation(fields: [betId], references: [id])
+  betId     String?  @db.ObjectId
 }
 
 model User {
@@ -28,4 +30,19 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   emailVerified DateTime?
+}
+
+model Bet {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  league    String
+  match     String
+  favorite  Boolean
+  odds      Int
+  type      String
+  value     Float?
+  thoughts  String
+  wager     Float
+  Post      Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
