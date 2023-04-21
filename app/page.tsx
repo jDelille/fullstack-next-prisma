@@ -1,3 +1,4 @@
+import CreatePostInput from './components/create-post-input/CreatePostInput'
 import './styles/globals.scss'
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
       <div className="gamebarContainer">
       </div>
       <div className="mainFeed">
-        <p> feed </p>
+        <CreatePostInput />
       </div>
       <div className="rightSidebar"></div>
     </main>

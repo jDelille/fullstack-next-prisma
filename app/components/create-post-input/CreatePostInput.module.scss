@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.inputContainer {
+	min-height: 100px;
+	position: relative;
+	min-width: 100%;
+	.inputWrapper {
+		background-color: $black;
+		border: 2px solid $lightGray;
+		border-radius: 10px;
+		color: white;
+		min-height: 45px !important;
+		position: relative;
+		padding: 10px;
+		.createPostWrapper {
+			display: flex;
+			align-items: center;
+			position: relative;
+			min-height: 50px;
+			gap: 1rem;
+		}
+	}
+}

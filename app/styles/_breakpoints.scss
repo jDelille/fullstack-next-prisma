@@ -1,0 +1,20 @@
+$breakpoints: (
+	'xs': 'max-width: 840px',
+	'sm': 'max-width: 1032px',
+	'md': 'max-width: 1280px',
+	'lg': 'max-width: 1400px',
+	'xl': 'max-width: 1700px',
+	'xxl': 'max-width: 1900px',
+);
+
+@mixin breakpoint($value) {
+	$map: map-get($breakpoints, $value);
+	@if $map {
+		@media (#{$map}) {
+			@content;
+		}
+	} @else {
+		@error "Breakpoint #{$value} isn't defined yet";
+	}
+	// @debug "Breakpoint #{$value} is being called";
+}

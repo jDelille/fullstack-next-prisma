@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.bordered,
+.noBorder {
+	padding: 10px;
+	width: 100%;
+	border: 1px solid $lightGray;
+	border-radius: 8px;
+	height: 45px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+	gap: 1rem;
+	&:hover {
+		cursor: pointer;
+		background-color: lighten($black, 2%);
+	}
+}
+
+.bordered {
+	border: 1px solid dodgerblue;
+}

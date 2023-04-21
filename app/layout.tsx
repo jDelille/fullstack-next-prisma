@@ -1,6 +1,7 @@
 
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
+import BetModal from './components/modals/BetModal'
 import LoginModal from './components/modals/LoginModal'
 import RegisterModal from './components/modals/RegisterModal'
 import Navbar from './components/navbar/Navbar'
@@ -27,6 +28,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <RegisterModal />
           <LoginModal />
+          <BetModal />
           <div className='sidebarContainer'>
             <Navbar currentUser={currentUser} />
           </div>

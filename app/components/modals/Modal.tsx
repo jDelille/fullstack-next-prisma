@@ -9,11 +9,12 @@ type ModalProps = {
  isOpen?: boolean;
  onClose: () => void;
  onSubmit: () => void;
- secondaryAction?: () => void;
  title?: string;
  body?: React.ReactElement;
  footer?: React.ReactElement;
  actionLabel?: string;
+ secondaryAction?: () => void;
+ secondaryActionLabel?: string;
  disabled?: boolean;
  icon?: IconType
 
@@ -30,6 +31,7 @@ const Modal: React.FC<ModalProps> = ({
  disabled,
  icon: Icon,
  secondaryAction,
+ secondaryActionLabel
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -59,8 +61,9 @@ const Modal: React.FC<ModalProps> = ({
   if (disabled || !secondaryAction) {
    return;
   }
+
   secondaryAction();
- }, [disabled, secondaryAction]);
+ }, [secondaryAction, disabled]);
 
  if (!isOpen) {
   return null;
@@ -79,6 +82,13 @@ const Modal: React.FC<ModalProps> = ({
       <div className={styles.modalBody}>
        {body}
       </div>
+      {secondaryAction && secondaryActionLabel && (
+       <Button
+        disabled={disabled}
+        label={secondaryActionLabel}
+        onClick={handleSecondaryAction}
+       />
+      )}
       <Button
        label={actionLabel}
        onClick={handleSubmit}

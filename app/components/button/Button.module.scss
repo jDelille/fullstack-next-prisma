@@ -1,13 +1,17 @@
+@import '../../styles/variables';
+
 .button {
 	padding: 10px 30px;
 	outline: none;
 	border: none;
-	outline: 1px solid lightgray;
+	outline: 1px solid $lightGray;
 	display: flex;
 	align-items: center;
 	gap: 5px;
 	width: 100%;
 	justify-content: center;
+	background-color: $gray;
+	color: $white;
 	position: relative;
 	border-radius: 5px;
 	cursor: pointer;

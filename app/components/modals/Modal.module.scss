@@ -1,3 +1,6 @@
+@import '../../styles/breakpoints';
+@import '../../styles/variables';
+
 .overlay {
 	justify-content: center;
 	align-items: center;
@@ -16,12 +19,15 @@
 
 .modal {
 	position: relative;
-	width: 40%;
+	width: 55%;
 	height: fit-content;
 	padding: 1rem;
 	border-radius: 4px;
-	background-color: #f1f2f3;
-
+	background-color: $black;
+	color: $white;
+	@include breakpoint(xs) {
+		width: 95%;
+	}
 	.modalContent {
 		display: flex;
 		flex-direction: column;
@@ -32,12 +38,25 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border-bottom: 1px solid lightgray;
+			border-bottom: 1px solid $lightGray;
 			position: relative;
 			.modalIcon {
 				position: absolute;
 				left: 10px;
 				cursor: pointer;
+			}
+		}
+		.modalBody {
+			.chooseLeague {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				gap: 1rem;
+				max-height: 400px;
+				margin-top: 1rem;
+				.leagueIcon {
+					
+				}
 			}
 		}
 	}
