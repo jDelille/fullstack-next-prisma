@@ -1,17 +1,14 @@
-
-
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import './styles/globals.scss'
 
 export default function Home() {
-
-
   return (
-    <main className='main' >
-      <h1>HOME</h1>
+    <main className='main'>
+      <div className="gamebarContainer">
+      </div>
+      <div className="mainFeed">
+        <p> feed </p>
+      </div>
+      <div className="rightSidebar"></div>
     </main>
   )
 }

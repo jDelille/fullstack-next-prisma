@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Button from '../button/Button';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
+import styles from './Navbar.module.scss';
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -19,14 +20,19 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
 
 
  return (
-  <div>
+  <div className={styles.userMenu}>
    {currentUser ? (
     <>
      <Button label='My Profile' onClick={loginModal.onOpen} />
      <Button label='My Bets' onClick={loginModal.onOpen} />
      <Button label='Subscriptions' onClick={loginModal.onOpen} />
-     <hr />
-     <Button label='Logout' onClick={() => signOut()} />
+     <Button label='Notifications' onClick={loginModal.onOpen} />
+
+     {/* <hr /> */}
+     <div className={styles.logoutWrapper}>
+      <Button label='Logout' onClick={() => signOut()} />
+
+     </div>
 
     </>
    ) : (

@@ -2,11 +2,10 @@
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import LoginModal from './components/modals/LoginModal'
-import Modal from './components/modals/Modal'
 import RegisterModal from './components/modals/RegisterModal'
 import Navbar from './components/navbar/Navbar'
-import './globals.css'
 import ToasterProvider from './providers/ToasterProvider'
+import './styles/globals.scss'
 
 export const metadata = {
   title: 'Create Next App',
@@ -28,9 +27,14 @@ export default async function RootLayout({
           <ToasterProvider />
           <RegisterModal />
           <LoginModal />
-          <Navbar currentUser={currentUser} />
+          <div className='sidebarContainer'>
+            <Navbar currentUser={currentUser} />
+          </div>
         </ClientOnly>
-        {children}
+        <div className="mainContainer">
+          {children}
+        </div>
+
       </body>
     </html>
   )

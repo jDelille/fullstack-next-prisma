@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.sidebar {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	.sidebarHeader {
+		width: 100%;
+		height: 85px;
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+		gap: 1rem;
+		border-bottom: 1px solid $lightGray;
+		margin-bottom: 1rem;
+		color: $white;
+		.profileImage {
+			background-color: dodgerblue;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			img {
+				object-fit: contain;
+				max-width: 50px;
+				max-height: 50px;
+				border-radius: 50%;
+				position: relative !important;
+			}
+		}
+		.profileName {
+			font-weight: 600;
+			font-size: 20px;
+			span {
+				font-weight: 400;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.userMenu {
+	position: relative;
+	height: calc(100% - 85px - 1rem);
+	button {
+		background: none;
+		border: none;
+		outline: none;
+		color: $white;
+		display: flex;
+		justify-content: flex-start;
+		font-size: 16px;
+		height: 50px;
+		&:hover {
+			background-color: lighten($gray, 2%);
+		}
+	}
+	.logoutWrapper {
+		position: absolute;
+		bottom: 1rem;
+		width: 100%;
+	}
+}

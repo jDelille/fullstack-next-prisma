@@ -1,0 +1,73 @@
+@import './variables';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+}
+
+.sidebarContainer {
+	background-color: $gray;
+	border-right: 1px solid $lightGray;
+	height: 450px;
+	width: 350px;
+	position: fixed;
+	left: 0;
+	top: 105px;
+	z-index: 2;
+	margin-top: 2rem;
+	margin-left: 2rem;
+	border-radius: 12px;
+}
+
+.gamebarContainer {
+	background-color: $gray;
+	border-bottom: 1px solid $lightGray;
+	height: 105px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 2;
+}
+
+.mainContainer {
+	width: 100%;
+	height: 100vh;
+}
+
+.main {
+	background-color: $black;
+	color: #222222;
+	min-height: 100vh;
+	position: relative;
+	width: 100%;
+
+	.mainFeed {
+		background-color: $black;
+		border: 1px solid $lightGray;
+		max-width: 830px;
+		position: relative;
+		top: 105px;
+		height: calc(100vh - 105px);
+		margin: 0 auto;
+		margin-top: 2rem;
+	}
+	.rightSidebar {
+		background-color: $gray;
+		border-left: 1px solid $lightGray;
+		width: 350px;
+		height: 70vh;
+		margin-left: auto;
+		position: fixed;
+		right: 0;
+		top: 105px;
+		margin-top: 2rem;
+		margin-right: 2rem;
+		border-radius: 12px;
+	}
+}
