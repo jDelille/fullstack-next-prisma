@@ -28,7 +28,7 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
      <Button label='Subscriptions' onClick={loginModal.onOpen} />
      <Button label='Notifications' onClick={loginModal.onOpen} />
 
-     {/* <hr /> */}
+   
      <div className={styles.logoutWrapper}>
       <Button label='Logout' onClick={() => signOut()} />
 

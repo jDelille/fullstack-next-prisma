@@ -31,11 +31,12 @@
 			}
 		}
 		.profileName {
-			font-weight: 600;
+			font-weight: 400;
 			font-size: 20px;
 			span {
-				font-weight: 400;
+				font-weight: 300;
 				font-size: 16px;
+				color: $secondaryText;
 			}
 		}
 	}
@@ -59,7 +60,12 @@
 	}
 	.logoutWrapper {
 		position: absolute;
-		bottom: 1rem;
+		bottom: 0rem;
 		width: 100%;
+		border-top: 1px solid $lightGray;
+		display: flex;
+		align-items: center;
+		button {
+		}
 	}
 }

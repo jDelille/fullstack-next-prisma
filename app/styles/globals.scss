@@ -1,9 +1,10 @@
 @import './variables';
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Noto Sans', sans-serif;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
 
 .sidebarContainer {
 	background-color: $gray;
-	border-right: 1px solid $lightGray;
+	border: 2px solid $lightGray;
 	height: 450px;
 	width: 350px;
 	position: fixed;
@@ -26,7 +27,7 @@ body {
 
 .gamebarContainer {
 	background-color: $gray;
-	border-bottom: 1px solid $lightGray;
+	border-bottom: 2px solid $lightGray;
 	height: 105px;
 	position: fixed;
 	top: 0;
@@ -49,7 +50,7 @@ body {
 
 	.mainFeed {
 		background-color: $black;
-		border: 1px solid $lightGray;
+		border: 2px solid $lightGray;
 		max-width: 830px;
 		position: relative;
 		top: 105px;
@@ -59,7 +60,7 @@ body {
 	}
 	.rightSidebar {
 		background-color: $gray;
-		border-left: 1px solid $lightGray;
+		border: 2px solid $lightGray;
 		width: 350px;
 		height: 70vh;
 		margin-left: auto;
