@@ -1,2 +1,14 @@
 .heading {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	.headingTitle {
+		font-weight: 500;
+		font-size: 18px;
+	}
+	.headingSubTitle {
+		font-weight: 500;
+		font-size: 14px;
+		padding-bottom: 1rem;
+	}
 }

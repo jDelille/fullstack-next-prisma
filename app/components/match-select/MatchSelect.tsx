@@ -1,18 +1,16 @@
-'use client'
+'use client';
 
 import { Game } from '@/app/types/Game';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import styles from './MatchSelect.module.scss';
 
 type MatchSelectProps = {
- onClick: (value: string) => void;
- selected: string
-}
-
+ onClick: (value: any) => void;
+ selected: string;
+};
 
 const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick }) => {
-
- const [matches, setMatches] = useState<Game[] | null>()
+ const [matches, setMatches] = useState<Game[] | null>();
 
  async function getMatchData() {
   try {
@@ -25,24 +23,32 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick }) => {
    }
 
    const data = await res.json();
-   setMatches(data.events)
-
+   setMatches(data.events);
   } catch (error) {
-   console.log(error)
+   console.log(error);
   }
  }
 
  useEffect(() => {
-  getMatchData()
- }, [])
+  getMatchData();
+ }, []);
+
+ console.log(matches);
 
  return (
   <>
    {matches?.map((match) => (
-    <div key={match.id} className={selected === match.id ? styles.borderedMatch : styles.match} onClick={() => onClick(match.id)}>{match.name} </div>
+    <div
+     key={match.id}
+     className={
+      selected === match.id ? styles.borderedMatch : styles.match
+     }
+     onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail,  })}>
+     {match.name}
+    </div>
    ))}
   </>
  );
-}
+};
 
 export default MatchSelect;

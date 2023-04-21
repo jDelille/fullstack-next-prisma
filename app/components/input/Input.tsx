@@ -12,6 +12,7 @@ type InputProps = {
  register: UseFormRegister<FieldValues>;
  errors: FieldErrors;
  formatPrice?: boolean;
+ onChange?: (value: any) => void;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -22,7 +23,8 @@ const Input: React.FC<InputProps> = ({
  required,
  register,
  errors,
- formatPrice
+ formatPrice,
+ onChange
 }) => {
  return (
   <div className={styles.inputWrapper}>
@@ -35,6 +37,7 @@ const Input: React.FC<InputProps> = ({
     placeholder=' '
     type={type}
     className={styles.input}
+    onChange={onChange}
    />
   </div>
  );

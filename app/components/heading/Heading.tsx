@@ -11,7 +11,7 @@ const Heading: React.FC<HeadingProps> = ({ title, subTitle, center }) => {
  return (
   <div className={styles.heading}>
    <div className={styles.headingTitle}>{title}</div>
-   <div>{subTitle}</div>
+   <div className={styles.headingSubTitle}>{subTitle}</div>
   </div>
  );
 }

@@ -29,6 +29,9 @@
 	// transform: translateY(100px);
 	transition: 300ms ease-in-out;
 	opacity: 1;
+	@include breakpoint(md) {
+		width: 65%;
+	}
 	@include breakpoint(xs) {
 		width: 95%;
 	}

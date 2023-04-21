@@ -18,6 +18,7 @@
 .awayOddBordered,
 .homeOddBordered {
 	@include button();
+	justify-content: space-evenly;
 }
 
 .awayOddBordered,
