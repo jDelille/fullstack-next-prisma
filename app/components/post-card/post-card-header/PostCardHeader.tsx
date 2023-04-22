@@ -44,7 +44,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({ post, currentUserId }) 
    </div>
    <div className={styles.postMenu}>
     <p>{createdAt}</p>
-    <BiDotsVerticalRounded onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    <BiDotsVerticalRounded onClick={(e) => { e.stopPropagation(); setIsMenuOpen(!isMenuOpen) }} />
     {isMenuOpen && (
      <PostCardMenu postId={post?.id} currentUserId={currentUserId} postUserId={post?.user.id} />
     )}
