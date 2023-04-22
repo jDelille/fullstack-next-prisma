@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import styles from './PostCard.module.scss';
 import { BiDotsVerticalRounded } from 'react-icons/bi'
@@ -7,8 +9,8 @@ import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
 
 type PostCardProps = {
-  post: Record<string, any>;
-  currentUser: SafeUser | null
+  post: any;
+  currentUser?: SafeUser | null
 };
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
@@ -42,9 +44,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
 
 
   return (
-    <div className={styles.post} onClick={() => router.push(`user/${post?.user.id}`)}>
+    <div className={styles.post} onClick={(e) => { e.stopPropagation(); router.push(`post/${post?.id}`) }}>
       <div className={styles.postHeader}>
-        <div className={styles.profilePicture}>
+        <div className={styles.profilePicture} onClick={() => router.push(`user/${post?.user.id}`)}>
           <Image
             src={post.user.profilePicture || '/images/placeholder.png'}
             width={59}

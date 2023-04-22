@@ -11,12 +11,12 @@ type PostFeedProps = {
  totalBets?: number
 }
 
-const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, totalBets }) => {
+const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser }) => {
 
  return (
   <div className={styles.postFeed}>
    {posts.map((post: any) => (
-    <PostCard post={post} key={post.id} currentUser={currentUser} totalBets={totalBets} />
+    <PostCard post={post} key={post.id} currentUser={currentUser} />
    ))}
   </div>
  );
