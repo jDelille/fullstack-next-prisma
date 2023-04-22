@@ -13,7 +13,7 @@
  #### NFL, NBA, NHL, MLS, MLB 
 
 #### sports to be added...
- #### UFC, WNBA, Men's College Basketball, Women's college basketball, F1, NASCAR.
+ #### UFC, WNBA, Men's College Basketball, Women's college basketball
 
 <hr />
 
