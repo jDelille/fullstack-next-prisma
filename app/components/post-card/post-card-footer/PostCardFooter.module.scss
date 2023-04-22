@@ -1,4 +1,36 @@
+@import '../../../styles/variables';
+
 .postCardFooter {
 	width: 100%;
 	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 13px;
+	.likePost {
+		background-color: $gray;
+		width: fit-content;
+		padding: 5px 8px;
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		cursor: pointer;
+		span {
+			position: relative;
+			width: 25px;
+			display: flex;
+			justify-content: center;
+			&:after {
+				position: absolute;
+				content: '';
+				left: 0;
+				background-color: $secondaryText;
+				width: 2px;
+				height: 60%;
+				top: 50%;
+				transform: translate(0%, -50%);
+			}
+		}
+	}
 }
