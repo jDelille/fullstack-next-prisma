@@ -44,6 +44,16 @@
 			margin: 0;
 		}
 	}
+	.postPhoto {
+		max-height: 300px;
+		position: relative;
+		img {
+			max-height: 300px;
+			position: relative !important;
+			border-radius: 6px;
+			margin-top: 10px;
+		}
+	}
 	.badges {
 		display: flex;
 		// margin-left: 60px;

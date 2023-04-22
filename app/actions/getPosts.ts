@@ -12,6 +12,8 @@ export default async function getPosts() {
 			},
 		});
 
+		console.log(posts);
+
 		const formattedPosts = posts.map((post) => ({
 			...post,
 			createdAt: post.createdAt.toISOString(),

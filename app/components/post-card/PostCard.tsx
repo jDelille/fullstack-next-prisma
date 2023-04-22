@@ -18,7 +18,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const favOrDogBadge = () => {
-    if (post.Bet.favorite) {
+    if (post.Bet?.favorite) {
       return <div className={styles.favBadge}>Favorite</div>;
     } else {
       return <div className={styles.dogBadge}>Underdog</div>;
@@ -26,14 +26,14 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   };
 
   const confidenceBadge = () => {
-    if (post.Bet.confidence === 'Easy Money') {
-      return <div className={styles.ezBadge}>{post.Bet.confidence}</div>;
-    } else if (post.Bet.confidence === 'Optimistic') {
+    if (post.Bet?.confidence === 'Easy Money') {
+      return <div className={styles.ezBadge}>{post.Bet?.confidence}</div>;
+    } else if (post.Bet?.confidence === 'Optimistic') {
       return (
-        <div className={styles.optimisticBadge}>{post.Bet.confidence}</div>
+        <div className={styles.optimisticBadge}>{post.Bet?.confidence}</div>
       );
     } else {
-      return <div className={styles.riskyBadge}>{post.Bet.confidence}</div>;
+      return <div className={styles.riskyBadge}>{post.Bet?.confidence}</div>;
     }
   };
 
@@ -48,16 +48,16 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       <div className={styles.postHeader}>
         <div className={styles.profilePicture} onClick={(e) => { e.stopPropagation(); router.push(`user/${post?.user.id}`) }}>
           <Image
-            src={post.user.profilePicture || '/images/placeholder.png'}
+            src={post?.user.profilePicture || '/images/placeholder.png'}
             width={59}
             height={59}
             alt='profile-picture'
           />
         </div>
         <div className={styles.userName}>
-          <p>{post.user.name}</p>
-          <span>{post.user.username}</span>
-          <span>Bets {post.user.totalBets}</span>
+          <p>{post?.user.name}</p>
+          <span>{post?.user.username}</span>
+          <span>Bets {post?.user.totalBets}</span>
         </div>
         <div className={styles.postMenu}>
           <BiDotsVerticalRounded onClick={() => setIsMenuOpen(!isMenuOpen)} />
@@ -68,42 +68,62 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       </div>
 
       <div className={styles.postBody}>
-        <p>{post.Bet.thoughts}</p>
+        <p>{post?.Bet?.thoughts || post?.body}</p>
       </div>
-      <div className={styles.badges}>
-        {confidenceBadge()}
-        {favOrDogBadge()}
-      </div>
-      <div className={styles.postBet}>
-        <div className={styles.postBetHeader}>
-          {post.Bet.location === 'away' ? (
-            <p>
-              {post.Bet.awayTeam}{' '}
-              <span>
-                {/* {post.Bet.favorite ? '-' : '+'} */}
-                {post.Bet.value}
-              </span>
-            </p>
-          ) : (
-            <p>
-              {post.Bet.homeTeam} {' '}
-              <span>
-                {/* {post.Bet.favorite ? '-' : '+'} */}
-                {post.Bet.value}
-              </span>
-            </p>
-          )}
-          <p className={styles.betOdds}>{post.Bet.odds}</p>
+      {post?.photo && (
+        <div className={styles.postPhoto}>
+          <Image
+            src={post?.photo}
+            fill
+            alt='Uploaded Image'
+            className={styles.imagePreview}
+            style={{ objectFit: 'cover' }}
+          />
         </div>
-        <div className={styles.postBetBody}>
-          <p> {post.Bet.type}</p>
-          <p>Wager ${post.Bet.wager}</p>
-          <p>Payout $5000</p>
+      )}
+
+
+
+      {post?.Bet && (
+        <div className={styles.badges}>
+          {confidenceBadge()}
+          {favOrDogBadge()}
         </div>
-        <div className={styles.disclaimer}>
-          <p>Odds shown are at time of post and are subject to change.</p>
+      )}
+
+      {post?.Bet && (
+        <div className={styles.postBet}>
+          <div className={styles.postBetHeader}>
+            {post.Bet?.location === 'away' ? (
+              <p>
+                {post.Bet?.awayTeam}{' '}
+                <span>
+                  {/* {post.Bet.favorite ? '-' : '+'} */}
+                  {post.Bet?.value}
+                </span>
+              </p>
+            ) : (
+              <p>
+                {post.Bet?.homeTeam} {' '}
+                <span>
+                  {/* {post.Bet.favorite ? '-' : '+'} */}
+                  {post.Bet?.value}
+                </span>
+              </p>
+            )}
+            <p className={styles.betOdds}>{post.Bet?.odds}</p>
+          </div>
+          <div className={styles.postBetBody}>
+            <p> {post.Bet?.type}</p>
+            <p>Wager ${post.Bet?.wager}</p>
+            <p>Payout $5000</p>
+          </div>
+          <div className={styles.disclaimer}>
+            <p>Odds shown are at time of post and are subject to change.</p>
+          </div>
         </div>
-      </div>
+      )}
+
     </div>
   );
 };

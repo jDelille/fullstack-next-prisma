@@ -144,8 +144,6 @@ const BetModal = () => {
     return formattedPayout;
   };
 
-  console.log(leagueName)
-
   const payout = calculatePayout(wagerAmount, odds);
 
   let bodyContent = (

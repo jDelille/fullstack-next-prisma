@@ -4,6 +4,8 @@
 	min-height: 100px;
 	position: relative;
 	min-width: 100%;
+	height: fit-content;
+
 	.inputWrapper {
 		background-color: $black;
 		border: 2px solid $lightGray;
@@ -15,12 +17,15 @@
 		margin-bottom: 1rem;
 		display: flex;
 		flex-direction: column;
+		height: fit-content;
+
 		.createPostWrapper {
 			display: flex;
 			align-items: center;
 			position: relative;
 			min-height: 50px;
 			gap: 1rem;
+			height: fit-content;
 		}
 		.inputButtons {
 			width: 100%;
@@ -28,7 +33,7 @@
 			display: flex;
 			align-items: center;
 			padding-right: 10px;
-			padding-left: 85px;
+			padding-left: 88px;
 			gap: 10px;
 			button {
 				width: fit-content;
@@ -37,7 +42,7 @@
 				&:hover {
 					background-color: lighten($gray, 2%);
 				}
-				&:nth-of-type(4) {
+				&:nth-of-type(3) {
 					margin-left: auto;
 				}
 			}

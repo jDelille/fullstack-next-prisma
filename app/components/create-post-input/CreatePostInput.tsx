@@ -1,56 +1,81 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './CreatePostInput.module.scss';
 import Image from 'next/image';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
-const CreatePostInput = () => {
- const textAreaRef = useRef<HTMLTextAreaElement>(null);
+type CreatePostInput = {
+  setCustomValue: (id: string, value: any) => void;
+  photo: string;
+}
 
- const autosize = () => {
-  if (textAreaRef.current) {
-   var el = textAreaRef.current;
-   setTimeout(function () {
-    el.style.cssText = 'height:auto; padding:0';
-    el.style.cssText = 'height:' + el.scrollHeight + 'px';
-   }, 0);
-  }
- };
+const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo }) => {
 
- useEffect(() => {
-  if (textAreaRef.current) {
-   const textarea = textAreaRef.current;
-   textarea.addEventListener('keydown', autosize);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-   return () => {
-    textarea.removeEventListener('keydown', autosize);
-   };
-  }
- }, []);
+  const autosize = () => {
+    if (textAreaRef.current) {
+      var el = textAreaRef.current;
+      setTimeout(function () {
+        el.style.cssText = 'height:auto; padding:0';
+        el.style.cssText = 'height:' + el.scrollHeight + 'px';
+      }, 0);
+    }
+  };
 
- return (
-  <div className={styles.createPostInput}>
-   <div className={styles.profilePicture} >
-    <Image
-     src={'/images/placeholder.png'}
-     width={59}
-     height={59}
-     alt='profile-picture'
-    />
-   </div>
-   <div className={styles.textareaWrapper}>
-    <textarea
-     // onChange={(event) => {
-     //  setBody(event.target.value);
-     // }}
-     // value={body}
-     className={styles.textarea}
-     placeholder="What's happening?"
-     ref={textAreaRef}
-     rows={1}></textarea>
-   </div>
-  </div>
- );
+  useEffect(() => {
+    if (textAreaRef.current) {
+      const textarea = textAreaRef.current;
+      textarea.addEventListener('keydown', autosize);
+
+      return () => {
+        textarea.removeEventListener('keydown', autosize);
+      };
+    }
+  }, []);
+
+
+
+  return (
+    <div className={styles.createPostInput}>
+      <div className={styles.profilePicture} >
+        <Image
+          src={'/images/placeholder.png'}
+          width={59}
+          height={59}
+          alt='profile-picture'
+        />
+      </div>
+      <div className={styles.textareaWrapper}>
+        <textarea
+          onChange={(event) => {
+            setCustomValue('postBody', event.target.value);
+          }}
+          // value={body}
+          className={styles.textarea}
+          placeholder="What's happening?"
+          ref={textAreaRef}
+          rows={1}></textarea>
+        {photo && (
+          <div className={styles.imagePreview}>
+            {/* <div
+              className={styles.closeImagePreview}
+              onClick={() => setPhoto('')}>
+              <AiFillCloseCircle size={30} />
+            </div> */}
+            <Image
+              src={photo}
+              fill
+              alt='Uploaded Image'
+              className={styles.imagePreview}
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default CreatePostInput;

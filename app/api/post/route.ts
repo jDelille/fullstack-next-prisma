@@ -10,13 +10,13 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json();
-	const { photo, text } = body;
+	const { photo, postBody } = body;
 
 	const newPost = await prisma.post.create({
 		data: {
 			userId: currentUser.id,
-			body: text,
-			photo,
+			body: postBody,
+			photo: photo,
 		},
 	});
 
