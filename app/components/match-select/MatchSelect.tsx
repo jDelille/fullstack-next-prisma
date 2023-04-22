@@ -33,8 +33,6 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick }) => {
   getMatchData();
  }, []);
 
- console.log(matches);
-
  return (
   <>
    {matches?.map((match) => (
@@ -43,7 +41,7 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick }) => {
      className={
       selected === match.id ? styles.borderedMatch : styles.match
      }
-     onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail,  })}>
+     onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail, homeTeam: match.competitions[0].competitors[0].team.displayName, awayTeam: match.competitions[0].competitors[1].team.displayName })}>
      {match.name}
     </div>
    ))}

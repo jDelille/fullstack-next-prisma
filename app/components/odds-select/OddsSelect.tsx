@@ -7,9 +7,12 @@ import styles from './OddsSelect.module.scss';
 type OddsSelectProps = {
   matchId: string;
   onClick: (value: any) => void;
+  name: string;
+  homeTeam: string;
+  awayTeam: string
 };
 
-const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
+const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTeam, awayTeam }) => {
   const [odds, setOdds] = useState<Odds | null>();
   const [selected, setSelected] = useState('');
 
@@ -53,7 +56,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.homeOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.homeTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.homeTeamOdds.favorite, value: null }); setSelected('homeML');
+                  onClick({ odds: odds?.homeTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.homeTeamOdds.favorite, value: null, homeTeam: homeTeam, location: 'home' }); setSelected('homeML');
                 }}>
                 <p>{odds?.homeTeamOdds.moneyLine}</p>
               </div>
@@ -64,7 +67,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.awayOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.awayTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.awayTeamOdds.favorite, value: null });
+                  onClick({ odds: odds?.awayTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.awayTeamOdds.favorite, value: null, awayTeam: awayTeam, location: 'away' });
                   setSelected('awayML');
                 }}>
                 <p>{odds?.awayTeamOdds.moneyLine}</p>
@@ -80,7 +83,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.homeOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.homeTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.homeTeamOdds.favorite, value: odds?.spread });
+                  onClick({ odds: odds?.homeTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.homeTeamOdds.favorite, value: odds?.spread, homeTeam: homeTeam, location: 'home' });
                   setSelected('homeSpread');
                 }}>
                 <p>{odds.homeTeamOdds.favorite ? '-' : '+'}{odds.spread.toString().slice(1)}</p>
@@ -93,7 +96,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.awayOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.awayTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.awayTeamOdds.favorite, value: odds?.spread });
+                  onClick({ odds: odds?.awayTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.awayTeamOdds.favorite, value: odds?.spread, awayTeam: awayTeam, location: 'away' });
                   setSelected('awaySpread');
                 }}>
                 <p>{odds.awayTeamOdds.favorite ? '-' : '+'}{odds.spread.toString().slice(0)}</p>
@@ -110,7 +113,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.homeOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.overOdds, type: 'Over', favorite: odds?.homeTeamOdds.favorite, value: odds.overUnder })
+                  onClick({ odds: odds?.overOdds, type: 'Over', favorite: odds?.homeTeamOdds.favorite, value: odds.overUnder, homeTeam: homeTeam, location: 'home' })
                   setSelected('over');
                 }}>
                 <p>O {odds.overUnder}</p>
@@ -123,7 +126,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick }) => {
                     : styles.awayOdd
                 }
                 onClick={() => {
-                  onClick({ odds: odds?.underOdds, type: 'Under', favorite: odds?.awayTeamOdds.favorite, value: odds.overUnder });
+                  onClick({ odds: odds?.underOdds, type: 'Under', favorite: odds?.awayTeamOdds.favorite, value: odds.overUnder, awayTeam: awayTeam, location: 'away' });
                   setSelected('under');
                 }}>
                 <p>U {odds.overUnder}</p>

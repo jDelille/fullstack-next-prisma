@@ -33,14 +33,20 @@ model User {
 }
 
 model Bet {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  league   String
-  match    String
-  favorite Boolean
-  odds     Int
-  type     String
-  value    Float?
-  thoughts String
-  wager    Float?
-  Post     Post[]
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  league     String
+  status     String
+  homeTeam   String
+  awayTeam   String
+  name       String
+  location   String
+  favorite   Boolean
+  odds       Int
+  type       String
+  value      Float?
+  thoughts   String
+  wager      Float?
+  payout     Float?
+  confidence String
+  Post       Post[]
 }

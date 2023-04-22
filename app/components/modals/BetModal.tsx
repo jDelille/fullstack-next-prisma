@@ -23,6 +23,7 @@ import Input from '../input/Input';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import ConfidenceSelect from '../confidence-select/ConfidenceSelect';
 enum STEPS {
   LEAGUE = 0,
   MATCH = 1,
@@ -37,8 +38,8 @@ const BetModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [matchId, setMatchId] = useState('');
   const [step, setStep] = useState(STEPS.LEAGUE);
-  const [odds, setOdds] = useState(0)
-  const [wagerAmount, setWagerAmount] = useState(0)
+  const [odds, setOdds] = useState(0);
+  const [wagerAmount, setWagerAmount] = useState(0);
   const {
     register,
     handleSubmit,
@@ -68,7 +69,6 @@ const BetModal = () => {
       setMatchId(value.matchId);
     }
 
-
     if (id === 'odds') {
       setOdds(value.odds);
     }
@@ -76,8 +76,8 @@ const BetModal = () => {
 
   const setWager = (event: any) => {
     const wager = event.target.value;
-    setWagerAmount(wager)
-  }
+    setWagerAmount(wager);
+  };
 
   const onBack = () => {
     setStep((value) => value - 1);
@@ -139,7 +139,6 @@ const BetModal = () => {
 
   const payout = calculatePayout(wagerAmount, odds);
 
-
   let bodyContent = (
     <div>
       <Heading title='Choose a league' />
@@ -179,19 +178,33 @@ const BetModal = () => {
       <div>
         <Heading title='Choose your bet' subTitle={match?.name} />
         <div className={styles.chooseOdds}>
-          <OddsSelect matchId={matchId} onClick={(value) => setCustomValue('odds', value)} />
-          <Input
-            id='wager'
-            label='Wager'
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-            formatPrice
-            type='number'
-            required
-            onChange={setWager}
+          <OddsSelect
+            matchId={matchId}
+            name={match?.name}
+            homeTeam={match?.homeTeam}
+            awayTeam={match?.awayTeam}
+            onClick={(value) => setCustomValue('odds', value)}
           />
-          <div>{payout}</div>
+          <div className={styles.wager}>
+            <div className={styles.wagerInput}>
+              <Input
+                id='wager'
+                label='Wager'
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                formatPrice
+                type='number'
+                required
+                onChange={setWager}
+              />
+            </div>
+
+            <div className={styles.payoutContainer}>
+              <label>Potential Payout</label>
+              <div className={styles.payout}>${payout}</div>
+            </div>
+          </div>
           <Input
             id='thoughts'
             label='Share your thoughts on this'
@@ -200,6 +213,10 @@ const BetModal = () => {
             errors={errors}
             required
           />
+          <div className={styles.confidence}>
+            <label>Share your confidence level</label>
+            <ConfidenceSelect onChange={(value) => setCustomValue('confidence', value)} />
+          </div>
         </div>
       </div>
     );

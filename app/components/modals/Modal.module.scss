@@ -1,5 +1,6 @@
 @import '../../styles/breakpoints';
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .overlay {
 	justify-content: center;
@@ -61,11 +62,44 @@
 				flex-direction: column;
 				flex-wrap: wrap;
 				gap: 1rem;
-				max-height: 400px;
+				max-height: 450px;
 				margin-top: 1rem;
 			}
 			.chooseOdds {
 				height: unset;
+				label {
+					font-size: 12px;
+				}
+				.wager {
+					display: flex;
+					position: relative;
+					gap: 1rem;
+					.wagerInput {
+						width: 100%;
+					}
+					.payoutContainer {
+						width: 100%;
+						height: 100%;
+						display: flex;
+						flex-direction: column;
+						gap: 10px;
+						label {
+							margin-top: 10px;
+						}
+						.payout {
+							@include button();
+							border-radius: 4px;
+						}
+					}
+				}
+				.confidence {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					label {
+						font-size: 12px;
+					}
+				}
 			}
 		}
 		.buttonsContainer {
