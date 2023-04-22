@@ -37,5 +37,17 @@ export async function POST(request: Request) {
 		},
 	});
 
-	return NextResponse.json(newPost);
+	// Update the user's bet count and totalBets field
+	let totalBets = currentUser.totalBets;
+
+	const updatedUser = await prisma.user.update({
+		where: {
+			id: currentUser.id,
+		},
+		data: {
+			totalBets: (totalBets += 1),
+		},
+	});
+
+	return NextResponse.json({ newPost, updatedUser });
 }

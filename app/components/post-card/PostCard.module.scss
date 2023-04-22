@@ -17,12 +17,11 @@
 		gap: 20px;
 		position: relative;
 		.profilePicture {
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-			background-color: skyblue;
+			width: 59px;
+			height: 59px;
+			border-radius: 8px;
 			img {
-				border-radius: 50%;
+				border-radius: 8px;
 			}
 		}
 		.userName {
@@ -40,14 +39,14 @@
 		}
 	}
 	.postBody {
-		margin-left: 60px;
+		// margin-left: 60px;
 		@include breakpoint(xs) {
 			margin: 0;
 		}
 	}
 	.badges {
 		display: flex;
-		margin-left: 60px;
+		// margin-left: 60px;
 		gap: 5px;
 		@include breakpoint(xs) {
 			margin: 0;
@@ -86,7 +85,7 @@
 		padding: 10px 1rem;
 		background-color: $gray;
 		border-radius: 6px;
-		margin-left: 60px;
+		// margin-left: 60px;
 		@include breakpoint(xs) {
 			margin: 0;
 		}

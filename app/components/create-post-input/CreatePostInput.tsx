@@ -15,14 +15,14 @@ const CreatePostInput = () => {
   <div className={styles.inputContainer}>
    <div className={styles.inputWrapper}>
     <div className={styles.createPostWrapper}>
-     {/* TODO - add textarea and image select for normal posts*/}
-     {/* <Button label='Post a bet' onClick={betModal.onOpen} /> */}
+     <Button label='Post a bet' onClick={betModal.onOpen} />
 
+     {/* TODO - add textarea and image select for normal posts*/}
      {/* <p>Upload image</p> */}
-     <ImageUpload
+     {/* <ImageUpload
       value={photo}
       onChange={(image) => setPhoto(image)}
-     />
+     /> */}
     </div>
    </div>
   </div>

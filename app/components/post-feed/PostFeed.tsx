@@ -8,14 +8,15 @@ import { SafeUser } from "@/app/types";
 type PostFeedProps = {
  posts: any;
  currentUser: SafeUser | null
+ totalBets?: number
 }
 
-const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser }) => {
+const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, totalBets }) => {
 
  return (
   <div className={styles.postFeed}>
    {posts.map((post: any) => (
-    <PostCard post={post} key={post.id} currentUser={currentUser} />
+    <PostCard post={post} key={post.id} currentUser={currentUser} totalBets={totalBets} />
    ))}
   </div>
  );

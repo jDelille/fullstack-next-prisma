@@ -8,7 +8,6 @@ import { SafeUser } from '@/app/types';
 type PostCardProps = {
   post: Record<string, any>;
   currentUser: SafeUser | null
-
 };
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
@@ -47,14 +46,15 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         <div className={styles.profilePicture}>
           <Image
             src={post.user.profilePicture || '/images/placeholder.png'}
-            width={40}
-            height={40}
+            width={59}
+            height={59}
             alt='profile-picture'
           />
         </div>
         <div className={styles.userName}>
           <p>{post.user.name}</p>
-          <span>@{post.user.username}</span>
+          <span>{post.user.username}</span>
+          <span>Bets {post.user.totalBets}</span>
         </div>
         <div className={styles.postMenu}>
           <BiDotsVerticalRounded onClick={() => setIsMenuOpen(!isMenuOpen)} />
