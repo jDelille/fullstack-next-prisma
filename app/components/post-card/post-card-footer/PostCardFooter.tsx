@@ -40,6 +40,26 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
   [router]
  );
 
+ const onRemoveLike = useCallback(
+  (id: string) => {
+   setId(id);
+
+   axios
+    .delete(`/api/like/${id}`)
+    .then(() => {
+     toast.success('Post unliked');
+     router.refresh();
+    })
+    .catch(() => {
+     toast.error('Something went wrong');
+    })
+    .finally(() => {
+     setId('');
+    });
+  },
+  [router]
+ );
+
  const likeSet = new Set(likeArray);
 
  const hasLiked = () => {
@@ -48,7 +68,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 
  return (
   <div className={styles.postCardFooter}>
-   <div className={styles.likePost} onClick={(e) => { e.stopPropagation(); onLike(postId) }}>
+   <div className={styles.likePost} onClick={(e) => { e.stopPropagation(); !hasLiked() ? onLike(postId) : onRemoveLike(postId) }}>
     {hasLiked() ? (
      <AiFillLike color='dodgerblue' />
     ) : (
