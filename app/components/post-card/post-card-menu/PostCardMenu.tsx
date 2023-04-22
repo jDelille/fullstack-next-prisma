@@ -40,7 +40,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({ postId, onClose, currentUse
   return (
     <div className={styles.postCardMenu}>
       {postUserId === currentUserId && (
-        <p onClick={() => onDelete(postId)}>Delete</p>
+        <p onClick={(e) => { e.stopPropagation(); onDelete(postId) }}>Delete</p>
       )}
     </div>
   );

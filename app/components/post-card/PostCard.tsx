@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import styles from './PostCard.module.scss';
-import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { useState } from 'react';
 import PostCardMenu from './post-card-menu/PostCardMenu';
 import { SafeUser } from '@/app/types';
@@ -12,12 +12,12 @@ import PostCardBet from './post-card-bet/PostCardBet';
 
 type PostCardProps = {
   post: any;
-  currentUser?: SafeUser | null
+  currentUser?: SafeUser | null;
 };
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const favOrDogBadge = () => {
     if (post.Bet?.favorite) {
@@ -39,14 +39,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
     }
   };
 
-  const onClose = () => {
-    setIsMenuOpen(false)
-  }
-
-
-
   return (
-    <div className={styles.post} onClick={(e) => { router.push(`post/${post?.id}`) }}>
+    <div
+      className={styles.post}
+      onClick={(e) => {
+        router.push(`post/${post?.id}`);
+      }}>
       <PostCardHeader currentUserId={currentUser?.id} post={post} />
       <div className={styles.postBody}>
         <p>{post?.Bet?.thoughts || post?.body}</p>
@@ -62,20 +60,13 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
           />
         </div>
       )}
-
-
-
       {post?.Bet && (
         <div className={styles.badges}>
           {confidenceBadge()}
           {favOrDogBadge()}
         </div>
       )}
-
-      {post?.Bet && (
-        <PostCardBet post={post.Bet} />
-      )}
-
+      {post?.Bet && <PostCardBet post={post.Bet} />}
     </div>
   );
 };
