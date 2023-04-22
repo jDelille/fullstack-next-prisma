@@ -19,6 +19,7 @@ model Post {
   createdAt DateTime @default(now())
   Bet       Bet?     @relation(fields: [betId], references: [id])
   betId     String?  @db.ObjectId
+  likedIds  String[] @db.ObjectId
 }
 
 model User {

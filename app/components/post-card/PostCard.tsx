@@ -64,7 +64,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         </div>
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
-      <PostCardFooter />
+      <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} />
     </div>
   );
 };
