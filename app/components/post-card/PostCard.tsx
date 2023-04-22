@@ -1,11 +1,22 @@
 import Image from 'next/image';
 import styles from './PostCard.module.scss';
+import { SafeUser } from '@/app/types';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
+
 
 type PostCardProps = {
- post: any;
+ post: Record<string, any>;
+ currentUser: SafeUser | null
+
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
+ const router = useRouter();
+ const [deletingId, setDeletingId] = useState('');
+
  const favOrDogBadge = () => {
   if (post.Bet.favorite) {
    return <div className={styles.favBadge}>Favorite</div>;
@@ -25,6 +36,23 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
    return <div className={styles.riskyBadge}>{post.Bet.confidence}</div>;
   }
  };
+
+ const onDelete = useCallback((id: string) => {
+  setDeletingId(id)
+
+  axios.delete(`/api/bet/${id}`)
+   .then(() => {
+    toast.success('Bet deleted')
+    router.refresh();
+   })
+   .catch(() => {
+    toast.error("Something went wrong")
+   })
+   .finally(() => {
+    setDeletingId('')
+   })
+
+ }, [router])
 
  return (
   <div className={styles.post}>
@@ -56,15 +84,15 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <p>
        {post.Bet.awayTeam}{' '}
        <span>
-        {post.Bet.favorite ? '-' : '+'}
+        {/* {post.Bet.favorite ? '-' : '+'} */}
         {post.Bet.value}
        </span>
       </p>
      ) : (
       <p>
-       {post.Bet.homeTeam}
+       {post.Bet.homeTeam} {' '}
        <span>
-        {post.Bet.favorite ? '-' : '+'}
+        {/* {post.Bet.favorite ? '-' : '+'} */}
         {post.Bet.value}
        </span>
       </p>
@@ -80,6 +108,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
      <p>Odds shown are at time of post and are subject to change.</p>
     </div>
    </div>
+   <div onClick={() => onDelete(post?.id)}>DELETE</div>
   </div>
  );
 };

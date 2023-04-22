@@ -63,8 +63,6 @@ const BetModal = () => {
       shouldTouch: true,
     });
 
-    console.log(value)
-
     if (id === 'match') {
       setMatchId(value.matchId);
     }
@@ -109,6 +107,8 @@ const BetModal = () => {
         setIsLoading(false);
       });
   };
+
+ 
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.ODDS) {

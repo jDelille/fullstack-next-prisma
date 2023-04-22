@@ -1,3 +1,4 @@
+import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import CreatePostInput from './components/create-post-input/CreatePostInput'
 import PostFeed from './components/post-feed/PostFeed'
@@ -6,6 +7,7 @@ import './styles/globals.scss'
 export default async function Home() {
 
   const posts = await getPosts();
+  const currentUser = await getCurrentUser();
 
   return (
     <main className='main'>
@@ -13,7 +15,7 @@ export default async function Home() {
       </div>
       <div className="mainFeed">
         <CreatePostInput />
-        <PostFeed posts={posts} />
+        <PostFeed posts={posts} currentUser={currentUser} />
       </div>
       {/* <div className="rightSidebar"></div> */}
     </main>
