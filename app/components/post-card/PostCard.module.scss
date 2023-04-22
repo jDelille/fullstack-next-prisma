@@ -13,7 +13,6 @@
 	flex-direction: column;
 	gap: 10px;
 	.postBody {
-		// margin-left: 60px;
 		@include breakpoint(xs) {
 			margin: 0;
 		}
@@ -29,18 +28,9 @@
 	}
 	.badges {
 		display: flex;
-		// margin-left: 60px;
 		gap: 5px;
 		@include breakpoint(xs) {
 			margin: 0;
-		}
-		.badge {
-			padding: 5px 10px;
-			background-color: dodgerblue;
-			color: white;
-			width: fit-content;
-			border-radius: 4px;
-			font-size: 13px;
 		}
 		.favBadge,
 		.dogBadge,
@@ -63,6 +53,4 @@
 			background-color: #f55050;
 		}
 	}
-
-
 }

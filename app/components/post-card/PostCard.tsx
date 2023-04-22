@@ -2,9 +2,6 @@
 
 import Image from 'next/image';
 import styles from './PostCard.module.scss';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { useState } from 'react';
-import PostCardMenu from './post-card-menu/PostCardMenu';
 import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import PostCardHeader from './post-card-header/PostCardHeader';
@@ -17,7 +14,6 @@ type PostCardProps = {
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const favOrDogBadge = () => {
     if (post.Bet?.favorite) {
