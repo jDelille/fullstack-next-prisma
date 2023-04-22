@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import PostCardMenu from "../post-card-menu/PostCardMenu";
 import { SafeUser } from "@/app/types";
 import styles from './PostCardHeader.module.scss';
-
+import { formatDistanceToNowStrict } from 'date-fns';
 type PostCardHeaderProps = {
  post: any;
  currentUserId?: string;
@@ -16,6 +16,15 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({ post, currentUserId }) 
 
  const router = useRouter();
  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+ const createdAt = useMemo(() => {
+  if (!post?.createdAt) {
+   return null;
+  }
+
+  return formatDistanceToNowStrict(new Date(post?.createdAt));
+ }, [post?.createdAt]);
+
 
 
  return (
@@ -34,6 +43,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({ post, currentUserId }) 
     <span>Bets {post?.user.totalBets}</span>
    </div>
    <div className={styles.postMenu}>
+    <p>{createdAt}</p>
     <BiDotsVerticalRounded onClick={() => setIsMenuOpen(!isMenuOpen)} />
     {isMenuOpen && (
      <PostCardMenu postId={post?.id} currentUserId={currentUserId} postUserId={post?.user.id} />
