@@ -1,4 +1,4 @@
-Sports betting social platform built with Nextjs, React, TypeScript, Prisma, Axios, and SCSS. 
+## Sports betting social platform built with Nextjs, React, TypeScript, Prisma, Axios, and SCSS. 
 
 - Create an account
 - Create posts (text / images)
@@ -7,5 +7,20 @@ Sports betting social platform built with Nextjs, React, TypeScript, Prisma, Axi
 - Like / Follow / Subscribe
 - View live sports scores and odds (ESPN API)
 
+<hr />
 
-Main focuses for this project are speed, design, mobile friendliness, and best practices for the Nextjs 13 app directory. 
+#### Sports included so far...
+ #### NFL, NBA, NHL, MLS, MLB 
+
+#### sports to be added...
+ #### UFC, WNBA, Men's College Basketball, Women's college basketball, F1, NASCAR.
+
+<hr />
+
+
+### Main focuses for this project are speed, design, mobile friendliness, and best practices for the Nextjs 13 app directory. 
+
+<hr />
+
+ESPN api docs 
+https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b
