@@ -1,6 +1,7 @@
 @import './variables';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 @import './breakpoints';
+@import './mixins';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 
 * {
 	margin: 0;
@@ -64,36 +65,7 @@ body {
 	position: relative;
 	width: 100%;
 	.mainFeed {
-		flex-grow: 1;
-		background-color: $black;
-		max-width: 833px;
-		position: relative;
-
-		min-height: 100vh;
-		height: fit-content;
-		margin: 0 520px;
-		margin-top: 105px;
-		padding: 2rem;
-		@include breakpoint(xl) {
-			margin: 0 320px;
-		}
-		@include breakpoint(lg) {
-			margin: 0 320px;
-		}
-		@include breakpoint(md) {
-			margin-left: 280px;
-			min-width: calc(100% - 280px);
-			max-width: 720px;
-			min-width: 720px;
-		}
-		@include breakpoint(sm) {
-			margin: 0 280px;
-			min-width: calc(100% - 280px);
-		}
-		@include breakpoint(xs) {
-			margin: 0;
-			padding: 0 1rem;
-		}
+		@include page();
 	}
 	.rightSidebar {
 		background-color: $gray;

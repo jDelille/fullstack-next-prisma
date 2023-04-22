@@ -1,4 +1,5 @@
 @import './variables';
+@import './breakpoints';
 
 @mixin button {
 	padding: 10px;
@@ -25,4 +26,37 @@
 	font-size: 13px;
 	color: $black;
 	font-weight: 500;
+}
+
+@mixin page {
+	flex-grow: 1;
+	background-color: $black;
+	max-width: 833px;
+	position: relative;
+	min-height: 100vh;
+	height: fit-content;
+	margin: 0 520px;
+	margin-top: 105px;
+	padding: 2rem;
+	color: $white;
+	@include breakpoint(xl) {
+		margin: 0 320px;
+	}
+	@include breakpoint(lg) {
+		margin: 0 320px;
+	}
+	@include breakpoint(md) {
+		margin-left: 280px;
+		min-width: calc(100% - 280px);
+		max-width: 720px;
+		min-width: 720px;
+	}
+	@include breakpoint(sm) {
+		margin: 0 280px;
+		min-width: calc(100% - 280px);
+	}
+	@include breakpoint(xs) {
+		margin: 0;
+		padding: 0 1rem;
+	}
 }
