@@ -1,4 +1,6 @@
 @import '../../styles/variables';
+@import '../../styles/breakpoints';
+@import '../../styles/mixins';
 
 .post {
 	width: 100%;
@@ -12,12 +14,15 @@
 	gap: 10px;
 	.postHeader {
 		display: flex;
-		gap: 1rem;
+		gap: 20px;
 		.profilePicture {
-			width: 50px;
-			height: 50px;
+			width: 40px;
+			height: 40px;
 			border-radius: 50%;
 			background-color: skyblue;
+			img {
+				border-radius: 50%;
+			}
 		}
 		.userName {
 			display: flex;
@@ -30,17 +35,74 @@
 		}
 	}
 	.postBody {
+		margin-left: 60px;
+		@include breakpoint(xs) {
+			margin: 0;
+		}
 	}
+	.badges {
+		display: flex;
+		margin-left: 60px;
+		gap: 5px;
+		@include breakpoint(xs) {
+			margin: 0;
+		}
+		.badge {
+			padding: 5px 10px;
+			background-color: dodgerblue;
+			color: white;
+			width: fit-content;
+			border-radius: 4px;
+			font-size: 13px;
+		}
+		.favBadge,
+		.dogBadge,
+		.ezBadge,
+		.optimisticBadge,
+		.riskyBadge {
+			@include badge();
+			background-color: #98d8aa;
+		}
+		.dogBadge {
+			background-color: #f7d060;
+		}
+		.ezBadge {
+			background-color: #00ce79;
+		}
+		.optimisticBadge {
+			background-color: #7286d3;
+		}
+		.riskyBadge {
+			background-color: #f55050;
+		}
+	}
+
 	.postBet {
-		padding: 1rem;
+		padding: 10px 1rem;
 		background-color: $gray;
 		border-radius: 6px;
+		margin-left: 60px;
+		@include breakpoint(xs) {
+			margin: 0;
+		}
+		.disclaimer {
+			font-size: 10px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			color: $secondaryText;
+			padding-top: 10px;
+		}
 		.postBetHeader {
 			display: flex;
 			align-items: center;
 			margin-bottom: 10px;
-			.betLeague {
-				font-weight: 600;
+			.betName {
+				font-weight: 500;
+				font-size: 13px;
+				@include breakpoint(xs) {
+					font-size: 12px;
+				}
 			}
 			.betOdds {
 				padding: 10px 30px;
@@ -50,6 +112,16 @@
 				background-color: $lightGray;
 				color: dodgerblue;
 				font-weight: 600;
+			}
+		}
+		.postBetBody {
+			font-size: 15px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-bottom: 1rem;
+			@include breakpoint(xs) {
+				font-size: 12px;
 			}
 		}
 	}

@@ -2,6 +2,7 @@
 
 import getPosts from "@/app/actions/getPosts";
 import PostCard from "../post-card/PostCard";
+import styles from './PostFeed.module.scss';
 
 
 type PostFeedProps = {
@@ -11,7 +12,7 @@ type PostFeedProps = {
 const PostFeed: React.FC<PostFeedProps> = ({ posts }) => {
 
  return (
-  <div>
+  <div className={styles.postFeed}>
    {posts.map((post: any) => (
     <PostCard post={post} key={post.id} />
    ))}

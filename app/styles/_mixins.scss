@@ -16,3 +16,13 @@
 		background-color: lighten($black, 2%);
 	}
 }
+
+@mixin badge {
+	padding: 5px 10px;
+	color: white;
+	width: fit-content;
+	border-radius: 4px;
+	font-size: 13px;
+	color: $black;
+	font-weight: 500;
+}
