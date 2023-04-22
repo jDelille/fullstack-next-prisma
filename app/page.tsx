@@ -1,6 +1,7 @@
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
-import CreatePostInput from './components/create-post-input/CreatePostInput'
+import CreatePostForm from './components/create-post-form/CreatePostForm';
+
 import PostFeed from './components/post-feed/PostFeed'
 import './styles/globals.scss'
 
@@ -13,7 +14,7 @@ export default async function Home() {
       <div className="gamebarContainer">
       </div>
       <div className="mainFeed">
-        <CreatePostInput />
+        <CreatePostForm />
         <PostFeed posts={posts} currentUser={currentUser} />
       </div>
       {/* <div className="rightSidebar"></div> */}

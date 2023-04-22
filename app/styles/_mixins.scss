@@ -41,9 +41,11 @@
 	color: $white;
 	@include breakpoint(xl) {
 		margin: 0 320px;
+		margin-top: 105px;
 	}
 	@include breakpoint(lg) {
 		margin: 0 320px;
+		margin-top: 105px;
 	}
 	@include breakpoint(md) {
 		margin-left: 280px;

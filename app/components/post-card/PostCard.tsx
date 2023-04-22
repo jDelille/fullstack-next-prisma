@@ -44,9 +44,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
 
 
   return (
-    <div className={styles.post} onClick={(e) => { e.stopPropagation(); router.push(`post/${post?.id}`) }}>
+    <div className={styles.post} onClick={(e) => { router.push(`post/${post?.id}`) }}>
       <div className={styles.postHeader}>
-        <div className={styles.profilePicture} onClick={() => router.push(`user/${post?.user.id}`)}>
+        <div className={styles.profilePicture} onClick={(e) => { e.stopPropagation(); router.push(`user/${post?.user.id}`) }}>
           <Image
             src={post.user.profilePicture || '/images/placeholder.png'}
             width={59}
