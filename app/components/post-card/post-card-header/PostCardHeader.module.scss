@@ -24,6 +24,8 @@
 	.postMenu {
 		margin-left: auto;
 		cursor: pointer;
+		height: fit-content;
+		align-items: center;
 		display: flex;
 		p {
 			font-size: 12px;
