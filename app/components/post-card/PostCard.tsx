@@ -8,6 +8,7 @@ import PostCardMenu from './post-card-menu/PostCardMenu';
 import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import PostCardHeader from './post-card-header/PostCardHeader';
+import PostCardBet from './post-card-bet/PostCardBet';
 
 type PostCardProps = {
   post: any;
@@ -72,36 +73,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       )}
 
       {post?.Bet && (
-        <div className={styles.postBet}>
-          <div className={styles.postBetHeader}>
-            {post.Bet?.location === 'away' ? (
-              <p>
-                {post.Bet?.awayTeam}{' '}
-                <span>
-                  {/* {post.Bet.favorite ? '-' : '+'} */}
-                  {post.Bet?.value}
-                </span>
-              </p>
-            ) : (
-              <p>
-                {post.Bet?.homeTeam} {' '}
-                <span>
-                  {/* {post.Bet.favorite ? '-' : '+'} */}
-                  {post.Bet?.value}
-                </span>
-              </p>
-            )}
-            <p className={styles.betOdds}>{post.Bet?.odds}</p>
-          </div>
-          <div className={styles.postBetBody}>
-            <p> {post.Bet?.type}</p>
-            <p>Wager ${post.Bet?.wager}</p>
-            <p>Payout $5000</p>
-          </div>
-          <div className={styles.disclaimer}>
-            <p>Odds shown are at time of post and are subject to change.</p>
-          </div>
-        </div>
+        <PostCardBet post={post.Bet} />
       )}
 
     </div>

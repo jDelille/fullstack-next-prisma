@@ -64,52 +64,5 @@
 		}
 	}
 
-	.postBet {
-		padding: 10px 1rem;
-		background-color: $gray;
-		border-radius: 6px;
-		// margin-left: 60px;
-		@include breakpoint(xs) {
-			margin: 0;
-		}
-		.disclaimer {
-			font-size: 10px;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			color: $secondaryText;
-			padding-top: 10px;
-		}
-		.postBetHeader {
-			display: flex;
-			align-items: center;
-			margin-bottom: 10px;
-			.betName {
-				font-weight: 500;
-				font-size: 13px;
-				@include breakpoint(xs) {
-					font-size: 12px;
-				}
-			}
-			.betOdds {
-				padding: 10px 30px;
-				max-width: fit-content;
-				border-radius: 4px;
-				margin-left: auto;
-				background-color: $lightGray;
-				color: dodgerblue;
-				font-weight: 600;
-			}
-		}
-		.postBetBody {
-			font-size: 15px;
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			margin-bottom: 1rem;
-			@include breakpoint(xs) {
-				font-size: 12px;
-			}
-		}
-	}
+
 }
