@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.postCardMenu {
+	background-color: $black;
+	border: 1px solid $lightGray;
+	width: 100px;
+	min-height: 75px;
+	position: absolute;
+	top: 0;
+	right: 1rem;
+	border-radius: 5px;
+	padding: 10px 5px;
+	p {
+		font-size: 13px;
+		padding: 3px 5px;
+		border-radius: 3px;
+		&:hover {
+			background: $gray;
+		}
+	}
+}
