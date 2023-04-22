@@ -9,37 +9,62 @@ type OddsSelectProps = {
   onClick: (value: any) => void;
   name: string;
   homeTeam: string;
-  awayTeam: string
+  awayTeam: string;
+  leagueName: string;
 };
 
-const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTeam, awayTeam }) => {
+const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTeam, awayTeam, leagueName }) => {
   const [odds, setOdds] = useState<Odds | null>();
   const [selected, setSelected] = useState('');
-
-  async function getOddsData() {
-    try {
-      const res = await fetch(
-        `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/events/${matchId}/competitions/${matchId}/odds`
-      );
-
-      if (!res.ok) {
-        throw new Error('Failed to fetch matches');
-      }
-
-      const data = await res.json();
-      setOdds(data.items[0]);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
+  const [sport, setSport] = useState('')
 
   useEffect(() => {
-    if (!odds) {
+    switch (leagueName) {
+      case 'NBA':
+        setSport('basketball');
+        break;
+      case 'MLB':
+        setSport('baseball');
+        break;
+      case 'NFL':
+        setSport('football');
+        break;
+      case 'NHL':
+        setSport('hockey');
+        break;
+      case 'usa.1':
+        setSport('soccer');
+        break;
+      default:
+        setSport('');
+        break;
+    }
+
+    const lowerCaseLeagueName = leagueName?.toLowerCase();
+
+    async function getOddsData() {
+      try {
+        const res = await fetch(
+          `https://sports.core.api.espn.com/v2/sports/${sport}/leagues/${lowerCaseLeagueName}/events/${matchId}/competitions/${matchId}/odds`
+        );
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch matches');
+        }
+
+        const data = await res.json();
+        setOdds(data.items[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (sport) {
       getOddsData();
     }
-  }, []);
+  }, [leagueName, matchId, sport]);
+
+
 
   return (
     <>

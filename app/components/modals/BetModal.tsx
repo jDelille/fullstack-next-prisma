@@ -65,6 +65,10 @@ const BetModal = () => {
     });
 
     if (id === 'league') {
+      if (value === 'MLS') {
+        setLeagueName('usa.1')
+        return;
+      }
       setLeagueName(value)
     }
 
@@ -189,6 +193,7 @@ const BetModal = () => {
             name={match?.name}
             homeTeam={match?.homeTeam}
             awayTeam={match?.awayTeam}
+            leagueName={leagueName}
             onClick={(value) => setCustomValue('odds', value)}
           />
           <div className={styles.wager}>

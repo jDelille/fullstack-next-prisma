@@ -28,6 +28,9 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
    case 'NHL':
     setSport('hockey');
     break;
+   case 'usa.1':
+    setSport('soccer');
+    break;
    default:
     setSport('');
     break;
@@ -36,8 +39,6 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
 
 
  const lowerCaseLeagueName = leagueName?.toLowerCase()
-
- console.log(lowerCaseLeagueName)
 
  useEffect(() => {
   async function getMatchData() {
