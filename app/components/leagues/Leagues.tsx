@@ -11,33 +11,33 @@ export const leagues = [
  {
   label: 'NFL',
   icon: FaFootballBall,
-  description: 'National Basketball Association'
+  description: 'National Football League'
  },
  {
   label: 'MLB',
   icon: FaBaseballBall,
-  description: 'National Basketball Association'
+  description: 'Major League Baseball'
  },
  {
   label: 'NHL',
   icon: FaHockeyPuck,
-  description: 'National Basketball Association'
+  description: 'National Hockey League'
  },
- {
-  label: 'UFC',
-  icon: GiBoxingGloveSurprise,
-  description: 'National Basketball Association'
- },
+ // {
+ //  label: 'UFC',
+ //  icon: GiBoxingGloveSurprise,
+ //  description: 'National Basketball Association'
+ // },
  {
   label: 'MLS',
   icon: GiSoccerBall,
-  description: 'National Basketball Association'
+  description: 'Major League Soccer'
  },
- {
-  label: 'WNBA',
-  icon: FaBasketballBall,
-  description: 'National Basketball Association'
- },
+ // {
+ //  label: 'WNBA',
+ //  icon: FaBasketballBall,
+ //  description: 'National Basketball Association'
+ // },
 
 
 ]

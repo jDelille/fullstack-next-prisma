@@ -159,7 +159,8 @@ const BetModal = () => {
                 setCustomValue('league', league);
               }}
               selected={league === item.label}
-              label={item.label}
+              label={item.description}
+              shortLabel={item.label}
               icon={item.icon}
             />
           </div>

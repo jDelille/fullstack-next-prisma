@@ -1,10 +1,23 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
+@import '../../styles/breakpoints';
 
 .bordered,
 .noBorder {
 	@include button();
 	margin: 10px 0;
+	.shortLabel {
+		display: none;
+		@include breakpoint(xs) {
+			display: block;
+		}
+	}
+	.longLabel {
+		display: block;
+		@include breakpoint(xs) {
+			display: none;
+		}
+	}
 }
 
 .bordered {

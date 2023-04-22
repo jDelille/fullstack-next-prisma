@@ -46,6 +46,9 @@ body {
 	left: 280px;
 	width: 100vw;
 	z-index: 2;
+	@include breakpoint(xs) {
+		display: none;
+	}
 }
 
 .mainContainer {

@@ -34,6 +34,8 @@
 	}
 	@include breakpoint(xs) {
 		width: 95%;
+		height: 100vh;
+		top: 0;
 	}
 	.modalContent {
 		display: flex;
