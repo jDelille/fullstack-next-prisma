@@ -7,6 +7,7 @@ import { useState } from 'react';
 import PostCardMenu from './post-card-menu/PostCardMenu';
 import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
+import PostCardHeader from './post-card-header/PostCardHeader';
 
 type PostCardProps = {
   post: any;
@@ -45,28 +46,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
 
   return (
     <div className={styles.post} onClick={(e) => { router.push(`post/${post?.id}`) }}>
-      <div className={styles.postHeader}>
-        <div className={styles.profilePicture} onClick={(e) => { e.stopPropagation(); router.push(`user/${post?.user.id}`) }}>
-          <Image
-            src={post?.user.profilePicture || '/images/placeholder.png'}
-            width={59}
-            height={59}
-            alt='profile-picture'
-          />
-        </div>
-        <div className={styles.userName}>
-          <p>{post?.user.name}</p>
-          <span>{post?.user.username}</span>
-          <span>Bets {post?.user.totalBets}</span>
-        </div>
-        <div className={styles.postMenu}>
-          <BiDotsVerticalRounded onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          {isMenuOpen && (
-            <PostCardMenu postId={post?.id} onClose={onClose} currentUserId={currentUser?.id} postUserId={post?.user.id} />
-          )}
-        </div>
-      </div>
-
+      <PostCardHeader currentUserId={currentUser?.id} post={post} />
       <div className={styles.postBody}>
         <p>{post?.Bet?.thoughts || post?.body}</p>
       </div>

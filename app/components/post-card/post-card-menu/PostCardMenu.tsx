@@ -8,7 +8,7 @@ import styles from './PostCardMenu.module.scss';
 
 type PostCardMenuProps = {
   postId: string
-  onClose: (value: boolean) => void;
+  onClose?: (value: boolean) => void;
   currentUserId?: string;
   postUserId?: string
 }
@@ -31,10 +31,10 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({ postId, onClose, currentUse
       })
       .finally(() => {
         setDeletingId('')
-        onClose
+
       })
 
-  }, [router, onClose])
+  }, [router])
 
 
   return (
