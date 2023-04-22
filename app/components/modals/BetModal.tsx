@@ -6,13 +6,11 @@ import Modal from './Modal';
 import { useMemo, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { leagues } from '../leagues/Leagues';
-import Image from 'next/image';
-
 import styles from './Modal.module.scss';
-
 import LeagueInput from '../league-input/LeagueInput';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 import {
-  FieldValue,
   FieldValues,
   SubmitHandler,
   useForm,
@@ -40,6 +38,9 @@ const BetModal = () => {
   const [step, setStep] = useState(STEPS.LEAGUE);
   const [odds, setOdds] = useState(0);
   const [wagerAmount, setWagerAmount] = useState(0);
+  const [leagueName, setLeagueName] = useState('')
+
+
   const {
     register,
     handleSubmit,
@@ -62,6 +63,10 @@ const BetModal = () => {
       shouldValidate: true,
       shouldTouch: true,
     });
+
+    if (id === 'league') {
+      setLeagueName(value)
+    }
 
     if (id === 'match') {
       setMatchId(value.matchId);
@@ -108,8 +113,6 @@ const BetModal = () => {
       });
   };
 
- 
-
   const actionLabel = useMemo(() => {
     if (step === STEPS.ODDS) {
       return 'Post bet';
@@ -137,12 +140,14 @@ const BetModal = () => {
     return formattedPayout;
   };
 
+  console.log(leagueName)
+
   const payout = calculatePayout(wagerAmount, odds);
 
   let bodyContent = (
     <div>
       <Heading title='Choose a league' />
-      <div className={styles.chooseLeague}>
+      <SimpleBar className={styles.chooseLeague}>
         {leagues.map((item) => (
           <div key={item.label}>
             <LeagueInput
@@ -155,7 +160,7 @@ const BetModal = () => {
             />
           </div>
         ))}
-      </div>
+      </SimpleBar>
     </div>
   );
 
@@ -163,12 +168,13 @@ const BetModal = () => {
     bodyContent = (
       <div>
         <Heading title='Choose a matchup' />
-        <div className={styles.chooseMatch}>
+        <SimpleBar className={styles.chooseMatch}>
           <MatchSelect
             selected={match?.matchId}
             onClick={(value) => setCustomValue('match', value)}
+            leagueName={leagueName}
           />
-        </div>
+        </SimpleBar>
       </div>
     );
   }

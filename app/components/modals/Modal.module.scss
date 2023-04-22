@@ -27,7 +27,6 @@
 	border-radius: 4px;
 	background-color: $black;
 	color: $white;
-	// transform: translateY(100px);
 	transition: 300ms ease-in-out;
 	opacity: 1;
 	@include breakpoint(md) {
@@ -60,9 +59,8 @@
 			.chooseOdds {
 				display: flex;
 				flex-direction: column;
-				flex-wrap: wrap;
 				gap: 1rem;
-				max-height: 450px;
+				max-height: 400px;
 				margin-top: 1rem;
 			}
 			.chooseOdds {

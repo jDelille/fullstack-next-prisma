@@ -7,31 +7,61 @@ import styles from './MatchSelect.module.scss';
 type MatchSelectProps = {
  onClick: (value: any) => void;
  selected: string;
+ leagueName?: string;
 };
 
-const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick }) => {
+const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName }) => {
  const [matches, setMatches] = useState<Game[] | null>();
-
- async function getMatchData() {
-  try {
-   const res = await fetch(
-    'http://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard'
-   );
-
-   if (!res.ok) {
-    throw new Error('Failed to fetch matches');
-   }
-
-   const data = await res.json();
-   setMatches(data.events);
-  } catch (error) {
-   console.log(error);
-  }
- }
+ const [sport, setSport] = useState("baseball")
 
  useEffect(() => {
+  switch (leagueName) {
+   case 'NBA':
+    setSport('basketball');
+    break;
+   case 'MLB':
+    setSport('baseball');
+    break;
+   case 'NFL':
+    setSport('football');
+    break;
+   case 'NHL':
+    setSport('hockey');
+    break;
+   default:
+    setSport('');
+    break;
+  }
+ }, [leagueName]);
+
+
+ const lowerCaseLeagueName = leagueName?.toLowerCase()
+
+ console.log(lowerCaseLeagueName)
+
+ useEffect(() => {
+  async function getMatchData() {
+   try {
+    const res = await fetch(
+     `http://site.api.espn.com/apis/site/v2/sports/${sport}/${lowerCaseLeagueName}/scoreboard`
+    );
+
+    if (!res.ok) {
+     throw new Error('Failed to fetch matches');
+    }
+
+    const data = await res.json();
+    setMatches(data.events);
+   } catch (error) {
+    console.log(error);
+   }
+  }
+
   getMatchData();
- }, []);
+ }, [lowerCaseLeagueName, sport]);
+
+
+
 
  return (
   <>

@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import styles from './Modal.module.scss';
 import Button from '../button/Button';
-import { IoMdClose } from 'react-icons/io';
 import { IconType } from 'react-icons';
+
 
 type ModalProps = {
  isOpen?: boolean;
