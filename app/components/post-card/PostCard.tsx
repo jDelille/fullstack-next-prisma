@@ -4,6 +4,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { useState } from 'react';
 import PostCardMenu from './post-card-menu/PostCardMenu';
 import { SafeUser } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 type PostCardProps = {
   post: Record<string, any>;
@@ -11,7 +12,7 @@ type PostCardProps = {
 };
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
-
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const favOrDogBadge = () => {
@@ -41,7 +42,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
 
 
   return (
-    <div className={styles.post}>
+    <div className={styles.post} onClick={() => router.push(`user/${post?.user.id}`)}>
       <div className={styles.postHeader}>
         <div className={styles.profilePicture}>
           <Image
