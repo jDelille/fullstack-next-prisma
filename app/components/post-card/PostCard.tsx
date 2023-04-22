@@ -6,6 +6,7 @@ import { SafeUser } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardBet from './post-card-bet/PostCardBet';
+import PostCardFooter from './post-card-footer/PostCardFooter';
 
 type PostCardProps = {
   post: any;
@@ -63,6 +64,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         </div>
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
+      <PostCardFooter />
     </div>
   );
 };

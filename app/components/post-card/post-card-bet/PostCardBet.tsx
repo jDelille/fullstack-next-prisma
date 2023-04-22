@@ -1,3 +1,4 @@
+'use client'
 import styles from './PostCardBet.module.scss';
 
 type PostCardBetProps = {
