@@ -3,7 +3,8 @@
 
 .postBet {
 	padding: 10px 1rem;
-	background-color: $gray;
+	background-color: #1c1d22;
+	border: 1px solid $lightGray;
 	border-radius: 6px;
 	// margin-left: 60px;
 	@include breakpoint(xs) {
@@ -33,7 +34,7 @@
 			max-width: fit-content;
 			border-radius: 4px;
 			margin-left: auto;
-			background-color: $lightGray;
+			background-color: $secondaryAccent;
 			color: dodgerblue;
 			font-weight: 600;
 		}

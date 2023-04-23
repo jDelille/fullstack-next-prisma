@@ -18,7 +18,7 @@ body {
 
 .sidebarContainer {
 	background-color: $gray;
-	border: 2px solid $lightGray;
+	border-right: 1px solid $lightGray;
 	height: 100vh;
 	width: 280px;
 	position: fixed;
@@ -41,8 +41,8 @@ body {
 
 .gamebarContainer {
 	background-color: $gray;
-	border-bottom: 2px solid $lightGray;
-	height: 105px;
+	border-bottom: 1px solid $lightGray;
+	height: $gamebarHeight;
 	position: fixed;
 	top: 0;
 	left: 280px;
@@ -75,7 +75,7 @@ body {
 		margin-left: auto;
 		position: fixed;
 		right: 0;
-		top: 105px;
+		height: $gamebarHeight;
 		margin-top: 2rem;
 		margin-left: 2rem;
 		border-radius: 12px;

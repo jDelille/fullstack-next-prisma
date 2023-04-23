@@ -10,108 +10,104 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 type PostCardHeaderProps = {
- post: any;
- currentUserId?: string;
+  post: any;
+  currentUserId?: string;
+  followingIds?: string[]
 };
 
 const PostCardHeader: React.FC<PostCardHeaderProps> = ({
- post,
- currentUserId,
+  post,
+  currentUserId,
+  followingIds
 }) => {
- const router = useRouter();
- const [isMenuOpen, setIsMenuOpen] = useState(false);
- const [id, setId] = useState('');
+  const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
- const createdAt = useMemo(() => {
-  if (!post?.createdAt) {
-   return null;
-  }
+  const createdAt = useMemo(() => {
+    if (!post?.createdAt) {
+      return null;
+    }
 
-  return formatDistanceToNowStrict(new Date(post?.createdAt));
- }, [post?.createdAt]);
+    return formatDistanceToNowStrict(new Date(post?.createdAt));
+  }, [post?.createdAt]);
 
- const onFollow = useCallback(
-  (id: string) => {
-   setId(id);
+  const onFollow = useCallback((id: string) => {
+    setIsLoading(true);
 
-   axios
-    .post(`api/follow/${post.user.id}`)
-    .then(() => {
-     toast.success(`You followed ${post.user.name}`);
-     router.refresh();
-    })
-    .catch(() => {
-     toast.error('Something went wrong');
-    })
-    .finally(() => {
-     setId('');
-    });
-  },
-  [post.user.id, post.user.name, router]
- );
+    try {
+      axios
+        .post(`api/follow/${id}`)
+        .then(() => {
+          toast.success(`You followed ${post.user.name}`);
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error('Something went wrong');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } catch (error) {
+      toast.error('Something went wrong');
+      setIsLoading(false);
+      router.refresh();
+    }
+  }, [post.user.name, router]);
 
- const isFollowing = () => {
-  if (
-   !post.user.followingIds.includes(currentUserId) &&
-   post.user.id !== currentUserId
-  ) {
-   return (
-    false
-   );
-  }
+  let isFollowing = followingIds?.includes(post?.user.id);
 
-  return true;
- };
-
- return (
-  <div className={styles.postHeader}>
-   <div
-    className={styles.profilePicture}
-    onClick={(e) => {
-     e.stopPropagation();
-     router.push(`user/${post?.user.id}`);
-    }}>
-    <Image
-     src={post?.user.profilePicture || '/images/placeholder.png'}
-     width={59}
-     height={59}
-     alt='profile-picture'
-    />
-   </div>
-   <div className={styles.userName}>
-    <div className={styles.name}>
-     <p>{post?.user.name}</p>
-     {!isFollowing() && (
+  return (
+    <div className={styles.postHeader}>
       <div
-       onClick={(e) => { e.stopPropagation(); onFollow(post.user.id) }}
-       className={styles.followBtn}>
-       <p>+ Follow</p>
+        className={styles.profilePicture}
+        onClick={(e) => {
+          e.stopPropagation();
+          router.push(`user/${post?.user.id}`);
+        }}>
+        <Image
+          src={post?.user.profilePicture || '/images/placeholder.png'}
+          width={59}
+          height={59}
+          alt='profile-picture'
+        />
       </div>
-     )}
+      <div className={styles.userName}>
+        <div className={styles.name}>
+          <p>{post?.user.name}</p>
+          {!isFollowing && post.user.id !== currentUserId ? (
+            <button
+              onClick={(e) => { e.stopPropagation(); onFollow(post.user.id) }}
+              className={styles.followBtn}
+              disabled={isLoading}>
+              <p>+ Follow</p>
+
+            </button>
+          ) : null}
+        </div>
+        <span>{post?.user.username}</span>
+        <span>Bets {post?.user.totalBets}</span>
+      </div>
+      <div className={styles.postMenu}>
+        <p>{createdAt}</p>
+        <BiDotsVerticalRounded
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(!isMenuOpen);
+          }}
+        />
+        {isMenuOpen && (
+          <PostCardMenu
+            postId={post?.id}
+            currentUserId={currentUserId}
+            postUserId={post?.user.id}
+            onFollow={onFollow}
+            isFollowing={isFollowing}
+          />
+        )}
+      </div>
     </div>
-    <span>{post?.user.username}</span>
-    <span>Bets {post?.user.totalBets}</span>
-   </div>
-   <div className={styles.postMenu}>
-    <p>{createdAt}</p>
-    <BiDotsVerticalRounded
-     onClick={(e) => {
-      e.stopPropagation();
-      setIsMenuOpen(!isMenuOpen);
-     }}
-    />
-    {isMenuOpen && (
-     <PostCardMenu
-      postId={post?.id}
-      currentUserId={currentUserId}
-      postUserId={post?.user.id}
-      onFollow={onFollow}
-      isFollowing={isFollowing}
-     />
-    )}
-   </div>
-  </div>
- );
+  );
 };
 
 export default PostCardHeader;

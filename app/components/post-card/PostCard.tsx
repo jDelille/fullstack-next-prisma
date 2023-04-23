@@ -42,7 +42,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       onClick={(e) => {
         router.push(`post/${post?.id}`);
       }}>
-      <PostCardHeader currentUserId={currentUser?.id} post={post} />
+      <PostCardHeader currentUserId={currentUser?.id} post={post} followingIds={currentUser?.followingIds} />
       <div className={styles.postBody}>
         <p>{post?.Bet?.thoughts || post?.body}</p>
       </div>

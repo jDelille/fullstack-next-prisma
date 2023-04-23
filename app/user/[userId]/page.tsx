@@ -6,6 +6,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import PostFeed from "@/app/components/post-feed/PostFeed";
 import getPostsByUserId from "@/app/actions/getPostsByUserId";
 import ProfileMenu from "@/app/components/menu/ProfileMenu";
+import getFollowersCount from "@/app/actions/getFollowersCount";
 
 interface IParams {
  userId?: string;
@@ -15,6 +16,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
 
  const user = await getUserById(params);
  const posts = await getPostsByUserId(params)
+ const followerCount = await getFollowersCount(params)
 
  return (
   <div className={styles.page}>
@@ -45,8 +47,8 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
      <p>{user?.bio}</p>
     </div>
     <div className={styles.bottom}>
-     <div>Followers</div>
-     <div>Following</div>
+     <div>Followers<p>{followerCount || 0}</p></div>
+     <div>Following<p>{user?.followingIds.length || 0}</p></div>
      <div>Bets <p>{user?.totalBets}</p></div>
     </div>
    </div>

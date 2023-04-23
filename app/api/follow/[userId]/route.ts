@@ -21,7 +21,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 	const user = await prisma.user.findUnique({
 		where: {
-			id: userId,
+			id: currentUser.id,
 		},
 	});
 
@@ -30,11 +30,11 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 	}
 
 	let updatedFollowingIds = [...(currentUser.followingIds || [])];
-	updatedFollowingIds.push(currentUser?.id);
+	updatedFollowingIds.push(userId);
 
 	const updatedUser = await prisma.user.update({
 		where: {
-			id: userId,
+			id: currentUser.id,
 		},
 		data: {
 			followingIds: updatedFollowingIds,
@@ -62,7 +62,7 @@ export async function DELETE(
 
 	const user = await prisma.user.findUnique({
 		where: {
-			id: userId,
+			id: currentUser?.id,
 		},
 	});
 
@@ -71,11 +71,16 @@ export async function DELETE(
 	}
 
 	let updatedFollowingIds = [...(currentUser.followingIds || [])];
-	updatedFollowingIds.filter((followId) => followId !== currentUser?.id);
+
+	const index = updatedFollowingIds.indexOf(userId);
+
+	if (index > -1) {
+		updatedFollowingIds.splice(index, 1);
+	}
 
 	const updatedUser = await prisma.user.update({
 		where: {
-			id: userId,
+			id: currentUser?.id,
 		},
 		data: {
 			followingIds: updatedFollowingIds,

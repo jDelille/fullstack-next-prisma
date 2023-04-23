@@ -7,7 +7,7 @@
 	height: fit-content;
 
 	.inputWrapper {
-		background-color: $black;
+		background-color: $gray;
 		border: 2px solid $lightGray;
 		border-radius: 10px;
 		color: white;
@@ -39,8 +39,10 @@
 				width: fit-content;
 				height: 30px;
 				padding: 5px 8px;
+				background-color: $secondaryAccent;
+
 				&:hover {
-					background-color: lighten($gray, 2%);
+					background-color: darken($secondaryAccent, 2%);
 				}
 				&:nth-of-type(3) {
 					margin-left: auto;

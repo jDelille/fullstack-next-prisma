@@ -11,7 +11,7 @@ type PostCardMenuProps = {
   currentUserId?: string;
   postUserId?: string;
   onFollow: (value: string) => void;
-  isFollowing: () => boolean;
+  isFollowing?: boolean
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
@@ -44,7 +44,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
       axios
         .delete(`/api/follow/${id}`)
         .then(() => {
-          toast.success(`You unfolled ${postUserId}`);
+          toast.success(`You unfollowed ${postUserId}`);
           router.refresh();
         })
         .catch(() => {
@@ -69,7 +69,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
         </>
       ) : (
         <>
-          {isFollowing() ? (
+          {isFollowing ? (
             <p
               onClick={(e) => {
                 e.stopPropagation();
