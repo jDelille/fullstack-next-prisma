@@ -4,13 +4,16 @@ import { useRef, useEffect } from 'react';
 import styles from './CreatePostInput.module.scss';
 import Image from 'next/image';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import Avatar from '../avatar/Avatar';
 
 type CreatePostInput = {
   setCustomValue: (id: string, value: any) => void;
   photo: string;
+  userPhoto?: string;
+  userId?: string;
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -40,12 +43,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo }) =
   return (
     <div className={styles.createPostInput}>
       <div className={styles.profilePicture} >
-        <Image
-          src={'/images/placeholder.png'}
-          width={59}
-          height={59}
-          alt='profile-picture'
-        />
+        <Avatar src={userPhoto} userId={userId} />
       </div>
       <div className={styles.textareaWrapper}>
         <textarea

@@ -15,8 +15,13 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
+type CreatePostFormProps = {
+  userPhoto?: string;
+  userId?: string;
+}
 
-const CreatePostForm = () => {
+
+const CreatePostForm = ({ userPhoto, userId }: CreatePostFormProps) => {
   const router = useRouter();
 
   const betModal = useBetModal();
@@ -68,7 +73,7 @@ const CreatePostForm = () => {
     <div className={styles.inputContainer}>
       <div className={styles.inputWrapper}>
         <div className={styles.createPostWrapper}>
-          <CreatePostInput setCustomValue={setCustomValue} photo={photo} />
+          <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} />
           {/* TODO - add textarea and image select for normal posts*/}
           {/* <p>Upload image</p> */}
 

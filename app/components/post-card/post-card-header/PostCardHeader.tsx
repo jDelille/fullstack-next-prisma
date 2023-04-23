@@ -60,13 +60,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 
   return (
     <div className={styles.postHeader}>
-      <div
-        className={styles.profilePicture}
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(`user/${post?.user.id}`);
-        }}>
-        <Avatar src={post?.user.photo} />
+      <div className={styles.profilePicture}>
+        <Avatar src={post?.user.photo} userId={post?.user.id} />
       </div>
       <div className={styles.userName}>
         <div className={styles.name}>

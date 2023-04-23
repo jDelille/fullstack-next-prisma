@@ -14,7 +14,7 @@ export default async function Home() {
       <div className="gamebarContainer">
       </div>
       <div className="mainFeed">
-        <CreatePostForm />
+        <CreatePostForm userPhoto={currentUser?.photo as string} userId={currentUser?.id as string} />
         <PostFeed posts={posts} currentUser={currentUser} />
       </div>
       {/* <div className="rightSidebar"></div> */}
