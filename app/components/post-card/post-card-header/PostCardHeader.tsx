@@ -13,13 +13,13 @@ import Avatar from '../../avatar/Avatar';
 type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
-  followingIds?: string[]
+  followingIds?: string[];
 };
 
 const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   post,
   currentUserId,
-  followingIds
+  followingIds,
 }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,28 +33,31 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
     return formatDistanceToNowStrict(new Date(post?.createdAt));
   }, [post?.createdAt]);
 
-  const onFollow = useCallback((id: string) => {
-    setIsLoading(true);
+  const onFollow = useCallback(
+    (id: string) => {
+      setIsLoading(true);
 
-    try {
-      axios
-        .post(`api/follow/${id}`)
-        .then(() => {
-          toast.success(`You followed ${post.user.name}`);
-          router.refresh();
-        })
-        .catch(() => {
-          toast.error('Something went wrong');
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    } catch (error) {
-      toast.error('Something went wrong');
-      setIsLoading(false);
-      router.refresh();
-    }
-  }, [post.user.name, router]);
+      try {
+        axios
+          .post(`api/follow/${id}`)
+          .then(() => {
+            toast.success(`You followed ${post.user.name}`);
+            router.refresh();
+          })
+          .catch(() => {
+            toast.error('Something went wrong');
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      } catch (error) {
+        toast.error('Something went wrong');
+        setIsLoading(false);
+        router.refresh();
+      }
+    },
+    [post.user.name, router]
+  );
 
   let isFollowing = followingIds?.includes(post?.user.id);
 
@@ -68,16 +71,21 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
           <p>{post?.user.name}</p>
           {!isFollowing && post.user.id !== currentUserId ? (
             <button
-              onClick={(e) => { e.stopPropagation(); onFollow(post.user.id) }}
+              onClick={(e) => {
+                e.stopPropagation();
+                onFollow(post.user.id);
+              }}
               className={styles.followBtn}
               disabled={isLoading}>
               <p>+ Follow</p>
-
             </button>
           ) : null}
         </div>
-        <span>{post?.user.username}</span>
-        <span>Bets {post?.user.totalBets}</span>
+        <div className={styles.username}>
+          {post?.user.username}
+          <div className={styles.dot}></div>
+          <span>Bets {post?.user.totalBets}</span>
+        </div>
       </div>
       <div className={styles.postMenu}>
         <p>{createdAt}</p>

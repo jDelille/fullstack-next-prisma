@@ -2,20 +2,16 @@
 
 .postHeader {
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 	position: relative;
 	.profilePicture {
-		width: 59px;
-		height: 59px;
-		border-radius: 8px;
-		img {
-			border-radius: 8px;
-		}
+		display: flex;
+		align-items: center;
 	}
 	.userName {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		.name {
 			display: flex;
 			gap: 10px;
@@ -35,9 +31,18 @@
 				}
 			}
 		}
-		span {
+		.username {
 			color: $secondaryText;
 			font-size: 13px;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			.dot {
+				width: 5px;
+				height: 5px;
+				background-color: $secondaryText;
+				border-radius: 50%;
+			}
 		}
 	}
 	.postMenu {

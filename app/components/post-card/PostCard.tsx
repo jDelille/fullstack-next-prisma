@@ -9,6 +9,7 @@ import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardComment from './post-card-comment/PostCardComment';
 import { useState, useCallback } from 'react';
+import CommentFeed from '../comment-feed/CommentFeed';
 
 type PostCardProps = {
   post: any;
@@ -73,14 +74,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         </div>
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
-      <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} />
+      <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} commentCount={post.comments.length || 0} commentArray={post.commentedIds} />
       {isComment && (
         <PostCardComment postId={post?.id} />
       )}
-      {post?.comments && (
-        post?.comments.map((comment: any) => (
-          <div key={comment.id}>{comment.body}</div>
-        ))
+      {post?.comments && isComment && (
+        <CommentFeed comments={post} />
       )}
     </div>
   );

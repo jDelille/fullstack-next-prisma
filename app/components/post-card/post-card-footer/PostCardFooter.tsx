@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
-import { FaRegCommentDots } from 'react-icons/fa'
+import { FaRegCommentDots, FaComment } from 'react-icons/fa'
 import PostCardComment from '../post-card-comment/PostCardComment';
 type PostCardFooterProps = {
   postId: string;
@@ -13,13 +13,17 @@ type PostCardFooterProps = {
   likeArray: string[];
   currentUserId?: string;
   onComment: () => void;
+  commentCount: number
+  commentArray: string[]
 };
 const PostCardFooter: React.FC<PostCardFooterProps> = ({
   postId,
   likeCount,
   likeArray,
   currentUserId,
-  onComment
+  onComment,
+  commentCount,
+  commentArray
 }) => {
   const [id, setId] = useState('');
   const router = useRouter();
@@ -67,9 +71,14 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 
 
   const likeSet = new Set(likeArray);
+  const commentSet = new Set(commentArray);
 
   const hasLiked = () => {
     return likeSet.has(currentUserId as string);
+  }
+
+  const hasCommented = () => {
+    return commentSet.has(currentUserId as string);
   }
 
   return (
@@ -84,9 +93,13 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         <span>{likeCount}</span>{' '}
       </div>
       <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
-        <FaRegCommentDots />
+        {hasCommented() ? (
+          <FaComment color='dodgerblue' />
+        ) : (
+          <FaRegCommentDots color='white' />
+        )}
         <p>Comment</p>
-        <span>{likeCount}</span>{' '}
+        <span>{commentCount}</span>{' '}
       </div>
 
     </div >
