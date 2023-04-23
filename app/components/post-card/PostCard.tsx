@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
+import PostCardComment from './post-card-comment/PostCardComment';
+import { useState, useCallback } from 'react';
 
 type PostCardProps = {
   post: any;
@@ -15,6 +17,11 @@ type PostCardProps = {
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   const router = useRouter();
+  const [isComment, setIsComment] = useState(false)
+
+  const onComment = useCallback(() => {
+    setIsComment(!isComment)
+  }, [isComment])
 
   const favOrDogBadge = () => {
     if (post.Bet?.favorite) {
@@ -23,6 +30,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       return <div className={styles.dogBadge}>Underdog</div>;
     }
   };
+
+  console.log(post)
 
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {
@@ -64,7 +73,15 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         </div>
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
-      <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} />
+      <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} />
+      {isComment && (
+        <PostCardComment postId={post?.id} />
+      )}
+      {post?.comments && (
+        post?.comments.map((comment: any) => (
+          <div key={comment.id}>{comment.body}</div>
+        ))
+      )}
     </div>
   );
 };

@@ -11,9 +11,11 @@ type CreatePostInput = {
   photo: string;
   userPhoto?: string;
   userId?: string;
+  isComment?: boolean;
+  placeholder: string;
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -48,11 +50,12 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
       <div className={styles.textareaWrapper}>
         <textarea
           onChange={(event) => {
+            event.stopPropagation();
             setCustomValue('postBody', event.target.value);
           }}
           // value={body}
           className={styles.textarea}
-          placeholder="What's happening?"
+          placeholder={placeholder}
           ref={textAreaRef}
           rows={1}></textarea>
         {photo && (

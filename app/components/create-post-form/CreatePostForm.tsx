@@ -18,10 +18,12 @@ import { useRouter } from 'next/navigation';
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
+  isComment: boolean;
+  postId?: string;
 }
 
 
-const CreatePostForm = ({ userPhoto, userId }: CreatePostFormProps) => {
+const CreatePostForm = ({ userPhoto, userId, isComment, postId }: CreatePostFormProps) => {
   const router = useRouter();
 
   const betModal = useBetModal();
@@ -55,9 +57,9 @@ const CreatePostForm = ({ userPhoto, userId }: CreatePostFormProps) => {
     setIsLoading(true);
 
     axios
-      .post('/api/post', data)
+      .post(isComment ? `/api/comment/${postId}` : '/api/post', data)
       .then(() => {
-        toast.success('Bet posted');
+        toast.success(isComment ? 'You commented' : 'Bet posted');
         router.refresh();
         reset();
       })
@@ -72,26 +74,34 @@ const CreatePostForm = ({ userPhoto, userId }: CreatePostFormProps) => {
   return (
     <div className={styles.inputContainer}>
       <div className={styles.inputWrapper}>
-        <div className={styles.createPostWrapper}>
-          <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} />
-          {/* TODO - add textarea and image select for normal posts*/}
-          {/* <p>Upload image</p> */}
+        {!isComment && (
+          <>
+            <div className={styles.createPostWrapper}>
+              <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder="What's Happening?" />
+            </div>
+            <div className={styles.inputButtons}>
+              <Button onClick={betModal.onOpen} label='Post a bet' />
+              <ImageUpload
+                value={photo}
+                onChange={(image) => setPhoto(image)}
+                setCustomValue={setCustomValue}
+                label='Post a photo'
+              />
+              <Button onClick={betModal.onOpen} label='Post a poll' />
 
-        </div>
-        <div className={styles.inputButtons}>
-          <Button onClick={betModal.onOpen} label='Post a bet' />
-          <ImageUpload
-            value={photo}
-            onChange={(image) => setPhoto(image)}
-            setCustomValue={setCustomValue}
-            label='Post a photo'
-          />
-          <Button onClick={betModal.onOpen} label='Post a poll' />
+
+              <Button onClick={handleSubmit(onSubmit)} label='Post' />
+            </div>
+          </>
+        )}
+        {isComment && (
+          <>
+            <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder='Comment' />
+            <Button onClick={handleSubmit(onSubmit)} label='Comment' />
+          </>
 
 
-          <Button onClick={handleSubmit(onSubmit)} label='Post' />
-        </div>
-
+        )}
       </div>
     </div>
   );

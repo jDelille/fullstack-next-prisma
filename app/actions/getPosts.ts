@@ -9,6 +9,7 @@ export default async function getPosts() {
 			include: {
 				Bet: true,
 				user: true,
+				comments: true,
 			},
 		});
 

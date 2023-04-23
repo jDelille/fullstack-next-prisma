@@ -12,8 +12,6 @@ const PostPage = async ({ params }: { params: IParams }) => {
  const post = await getPostById(params);
  const currentUser = await getCurrentUser()
 
- console.log(post)
-
  return (
   <div className={styles.page} >
    <PostCard post={post} currentUser={currentUser} />

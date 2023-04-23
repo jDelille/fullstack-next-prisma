@@ -22,7 +22,7 @@ model Post {
   betId        String?   @db.ObjectId
   likedIds     String[]  @db.ObjectId
   commentedIds String[]  @db.ObjectId
-  Comment      Comment[]
+  comments     Comment[]
 }
 
 model User {
@@ -39,7 +39,6 @@ model User {
   updatedAt     DateTime  @updatedAt
   emailVerified DateTime?
   followingIds  String[]  @db.ObjectId
-  Comment       Comment[]
 }
 
 model Bet {
@@ -64,10 +63,10 @@ model Bet {
 model Comment {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   body      String
+  photo     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String   @db.ObjectId
   postId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  Post      Post     @relation(fields: [postId], references: [id])
 }
