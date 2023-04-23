@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.textareaWrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	label {
+		font-size: 12px;
+		margin-top: 10px;
+	}
+	.textarea {
+		width: 100%;
+		padding: 10px;
+		border-radius: 4px;
+		outline: none;
+		height: 45px;
+		border: 1px solid $lightGray;
+		background-color: $black;
+		color: $white;
+		resize: none;
+		height: 100px;
+		:disabled {
+			cursor: not-allowed;
+		}
+	}
+}
