@@ -7,6 +7,7 @@ import PostFeed from "@/app/components/post-feed/PostFeed";
 import getPostsByUserId from "@/app/actions/getPostsByUserId";
 import ProfileMenu from "@/app/components/menu/ProfileMenu";
 import getFollowersCount from "@/app/actions/getFollowersCount";
+import Avatar from "@/app/components/avatar/Avatar";
 
 interface IParams {
  userId?: string;
@@ -26,12 +27,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
       <div
        className={styles.profilePicture}
       >
-       <Image
-        src={'/images/placeholder.png'}
-        width={59}
-        height={59}
-        alt='profile-picture'
-       />
+       <Avatar src={user?.photo as string} />
       </div>
      </div>
      <div className={styles.profileName}>

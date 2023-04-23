@@ -25,11 +25,13 @@
 				border-radius: 8px;
 				img {
 					border-radius: 8px;
+					max-width: 59px;
+					max-height: 59px;
+					object-fit: cover;
 				}
 			}
 			.profileName {
 			}
-			
 		}
 		.middle {
 			display: flex;

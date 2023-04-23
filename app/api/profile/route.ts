@@ -4,7 +4,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export async function POST(request: Request) {
 	const body = await request.json();
-	const { name, username, bio } = body;
+	const { name, username, bio, photo } = body;
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) {
@@ -23,6 +23,10 @@ export async function POST(request: Request) {
 
 	if (bio) {
 		data.bio = bio;
+	}
+
+	if (photo) {
+		data.photo = photo;
 	}
 
 	const user = await prisma.user.update({

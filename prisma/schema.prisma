@@ -29,7 +29,7 @@ model User {
   username      String
   bio           String?
   password      String
-  avatar        String?
+  photo         String?
   Post          Post[]
   totalBets     Int       @default(0)
   createdAt     DateTime  @default(now())

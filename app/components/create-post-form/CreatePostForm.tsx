@@ -79,6 +79,7 @@ const CreatePostForm = () => {
             value={photo}
             onChange={(image) => setPhoto(image)}
             setCustomValue={setCustomValue}
+            label='Post a photo'
           />
           <Button onClick={betModal.onOpen} label='Post a poll' />
 

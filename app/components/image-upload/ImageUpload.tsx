@@ -11,7 +11,7 @@ type ImageUploadProps = {
 }
 
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label }) => {
 
  const [base64, setBase64] = useState(value)
 
@@ -46,9 +46,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomVal
    <input {...getInputProps()} placeholder="upload" width='100px' height='50px' />
    {base64 ? (
     // <Image src={base64} height='100' width='100' alt='uploaded image' />
-    <Button onClick={() => { }} label='Post a picture' disabled={value.length > 0} />
+    <Button onClick={() => { }} label={label} disabled={value.length > 0} />
    ) : (
-    <Button onClick={() => { }} label='Post a picture' />
+    <Button onClick={() => { }} label={label} />
 
    )}
   </div>

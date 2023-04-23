@@ -11,12 +11,14 @@ import { toast } from 'react-hot-toast';
 import Input from '../input/Input';
 import { useRouter } from 'next/navigation';
 import Textarea from '../textarea/Textarea';
+import ImageUpload from '../image-upload/ImageUpload';
 
 const EditProfileModal = () => {
 	const router = useRouter();
 
 	const editProfileModal = useEditProfileModal();
 	const [isLoading, setIsLoading] = useState(false);
+	const [photo, setPhoto] = useState('');
 
 	const {
 		register,
@@ -61,6 +63,12 @@ const EditProfileModal = () => {
 
 	const bodyContent = (
 		<div className={styles.bodyContent}>
+			<ImageUpload
+				value={photo}
+				onChange={(image) => setPhoto(image)}
+				setCustomValue={setCustomValue}
+				label='Edit your profile picture'
+			/>
 			<Input
 				id='name'
 				label='Update your name'

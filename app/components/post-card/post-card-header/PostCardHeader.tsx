@@ -8,6 +8,7 @@ import styles from './PostCardHeader.module.scss';
 import { formatDistanceToNowStrict } from 'date-fns';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import Avatar from '../../avatar/Avatar';
 
 type PostCardHeaderProps = {
   post: any;
@@ -65,12 +66,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
           e.stopPropagation();
           router.push(`user/${post?.user.id}`);
         }}>
-        <Image
-          src={post?.user.profilePicture || '/images/placeholder.png'}
-          width={59}
-          height={59}
-          alt='profile-picture'
-        />
+        <Avatar src={post?.user.photo} />
       </div>
       <div className={styles.userName}>
         <div className={styles.name}>
