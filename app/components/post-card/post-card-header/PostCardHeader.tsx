@@ -1,11 +1,13 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import PostCardMenu from '../post-card-menu/PostCardMenu';
 import styles from './PostCardHeader.module.scss';
 import { formatDistanceToNowStrict } from 'date-fns';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 type PostCardHeaderProps = {
  post: any;
@@ -18,6 +20,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 }) => {
  const router = useRouter();
  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ const [id, setId] = useState('');
 
  const createdAt = useMemo(() => {
   if (!post?.createdAt) {
@@ -26,6 +29,39 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 
   return formatDistanceToNowStrict(new Date(post?.createdAt));
  }, [post?.createdAt]);
+
+ const onFollow = useCallback(
+  (id: string) => {
+   setId(id);
+
+   axios
+    .post(`api/follow/${post.user.id}`)
+    .then(() => {
+     toast.success(`You followed ${post.user.name}`);
+     router.refresh();
+    })
+    .catch(() => {
+     toast.error('Something went wrong');
+    })
+    .finally(() => {
+     setId('');
+    });
+  },
+  [post.user.id, post.user.name, router]
+ );
+
+ const isFollowing = () => {
+  if (
+   !post.user.followingIds.includes(currentUserId) &&
+   post.user.id !== currentUserId
+  ) {
+   return (
+    false
+   );
+  }
+
+  return true;
+ };
 
  return (
   <div className={styles.postHeader}>
@@ -43,7 +79,16 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
     />
    </div>
    <div className={styles.userName}>
-    <p>{post?.user.name}</p>
+    <div className={styles.name}>
+     <p>{post?.user.name}</p>
+     {!isFollowing() && (
+      <div
+       onClick={(e) => { e.stopPropagation(); onFollow(post.user.id) }}
+       className={styles.followBtn}>
+       <p>+ Follow</p>
+      </div>
+     )}
+    </div>
     <span>{post?.user.username}</span>
     <span>Bets {post?.user.totalBets}</span>
    </div>
@@ -60,6 +105,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       postId={post?.id}
       currentUserId={currentUserId}
       postUserId={post?.user.id}
+      onFollow={onFollow}
+      isFollowing={isFollowing}
      />
     )}
    </div>

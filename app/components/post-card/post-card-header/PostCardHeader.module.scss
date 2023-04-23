@@ -16,6 +16,24 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		.name {
+			display: flex;
+			gap: 10px;
+			.followBtn {
+				color: $accent;
+				cursor: pointer;
+				padding: 0 4px;
+				border-radius: 4px;
+				font-size: 13px;
+				display: flex;
+				align-items: center;
+				&:hover {
+					background-color: $lightGray;
+				}
+			}
+			.hideFollowBtn {
+			}
+		}
 		span {
 			color: $secondaryText;
 			font-size: 13px;

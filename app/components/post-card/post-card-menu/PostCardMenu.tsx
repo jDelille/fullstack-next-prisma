@@ -10,20 +10,21 @@ type PostCardMenuProps = {
   postId: string;
   currentUserId?: string;
   postUserId?: string;
+  onFollow: (value: string) => void;
+  isFollowing: () => boolean;
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
   postId,
   currentUserId,
   postUserId,
+  onFollow,
+  isFollowing
 }) => {
   const router = useRouter();
-  const [deletingId, setDeletingId] = useState('');
 
   const onDelete = useCallback(
     (id: string) => {
-      setDeletingId(id);
-
       axios
         .delete(`/api/bet/${id}`)
         .then(() => {
@@ -33,23 +34,60 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
         .catch(() => {
           toast.error('Something went wrong');
         })
-        .finally(() => {
-          setDeletingId('');
-        });
+        .finally(() => { });
     },
     [router]
   );
 
+  const onUnFollow = useCallback(
+    (id: string) => {
+      axios
+        .delete(`/api/follow/${id}`)
+        .then(() => {
+          toast.success(`You unfolled ${postUserId}`);
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error('Something went wrong');
+        })
+        .finally(() => { });
+    },
+    [postUserId, router]
+  );
+
   return (
     <div className={styles.postCardMenu}>
-      {postUserId === currentUserId && (
-        <p
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(postId);
-          }}>
-          Delete
-        </p>
+      {postUserId === currentUserId ? (
+        <>
+          <p
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(postId);
+            }}>
+            Delete
+          </p>
+        </>
+      ) : (
+        <>
+          {isFollowing() ? (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                onUnFollow(postUserId as string);
+              }}>
+              Unfollow
+            </p>
+          ) : (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                onFollow(postUserId as string);
+              }}>
+              Follow
+            </p>
+          )}
+
+        </>
       )}
     </div>
   );
