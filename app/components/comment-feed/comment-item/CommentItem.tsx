@@ -71,7 +71,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
       <div className={styles.commentFooter}>
         <div className={styles.likeBtn} onClick={(e) => { e.stopPropagation(); !hasLiked() ? onLike(commentId as string) : onRemoveLike(commentId as string) }}>
           {hasLiked() ? (
-            <AiFillLike color='dodgerblue' />
+            <AiFillLike color='#20b46a' />
           ) : (
             <AiOutlineLike color='white' />
           )}

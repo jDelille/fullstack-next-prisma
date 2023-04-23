@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import styles from './PostCardBet.module.scss';
 
 type PostCardBetProps = {
@@ -6,30 +6,31 @@ type PostCardBetProps = {
 };
 
 const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
+
+	const favOrDogBadge = () => {
+		if (bet.favorite) {
+			return <div className={styles.favBadge}>Fav</div>;
+		} else {
+			return <div className={styles.dogBadge}>Dog</div>;
+		}
+	};
+
 	return (
 		<div className={styles.postBet}>
 			<div className={styles.postBetHeader}>
-				{bet.location === 'away' ? (
-					<p>
-						{bet.awayTeam}{' '}
-						<span>
-							{/* {post.Bet.favorite ? '-' : '+'} */}
-							{bet.value}
-						</span>
-					</p>
-				) : (
-					<p>
-						{bet.homeTeam}{' '}
-						<span>
-							{/* {post.Bet.favorite ? '-' : '+'} */}
-							{bet.value}
-						</span>
-					</p>
-				)}
+				<p>{bet.name}</p>
+
 				<p className={styles.betOdds}>{bet.odds}</p>
 			</div>
 			<div className={styles.postBetBody}>
-				<p> {bet.type}</p>
+				{bet.location === 'away' ? (
+					<div className={styles.team}>{bet.awayTeam} {favOrDogBadge()}</div>
+				) : (
+					<div className={styles.team}>{bet.homeTeam} {favOrDogBadge()}</div>
+				)}
+				<p>
+					{bet.type} <span>{bet.value}</span>
+				</p>
 				<p>Wager ${bet.wager}</p>
 				<p>Payout $5000</p>
 			</div>

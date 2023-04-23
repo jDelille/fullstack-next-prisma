@@ -85,7 +85,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
     <div className={styles.postCardFooter}>
       <div className={styles.likePost} onClick={(e) => { e.stopPropagation(); !hasLiked() ? onLike(postId) : onRemoveLike(postId) }}>
         {hasLiked() ? (
-          <AiFillLike color='dodgerblue' />
+          <AiFillLike color='#20b46a' />
         ) : (
           <AiOutlineLike color='white' />
         )}
@@ -94,7 +94,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
       </div>
       <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
         {hasCommented() ? (
-          <FaComment color='dodgerblue' />
+          <FaComment color='#20b46a' />
         ) : (
           <FaRegCommentDots color='white' />
         )}

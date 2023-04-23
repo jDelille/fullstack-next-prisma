@@ -24,13 +24,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
     setIsComment(!isComment)
   }, [isComment])
 
-  const favOrDogBadge = () => {
-    if (post.Bet?.favorite) {
-      return <div className={styles.favBadge}>Favorite</div>;
-    } else {
-      return <div className={styles.dogBadge}>Underdog</div>;
-    }
-  };
+
 
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {
@@ -68,7 +62,6 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       {post?.Bet && (
         <div className={styles.badges}>
           {confidenceBadge()}
-          {favOrDogBadge()}
         </div>
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
