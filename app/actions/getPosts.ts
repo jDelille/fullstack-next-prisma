@@ -15,6 +15,7 @@ export default async function getPosts() {
 		const formattedPosts = posts.map((post) => ({
 			...post,
 			createdAt: post.createdAt.toISOString(),
+			updatedAt: post.updatedAt.toISOString(),
 			user: {
 				...post.user,
 				createdAt: post.user.createdAt.toISOString(),

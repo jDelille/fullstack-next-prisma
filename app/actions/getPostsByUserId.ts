@@ -22,6 +22,7 @@ export default async function getPostsByUserId(params: IParams) {
 		const formattedPosts = posts.map((post) => ({
 			...post,
 			createdAt: post.createdAt.toISOString(),
+			updatedAt: post.updatedAt.toISOString(),
 			user: {
 				...post.user,
 				createdAt: post.user.createdAt.toISOString(),

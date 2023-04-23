@@ -11,15 +11,18 @@ datasource db {
 }
 
 model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  body      String?
-  photo     String?
-  userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  Bet       Bet?     @relation(fields: [betId], references: [id])
-  betId     String?  @db.ObjectId
-  likedIds  String[] @db.ObjectId
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  body         String?
+  photo        String?
+  userId       String    @db.ObjectId
+  user         User      @relation(fields: [userId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  Bet          Bet?      @relation(fields: [betId], references: [id])
+  betId        String?   @db.ObjectId
+  likedIds     String[]  @db.ObjectId
+  commentedIds String[]  @db.ObjectId
+  Comment      Comment[]
 }
 
 model User {
@@ -36,6 +39,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   emailVerified DateTime?
   followingIds  String[]  @db.ObjectId
+  Comment       Comment[]
 }
 
 model Bet {
@@ -55,4 +59,15 @@ model Bet {
   payout     Float?
   confidence String
   Post       Post[]
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   @db.ObjectId
+  postId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 }

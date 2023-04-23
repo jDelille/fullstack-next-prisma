@@ -12,13 +12,16 @@ import Input from '../input/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../button/Button';
 import { FcGoogle } from 'react-icons/fc'
+import ImageUpload from '../image-upload/ImageUpload';
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
+  const [photo, setPhoto] = useState('');
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -26,8 +29,17 @@ const RegisterModal = () => {
       username: '',
       email: '',
       password: '',
+      photo: '',
     },
   });
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -83,6 +95,12 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
+      />
+      <ImageUpload
+        value={photo}
+        onChange={(image) => setPhoto(image)}
+        setCustomValue={setCustomValue}
+        label='Add your profile picture'
       />
     </div>
   )

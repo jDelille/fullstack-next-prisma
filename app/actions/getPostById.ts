@@ -24,6 +24,8 @@ export default async function getPostById(params: IParams) {
 		return {
 			...post,
 			createdAt: post.createdAt.toISOString(),
+			updatedAt: post.updatedAt.toISOString(),
+
 			user: {
 				...post.user,
 				createdAt: post.user.createdAt.toISOString(),
