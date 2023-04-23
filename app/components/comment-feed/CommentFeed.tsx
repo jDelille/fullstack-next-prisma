@@ -10,7 +10,7 @@ const CommentFeed: React.FC<CommentFeedProps> = ({ comments }) => {
  return (
   <div>
    {comments?.comments?.map((comment: any) => (
-    <CommentItem key={comment.id} body={comment?.body} userId={comment.userId} userPhoto={comments?.user?.photo} userName={comment.userName} />
+    <CommentItem key={comment.id} body={comment?.body} userId={comment.userId} userPhoto={comments?.user?.photo} userName={comment.userName} commentId={comment.id} likeCount={comment.likedIds.length || 0} likeArray={comment.likedIds} />
    ))}
   </div>
  );

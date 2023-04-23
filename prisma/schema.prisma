@@ -34,7 +34,9 @@ model Comment {
   userId    String   @db.ObjectId
   postId    String   @db.ObjectId
   userName  String
-  Post      Post     @relation(fields: [postId], references: [id])
+  likedIds  String[] @db.ObjectId
+
+  Post Post @relation(fields: [postId], references: [id])
 }
 
 model User {

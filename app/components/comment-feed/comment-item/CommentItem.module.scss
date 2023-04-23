@@ -29,4 +29,40 @@
 			}
 		}
 	}
+	.commentFooter {
+		display: flex;
+		align-items: center;
+		.likeBtn {
+			background-color: $lightGray;
+			width: fit-content;
+			padding: 5px 8px;
+			border-radius: 5px;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			margin-left: auto;
+			font-size: 13px;
+			cursor: pointer;
+			&:hover {
+				background-color: lighten($lightGray, 2%);
+			}
+			span {
+				position: relative;
+
+				display: flex;
+				justify-content: center;
+				padding-left: 8px;
+				&:after {
+					position: absolute;
+					content: '';
+					left: 0;
+					background-color: $secondaryText;
+					width: 1px;
+					height: 65%;
+					top: 50%;
+					transform: translate(0%, -50%);
+				}
+			}
+		}
+	}
 }
