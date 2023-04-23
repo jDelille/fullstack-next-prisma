@@ -9,6 +9,8 @@
 	font-size: 13px;
 	gap: 10px;
 	position: relative;
+	padding: 1rem;
+	border-bottom: 1px solid $lightGray;
 	.likePost,
 	.comment {
 		background-color: $lightGray;

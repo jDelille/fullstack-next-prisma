@@ -4,7 +4,6 @@
 
 .post {
 	width: 100%;
-	padding: 1rem;
 	border-radius: 6px;
 	background-color: $gray;
 	border: 1px solid $lightGray;
@@ -13,6 +12,8 @@
 	flex-direction: column;
 	gap: 10px;
 	.postBody {
+		padding: 1rem;
+
 		@include breakpoint(xs) {
 			margin: 0;
 		}

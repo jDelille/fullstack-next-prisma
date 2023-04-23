@@ -16,6 +16,7 @@ export default async function getPostsByUserId(params: IParams) {
 			include: {
 				Bet: true,
 				user: true,
+				comments: true,
 			},
 		});
 
@@ -28,6 +29,11 @@ export default async function getPostsByUserId(params: IParams) {
 				createdAt: post.user.createdAt.toISOString(),
 				updatedAt: post.user.updatedAt.toISOString(),
 			},
+			comments: post.comments.map((comment) => ({
+				...comment,
+				createdAt: comment.createdAt.toISOString(),
+				updatedAt: comment.updatedAt.toISOString(),
+			})),
 		}));
 
 		return formattedPosts;

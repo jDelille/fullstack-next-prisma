@@ -22,6 +22,11 @@ export default async function getPosts() {
 				createdAt: post.user.createdAt.toISOString(),
 				updatedAt: post.user.updatedAt.toISOString(),
 			},
+			comments: post.comments.map((comment) => ({
+				...comment,
+				createdAt: comment.createdAt.toISOString(),
+				updatedAt: comment.updatedAt.toISOString(),
+			})),
 		}));
 
 		return formattedPosts;
