@@ -1,0 +1,32 @@
+@import '../../../styles/variables';
+
+.commentItem {
+	padding: 1rem;
+	border-top: 1px solid $lightGray;
+	border-bottom: 1px solid $lightGray;
+	.commentBody {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		img {
+			max-width: 30px;
+			max-height: 30px;
+			margin-bottom: auto;
+		}
+		.name {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			word-wrap: break-word;
+			.username {
+				font-weight: 500;
+				font-size: 13px;
+			}
+			.body {
+				color: $secondaryText;
+				font-size: 13px;
+				margin-left: 5px;
+			}
+		}
+	}
+}

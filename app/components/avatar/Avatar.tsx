@@ -17,8 +17,8 @@ const Avatar: React.FC<AvatarProps> = ({ src, userId }) => {
  return (
   <Image
    src={src || '/images/placeholder.png'}
-   width={40}
-   height={40}
+   width={43}
+   height={43}
    className={styles.avatar}
    alt='profile-picture'
    style={{ objectFit: 'cover' }}

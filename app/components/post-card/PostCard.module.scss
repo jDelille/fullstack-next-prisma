@@ -10,9 +10,10 @@
 	color: $white;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+
 	.postBody {
-		padding: 1rem;
+		padding: 0rem 1rem;
+		padding-bottom: 1rem;
 
 		@include breakpoint(xs) {
 			margin: 0;
@@ -21,15 +22,18 @@
 	.postPhoto {
 		max-height: 300px;
 		position: relative;
+		border-top: 1px solid $lightGray;
+		border-bottom: 1px solid $lightGray;
 		img {
 			max-height: 300px;
 			position: relative !important;
-			border-radius: 6px;
 		}
 	}
 	.badges {
 		display: flex;
 		gap: 5px;
+		padding: 1rem;
+		padding-top: 0;
 		@include breakpoint(xs) {
 			margin: 0;
 		}

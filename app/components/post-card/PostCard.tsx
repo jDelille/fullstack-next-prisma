@@ -32,8 +32,6 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
     }
   };
 
-  console.log(post)
-
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {
       return <div className={styles.ezBadge}>{post.Bet?.confidence}</div>;
@@ -76,7 +74,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       {post?.Bet && <PostCardBet post={post.Bet} />}
       <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} commentCount={post.comments.length || 0} commentArray={post.commentedIds} />
       {isComment && (
-        <PostCardComment postId={post?.id} />
+        <PostCardComment postId={post?.id} userId={currentUser?.id} userPhoto={currentUser?.photo as string} />
       )}
       {post?.comments && isComment && (
         <CommentFeed comments={post} />

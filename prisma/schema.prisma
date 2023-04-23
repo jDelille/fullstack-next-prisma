@@ -33,6 +33,7 @@ model Comment {
   updatedAt DateTime @updatedAt
   userId    String   @db.ObjectId
   postId    String   @db.ObjectId
+  userName  String
   Post      Post     @relation(fields: [postId], references: [id])
 }
 

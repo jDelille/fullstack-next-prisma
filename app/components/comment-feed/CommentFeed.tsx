@@ -1,4 +1,5 @@
 import Avatar from "../avatar/Avatar"
+import CommentItem from "./comment-item/CommentItem";
 
 type CommentFeedProps = {
  comments?: Record<string, any>
@@ -9,10 +10,7 @@ const CommentFeed: React.FC<CommentFeedProps> = ({ comments }) => {
  return (
   <div>
    {comments?.comments?.map((comment: any) => (
-    <>
-     <Avatar src={comments.user.photo} userId={comment?.userId} />
-     <p>{comment?.body}</p>
-    </>
+    <CommentItem key={comment.id} body={comment?.body} userId={comment.userId} userPhoto={comments?.user?.photo} userName={comment.userName} />
    ))}
   </div>
  );

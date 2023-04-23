@@ -5,16 +5,14 @@
 	position: relative;
 	min-width: 100%;
 	height: fit-content;
-
-	.inputWrapper {
+	.inputWrapper,
+	.inputWrapperBordered {
 		background-color: $gray;
-		border: 2px solid $lightGray;
 		border-radius: 10px;
 		color: white;
 		min-height: 45px !important;
 		position: relative;
 		padding: 10px;
-		margin-bottom: 1rem;
 		display: flex;
 		flex-direction: column;
 		height: fit-content;
@@ -32,21 +30,44 @@
 			height: 45px;
 			display: flex;
 			align-items: center;
-			padding-right: 10px;
-			padding-left: 58px;
+			padding-left: 50px;
 			gap: 10px;
 			button {
+				background-color: $lightGray;
 				width: fit-content;
-				height: 30px;
 				padding: 5px 8px;
-				background-color: $secondaryAccent;
-
+				border-radius: 5px;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				cursor: pointer;
 				&:hover {
-					background-color: darken($secondaryAccent, 2%);
+					background-color: lighten($lightGray, 2%);
 				}
 				&:nth-of-type(3) {
 					margin-left: auto;
 				}
+			}
+		}
+	}
+	.inputWrapperBordered {
+		border: 2px solid $lightGray;
+		padding: 1rem;
+		margin-bottom: 1rem;
+	}
+	.inputWrapper {
+		padding: 1rem;
+		button {
+			background-color: $lightGray;
+			width: fit-content;
+			padding: 5px 8px;
+			border-radius: 5px;
+			display: flex;
+			align-items: center;
+			margin-left: auto;
+			margin-top: 10px;
+			&:hover {
+				background-color: lighten($lightGray, 2%);
 			}
 		}
 	}

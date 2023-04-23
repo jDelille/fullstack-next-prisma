@@ -20,10 +20,11 @@ type CreatePostFormProps = {
   userId?: string;
   isComment: boolean;
   postId?: string;
+  isBordered?: boolean;
 }
 
 
-const CreatePostForm = ({ userPhoto, userId, isComment, postId }: CreatePostFormProps) => {
+const CreatePostForm = ({ userPhoto, userId, isComment, postId, isBordered }: CreatePostFormProps) => {
   const router = useRouter();
 
   const betModal = useBetModal();
@@ -73,7 +74,7 @@ const CreatePostForm = ({ userPhoto, userId, isComment, postId }: CreatePostForm
 
   return (
     <div className={styles.inputContainer}>
-      <div className={styles.inputWrapper}>
+      <div className={isBordered ? styles.inputWrapperBordered : styles.inputWrapper}>
         {!isComment && (
           <>
             <div className={styles.createPostWrapper}>

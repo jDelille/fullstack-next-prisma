@@ -28,6 +28,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			userId: currentUser?.id,
 			postId: postId,
 			photo: photo,
+			userName: currentUser?.name,
 		},
 	});
 
