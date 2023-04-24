@@ -80,9 +80,9 @@ const LoginModal = () => {
 
   const footerContent = (
     <div className={styles.footerContent}>
-      <hr />
+      {/* <hr />
       <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
-      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} />
+      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
       <div className={styles.navigate} onClick={registerModal.onOpen}>
         <div>Already have an account? </div>
         <div>Sign up</div>

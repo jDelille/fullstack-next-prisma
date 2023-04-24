@@ -13,6 +13,7 @@ import { toast } from 'react-hot-toast';
 import Button from '../button/Button';
 import { FcGoogle } from 'react-icons/fc'
 import ImageUpload from '../image-upload/ImageUpload';
+import Image from 'next/image';
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +60,7 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className={styles.bodyContent}>
-      <Heading title='Welcome to Bweem' subTitle='Create an account' />
+      <Heading title='Welcome to OddSpot' subTitle='Create an account' />
       <Input
         id='email'
         label='Email'
@@ -96,23 +97,37 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
-      <ImageUpload
-        value={photo}
-        onChange={(image) => setPhoto(image)}
-        setCustomValue={setCustomValue}
-        label='Add your profile picture'
-      />
+      <div className={styles.addProfilePicture}>
+        <div className={styles.imagePreview}>
+          <p className={styles.label}>Add your profile picture</p>
+          <div className={styles.image}>
+
+            <Image src={photo || '/images/placeholder.png'} alt='profile-picture' width='100' height='100' />
+
+          </div>
+        </div>
+        <div className={styles.imageSelector}>
+          <ImageUpload
+            value={photo}
+            onChange={(image) => setPhoto(image)}
+            setCustomValue={setCustomValue}
+            label={photo ? 'Change your profile picture' : 'Add your profile picture'}
+          />
+
+        </div>
+
+      </div>
+
     </div>
   )
 
   const footerContent = (
     <div className={styles.footerContent}>
-      <hr />
-      <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
-      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} />
+      {/* <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
+      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
       <div className={styles.navigate} onClick={registerModal.onClose}>
         <div>Already have an account? </div>
-        <div>Log in</div>
+        <span>Log in</span>
       </div>
     </div>
   )
