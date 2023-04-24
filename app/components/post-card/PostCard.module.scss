@@ -37,16 +37,10 @@
 		@include breakpoint(xs) {
 			margin: 0;
 		}
-		.favBadge,
-		.dogBadge,
 		.ezBadge,
 		.optimisticBadge,
 		.riskyBadge {
 			@include badge();
-			background-color: #98d8aa;
-		}
-		.dogBadge {
-			background-color: #f7d060;
 		}
 		.ezBadge {
 			background-color: #00ce79;

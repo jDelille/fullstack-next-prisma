@@ -54,7 +54,7 @@
 			.dogBadge {
 				@include badge();
 
-				background-color: #98d8aa;
+				background-color: $accent;
 				font-weight: 800;
 				text-transform: uppercase;
 				font-size: 10px;
@@ -63,7 +63,7 @@
 				padding: 1px 5px;
 			}
 			.dogBadge {
-				background-color: #f7d060;
+				background-color: #f1c40f;
 			}
 		}
 		@include breakpoint(xs) {
