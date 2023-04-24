@@ -11,18 +11,19 @@ datasource db {
 }
 
 model Post {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  body         String?
-  photo        String?
-  userId       String    @db.ObjectId
-  user         User      @relation(fields: [userId], references: [id])
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  Bet          Bet?      @relation(fields: [betId], references: [id])
-  betId        String?   @db.ObjectId
-  likedIds     String[]  @db.ObjectId
-  commentedIds String[]  @db.ObjectId
-  comments     Comment[]
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  body          String?
+  photo         String?
+  userId        String    @db.ObjectId
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Bet           Bet?      @relation(fields: [betId], references: [id])
+  betId         String?   @db.ObjectId
+  likedIds      String[]  @db.ObjectId
+  commentedIds  String[]  @db.ObjectId
+  comments      Comment[]
+  taggedUserIds String[]  @db.ObjectId
 }
 
 model Comment {
