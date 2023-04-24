@@ -5,6 +5,7 @@ import styles from './CreatePostInput.module.scss';
 import Image from 'next/image';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Avatar from '../avatar/Avatar';
+import { BsFillSendFill } from 'react-icons/bs'
 
 type CreatePostInput = {
   setCustomValue: (id: string, value: any) => void;
@@ -13,9 +14,10 @@ type CreatePostInput = {
   userId?: string;
   isComment?: boolean;
   placeholder: string;
+  body?: string
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder, body }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -57,7 +59,15 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
           className={styles.textarea}
           placeholder={placeholder}
           ref={textAreaRef}
-          rows={1}></textarea>
+          rows={1}>
+
+        </textarea>
+        {isComment && (
+          <button className={styles.commentBtn} disabled={!body}>
+            <BsFillSendFill color='white' />
+          </button>
+        )}
+
         {photo && (
           <div className={styles.imagePreview}>
             {/* <div

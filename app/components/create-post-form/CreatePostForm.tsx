@@ -31,6 +31,7 @@ const CreatePostForm = ({ userPhoto, userId, isComment, postId, isBordered }: Cr
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+
   const {
     register,
     handleSubmit,
@@ -41,8 +42,12 @@ const CreatePostForm = ({ userPhoto, userId, isComment, postId, isBordered }: Cr
   } = useForm<FieldValues>({
     defaultValues: {
       league: '',
+      postBody: '',
     },
   });
+
+  const body = watch('postBody')
+
 
 
   const setCustomValue = (id: string, value: any) => {
@@ -97,7 +102,7 @@ const CreatePostForm = ({ userPhoto, userId, isComment, postId, isBordered }: Cr
         )}
         {isComment && (
           <>
-            <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder='Comment' />
+            <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder='Comment' isComment body={body} />
             <Button onClick={handleSubmit(onSubmit)} label='Comment' />
           </>
 
