@@ -93,6 +93,20 @@ const BetModal = () => {
   const onNext = () => {
     setStep((value) => value + 1);
   };
+
+  const calculatePayout = (wager: number, odds: number) => {
+    let payoutAmount = 0;
+    if (odds >= 0) {
+      payoutAmount = wager * (odds / 100 + 1);
+    } else {
+      payoutAmount = wager * (100 / Math.abs(odds) + 1);
+    }
+    const formattedPayout = Number(payoutAmount.toFixed(2));
+    return formattedPayout;
+  };
+
+  const payout = calculatePayout(wagerAmount, odds);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.ODDS) {
       return onNext();
@@ -100,8 +114,13 @@ const BetModal = () => {
 
     setIsLoading(true);
 
+    const payload = {
+      ...data,
+      payout: payout
+    }
+
     axios
-      .post('/api/bet', data)
+      .post('/api/bet', payload)
       .then(() => {
         toast.success('Bet posted');
         router.refresh();
@@ -133,18 +152,7 @@ const BetModal = () => {
     return 'Back';
   }, [step]);
 
-  const calculatePayout = (wager: number, odds: number) => {
-    let payoutAmount = 0;
-    if (odds >= 0) {
-      payoutAmount = wager * (odds / 100 + 1);
-    } else {
-      payoutAmount = wager * (100 / Math.abs(odds) + 1);
-    }
-    const formattedPayout = Number(payoutAmount.toFixed(2));
-    return formattedPayout;
-  };
 
-  const payout = calculatePayout(wagerAmount, odds);
 
   let bodyContent = (
     <div>

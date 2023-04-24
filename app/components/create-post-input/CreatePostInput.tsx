@@ -1,11 +1,12 @@
 'use client'
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, MouseEventHandler } from 'react';
 import styles from './CreatePostInput.module.scss';
 import Image from 'next/image';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Avatar from '../avatar/Avatar';
 import { BsFillSendFill } from 'react-icons/bs'
+import { FieldValues, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 
 type CreatePostInput = {
   setCustomValue: (id: string, value: any) => void;
@@ -15,9 +16,11 @@ type CreatePostInput = {
   isComment?: boolean;
   placeholder: string;
   body?: string
+  handleSubmit?: UseFormHandleSubmit<FieldValues>;
+  onSubmit?: SubmitHandler<FieldValues>;
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder, body }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -63,7 +66,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
 
         </textarea>
         {isComment && (
-          <button className={styles.commentBtn} disabled={!body}>
+          <button className={styles.commentBtn} disabled={!body} onClick={handleSubmit && onSubmit && handleSubmit(onSubmit)}>
             <BsFillSendFill color='white' />
           </button>
         )}

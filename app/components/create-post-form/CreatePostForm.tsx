@@ -102,8 +102,7 @@ const CreatePostForm = ({ userPhoto, userId, isComment, postId, isBordered }: Cr
         )}
         {isComment && (
           <>
-            <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder='Comment' isComment body={body} />
-            <Button onClick={handleSubmit(onSubmit)} label='Comment' />
+            <CreatePostInput setCustomValue={setCustomValue} photo={photo} userPhoto={userPhoto} userId={userId} placeholder='Comment' isComment body={body} handleSubmit={handleSubmit} onSubmit={onSubmit} />
           </>
 
 

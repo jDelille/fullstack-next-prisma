@@ -32,7 +32,7 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 					{bet.type} <span>{bet.value}</span>
 				</p>
 				<p>Wager ${bet.wager}</p>
-				<p>Payout $5000</p>
+				<p>Payout $ {bet.payout}</p>
 			</div>
 			<div className={styles.disclaimer}>
 				<p>Odds shown are at time of post and are subject to change.</p>
