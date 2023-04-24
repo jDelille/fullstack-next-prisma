@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image';
 import styles from './CreatePostForm.module.scss';
 import Button from '../button/Button';
 import useBetModal from '@/app/hooks/useBetModal';
