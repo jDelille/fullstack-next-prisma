@@ -8,7 +8,6 @@ type GameCardProps = {
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
- console.log(game)
 
  return (
   <div className={styles.gameCard}>

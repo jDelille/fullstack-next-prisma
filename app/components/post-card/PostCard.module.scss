@@ -3,14 +3,7 @@
 @import '../../styles/mixins';
 
 .post {
-	width: 100%;
-	border-radius: 6px;
-	background-color: $gray;
-	border: 1px solid $lightGray;
-	color: $white;
-	display: flex;
-	flex-direction: column;
-
+	@include postCard();
 	.postBody {
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;

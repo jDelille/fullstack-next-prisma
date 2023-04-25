@@ -68,14 +68,15 @@ body {
 		@include page();
 	}
 	.rightSidebar {
-		background-color: $gray;
-		border: 2px solid $lightGray;
+		// background-color: $gray;
+		// border: 2px solid $lightGray;
 		width: 280px;
 		height: 70vh;
 		margin-left: auto;
 		position: fixed;
+		top: $gamebarHeight;
 		right: 0;
-		height: $gamebarHeight;
+		height: calc(100vh - $gamebarHeight);
 		margin-top: 2rem;
 		margin-left: 2rem;
 		border-radius: 12px;
