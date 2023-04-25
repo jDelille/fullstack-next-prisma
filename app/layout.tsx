@@ -6,6 +6,7 @@ import EditProfileModal from './components/modals/EditProfileModal'
 import LoginModal from './components/modals/LoginModal'
 import RegisterModal from './components/modals/RegisterModal'
 import Navbar from './components/navbar/Navbar'
+import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
 
@@ -33,6 +34,9 @@ export default async function RootLayout({
           <EditProfileModal />
           <div className='sidebarContainer'>
             <Navbar currentUser={currentUser} />
+          </div>
+          <div className="gamebarContainer">
+            <Scoreboard />
           </div>
         </ClientOnly>
         <div className="mainContainer">

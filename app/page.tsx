@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import CreatePostForm from './components/create-post-form/CreatePostForm';
@@ -15,9 +16,6 @@ export default async function Home() {
 
   return (
     <main className='main'>
-      <div className="gamebarContainer">
-        {/* <Scoreboard /> */}
-      </div>
       <div className="mainFeed">
         <CreatePostForm userPhoto={currentUser?.photo as string} userId={currentUser?.id as string} isBordered={true} isComment={false} />
         <PostFeed posts={posts} currentUser={currentUser} />

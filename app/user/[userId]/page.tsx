@@ -1,32 +1,33 @@
-
-import getUserById from "@/app/actions/getUserById";
+import getUserById from '@/app/actions/getUserById';
 import styles from './Page.module.scss';
-import Image from "next/image";
+import Image from 'next/image';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import PostFeed from "@/app/components/post-feed/PostFeed";
-import getPostsByUserId from "@/app/actions/getPostsByUserId";
-import ProfileMenu from "@/app/components/menu/ProfileMenu";
-import getFollowersCount from "@/app/actions/getFollowersCount";
-import Avatar from "@/app/components/avatar/Avatar";
-
+import PostFeed from '@/app/components/post-feed/PostFeed';
+import getPostsByUserId from '@/app/actions/getPostsByUserId';
+import ProfileMenu from '@/app/components/menu/ProfileMenu';
+import getFollowersCount from '@/app/actions/getFollowersCount';
+import Avatar from '@/app/components/avatar/Avatar';
+import { useMemo } from 'react';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { BsCalendar2WeekFill } from 'react-icons/bs'
 interface IParams {
  userId?: string;
 }
 
 const ProfilePage = async ({ params }: { params: IParams }) => {
-
  const user = await getUserById(params);
- const posts = await getPostsByUserId(params)
- const followerCount = await getFollowersCount(params)
+ const posts = await getPostsByUserId(params);
+ const followerCount = await getFollowersCount(params);
+
+ let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
+
 
  return (
   <div className={styles.page}>
    <div className={styles.profileHeader}>
     <div className={styles.top}>
      <div className={styles.profilePicture}>
-      <div
-       className={styles.profilePicture}
-      >
+      <div className={styles.profilePicture}>
        <Avatar src={user?.photo as string} />
       </div>
      </div>
@@ -36,23 +37,35 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
      </div>
 
      <ProfileMenu />
-
     </div>
     <div className={styles.middle}>
-     <div className={styles.bio}></div>
-     <p>{user?.bio}</p>
+     <div className={styles.bio}>
+      <p>{user?.bio}</p>
+      <div className={styles.joined}>
+       <BsCalendar2WeekFill />
+       <p>joined {joinedDate} ago</p>
+      </div>
+     </div>
     </div>
     <div className={styles.bottom}>
-     <div>Followers<p>{followerCount || 0}</p></div>
-     <div>Following<p>{user?.followingIds.length || 0}</p></div>
-     <div>Bets <p>{user?.totalBets}</p></div>
+     <div className={styles.userInfo}>
+      <p>Followers</p>
+      <p>{followerCount || 0}</p>
+     </div>
+     <div className={styles.userInfo}>
+      <p>Following</p>
+      <p>{user?.followingIds.length || 0}</p>
+     </div>
+     <div className={styles.userInfo}>
+      <p>Bets</p> <p>{user?.totalBets}</p>
+     </div>
     </div>
    </div>
    <div className={styles.profilePosts}>
     <PostFeed posts={posts} currentUser={user} />
    </div>
-  </div >
- )
-}
+  </div>
+ );
+};
 
 export default ProfilePage;
