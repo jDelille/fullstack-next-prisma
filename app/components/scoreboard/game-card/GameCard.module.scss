@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+
+.gameCard {
+	min-width: 135px;
+	border-right: 1px solid $lightGray;
+	color: white;
+	padding: 5px 10px;
+	.status {
+		font-size: 12px;
+		display: flex;
+		width: 100%;
+	}
+	.teams {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		.team {
+			display: flex;
+			height: 50%;
+			width: 100%;
+			color: $white;
+			font-size: 13px;
+			align-items: center;
+			gap: 5px;
+			.score {
+				margin-left: auto;
+			}
+		}
+	}
+}
