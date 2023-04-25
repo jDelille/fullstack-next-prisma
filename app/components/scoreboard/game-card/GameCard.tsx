@@ -26,7 +26,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
       <div key={team.id} className={styles.team}>
        <Image src={team.competitors[1].team.logo} alt="logo" width={20} height={20} />
        <p>{team.competitors[1].team.abbreviation}</p>
-       <p className={styles.score}>{team.competitors[0].score}</p>
+       <p className={styles.score}>{team.competitors[1].score}</p>
 
       </div>
      </>

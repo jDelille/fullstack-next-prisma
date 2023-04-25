@@ -11,6 +11,18 @@
 	}
 	.sportSelector {
 		min-width: 135px;
+		border-right: 1px solid $lightGray;
+		padding: 2px;
+		font-size: 13px;
+		display: flex;
+		flex-direction: column;
+		color: $white;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		p {
+			color: $secondaryText;
+		}
 	}
 	.games {
 		overflow-x: scroll;
