@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+@import '../../styles/breakpoints';
+@import '../../styles/mixins';
+
+.page {
+	@include page();
+	.noBets,
+	.bets {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+}

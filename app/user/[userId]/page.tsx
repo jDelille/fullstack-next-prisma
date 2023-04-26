@@ -1,15 +1,13 @@
 import getUserById from '@/app/actions/getUserById';
 import styles from './Page.module.scss';
-import Image from 'next/image';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
 import PostFeed from '@/app/components/post-feed/PostFeed';
 import getPostsByUserId from '@/app/actions/getPostsByUserId';
 import ProfileMenu from '@/app/components/menu/ProfileMenu';
 import getFollowersCount from '@/app/actions/getFollowersCount';
 import Avatar from '@/app/components/avatar/Avatar';
-import { useMemo } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { BsCalendar2WeekFill } from 'react-icons/bs'
+import getCurrentUser from '@/app/actions/getCurrentUser';
 interface IParams {
  userId?: string;
 }
@@ -18,7 +16,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const user = await getUserById(params);
  const posts = await getPostsByUserId(params);
  const followerCount = await getFollowersCount(params);
-
+ const currentUser = await getCurrentUser()
  let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
 
 
@@ -35,8 +33,9 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
       <h1>{user?.name}</h1>
       <p>{user?.username}</p>
      </div>
-
-     <ProfileMenu />
+     {user?.id === currentUser?.id && (
+      <ProfileMenu />
+     )}
     </div>
     <div className={styles.middle}>
      <div className={styles.bio}>

@@ -137,6 +137,12 @@
 			button {
 				width: 100%;
 				background-color: $accent;
+				&:nth-of-type(1) {
+					background-color: $gray;
+					&:hover {
+						background-color: darken($gray, 2%);
+					}
+				}
 				&:hover {
 					background-color: darken($accent, 5%);
 				}

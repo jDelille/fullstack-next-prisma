@@ -33,7 +33,7 @@
 	background-color: $black;
 	max-width: 833px;
 	position: relative;
-	min-height: 100vh;
+	min-height: calc(100vh - $gamebarHeight);
 	height: fit-content;
 	margin: 0 520px;
 	margin-top: $gamebarHeight;
