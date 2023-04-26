@@ -9,6 +9,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import Avatar from '../../avatar/Avatar';
 import { AiFillPushpin } from "react-icons/ai";
+import VerifiedIcon from '@/app/icons/VerifiedIcon';
 type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
@@ -67,7 +68,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       </div>
       <div className={styles.userName}>
         <div className={styles.name}>
-          <p>{post?.user.name}</p>
+          <p className={styles.fullName}>{post?.user.name} <VerifiedIcon /></p>
           {!isFollowing && post.user.id !== currentUserId ? (
             <button
               onClick={(e) => {

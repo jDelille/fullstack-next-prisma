@@ -16,6 +16,15 @@
 		.name {
 			display: flex;
 			gap: 10px;
+			.fullName {
+				display: flex;
+				gap: 5px;
+				align-items: center;
+				svg {
+					position: relative;
+					top: 1px;
+				}
+			}
 			.followBtn {
 				color: $accent;
 				cursor: pointer;

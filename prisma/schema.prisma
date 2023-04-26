@@ -55,6 +55,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   emailVerified DateTime?
   followingIds  String[]  @db.ObjectId
+  isVerified    Boolean   @default(false)
 }
 
 model Bet {
