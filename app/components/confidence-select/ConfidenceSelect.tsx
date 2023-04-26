@@ -1,3 +1,4 @@
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import Select from 'react-select';
 
 const confidenceLevels = [
@@ -48,9 +49,12 @@ const customStyles = {
 
 type ConfidenceSelectProps = {
  onChange: (value: string) => void;
+ id: string;
+ required?: boolean;
+ register: UseFormRegister<FieldValues>;
 }
 
-const ConfidenceSelect: React.FC<ConfidenceSelectProps> = ({ onChange }) => {
+const ConfidenceSelect: React.FC<ConfidenceSelectProps> = ({ onChange, id, required, register }) => {
  return (
   <div>
    <Select placeholder="Easy Money" isClearable options={confidenceLevels} styles={customStyles} onChange={(value) => onChange(value?.value as string)} />

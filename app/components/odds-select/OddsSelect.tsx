@@ -3,6 +3,7 @@
 import { Odds } from '@/app/types/Odds';
 import { useState, useEffect } from 'react';
 import styles from './OddsSelect.module.scss';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 type OddsSelectProps = {
   matchId: string;
@@ -11,9 +12,13 @@ type OddsSelectProps = {
   homeTeam: string;
   awayTeam: string;
   leagueName: string;
+  id: string;
+  required?: boolean;
+  register: UseFormRegister<FieldValues>;
+
 };
 
-const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTeam, awayTeam, leagueName }) => {
+const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTeam, awayTeam, leagueName, id, required, register }) => {
   const [odds, setOdds] = useState<Odds | null>();
   const [selected, setSelected] = useState('');
   const [sport, setSport] = useState('')
@@ -71,7 +76,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
       {odds && (
         <>
           {/* moneyline */}
-          <div className={styles.odds}>
+          <div className={styles.odds} >
             <div className={styles.oddsWrapper}>
               <label>Moneyline</label>
               <div
@@ -80,6 +85,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
                     ? styles.homeOddBordered
                     : styles.homeOdd
                 }
+                id={id}
+                {...register(id, { required })}
                 onClick={() => {
                   onClick({ odds: odds?.homeTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.homeTeamOdds.favorite, value: null, homeTeam: homeTeam, location: 'home' }); setSelected('homeML');
                 }}>
@@ -91,6 +98,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
                     ? styles.awayOddBordered
                     : styles.awayOdd
                 }
+                id={id}
+                {...register(id, { required })}
                 onClick={() => {
                   onClick({ odds: odds?.awayTeamOdds.moneyLine, type: 'Moneyline', favorite: odds?.awayTeamOdds.favorite, value: null, awayTeam: awayTeam, location: 'away' });
                   setSelected('awayML');
@@ -107,6 +116,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
                     ? styles.homeOddBordered
                     : styles.homeOdd
                 }
+                id={id}
+                {...register(id, { required })}
                 onClick={() => {
                   onClick({ odds: odds?.homeTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.homeTeamOdds.favorite, value: odds?.spread, homeTeam: homeTeam, location: 'home' });
                   setSelected('homeSpread');
@@ -120,6 +131,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
                     ? styles.awayOddBordered
                     : styles.awayOdd
                 }
+                id={id}
+                {...register(id, { required })}
                 onClick={() => {
                   onClick({ odds: odds?.awayTeamOdds.spreadOdds, type: 'Spread', favorite: odds?.awayTeamOdds.favorite, value: odds?.spread, awayTeam: awayTeam, location: 'away' });
                   setSelected('awaySpread');
@@ -132,6 +145,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
             <div className={styles.oddsWrapper}>
               <label>Over / Under</label>
               <div
+                id={id}
+                {...register(id, { required })}
                 className={
                   selected === 'over'
                     ? styles.homeOddBordered
@@ -145,6 +160,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({ matchId, onClick, name, homeTea
                 <p>{odds?.overOdds}</p>
               </div>
               <div
+                id={id}
+                {...register(id, { required })}
                 className={
                   selected === 'under'
                     ? styles.awayOddBordered

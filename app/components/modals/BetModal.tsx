@@ -156,11 +156,14 @@ const BetModal = () => {
 
   let bodyContent = (
     <div>
-      <Heading title='Choose a league' />
+      <Heading title='Choose a league' subTitle={errors.league?.type && 'Please pick a sport'} />
       <SimpleBar className={styles.chooseLeague}>
         {leagues.map((item) => (
           <div key={item.label}>
             <LeagueInput
+              id='league'
+              register={register}
+              required
               onClick={(league) => {
                 setCustomValue('league', league);
               }}
@@ -168,6 +171,7 @@ const BetModal = () => {
               label={item.description}
               shortLabel={item.label}
               icon={item.icon}
+              errors={errors}
             />
           </div>
         ))}
@@ -178,12 +182,16 @@ const BetModal = () => {
   if (step === STEPS.MATCH) {
     bodyContent = (
       <div>
-        <Heading title='Choose a matchup' />
+        <Heading title='Choose a matchup' subTitle={errors.match?.type && 'Please pick a matchup'} />
         <SimpleBar className={styles.chooseMatch}>
           <MatchSelect
+            id="match"
+            register={register}
+            required
             selected={match?.matchId}
             onClick={(value) => setCustomValue('match', value)}
             leagueName={leagueName}
+
           />
         </SimpleBar>
       </div>
@@ -196,6 +204,9 @@ const BetModal = () => {
         <Heading title='Choose your bet' subTitle={match?.name} />
         <div className={styles.chooseOdds}>
           <OddsSelect
+            id='odds'
+            required
+            register={register}
             matchId={matchId}
             name={match?.name}
             homeTeam={match?.homeTeam}
@@ -233,7 +244,7 @@ const BetModal = () => {
           />
           <div className={styles.confidence}>
             <label>Share your confidence level</label>
-            <ConfidenceSelect onChange={(value) => setCustomValue('confidence', value)} />
+            <ConfidenceSelect id='confidence' register={register} required onChange={(value) => setCustomValue('confidence', value)} />
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ type ModalProps = {
  secondaryAction?: () => void;
  secondaryActionLabel?: string;
  disabled?: boolean;
- icon?: IconType
+ icon?: IconType;
 
 };
 
