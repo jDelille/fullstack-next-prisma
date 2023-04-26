@@ -17,11 +17,12 @@ type CreatePostInput = {
   isComment?: boolean;
   placeholder: string;
   body?: string
+  id?: string;
   handleSubmit?: UseFormHandleSubmit<FieldValues>;
   onSubmit?: SubmitHandler<FieldValues>;
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const loginModal = useLoginModal();
@@ -55,11 +56,12 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
       </div>
       <div className={styles.textareaWrapper} onClick={() => { !userId ? loginModal.onOpen() : null }}>
         <textarea
+          id={id}
           onChange={(event) => {
             event.stopPropagation();
             setCustomValue('postBody', event.target.value);
           }}
-          // value={body}
+          value={body}
           className={styles.textarea}
           placeholder={placeholder}
           ref={textAreaRef}

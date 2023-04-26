@@ -121,6 +121,7 @@ const RegisterModal = () => {
             onChange={(image) => setPhoto(image)}
             setCustomValue={setCustomValue}
             label={photo ? 'Change your profile picture' : 'Add your profile picture'}
+            isRegister
           />
 
         </div>

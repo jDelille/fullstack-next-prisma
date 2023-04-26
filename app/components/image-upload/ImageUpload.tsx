@@ -10,10 +10,11 @@ type ImageUploadProps = {
  label?: string;
  setCustomValue: (id: string, value: any) => void;
  userId?: string
+ isRegister?: boolean;
 }
 
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister }) => {
 
  const [base64, setBase64] = useState(value)
  const loginModal = useLoginModal();
@@ -45,7 +46,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomVal
  })
 
  return (
-  <div {...getRootProps({})} onClick={() => { !userId ? loginModal.onOpen() : null }}>
+  <div {...getRootProps({})} >
    <input {...getInputProps()} placeholder="upload" width='100px' height='50px' />
    {base64 ? (
     // <Image src={base64} height='100' width='100' alt='uploaded image' />

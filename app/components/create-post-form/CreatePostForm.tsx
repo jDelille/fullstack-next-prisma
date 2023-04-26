@@ -90,6 +90,8 @@ const CreatePostForm = ({
                 userPhoto={userPhoto}
                 userId={userId}
                 placeholder="What's Happening?"
+                id='postBody'
+                body={body}
               />
             </div>
             <div className={styles.inputButtons}>
@@ -128,6 +130,7 @@ const CreatePostForm = ({
               body={body}
               handleSubmit={handleSubmit}
               onSubmit={onSubmit}
+              id="postBody"
             />
           </>
         )}
