@@ -104,6 +104,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             postUserId={post?.user.id}
             onFollow={onFollow}
             isFollowing={isFollowing}
+            setIsMenuOpen={setIsMenuOpen}
           />
         )}
       </div>

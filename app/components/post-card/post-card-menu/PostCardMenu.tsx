@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { use, useCallback, useState } from 'react';
+import { use, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './PostCardMenu.module.scss';
 
@@ -12,6 +12,7 @@ type PostCardMenuProps = {
   postUserId?: string;
   onFollow: (value: string) => void;
   isFollowing?: boolean
+  setIsMenuOpen: (value: boolean) => void;
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
@@ -19,7 +20,8 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
   currentUserId,
   postUserId,
   onFollow,
-  isFollowing
+  isFollowing,
+  setIsMenuOpen
 }) => {
   const router = useRouter();
 
@@ -55,27 +57,37 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
     [postUserId, router]
   );
 
-  const onPinPost = useCallback((id: string) => {
-    axios.post(`/api/pin/${id}`)
-      .then(() => {
-        toast.success('Pinned post');
-        router.refresh()
-      })
-      .catch(() => {
-        toast.error('Something went wrong')
-      })
-  }, [router])
+  const onPinPost = useMemo(() => {
+    return (id: string) => {
+      axios.post(`/api/pin/${id}`)
+        .then(() => {
+          toast.success('Pinned post');
+          router.refresh()
+        })
+        .catch(() => {
+          toast.error('Something went wrong')
+        })
+        .finally(() => {
+          setIsMenuOpen(false);
+        });
+    };
+  }, [router, setIsMenuOpen]);
 
-  const onUnPinPost = useCallback((id: string) => {
-    axios.delete(`/api/pin/${id}`)
-      .then(() => {
-        toast.success('Pinned post');
-        router.refresh()
-      })
-      .catch(() => {
-        toast.error('Something went wrong')
-      })
-  }, [router])
+  const onUnPinPost = useMemo(() => {
+    return (id: string) => {
+      axios.delete(`/api/pin/${id}`)
+        .then(() => {
+          toast.success('Unpinned post');
+          router.refresh()
+        })
+        .catch(() => {
+          toast.error('Something went wrong')
+        })
+        .finally(() => {
+          setIsMenuOpen(false);
+        });
+    };
+  }, [router, setIsMenuOpen]);
 
   return (
     <div className={styles.postCardMenu}>
