@@ -44,10 +44,12 @@ const CreatePostForm = ({
     defaultValues: {
       league: '',
       postBody: '',
+      photo: '',
     },
   });
 
   const body = watch('postBody');
+  const postPhoto = watch('photo');
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -86,7 +88,7 @@ const CreatePostForm = ({
             <div className={styles.createPostWrapper}>
               <CreatePostInput
                 setCustomValue={setCustomValue}
-                photo={photo}
+                photo={postPhoto}
                 userPhoto={userPhoto}
                 userId={userId}
                 placeholder="What's Happening?"
@@ -107,6 +109,7 @@ const CreatePostForm = ({
                 setCustomValue={setCustomValue}
                 label='Post a photo'
                 userId={userId as string}
+
               />
               {/* <Button
                 onClick={() => {

@@ -24,7 +24,7 @@ model Post {
   commentedIds  String[]  @db.ObjectId
   comments      Comment[]
   taggedUserIds String[]  @db.ObjectId
-  isPinned      Boolean?
+  isPinned      Boolean?  @default(false)
 }
 
 model Comment {

@@ -114,6 +114,8 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
           )}
           <p
             onClick={(e) => {
+              e.stopPropagation();
+              onDelete(postId);
             }}>
             Delete
           </p>

@@ -47,6 +47,7 @@ export type Game = {
 					logo: string;
 					color: string;
 					alternateColor: string;
+					id: number;
 				};
 			},
 			{
@@ -73,6 +74,7 @@ export type Game = {
 					logo: string;
 					color: string;
 					alternateColor: string;
+					id: number;
 				};
 			}
 		];
