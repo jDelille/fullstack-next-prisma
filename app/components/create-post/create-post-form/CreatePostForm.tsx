@@ -103,14 +103,16 @@ const CreatePostForm = ({
                 }}
                 label='Post a bet'
               />
-              <ImageUpload
-                value={photo}
-                onChange={(image) => setPhoto(image)}
-                setCustomValue={setCustomValue}
-                label='Post a photo'
-                userId={userId as string}
+              {userId && (
+                <ImageUpload
+                  value={photo}
+                  onChange={(image) => setPhoto(image)}
+                  setCustomValue={setCustomValue}
+                  label='Post a photo'
+                  userId={userId as string}
+                />
+              )}
 
-              />
               {/* <Button
                 onClick={() => {
                   !userId ? loginModal.onOpen() : null;

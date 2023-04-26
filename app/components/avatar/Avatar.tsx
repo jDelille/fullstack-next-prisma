@@ -22,7 +22,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, userId }) => {
    className={styles.avatar}
    alt='profile-picture'
    style={{ objectFit: 'cover' }}
-   onClick={(e) => { e.stopPropagation(); router.push(`user/${userId}`) }}
+   onClick={(e) => { e.stopPropagation(); userId && router.push(`user/${userId}`) }}
   />
  );
 }

@@ -1,0 +1,96 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+
+.loginFooter {
+	width: 100vw;
+	position: fixed;
+	height: 75px;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	left: 0px;
+	z-index: 10;
+	// justify-content: center;
+	gap: 1rem;
+	color: $white;
+	background-color: $accent;
+	box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px,
+		rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+	.footerWrapper {
+		display: flex;
+		align-items: center;
+		width: 833px;
+		margin: 0 auto;
+		justify-content: space-between;
+		margin: 0 520px;
+		padding: 0 2rem;
+		@include breakpoint(xl) {
+			margin: 0 320px;
+		}
+		@include breakpoint(lg) {
+			margin: 0 320px;
+		}
+		@include breakpoint(md) {
+			margin-left: 280px;
+			min-width: calc(100% - 280px);
+			max-width: 720px;
+			min-width: 720px;
+		}
+		@include breakpoint(sm) {
+			margin: 0 280px;
+			min-width: calc(100% - 280px);
+		}
+		@include breakpoint(xs) {
+			margin: 0;
+			padding: 0 1rem;
+		}
+		.text {
+			font-size: 24px;
+			font-weight: 600;
+			display: flex;
+
+			flex-direction: column;
+			@include breakpoint(sm) {
+				display: none;
+			}
+			p {
+				&:nth-of-type(2) {
+					font-size: 16px;
+					font-weight: 300;
+				}
+			}
+		}
+		.buttons {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			position: relative;
+			@include breakpoint(sm) {
+				width: calc(100% - 17px);
+				gap: 1rem;
+				padding: 0 1rem;
+			}
+			button {
+				width: fit-content;
+				font-weight: 500;
+				font-size: 14px;
+				background-color: $white;
+				color: $black;
+				outline: none;
+				&:nth-of-type(1) {
+					background: $accent;
+					outline: 1px solid $black;
+					&:hover {
+						background-color: lighten($accent, 5%);
+					}
+				}
+				&:hover {
+					background-color: darken($white, 2%);
+				}
+				@include breakpoint(sm) {
+					flex: 1;
+				}
+			}
+		}
+	}
+}
