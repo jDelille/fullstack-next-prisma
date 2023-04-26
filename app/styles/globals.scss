@@ -30,9 +30,6 @@ body {
 		min-width: 280px;
 	}
 
-	@include breakpoint(sm) {
-	}
-
 	@include breakpoint(xs) {
 		max-width: 0;
 		display: none;
@@ -67,26 +64,26 @@ body {
 	.mainFeed {
 		@include page();
 	}
-	.rightSidebar {
-		// background-color: $gray;
-		// border: 2px solid $lightGray;
-		width: 280px;
-		height: 70vh;
-		margin-left: auto;
-		position: fixed;
-		top: $gamebarHeight;
-		right: 0;
-		height: calc(100vh - $gamebarHeight);
-		margin-top: 2rem;
-		margin-left: 2rem;
-		border-radius: 12px;
-		margin-right: 1rem;
+}
 
-		@include breakpoint(md) {
-			display: none;
-		}
-		@include breakpoint(sm) {
-			display: none;
-		}
+.rightSidebar {
+	// background-color: $gray;
+	// border: 1px solid $lightGray;
+	width: 280px;
+	height: 70vh;
+	margin-left: auto;
+	position: fixed;
+	top: $gamebarHeight;
+	right: 0;
+	height: calc(100vh - $gamebarHeight);
+	margin-left: 2rem;
+	margin-right: 1rem;
+	z-index: 2;
+
+	@include breakpoint(md) {
+		display: none;
+	}
+	@include breakpoint(sm) {
+		display: none;
 	}
 }

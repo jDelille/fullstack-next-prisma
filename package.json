@@ -27,6 +27,7 @@
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.2",
     "sass": "^1.62.0",
     "simplebar-react": "^3.2.4",

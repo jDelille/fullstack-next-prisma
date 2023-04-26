@@ -3,7 +3,7 @@ import styles from './Scoreboard.module.scss';
 import useSWR from 'swr'
 import GameCard from './game-card/GameCard';
 import Select from 'react-select';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 const fetcher = (...args: [RequestInfo, RequestInit?]): Promise<any> =>
  fetch(...args).then((res) => res.json());
@@ -20,6 +20,9 @@ const Scoreboard: React.FC = () => {
 
  const games = data && data.events
  // const date = data && data.day.date
+
+
+
 
 
  const customStyles = {
