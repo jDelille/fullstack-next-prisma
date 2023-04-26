@@ -1,6 +1,7 @@
 
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
+import FollowUsers from './components/followUsers/FollowUsers'
 import BetModal from './components/modals/bet-modal/BetModal'
 import EditProfileModal from './components/modals/EditProfileModal'
 import LoginModal from './components/modals/LoginModal'
@@ -41,9 +42,10 @@ export default async function RootLayout({
           <div className="gamebarContainer">
             <Scoreboard />
           </div>
-          {/* <div className='rightSidebar'>
-            <News />
-          </div> */}
+          <div className='rightSidebar'>
+            {/* <News /> */}
+            {/* <FollowUsers /> */}
+          </div>
           <div className="mainContainer">
             {children}
           </div>
