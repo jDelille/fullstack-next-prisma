@@ -7,6 +7,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import Avatar from '../avatar/Avatar';
 import { BsFillSendFill } from 'react-icons/bs'
 import { FieldValues, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 type CreatePostInput = {
   setCustomValue: (id: string, value: any) => void;
@@ -23,7 +24,7 @@ type CreatePostInput = {
 const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
+  const loginModal = useLoginModal();
   const autosize = () => {
     if (textAreaRef.current) {
       var el = textAreaRef.current;
@@ -52,7 +53,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
       <div className={styles.profilePicture} >
         <Avatar src={userPhoto} userId={userId} />
       </div>
-      <div className={styles.textareaWrapper}>
+      <div className={styles.textareaWrapper} onClick={() => { !userId ? loginModal.onOpen() : null }}>
         <textarea
           onChange={(event) => {
             event.stopPropagation();
@@ -63,6 +64,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ setCustomValue, photo, use
           placeholder={placeholder}
           ref={textAreaRef}
           rows={1}>
+
 
         </textarea>
         {isComment && (

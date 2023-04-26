@@ -14,10 +14,13 @@ import Button from '../button/Button';
 import { FcGoogle } from 'react-icons/fc'
 import ImageUpload from '../image-upload/ImageUpload';
 import Image from 'next/image';
+import useLoginModal from '@/app/hooks/useLoginModal';
 const RegisterModal = () => {
+
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
   const [photo, setPhoto] = useState('');
+  const loginModal = useLoginModal();
 
   const {
     register,
@@ -57,6 +60,12 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
+
+  const openModal = () => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }
+
 
   const bodyContent = (
     <div className={styles.bodyContent}>
@@ -125,11 +134,11 @@ const RegisterModal = () => {
     <div className={styles.footerContent}>
       {/* <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
       <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
-      <div className={styles.navigate} onClick={registerModal.onClose}>
+      <div className={styles.navigate} onClick={() => openModal()}>
         <div>Already have an account? </div>
         <span>Log in</span>
       </div>
-    </div>
+    </div >
   )
 
 

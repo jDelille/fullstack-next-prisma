@@ -78,12 +78,17 @@ const LoginModal = () => {
     </div>
   )
 
+  const openModal = () => {
+    registerModal.onOpen();
+    loginModal.onClose();
+  }
+
   const footerContent = (
     <div className={styles.footerContent}>
       {/* <hr />
       <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
       <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
-      <div className={styles.navigate} onClick={registerModal.onOpen}>
+      <div className={styles.navigate} onClick={() => openModal()}>
         <div>Already have an account? </div>
         <div>Sign up</div>
       </div>

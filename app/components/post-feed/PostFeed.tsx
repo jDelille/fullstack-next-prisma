@@ -1,5 +1,3 @@
-'use client'
-
 import PostCard from "../post-card/PostCard";
 import styles from './PostFeed.module.scss';
 import { SafeUser } from "@/app/types";
