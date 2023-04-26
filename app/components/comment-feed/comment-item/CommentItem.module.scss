@@ -4,6 +4,13 @@
 	padding: 1rem 2rem;
 	border-top: 1px solid $lightGray;
 	border-bottom: 1px solid $lightGray;
+	position: relative;
+	.commentMenu {
+		position: absolute;
+		right: 1.6rem;
+		top: 1rem;
+		cursor: pointer;
+	}
 	.commentBody {
 		display: flex;
 		gap: 10px;

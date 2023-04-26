@@ -7,6 +7,8 @@ type CommentFeedProps = {
 
 
 const CommentFeed: React.FC<CommentFeedProps> = ({ comments }) => {
+
+ console.log(comments)
  return (
   <div>
    {comments?.comments?.map((comment: any) => (

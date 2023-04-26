@@ -4,6 +4,7 @@ import Button from "../button/Button";
 import UserMenu from "./UserMenu";
 import styles from './Navbar.module.scss';
 import Image from "next/image";
+import LogoIcon from "@/app/icons/LogoIcon";
 
 type NavbarProps = {
  currentUser?: SafeUser | null
@@ -13,6 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
  return (
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>
+    <LogoIcon />
     {/* <div className={styles.profileImage}>
      <Image fill src={'/images/placeholder.png'} alt="profile-pic" />
     </div>

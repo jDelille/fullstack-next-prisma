@@ -9,6 +9,7 @@ export default async function Home() {
   const posts = await getPosts();
   const currentUser = await getCurrentUser();
 
+  console.log(currentUser?.photo)
   return (
     <main className='main'>
       <div className='mainFeed'>

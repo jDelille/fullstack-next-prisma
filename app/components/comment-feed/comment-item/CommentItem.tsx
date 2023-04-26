@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
 type CommentItemProps = {
   body?: string;
@@ -53,6 +54,22 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
     [router]
   );
 
+  const onDeleteComment = useCallback(
+    (id: string) => {
+      axios
+        .delete(`/api/deleteComment/${id}`)
+        .then(() => {
+          toast.success('Comment deleted');
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error('Something went wrong');
+        })
+        .finally(() => { });
+    },
+    [router]
+  );
+
   const likeSet = new Set(likeArray);
   const hasLiked = () => {
     return likeSet.has(userId as string);
@@ -61,6 +78,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
 
   return (
     <div className={styles.commentItem}>
+      <div className={styles.commentMenu}>
+        <BiDotsVerticalRounded onClick={() => onDeleteComment(commentId as string)} />
+      </div>
       <div className={styles.commentBody}>
         <Avatar src={userPhoto} userId={userId} />
         <div className={styles.name}>

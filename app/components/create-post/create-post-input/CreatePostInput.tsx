@@ -47,8 +47,6 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
     }
   }, []);
 
-
-
   return (
     <div className={styles.createPostInput}>
       <div className={styles.profilePicture} >

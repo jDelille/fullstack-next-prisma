@@ -20,14 +20,14 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 	}
 
 	const body = await request.json();
-	const { postBody, photo } = body;
+	const { postBody } = body;
 
 	const comment = await prisma.comment.create({
 		data: {
 			body: postBody,
 			userId: currentUser?.id,
 			postId: postId,
-			photo: photo,
+			photo: currentUser?.photo,
 			userName: currentUser?.name,
 		},
 	});
