@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useMemo, useCallback } from 'react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -9,7 +8,7 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import Avatar from '../../avatar/Avatar';
-
+import { AiFillPushpin } from "react-icons/ai";
 type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
@@ -88,6 +87,9 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         </div>
       </div>
       <div className={styles.postMenu}>
+        {post?.isPinned && (
+          <AiFillPushpin size={14} />
+        )}
         <p>{createdAt}</p>
         <BiDotsVerticalRounded
           onClick={(e) => {

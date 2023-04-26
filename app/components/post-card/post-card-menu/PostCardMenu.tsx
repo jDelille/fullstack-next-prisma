@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useCallback, useState } from 'react';
+import { use, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './PostCardMenu.module.scss';
 
@@ -55,10 +55,47 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
     [postUserId, router]
   );
 
+  const onPinPost = useCallback((id: string) => {
+    axios.post(`/api/pin/${id}`)
+      .then(() => {
+        toast.success('Pinned post');
+        router.refresh()
+      })
+      .catch(() => {
+        toast.error('Something went wrong')
+      })
+  }, [router])
+
+  const onUnPinPost = useCallback((id: string) => {
+    axios.delete(`/api/pin/${id}`)
+      .then(() => {
+        toast.success('Pinned post');
+        router.refresh()
+      })
+      .catch(() => {
+        toast.error('Something went wrong')
+      })
+  }, [router])
+
   return (
     <div className={styles.postCardMenu}>
       {postUserId === currentUserId ? (
         <>
+
+          <p
+            onClick={(e) => {
+              e.stopPropagation();
+              onPinPost(postId);
+            }}>
+            Pin Post
+          </p>
+          <p
+            onClick={(e) => {
+              e.stopPropagation();
+              onUnPinPost(postId);
+            }}>
+            Unpin Post
+          </p>
           <p
             onClick={(e) => {
               e.stopPropagation();

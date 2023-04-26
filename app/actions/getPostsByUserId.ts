@@ -10,9 +10,7 @@ export default async function getPostsByUserId(params: IParams) {
 			where: {
 				userId: userId,
 			},
-			orderBy: {
-				createdAt: 'desc',
-			},
+			orderBy: [{ isPinned: 'desc' }, { createdAt: 'desc' }],
 			include: {
 				Bet: true,
 				user: true,
