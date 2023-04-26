@@ -105,6 +105,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             onFollow={onFollow}
             isFollowing={isFollowing}
             setIsMenuOpen={setIsMenuOpen}
+            isPinned={post?.isPinned}
           />
         )}
       </div>

@@ -13,6 +13,7 @@ type PostCardMenuProps = {
   onFollow: (value: string) => void;
   isFollowing?: boolean
   setIsMenuOpen: (value: boolean) => void;
+  isPinned: boolean;
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
@@ -21,7 +22,8 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
   postUserId,
   onFollow,
   isFollowing,
-  setIsMenuOpen
+  setIsMenuOpen,
+  isPinned
 }) => {
   const router = useRouter();
 
@@ -93,25 +95,25 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
     <div className={styles.postCardMenu}>
       {postUserId === currentUserId ? (
         <>
-
+          {isPinned ? (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                onUnPinPost(postId);
+              }}>
+              Unpin Post
+            </p>
+          ) : (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                onPinPost(postId);
+              }}>
+              Pin Post
+            </p>
+          )}
           <p
             onClick={(e) => {
-              e.stopPropagation();
-              onPinPost(postId);
-            }}>
-            Pin Post
-          </p>
-          <p
-            onClick={(e) => {
-              e.stopPropagation();
-              onUnPinPost(postId);
-            }}>
-            Unpin Post
-          </p>
-          <p
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete(postId);
             }}>
             Delete
           </p>
