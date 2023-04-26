@@ -1,5 +1,6 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import Loading from "./loading/Loading";
 
 type ClientOnlyProps = {
  children: React.ReactNode
@@ -18,9 +19,9 @@ const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
  }
 
  return (
-  <>
+  <Suspense fallback={<Loading />}>
    {children}
-  </>
+  </Suspense>
  );
 }
 

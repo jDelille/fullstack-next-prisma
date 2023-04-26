@@ -1,13 +1,13 @@
 'use client';
 
 import useBetModal from '@/app/hooks/useBetModal';
-import Heading from '../heading/Heading';
-import Modal from './Modal';
+import Heading from '../../heading/Heading';
+import Modal from '../Modal';
 import { useMemo, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { leagues } from '../leagues/Leagues';
-import styles from './Modal.module.scss';
-import LeagueInput from '../league-input/LeagueInput';
+import { leagues } from '../../leagues/Leagues';
+import styles from '../Modal.module.scss';
+import LeagueInput from './league-input/LeagueInput';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import {
@@ -15,13 +15,13 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import MatchSelect from '../match-select/MatchSelect';
-import OddsSelect from '../odds-select/OddsSelect';
-import Input from '../input/Input';
+import MatchSelect from './match-select/MatchSelect';
+import OddsSelect from './odds-select/OddsSelect';
+import Input from '../../input/Input';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import ConfidenceSelect from '../confidence-select/ConfidenceSelect';
+import ConfidenceSelect from './confidence-select/ConfidenceSelect';
 enum STEPS {
   LEAGUE = 0,
   MATCH = 1,

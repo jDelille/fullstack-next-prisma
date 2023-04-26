@@ -4,7 +4,7 @@ import { useRef, useEffect, MouseEventHandler } from 'react';
 import styles from './CreatePostInput.module.scss';
 import Image from 'next/image';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import Avatar from '../avatar/Avatar';
+import Avatar from '../../avatar/Avatar';
 import { BsFillSendFill } from 'react-icons/bs'
 import { FieldValues, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import useLoginModal from '@/app/hooks/useLoginModal';

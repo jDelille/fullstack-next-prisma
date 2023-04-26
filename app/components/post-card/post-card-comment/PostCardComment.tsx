@@ -1,4 +1,4 @@
-import CreatePostForm from '../../create-post-form/CreatePostForm';
+import CreatePostForm from '../../create-post/create-post-form/CreatePostForm';
 import styles from './PostCardComment.module.scss';
 
 type PostCardCommentProps = {

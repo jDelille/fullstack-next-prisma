@@ -1,8 +1,8 @@
 'use client';
 import styles from './CreatePostForm.module.scss';
-import Button from '../button/Button';
+import Button from '../../button/Button';
 import useBetModal from '@/app/hooks/useBetModal';
-import ImageUpload from '../image-upload/ImageUpload';
+import ImageUpload from '../../image-upload/ImageUpload';
 import { useState } from 'react';
 import CreatePostInput from '../create-post-input/CreatePostInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';

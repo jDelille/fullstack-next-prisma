@@ -53,6 +53,11 @@
 		align-items: center;
 		gap: 3px;
 		display: flex;
+		svg {
+			&:nth-of-type(1) {
+				margin-right: 3px;
+			}
+		}
 		p {
 			font-size: 12px;
 			color: $secondaryText;
