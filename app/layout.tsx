@@ -1,14 +1,13 @@
 
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
-import FollowUsers from './components/followUsers/FollowUsers'
 import Footer from './components/footer/Footer'
 import BetModal from './components/modals/bet-modal/BetModal'
+import CreateCommunityModal from './components/modals/CreateCommunityModal'
 import EditProfileModal from './components/modals/EditProfileModal'
 import LoginModal from './components/modals/LoginModal'
 import RegisterModal from './components/modals/RegisterModal'
 import Navbar from './components/navbar/Navbar'
-import News from './components/news/News'
 import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
@@ -36,6 +35,7 @@ export default async function RootLayout({
           <LoginModal />
           <BetModal />
           <EditProfileModal />
+          <CreateCommunityModal />
           <div className='sidebarContainer'>
             <Navbar currentUser={currentUser} />
           </div>
@@ -44,8 +44,6 @@ export default async function RootLayout({
             <Scoreboard />
           </div>
           <div className='rightSidebar'>
-            {/* <News /> */}
-            {/* <FollowUsers /> */}
           </div>
           <Footer currentUserId={currentUser?.id} />
 

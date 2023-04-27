@@ -1,7 +1,6 @@
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import CreatePostForm from './components/create-post/create-post-form/CreatePostForm';
-import Footer from './components/footer/Footer';
 import PostFeed from './components/post-feed/PostFeed';
 import './styles/globals.scss';
 
