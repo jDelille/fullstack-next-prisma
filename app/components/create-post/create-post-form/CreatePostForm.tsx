@@ -94,6 +94,7 @@ const CreatePostForm = ({
                 placeholder="What's Happening?"
                 id='postBody'
                 body={body}
+                setPhoto={setPhoto}
               />
             </div>
             <div className={styles.inputButtons}>

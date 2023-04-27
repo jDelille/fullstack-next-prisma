@@ -16,6 +16,13 @@
 		margin-left: auto;
 		height: fit-content;
 		position: relative;
+		.closeImagePreview {
+			position: absolute;
+			right: 2rem;
+			z-index: 99;
+			top: 3rem;
+			cursor: pointer;
+		}
 		textarea {
 			overflow: hidden;
 			font-size: 14px;

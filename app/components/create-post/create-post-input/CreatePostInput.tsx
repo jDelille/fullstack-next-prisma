@@ -20,9 +20,10 @@ type CreatePostInput = {
   id?: string;
   handleSubmit?: UseFormHandleSubmit<FieldValues>;
   onSubmit?: SubmitHandler<FieldValues>;
+  setPhoto?: (value: string) => void;
 }
 
-const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit }) => {
+const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo, userPhoto, userId, isComment, placeholder, body, handleSubmit, onSubmit, setPhoto }) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const loginModal = useLoginModal();
@@ -46,6 +47,11 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
       };
     }
   }, []);
+
+  const clearPhoto = () => {
+    setCustomValue('photo', '');
+    setPhoto && setPhoto('')
+  }
 
   return (
     <div className={styles.createPostInput}>
@@ -75,11 +81,13 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
 
         {photo && (
           <div className={styles.imagePreview}>
-            {/* <div
-              className={styles.closeImagePreview}
-              onClick={() => setPhoto('')}>
-              <AiFillCloseCircle size={30} />
-            </div> */}
+            {setPhoto && (
+              <div
+                className={styles.closeImagePreview}
+                onClick={clearPhoto}>
+                <AiFillCloseCircle size={30} />
+              </div>
+            )}
             <Image
               src={photo}
               fill
