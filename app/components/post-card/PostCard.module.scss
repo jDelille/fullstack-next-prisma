@@ -15,11 +15,12 @@
 	.postPhoto {
 		max-height: 300px;
 		position: relative;
-		border-top: 1px solid $lightGray;
-		border-bottom: 1px solid $lightGray;
+		border: 1px solid $lightGray;
+		// border-bottom: 1px solid $lightGray;
 		img {
 			max-height: 300px;
 			position: relative !important;
+			width: 100%;
 		}
 	}
 	.badges {

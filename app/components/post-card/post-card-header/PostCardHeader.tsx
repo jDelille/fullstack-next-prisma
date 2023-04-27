@@ -8,8 +8,10 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import Avatar from '../../avatar/Avatar';
-import { AiFillPushpin } from "react-icons/ai";
+import { AiFillPushpin } from 'react-icons/ai';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
+import useLoginModal from '@/app/hooks/useLoginModal';
+
 type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
@@ -24,18 +26,29 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const loginModal = useLoginModal();
 
   const createdAt = useMemo(() => {
     if (!post?.createdAt) {
       return null;
     }
 
-    return formatDistanceToNowStrict(new Date(post?.createdAt));
+    return formatDistanceToNowStrict(new Date(post?.createdAt), {})
+      .replace(' seconds', 's')
+      .replace(' second', 's')
+      .replace(' minutes', 'm')
+      .replace(' minute', 'm')
+      .replace(' hours', 'h')
+      .replace(' hour', 'h');
   }, [post?.createdAt]);
 
   const onFollow = useCallback(
     (id: string) => {
       setIsLoading(true);
+
+      if (!currentUserId) {
+        return loginModal.onOpen();
+      }
 
       try {
         axios
@@ -56,7 +69,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         router.refresh();
       }
     },
-    [post.user.name, router]
+    [currentUserId, loginModal, post.user.name, router]
   );
 
   let isFollowing = followingIds?.includes(post?.user.id);
@@ -68,7 +81,9 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       </div>
       <div className={styles.userName}>
         <div className={styles.name}>
-          <p className={styles.fullName}>{post?.user.name} {post?.user.isVerified && <VerifiedIcon />}</p>
+          <p className={styles.fullName}>
+            {post?.user.name} {post?.user.isVerified && <VerifiedIcon />}
+          </p>
           {!isFollowing && post.user.id !== currentUserId ? (
             <button
               onClick={(e) => {
@@ -88,9 +103,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         </div>
       </div>
       <div className={styles.postMenu}>
-        {post?.isPinned && (
-          <AiFillPushpin size={14} />
-        )}
+        {post?.isPinned && <AiFillPushpin size={14} />}
         <p>{createdAt}</p>
         <BiDotsVerticalRounded
           onClick={(e) => {

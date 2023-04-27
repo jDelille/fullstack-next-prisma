@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { FaRegCommentDots, FaComment } from 'react-icons/fa'
 import PostCardComment from '../post-card-comment/PostCardComment';
+import useLoginModal from '@/app/hooks/useLoginModal';
 type PostCardFooterProps = {
   postId: string;
   likeCount: number;
@@ -27,10 +28,15 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 }) => {
   const [id, setId] = useState('');
   const router = useRouter();
+  const loginModal = useLoginModal();
 
   const onLike = useCallback(
     (id: string) => {
       setId(id);
+
+      if (!currentUserId) {
+        return loginModal.onOpen()
+      }
 
       axios
         .post(`/api/like/${id}`)
@@ -45,7 +51,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
           setId('');
         });
     },
-    [router]
+    [router, currentUserId, loginModal]
   );
 
   const onRemoveLike = useCallback(
@@ -71,7 +77,6 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 
 
   const likeSet = new Set(likeArray);
-  const commentSet = new Set(commentArray);
 
   const hasLiked = () => {
     return likeSet.has(currentUserId as string);
