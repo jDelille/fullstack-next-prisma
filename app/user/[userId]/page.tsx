@@ -21,6 +21,9 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
 
 
+
+
+
  return (
   <div className={styles.page}>
    <div className={styles.profileHeader}>
@@ -34,9 +37,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
       <h1>{user?.name} {user?.isVerified && <VerifiedIcon />} </h1>
       <p>{user?.username}</p>
      </div>
-     {user?.id === currentUser?.id && (
-      <ProfileMenu />
-     )}
+     <ProfileMenu userId={user?.id} username={user?.name} currentUserId={currentUser?.id} />
     </div>
     <div className={styles.middle}>
      <div className={styles.bio}>

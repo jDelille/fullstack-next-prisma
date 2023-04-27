@@ -92,7 +92,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
           }}
         />
         {isMenuOpen && (
-          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} commentUsername={userName} />
+          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} commentUsername={userName} setIsMenuOpen={setIsMenuOpen} followingIds={followingIds} />
         )}
 
       </div>

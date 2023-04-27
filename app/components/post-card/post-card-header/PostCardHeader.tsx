@@ -21,7 +21,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   followingIds,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { handleFollow, isLoading } = useFollow(post?.user.id, post?.user.name, currentUserId as string)
+  const { handleFollow, isLoading } = useFollow(post?.user.id, post?.user.name, currentUserId as string, setIsMenuOpen)
 
   const createdAt = useMemo(() => {
     if (!post?.createdAt) {
@@ -53,7 +53,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                handleFollow;
+                handleFollow();
               }}
               className={styles.followBtn}
               disabled={isLoading}>
@@ -81,10 +81,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             postId={post?.id}
             currentUserId={currentUserId}
             postUserId={post?.user.id}
-            onFollow={handleFollow}
             isFollowing={isFollowing}
             setIsMenuOpen={setIsMenuOpen}
             isPinned={post?.isPinned}
+            postUsername={post?.user.username}
           />
         )}
       </div>

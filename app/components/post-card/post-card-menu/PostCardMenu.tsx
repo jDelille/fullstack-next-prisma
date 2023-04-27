@@ -2,33 +2,36 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { use, useCallback, useMemo, useState } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './PostCardMenu.module.scss';
 import usePinPost from '@/app/hooks/usePinPost';
+import useFollow from '@/app/hooks/useFollow';
 
 type PostCardMenuProps = {
   postId: string;
   currentUserId?: string;
   postUserId?: string;
-  onFollow: (value: string) => void;
   isFollowing?: boolean
   setIsMenuOpen: (value: boolean) => void;
   isPinned: boolean;
+  postUsername?: string
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
   postId,
   currentUserId,
   postUserId,
-  onFollow,
   isFollowing,
   setIsMenuOpen,
-  isPinned
+  isPinned,
+  postUsername
 }) => {
   const router = useRouter();
 
-  const { handlePinPost, handleUnPinPost, isLoading } = usePinPost(postId as string, currentUserId as string, setIsMenuOpen);
+  const { handlePinPost, handleUnPinPost } = usePinPost(postId as string, currentUserId as string, setIsMenuOpen);
+
+  const { handleFollow, handleUnfollow, isLoading } = useFollow(postUserId as string, postUsername as string, currentUserId as string, setIsMenuOpen)
 
   const onDelete = useCallback(
     (id: string) => {
@@ -44,22 +47,6 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
         .finally(() => { });
     },
     [router]
-  );
-
-  const onUnFollow = useCallback(
-    (id: string) => {
-      axios
-        .delete(`/api/follow/${id}`)
-        .then(() => {
-          toast.success(`You unfollowed ${postUserId}`);
-          router.refresh();
-        })
-        .catch(() => {
-          toast.error('Something went wrong');
-        })
-        .finally(() => { });
-    },
-    [postUserId, router]
   );
 
   return (
@@ -97,7 +84,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                onUnFollow(postUserId as string);
+                handleUnfollow();
               }}>
               Unfollow
             </p>
@@ -105,7 +92,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                onFollow(postUserId as string);
+                handleFollow();
               }}>
               Follow
             </p>

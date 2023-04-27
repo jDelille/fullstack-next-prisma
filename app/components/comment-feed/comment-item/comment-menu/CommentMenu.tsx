@@ -11,14 +11,15 @@ type CommentMenuProps = {
   userId?: string;
   commentUsername?: string;
   followingIds?: string[];
+  setIsMenuOpen: (value: boolean) => void;
 }
-const CommentMenu: React.FC<CommentMenuProps> = ({ commentId, currentUserId, userId, commentUsername, followingIds }) => {
+const CommentMenu: React.FC<CommentMenuProps> = ({ commentId, currentUserId, userId, commentUsername, followingIds, setIsMenuOpen }) => {
   const router = useRouter();
 
-  const { handleFollow, isLoading } = useFollow(userId as string, commentUsername as string, currentUserId as string)
+  const { handleFollow, handleUnfollow, isLoading } = useFollow(userId as string, commentUsername as string, currentUserId as string, setIsMenuOpen)
 
 
-  let isFollowing = followingIds?.includes(currentUserId as string);
+  let isFollowing = followingIds?.includes(userId as string);
 
 
   const onDeleteComment = useCallback(
@@ -39,18 +40,18 @@ const CommentMenu: React.FC<CommentMenuProps> = ({ commentId, currentUserId, use
 
   return (
     <div className={styles.commentMenu}>
-      {/* {currentUserId === userId ? (
+      {currentUserId === userId ? (
         <p onClick={() => onDeleteComment(commentId as string)}></p>
       ) : (
         <>
           {isFollowing ? (
-            <p onClick={handleFollow}>Unfollow</p>
+            <p onClick={(e) => { e.stopPropagation(); handleUnfollow() }}>Unfollow</p>
           ) : (
-            <p onClick={handleFollow}>Follow</p>
+            <p onClick={(e) => { e.stopPropagation(); handleFollow() }}>Follow</p>
           )}
         </>
 
-      )} */}
+      )}
       {currentUserId === userId && (
         <p onClick={() => onDeleteComment(commentId as string)}></p>
       )}

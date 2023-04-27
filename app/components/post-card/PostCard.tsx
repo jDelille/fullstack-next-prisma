@@ -68,7 +68,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         <PostCardComment postId={post?.id} userId={currentUser?.id} userPhoto={currentUser?.photo as string} />
       )}
       {post?.comments && isComment && (
-        <CommentFeed comments={post} currentUserId={currentUser?.id} />
+        <CommentFeed comments={post} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
       )}
     </div>
   );
