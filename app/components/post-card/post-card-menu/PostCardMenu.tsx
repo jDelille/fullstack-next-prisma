@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { use, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './PostCardMenu.module.scss';
+import usePinPost from '@/app/hooks/usePinPost';
 
 type PostCardMenuProps = {
   postId: string;
@@ -26,6 +27,8 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
   isPinned
 }) => {
   const router = useRouter();
+
+  const { handlePinPost, handleUnPinPost, isLoading } = usePinPost(postId as string, currentUserId as string, setIsMenuOpen);
 
   const onDelete = useCallback(
     (id: string) => {
@@ -59,38 +62,6 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
     [postUserId, router]
   );
 
-  const onPinPost = useMemo(() => {
-    return (id: string) => {
-      axios.post(`/api/pin/${id}`)
-        .then(() => {
-          toast.success('Pinned post');
-          router.refresh()
-        })
-        .catch(() => {
-          toast.error('Something went wrong')
-        })
-        .finally(() => {
-          setIsMenuOpen(false);
-        });
-    };
-  }, [router, setIsMenuOpen]);
-
-  const onUnPinPost = useMemo(() => {
-    return (id: string) => {
-      axios.delete(`/api/pin/${id}`)
-        .then(() => {
-          toast.success('Unpinned post');
-          router.refresh()
-        })
-        .catch(() => {
-          toast.error('Something went wrong')
-        })
-        .finally(() => {
-          setIsMenuOpen(false);
-        });
-    };
-  }, [router, setIsMenuOpen]);
-
   return (
     <div className={styles.postCardMenu}>
       {postUserId === currentUserId ? (
@@ -99,7 +70,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                onUnPinPost(postId);
+                handleUnPinPost();
               }}>
               Unpin Post
             </p>
@@ -107,7 +78,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                onPinPost(postId);
+                handlePinPost();
               }}>
               Pin Post
             </p>
@@ -141,8 +112,9 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
           )}
 
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
