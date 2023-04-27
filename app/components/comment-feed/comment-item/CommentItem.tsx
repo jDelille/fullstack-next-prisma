@@ -1,13 +1,16 @@
+'use client'
+
 import { useRouter } from 'next/navigation';
 import Avatar from '../../avatar/Avatar';
-import styles from './CommentItem.module.scss';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import styles from './CommentItem.module.scss';
+import CommentMenu from './comment-menu/CommentMenu';
 
 type CommentItemProps = {
   body?: string;
@@ -34,8 +37,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
 }) => {
   const router = useRouter();
   const loginModal = useLoginModal();
-
-  console.log(userId);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onLike = useCallback(
     (id: string) => {
@@ -73,22 +75,6 @@ const CommentItem: React.FC<CommentItemProps> = ({
     [router]
   );
 
-  const onDeleteComment = useCallback(
-    (id: string) => {
-      axios
-        .delete(`/api/deleteComment/${id}`)
-        .then(() => {
-          toast.success('Comment deleted');
-          router.refresh();
-        })
-        .catch(() => {
-          toast.error('Something went wrong');
-        })
-        .finally(() => { });
-    },
-    [router]
-  );
-
   const likeSet = new Set(likeArray);
   const hasLiked = () => {
     return likeSet.has(userId as string);
@@ -100,9 +86,13 @@ const CommentItem: React.FC<CommentItemProps> = ({
         <BiDotsVerticalRounded
           onClick={(e) => {
             e.stopPropagation();
-            onDeleteComment(commentId as string);
+            setIsMenuOpen(!isMenuOpen);
           }}
         />
+        {isMenuOpen && (
+          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} />
+        )}
+
       </div>
       <div className={styles.commentBody}>
         <div className={styles.name}>

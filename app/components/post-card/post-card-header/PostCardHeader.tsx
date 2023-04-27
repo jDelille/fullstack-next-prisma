@@ -1,16 +1,13 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import PostCardMenu from '../post-card-menu/PostCardMenu';
 import styles from './PostCardHeader.module.scss';
 import { formatDistanceToNowStrict } from 'date-fns';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
 import Avatar from '../../avatar/Avatar';
 import { AiFillPushpin } from 'react-icons/ai';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
-import useLoginModal from '@/app/hooks/useLoginModal';
+import useFollow from '@/app/hooks/useFollow';
 
 type PostCardHeaderProps = {
   post: any;
@@ -23,10 +20,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   currentUserId,
   followingIds,
 }) => {
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const loginModal = useLoginModal();
+  const { handleFollow, isLoading } = useFollow(post?.user.id, post?.user.name, currentUserId as string)
 
   const createdAt = useMemo(() => {
     if (!post?.createdAt) {
@@ -41,36 +36,6 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       .replace(' hours', 'h')
       .replace(' hour', 'h');
   }, [post?.createdAt]);
-
-  const onFollow = useCallback(
-    (id: string) => {
-      setIsLoading(true);
-
-      if (!currentUserId) {
-        return loginModal.onOpen();
-      }
-
-      try {
-        axios
-          .post(`api/follow/${id}`)
-          .then(() => {
-            toast.success(`You followed ${post.user.name}`);
-            router.refresh();
-          })
-          .catch(() => {
-            toast.error('Something went wrong');
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      } catch (error) {
-        toast.error('Something went wrong');
-        setIsLoading(false);
-        router.refresh();
-      }
-    },
-    [currentUserId, loginModal, post.user.name, router]
-  );
 
   let isFollowing = followingIds?.includes(post?.user.id);
 
@@ -88,7 +53,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onFollow(post.user.id);
+                handleFollow;
               }}
               className={styles.followBtn}
               disabled={isLoading}>
@@ -116,7 +81,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             postId={post?.id}
             currentUserId={currentUserId}
             postUserId={post?.user.id}
-            onFollow={onFollow}
+            onFollow={handleFollow}
             isFollowing={isFollowing}
             setIsMenuOpen={setIsMenuOpen}
             isPinned={post?.isPinned}
