@@ -14,7 +14,9 @@
 		gap: 1rem;
 		// margin-bottom: 1rem;
 		border-bottom: 1px solid $lightGray;
-
+		h1 {
+			font-size: 24px;
+		}
 		color: $white;
 		justify-content: center;
 		.profileImage {

@@ -14,7 +14,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
  return (
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>
-    <LogoIcon />
+    {/* <LogoIcon /> */}
+    <h1>Oddspot</h1>
     {/* <div className={styles.profileImage}>
      <Image fill src={'/images/placeholder.png'} alt="profile-pic" />
     </div>
