@@ -48,7 +48,7 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
     async function getMatchData() {
       try {
         const res = await fetch(
-          `http://site.api.espn.com/apis/site/v2/sports/${sport}/${lowerCaseLeagueName}/scoreboard`
+          `https://site.api.espn.com/apis/site/v2/sports/${sport}/${lowerCaseLeagueName}/scoreboard`
         );
 
         if (!res.ok) {

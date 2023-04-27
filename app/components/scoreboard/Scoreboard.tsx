@@ -14,7 +14,7 @@ const Scoreboard: React.FC = () => {
  const [league, setLeague] = useState('mlb')
 
  const { data, error, isLoading } = useSWR(
-  `http://site.api.espn.com/apis/site/v2/sports/${sport}/${league}/scoreboard`,
+  `https://site.api.espn.com/apis/site/v2/sports/${sport}/${league}/scoreboard`,
   fetcher
  );
 
