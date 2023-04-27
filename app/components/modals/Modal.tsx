@@ -17,8 +17,8 @@ type ModalProps = {
  secondaryActionLabel?: string;
  disabled?: boolean;
  icon?: IconType;
- onDemoSubmit: () => void;
- isDemoLogin: boolean;
+ onDemoSubmit?: () => void | undefined;
+ isDemoLogin?: boolean;
 
 };
 
@@ -100,7 +100,7 @@ const Modal: React.FC<ModalProps> = ({
         disabled={disabled}
        />
       </div>
-      {isDemoLogin && (
+      {isDemoLogin && onDemoSubmit && (
        <div className={styles.demoLogin}>
         <p className={styles.demoLabel}>Or sign in with a demo account</p>
         <Button label='Sign into demo account' onClick={onDemoSubmit} />
