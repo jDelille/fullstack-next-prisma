@@ -28,17 +28,17 @@ model Post {
 }
 
 model Comment {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  body      String
-  photo     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String   @db.ObjectId
-  postId    String   @db.ObjectId
-  userName  String
-  likedIds  String[] @db.ObjectId
-
-  Post Post @relation(fields: [postId], references: [id])
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  body       String
+  photo      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  userId     String   @db.ObjectId
+  postId     String   @db.ObjectId
+  userName   String
+  likedIds   String[] @db.ObjectId
+  isVerified Boolean  @default(false)
+  Post       Post     @relation(fields: [postId], references: [id])
 }
 
 model User {

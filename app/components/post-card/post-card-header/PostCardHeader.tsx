@@ -68,7 +68,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       </div>
       <div className={styles.userName}>
         <div className={styles.name}>
-          <p className={styles.fullName}>{post?.user.name} <VerifiedIcon /></p>
+          <p className={styles.fullName}>{post?.user.name} {post?.user.isVerified && <VerifiedIcon />}</p>
           {!isFollowing && post.user.id !== currentUserId ? (
             <button
               onClick={(e) => {

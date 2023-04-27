@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import VerifiedIcon from "@/app/icons/VerifiedIcon";
 
 type CommentItemProps = {
   body?: string;
@@ -15,9 +16,10 @@ type CommentItemProps = {
   commentId?: string;
   likeCount?: number;
   likeArray?: string[];
+  isVerified?: boolean;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, userName, commentId, likeCount, likeArray }) => {
+const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, userName, commentId, likeCount, likeArray, isVerified }) => {
 
   const router = useRouter();
 
@@ -79,13 +81,13 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
   return (
     <div className={styles.commentItem}>
       <div className={styles.commentMenu}>
-        <BiDotsVerticalRounded onClick={() => onDeleteComment(commentId as string)} />
+        <BiDotsVerticalRounded onClick={(e) => { e.stopPropagation(); onDeleteComment(commentId as string) }} />
       </div>
       <div className={styles.commentBody}>
         <Avatar src={userPhoto} userId={userId} />
         <div className={styles.name}>
-          <p className={styles.username}>{userName}:
-            <span className={styles.body}>{body}</span></p>
+          <p className={styles.username}>{userName} {isVerified && <VerifiedIcon />}:</p>
+          <span className={styles.body}>{body}</span>
         </div>
       </div >
       <div className={styles.commentFooter}>

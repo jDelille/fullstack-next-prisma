@@ -29,6 +29,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			postId: postId,
 			photo: currentUser?.photo,
 			userName: currentUser?.name,
+			isVerified: currentUser?.isVerified,
 		},
 	});
 
@@ -42,15 +43,15 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		throw new Error('Invalid Id');
 	}
 
-	let updatedCommentedIds = [...(post.commentedIds || [])];
-	updatedCommentedIds.push(currentUser?.id);
+	let updatedCommentedIds = new Set(post.commentedIds || []);
+	updatedCommentedIds.add(currentUser?.id);
 
 	const updatedPost = await prisma.post.update({
 		where: {
 			id: postId,
 		},
 		data: {
-			commentedIds: updatedCommentedIds,
+			commentedIds: Array.from(updatedCommentedIds),
 		},
 	});
 

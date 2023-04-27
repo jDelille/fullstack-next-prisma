@@ -77,8 +77,8 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
     return likeSet.has(currentUserId as string);
   }
 
-  const hasCommented = () => {
-    return commentSet.has(currentUserId as string);
+  const hasComments = () => {
+    return commentCount > 0;
   }
 
   return (
@@ -93,7 +93,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         <span>{likeCount}</span>{' '}
       </div>
       <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
-        {hasCommented() ? (
+        {hasComments() ? (
           <FaComment color='#20b46a' />
         ) : (
           <FaRegCommentDots color='white' />

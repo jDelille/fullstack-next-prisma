@@ -1,4 +1,3 @@
-import Avatar from "../avatar/Avatar"
 import CommentItem from "./comment-item/CommentItem";
 
 type CommentFeedProps = {
@@ -8,11 +7,10 @@ type CommentFeedProps = {
 
 const CommentFeed: React.FC<CommentFeedProps> = ({ comments }) => {
 
- console.log(comments)
  return (
   <div>
    {comments?.comments?.map((comment: any) => (
-    <CommentItem key={comment.id} body={comment?.body} userId={comment.userId} userPhoto={comments?.user?.photo} userName={comment.userName} commentId={comment.id} likeCount={comment.likedIds.length || 0} likeArray={comment.likedIds} />
+    <CommentItem key={comment.id} body={comment?.body} userId={comment.userId} userPhoto={comment.photo} userName={comment.userName} commentId={comment.id} likeCount={comment.likedIds.length || 0} likeArray={comment.likedIds} isVerified={comment.isVerified} />
    ))}
   </div>
  );

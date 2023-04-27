@@ -24,7 +24,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
     setIsComment(!isComment)
   }, [isComment])
 
-
+  console.log(post)
 
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {
