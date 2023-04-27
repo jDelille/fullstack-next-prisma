@@ -29,12 +29,17 @@ export async function POST(request: Request) {
 		data.photo = photo;
 	}
 
-	const user = await prisma.user.update({
-		where: {
-			id: currentUser?.id,
-		},
-		data,
-	});
+	try {
+		const user = await prisma.user.update({
+			where: {
+				id: currentUser?.id,
+			},
+			data,
+		});
 
-	return NextResponse.json(user);
+		return NextResponse.json(user);
+	} catch (error) {
+		console.error(error);
+		return NextResponse.error();
+	}
 }
