@@ -134,7 +134,7 @@
 			display: flex;
 			gap: 1rem;
 			margin-top: auto;
-			margin-bottom: 50px;
+
 			button {
 				width: 100%;
 				background-color: $accent;
@@ -149,6 +149,23 @@
 				}
 			}
 		}
+		.demoLogin {
+			height: 100px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			p {
+				font-size: 12px;
+				margin-top: 10px;
+			}
+			button {
+				background-color: $accent;
+				&:hover {
+					background-color: darken($accent, 5%);
+				}
+			}
+		}
 	}
 }
 
@@ -157,10 +174,11 @@
 	flex-direction: column;
 	gap: 10px;
 	width: 100%;
-	position: absolute;
+	position: relative;
+	justify-content: center;
 	bottom: 0;
 	padding: 10px 0;
-
+	margin-top: 10px;
 	.navigate {
 		display: flex;
 		justify-content: center;

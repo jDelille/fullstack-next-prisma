@@ -1,7 +1,5 @@
 'use client';
-import axios from 'axios';
-import { AiFillGithub } from 'react-icons/ai';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
 import { IoMdClose } from 'react-icons/io';
@@ -9,8 +7,6 @@ import styles from './Modal.module.scss';
 import Heading from '../heading/Heading';
 import Input from '../input/Input';
 import { toast } from 'react-hot-toast';
-import Button from '../button/Button';
-import { FcGoogle } from 'react-icons/fc'
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react'
 import useRegisterModal from '@/app/hooks/useRegitserModal';
@@ -26,6 +22,7 @@ const LoginModal = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<FieldValues>({
     defaultValues: {
       email: '',
@@ -54,6 +51,28 @@ const LoginModal = () => {
     })
   };
 
+  const onDemoSubmit = () => {
+    setIsLoading(true);
+
+    signIn('credentials', {
+      email: 'sloth@gmail.com',
+      password: 'password',
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);;
+
+      if (callback?.ok) {
+        toast.success('Logged into demo account')
+        router.refresh();
+        loginModal.onClose();
+      }
+
+      if (callback?.error) {
+        toast.error(callback?.error)
+      }
+    })
+  }
+
   const bodyContent = (
     <div className={styles.bodyContent}>
       <Heading title='Welcome back' subTitle='Log in to your account' />
@@ -81,13 +100,11 @@ const LoginModal = () => {
   const openModal = () => {
     registerModal.onOpen();
     loginModal.onClose();
+    reset();
   }
 
   const footerContent = (
     <div className={styles.footerContent}>
-      {/* <hr />
-      <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
-      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
       <div className={styles.navigate} onClick={() => openModal()}>
         <div>Already have an account? </div>
         <div>Sign up</div>
@@ -107,6 +124,8 @@ const LoginModal = () => {
       icon={IoMdClose}
       body={bodyContent}
       footer={footerContent}
+      isDemoLogin
+      onDemoSubmit={onDemoSubmit}
     />
   );
 };

@@ -17,6 +17,8 @@ type ModalProps = {
  secondaryActionLabel?: string;
  disabled?: boolean;
  icon?: IconType;
+ onDemoSubmit: () => void;
+ isDemoLogin: boolean;
 
 };
 
@@ -31,7 +33,9 @@ const Modal: React.FC<ModalProps> = ({
  disabled,
  icon: Icon,
  secondaryAction,
- secondaryActionLabel
+ secondaryActionLabel,
+ onDemoSubmit,
+ isDemoLogin
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -96,7 +100,12 @@ const Modal: React.FC<ModalProps> = ({
         disabled={disabled}
        />
       </div>
-
+      {isDemoLogin && (
+       <div className={styles.demoLogin}>
+        <p className={styles.demoLabel}>Or sign in with a demo account</p>
+        <Button label='Sign into demo account' onClick={onDemoSubmit} />
+       </div>
+      )}
       {footer}
      </div>
     </div>
