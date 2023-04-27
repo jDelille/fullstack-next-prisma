@@ -8,6 +8,7 @@ import Avatar from '@/app/components/avatar/Avatar';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { BsCalendar2WeekFill } from 'react-icons/bs'
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import VerifiedIcon from '@/app/icons/VerifiedIcon';
 interface IParams {
  userId?: string;
 }
@@ -30,7 +31,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
       </div>
      </div>
      <div className={styles.profileName}>
-      <h1>{user?.name}</h1>
+      <h1>{user?.name} {user?.isVerified && <VerifiedIcon />} </h1>
       <p>{user?.username}</p>
      </div>
      {user?.id === currentUser?.id && (
