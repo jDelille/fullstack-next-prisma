@@ -3,7 +3,7 @@
 
 .scoreboard {
 	height: 100%;
-	width: calc(100%);
+	width: calc(100% - 20px);
 	position: relative;
 	display: flex;
 	@include breakpoint(xs) {
@@ -28,7 +28,7 @@
 		overflow-x: scroll;
 		width: 100%;
 		display: flex;
-		// @include scrollbars();
-		overflow-x: hidden;
+		@include scrollbars();
+		// overflow-x: hidden;
 	}
 }

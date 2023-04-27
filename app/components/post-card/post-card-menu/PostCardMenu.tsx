@@ -38,7 +38,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
       axios
         .delete(`/api/bet/${id}`)
         .then(() => {
-          toast.success('Bet deleted');
+          toast.success('Post deleted');
           router.refresh();
         })
         .catch(() => {
