@@ -13,30 +13,34 @@
 	}
 	.commentBody {
 		display: flex;
-		gap: 10px;
-		align-items: center;
+		gap: 0px;
+		justify-content: center;
+		flex-direction: column;
 		img {
 			max-width: 30px;
 			max-height: 30px;
 			margin-bottom: auto;
+			position: relative;
+			top: 2px;
 		}
 		.name {
 			display: flex;
 			align-items: center;
-			gap: 5px;
-			word-wrap: break-word;
 			.username {
 				font-weight: 500;
 				font-size: 13px;
 				display: flex;
 				align-items: center;
-				gap: 2px;
+				gap: 5px;
+				width: 100%;
+				margin-left: 10px;
 			}
-			.body {
-				color: $secondaryText;
-				font-size: 13px;
-				margin-left: 5px;
-			}
+		}
+		.body {
+			color: $secondaryText;
+			font-size: 14px;
+			margin-left: 19px;
+			word-wrap: break-word;
 		}
 	}
 	.commentFooter {

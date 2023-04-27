@@ -62,7 +62,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     </div>
    </div>
    <div className={styles.profilePosts}>
-    <PostFeed posts={posts} currentUser={user} />
+    <PostFeed posts={posts} currentUser={currentUser} />
    </div>
   </div>
  );

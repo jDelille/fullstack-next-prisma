@@ -48,6 +48,7 @@
 .userMenu {
 	position: relative;
 	height: calc(100% - 104px - 1rem);
+	margin-top: 2rem;
 	.Link {
 		@include button();
 		color: $white;

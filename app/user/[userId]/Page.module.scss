@@ -1,6 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/breakpoints';
-@import '../../styles/mixins';
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
 
 .page {
 	@include page();
@@ -37,11 +37,14 @@
 					display: flex;
 					align-items: center;
 					gap: 5px;
+					@include breakpoint(xs) {
+						font-size: 20px;
+					}
 					svg {
 						width: 20px;
 						height: 20px;
 						position: relative;
-						top: 1px;
+						top: 0px;
 					}
 				}
 				p {

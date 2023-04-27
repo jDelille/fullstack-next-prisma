@@ -2,6 +2,7 @@
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import FollowUsers from './components/followUsers/FollowUsers'
+import Footer from './components/footer/Footer'
 import BetModal from './components/modals/bet-modal/BetModal'
 import EditProfileModal from './components/modals/EditProfileModal'
 import LoginModal from './components/modals/LoginModal'
@@ -46,6 +47,8 @@ export default async function RootLayout({
             {/* <News /> */}
             {/* <FollowUsers /> */}
           </div>
+          <Footer currentUserId={currentUser?.id} />
+
           <div className="mainContainer">
             {children}
           </div>

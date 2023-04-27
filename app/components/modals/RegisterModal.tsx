@@ -27,6 +27,7 @@ const RegisterModal = () => {
     handleSubmit,
     setValue,
     formState: { errors },
+    reset
   } = useForm<FieldValues>({
     defaultValues: {
       name: '',
@@ -64,6 +65,11 @@ const RegisterModal = () => {
   const openModal = () => {
     registerModal.onClose();
     loginModal.onOpen();
+  }
+
+  const closeModal = () => {
+    registerModal.onClose();
+    reset()
   }
 
 
@@ -149,7 +155,7 @@ const RegisterModal = () => {
       isOpen={registerModal.isOpen}
       title='Register'
       actionLabel='Continue'
-      onClose={registerModal.onClose}
+      onClose={closeModal}
       onSubmit={handleSubmit(onSubmit)}
       icon={IoMdClose}
       body={bodyContent}

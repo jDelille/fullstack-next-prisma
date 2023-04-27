@@ -1,30 +1,47 @@
-import { useRouter } from "next/navigation";
-import Avatar from "../../avatar/Avatar";
+import { useRouter } from 'next/navigation';
+import Avatar from '../../avatar/Avatar';
 import styles from './CommentItem.module.scss';
-import { useCallback } from "react";
-import axios from "axios";
-import { toast } from "react-hot-toast";
+import { useCallback } from 'react';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import VerifiedIcon from "@/app/icons/VerifiedIcon";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import VerifiedIcon from '@/app/icons/VerifiedIcon';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 type CommentItemProps = {
   body?: string;
   userId?: string;
-  userPhoto?: string
+  userPhoto?: string;
   userName?: string;
   commentId?: string;
   likeCount?: number;
   likeArray?: string[];
   isVerified?: boolean;
-}
+  currentUserId?: string;
+};
 
-const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, userName, commentId, likeCount, likeArray, isVerified }) => {
-
+const CommentItem: React.FC<CommentItemProps> = ({
+  body,
+  userId,
+  userPhoto,
+  userName,
+  commentId,
+  likeCount,
+  likeArray,
+  isVerified,
+  currentUserId,
+}) => {
   const router = useRouter();
+  const loginModal = useLoginModal();
+
+  console.log(userId);
 
   const onLike = useCallback(
     (id: string) => {
+      if (!currentUserId) {
+        return loginModal.onOpen();
+      }
 
       axios
         .post(`/api/likeComment/${id}`)
@@ -37,7 +54,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
         })
         .finally(() => { });
     },
-    [router]
+    [currentUserId, loginModal, router]
   );
 
   const onRemoveLike = useCallback(
@@ -75,23 +92,38 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
   const likeSet = new Set(likeArray);
   const hasLiked = () => {
     return likeSet.has(userId as string);
-  }
-
+  };
 
   return (
     <div className={styles.commentItem}>
       <div className={styles.commentMenu}>
-        <BiDotsVerticalRounded onClick={(e) => { e.stopPropagation(); onDeleteComment(commentId as string) }} />
+        <BiDotsVerticalRounded
+          onClick={(e) => {
+            e.stopPropagation();
+            onDeleteComment(commentId as string);
+          }}
+        />
       </div>
       <div className={styles.commentBody}>
-        <Avatar src={userPhoto} userId={userId} />
         <div className={styles.name}>
-          <p className={styles.username}>{userName} {isVerified && <VerifiedIcon />}:</p>
-          <span className={styles.body}>{body}</span>
+          <Avatar src={userPhoto} userId={userId} />
+          <p className={styles.username}>
+            {userName} {isVerified && <VerifiedIcon />}
+          </p>
         </div>
-      </div >
+        <div className={styles.body}>
+          <p className={styles.body}>{body}</p>
+        </div>
+      </div>
       <div className={styles.commentFooter}>
-        <div className={styles.likeBtn} onClick={(e) => { e.stopPropagation(); !hasLiked() ? onLike(commentId as string) : onRemoveLike(commentId as string) }}>
+        <div
+          className={styles.likeBtn}
+          onClick={(e) => {
+            e.stopPropagation();
+            !hasLiked()
+              ? onLike(commentId as string)
+              : onRemoveLike(commentId as string);
+          }}>
           {hasLiked() ? (
             <AiFillLike color='#20b46a' />
           ) : (
@@ -100,10 +132,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ body, userId, userPhoto, user
           {hasLiked() ? 'Liked' : 'Like'}
           <span>{likeCount}</span>
         </div>
-
       </div>
-    </div >
+    </div>
   );
-}
+};
 
 export default CommentItem;

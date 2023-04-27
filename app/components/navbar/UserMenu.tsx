@@ -42,8 +42,12 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
     </>
    ) : (
     <>
-     <Button label='Sign up' onClick={registerModal.onOpen} />
-     <Button label='Log in' onClick={loginModal.onOpen} />
+     <div onClick={() => { router.push('/') }} className={styles.Link}>
+      <AiFillHome size={20} />
+      <p>Home</p>
+     </div>
+     {/* <div className={styles.Link} onClick={registerModal.onOpen}>Sign up</div>
+     <div className={styles.Link} onClick={loginModal.onOpen}>Log in</div> */}
     </>
    )}
   </div>
