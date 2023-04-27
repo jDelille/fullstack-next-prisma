@@ -22,6 +22,7 @@ type CommentItemProps = {
   likeArray?: string[];
   isVerified?: boolean;
   currentUserId?: string;
+  followingIds?: string[];
 };
 
 const CommentItem: React.FC<CommentItemProps> = ({
@@ -34,6 +35,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   likeArray,
   isVerified,
   currentUserId,
+  followingIds
 }) => {
   const router = useRouter();
   const loginModal = useLoginModal();
@@ -90,7 +92,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
           }}
         />
         {isMenuOpen && (
-          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} />
+          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} commentUsername={userName} />
         )}
 
       </div>

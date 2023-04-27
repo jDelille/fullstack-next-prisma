@@ -12,9 +12,10 @@
 	padding: 10px 5px;
 	z-index: 2;
 	p {
-		font-size: 14px;
+		font-size: 12px;
 		padding: 3px 5px;
 		border-radius: 3px;
+		color: $secondaryText;
 		&:hover {
 			background: $gray;
 		}
