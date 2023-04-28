@@ -10,38 +10,55 @@
 	display: flex;
 	gap: 1rem;
 	border-radius: 4px;
-	height: 150px;
+	height: 100px;
 	position: relative;
 	align-items: center;
 	.communityImage {
-		width: 100px;
 		img {
-			border-radius: 5px;
+			border-radius: 15px;
+			object-fit: cover;
 		}
 	}
 	.communityName {
 		width: 100%;
-		height: 100px;
 		display: flex;
 		flex-direction: column;
-
 		gap: 5px;
+		height: 50px;
 		.name {
 			font-weight: 600;
 			font-size: 18px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			.members {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				color: $secondaryText;
+				font-size: 14px;
+			}
 		}
 		.description,
-		.owner,
-		.members {
+		.owner {
 			color: $secondaryText;
 			font-size: 13px;
 		}
+	}
+	.communityInfo {
+		margin-top: 1rem;
 		button {
 			width: fit-content;
 			// margin-top: auto;
 			position: absolute;
 			right: 1rem;
 			bottom: calc(1rem + 10px);
+			padding: 0;
+			background-color: $lightGray;
+			padding: 5px 15px;
+			&:hover {
+				background-color: $accent;
+			}
 		}
 	}
 	.privacy {

@@ -1,0 +1,50 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.page {
+	@include page();
+
+	.header {
+		border-bottom: 1px solid $lightGray;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem 0;
+		padding-top: 0;
+		position: relative;
+		color: $secondaryText;
+		.name {
+			display: flex;
+			align-items: center;
+			font-size: 1.7rem;
+			color: $white;
+			@include breakpoint(sm) {
+				font-size: 1.2rem;
+			}
+			img {
+				border-radius: 6px;
+				object-fit: cover;
+			}
+		}
+		.description {
+		}
+		.admin {
+		}
+		.members {
+			position: absolute;
+			bottom: 1rem;
+			right: 0rem;
+			color: $accent;
+		}
+		.menu {
+			position: absolute;
+			right: 1rem;
+			top: 1rem;
+			cursor: pointer;
+		}
+	}
+	.body {
+		margin-top: 2rem;
+	}
+}
