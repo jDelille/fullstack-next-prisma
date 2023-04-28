@@ -8,9 +8,13 @@ import LogoIcon from "@/app/icons/LogoIcon";
 
 type NavbarProps = {
  currentUser?: SafeUser | null
+
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+
+
+
  return (
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>

@@ -1,0 +1,57 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.communityBox {
+	margin-top: 1rem;
+	background-color: $gray;
+	border: 1px solid $lightGray;
+	padding: 1rem;
+	display: flex;
+	gap: 1rem;
+	border-radius: 4px;
+	height: 150px;
+	position: relative;
+	align-items: center;
+	.communityImage {
+		width: 100px;
+		img {
+			border-radius: 5px;
+		}
+	}
+	.communityName {
+		width: 100%;
+		height: 100px;
+		display: flex;
+		flex-direction: column;
+
+		gap: 5px;
+		.name {
+			font-weight: 600;
+			font-size: 18px;
+		}
+		.description,
+		.owner,
+		.members {
+			color: $secondaryText;
+			font-size: 14px;
+		}
+		button {
+			width: fit-content;
+			// margin-top: auto;
+			position: absolute;
+			right: 1rem;
+			bottom: calc(1rem + 10px);
+		}
+	}
+	.privacy {
+		position: absolute;
+		right: 1rem;
+		top: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		font-size: 13px;
+		color: $accent;
+	}
+}

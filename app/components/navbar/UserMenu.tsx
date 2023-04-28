@@ -7,7 +7,7 @@ import { signOut } from 'next-auth/react'
 import styles from './Navbar.module.scss';
 import { useRouter } from 'next/navigation';
 import { AiFillHome } from 'react-icons/ai'
-import { FaUserAlt } from 'react-icons/fa'
+import { FaUserAlt, FaUsers } from 'react-icons/fa'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdAddCircle, MdNotifications } from 'react-icons/md'
 import useCreateCommunityModal from '@/app/hooks/useCreateCommunityModal';
@@ -38,6 +38,10 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
       <div onClick={() => router.push(`/myBets/${currentUser?.id}`)} className={styles.Link}>
        <BiMoneyWithdraw size={20} />
        <p>My Bets</p>
+      </div>
+      <div onClick={() => router.push(`/community`)} className={styles.Link}>
+       <FaUsers size={20} />
+       <p>Communities</p>
       </div>
       <div onClick={() => router.push(`/myBets/${currentUser?.id}`)} className={styles.Link}>
        <MdNotifications size={20} />

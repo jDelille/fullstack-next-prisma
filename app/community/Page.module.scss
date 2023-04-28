@@ -1,0 +1,7 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.page {
+	@include page();
+}
