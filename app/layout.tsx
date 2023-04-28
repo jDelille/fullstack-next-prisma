@@ -1,4 +1,5 @@
 
+import { Community } from '@prisma/client'
 import getCommunitiesByUserId from './actions/getCommunitiesByUserId'
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
@@ -25,9 +26,11 @@ export default async function RootLayout({
 }) {
 
   const currentUser = await getCurrentUser();
-  const communities = await getCommunitiesByUserId({ userId: currentUser?.id });
 
-
+  let communities: Community[] = [];
+  if (currentUser) {
+    communities = await getCommunitiesByUserId({ userId: currentUser.id });
+  }
 
   return (
     <html lang="en">

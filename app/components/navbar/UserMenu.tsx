@@ -64,7 +64,7 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
    </div>
    <div className={styles.communities}>
     <p className={styles.label}>My community <span>{communities.length}</span></p>
-    <div className={styles.createButton} onClick={createCommunityModal.onOpen}>
+    <div className={styles.createButton} onClick={currentUser ? createCommunityModal.onOpen : loginModal.onOpen}>
      <MdAddCircle size={20} color='#20b46a' />
      <p >Create a community</p>
     </div>
