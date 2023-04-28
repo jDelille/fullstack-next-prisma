@@ -8,10 +8,11 @@ import LogoIcon from "@/app/icons/LogoIcon";
 
 type NavbarProps = {
  currentUser?: SafeUser | null
+ communities?: any;
 
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser, communities }) => {
 
 
 
@@ -28,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
      <span>@{currentUser?.username}</span>
     </div> */}
    </div>
-   <UserMenu currentUser={currentUser} />
+   <UserMenu currentUser={currentUser} communities={communities} />
   </div>
  );
 }

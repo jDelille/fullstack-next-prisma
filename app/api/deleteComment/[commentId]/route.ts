@@ -79,8 +79,6 @@ export async function DELETE(
 				},
 			});
 
-			console.log(updatedPost)
-
 			return NextResponse.json({ post: updatedPost, comment });
 		}
 	}
