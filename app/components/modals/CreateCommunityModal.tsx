@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation"
 import ImageUpload from "../image-upload/ImageUpload"
 import styles from './Modal.module.scss';
 import { IoMdClose } from "react-icons/io"
-import { FieldValues, useForm } from "react-hook-form"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import Image from "next/image"
 
 const CreateCommunityModal = () => {
@@ -31,6 +31,8 @@ const CreateCommunityModal = () => {
  } = useForm<FieldValues>({
   defaultValues: {
    communityName: '',
+   communityBio: '',
+
 
   },
  });
@@ -42,6 +44,25 @@ const CreateCommunityModal = () => {
    shouldTouch: true,
   });
  };
+
+ const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  setIsLoading(true);
+
+  axios
+   .post('/api/community', data)
+   .then(() => {
+    toast.success('Community created');
+    createCommunityModal.onClose();
+    router.refresh();
+    reset();
+   })
+   .catch((error) => {
+    toast.error('Error');
+   })
+   .finally(() => {
+    setIsLoading(false);
+   });
+ }
 
  const bodyContent = (
   <div className={styles.bodyContent}>
@@ -84,8 +105,8 @@ const CreateCommunityModal = () => {
    <div className={styles.visibility}>
     <p className={styles.label}>Change community visibility</p>
     <div className={styles.buttons}>
-     <div onClick={() => setVisibility('public')} className={visibility === 'public' ? styles.selected : styles.public}>Public</div>
-     <div onClick={() => setVisibility('private')} className={visibility === 'private' ? styles.selected : styles.private}>Private</div>
+     <div onClick={() => { setVisibility('public'); setCustomValue('visibility', false) }} className={visibility === 'public' ? styles.selected : styles.public}>Public</div>
+     <div onClick={() => { setVisibility('private'); setCustomValue('visibility', true) }} className={visibility === 'private' ? styles.selected : styles.private}>Private</div>
 
     </div>
 
@@ -103,7 +124,7 @@ const CreateCommunityModal = () => {
    onClose={createCommunityModal.onClose}
    icon={IoMdClose}
    body={bodyContent}
-   onSubmit={() => { }}
+   onSubmit={handleSubmit(onSubmit)}
   />
  )
 }
