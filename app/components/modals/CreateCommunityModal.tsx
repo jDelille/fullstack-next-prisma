@@ -11,17 +11,86 @@ import { useRouter } from "next/navigation"
 import ImageUpload from "../image-upload/ImageUpload"
 import styles from './Modal.module.scss';
 import { IoMdClose } from "react-icons/io"
+import { FieldValues, useForm } from "react-hook-form"
+import Image from "next/image"
 
 const CreateCommunityModal = () => {
  const router = useRouter();
  const createCommunityModal = useCreateCommunityModal();
  const [isLoading, setIsLoading] = useState(false);
  const [photo, setPhoto] = useState('');
+ const [visibility, setVisibility] = useState('')
+
+ const {
+  register,
+  handleSubmit,
+  setValue,
+  watch,
+  formState: { errors },
+  reset,
+ } = useForm<FieldValues>({
+  defaultValues: {
+   communityName: '',
+
+  },
+ });
+
+ const setCustomValue = (id: string, value: any) => {
+  setValue(id, value, {
+   shouldDirty: true,
+   shouldValidate: true,
+   shouldTouch: true,
+  });
+ };
 
  const bodyContent = (
   <div className={styles.bodyContent}>
+   <Input
+    id='communityName'
+    label='Community name'
+    disabled={isLoading}
+    register={register}
+    errors={errors}
+    type='text'
+    onChange={(e) => setCustomValue('communityName', e.target.value)}
+   />
+   <Textarea
+    id='communityBio'
+    label='Community description'
+    disabled={isLoading}
+    register={register}
+    errors={errors}
+    onChange={(e) => setCustomValue('communityBio', e.target.value)}
+   />
+   <div className={styles.addProfilePicture}>
+    <div className={styles.imagePreview}>
+     <p className={styles.label}>Add your profile picture</p>
+     <div className={styles.image}>
+
+      <Image src={photo || '/images/placeholder.png'} alt='profile-picture' width='100' height='100' />
+
+     </div>
+    </div>
+    <div className={styles.imageSelector}>
+     <ImageUpload
+      value={photo}
+      onChange={(image) => setPhoto(image)}
+      setCustomValue={setCustomValue}
+      label={photo ? 'Change your community picture' : 'Add your community picture'}
+      isRegister
+     />
+    </div>
+   </div>
+   <div className={styles.visibility}>
+    <p className={styles.label}>Change community visibility</p>
+    <div className={styles.buttons}>
+     <div onClick={() => setVisibility('public')} className={visibility === 'public' ? styles.selected : styles.public}>Public</div>
+     <div onClick={() => setVisibility('private')} className={visibility === 'private' ? styles.selected : styles.private}>Private</div>
+
+    </div>
 
 
+   </div>
   </div>
  )
 

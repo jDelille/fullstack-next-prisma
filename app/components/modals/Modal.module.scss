@@ -129,6 +129,25 @@
 					margin-top: 20px;
 				}
 			}
+			.visibility {
+				margin-top: 10px;
+				.label {
+					font-size: 12px;
+					padding-bottom: 10px;
+				}
+				.buttons {
+					display: flex;
+					gap: 1rem;
+					.public,
+					.private,
+					.selected {
+						@include button();
+					}
+					.selected {
+						border: 1px solid $accent;
+					}
+				}
+			}
 		}
 		.buttonsContainer {
 			display: flex;

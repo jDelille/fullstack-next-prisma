@@ -5,20 +5,19 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
+	padding: 0 10px;
 	.sidebarHeader {
 		width: 100%;
 		height: $gamebarHeight;
 		display: flex;
 		align-items: center;
-		padding: 0 1rem;
+		padding: 0 2rem;
 		gap: 1rem;
-		// margin-bottom: 1rem;
-		border-bottom: 1px solid $lightGray;
+		color: $white;
 		h1 {
 			font-size: 24px;
+			color: $accent;
 		}
-		color: $white;
-		justify-content: center;
 		.profileImage {
 			background-color: dodgerblue;
 			width: 50px;
@@ -51,17 +50,47 @@
 	position: relative;
 	height: calc(100% - 104px - 1rem);
 	margin-top: 2rem;
-	.Link {
-		@include button();
+	.pages,
+	.community,
+	.events {
+		padding: 1rem 0;
+		border-bottom: 1px solid $lightGray;
 		color: $white;
-		border: none;
-		font-size: 16px;
-		font-weight: 400;
-		width: 90%;
-		margin: 0 auto;
-		padding: 1rem;
-		margin-bottom: 1rem;
+		font-weight: 300;
+		.label {
+			padding: 0 1rem;
+			color: $secondaryText;
+			font-size: 13px;
+			padding-bottom: 1rem;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			span {
+				background-color: $lightGray;
+				color: $white;
+				padding: 5px;
+				width: 20px;
+				height: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 50%;
+			}
+		}
+		.Link {
+			@include button();
+			color: $secondaryText;
+			border: none;
+			font-size: 16px;
+			font-weight: 300;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1rem;
+			margin-bottom: 1rem;
+		}
 	}
+
 	.logoutWrapper {
 		position: absolute;
 		bottom: 0rem;
