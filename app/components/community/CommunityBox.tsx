@@ -73,7 +73,7 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
         <Image src={community.photo} alt="communityImage" width={50} height={50} />
       </div>
       <div className={styles.communityName}>
-        <p className={styles.name}>{community.name} <p className={styles.members}><FaUsers /> 78</p></p>
+        <p className={styles.name}>{community.name} <p className={styles.members}><FaUsers />{community.memberIds.length}</p></p>
         <p className={styles.description}>{community.description}</p>
       </div>
       <div className={styles.communityInfo}>

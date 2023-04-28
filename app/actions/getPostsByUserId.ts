@@ -9,6 +9,11 @@ export default async function getPostsByUserId(params: IParams) {
 		const posts = await prisma.post.findMany({
 			where: {
 				userId: userId,
+				NOT: {
+					communityId: {
+						not: null,
+					},
+				},
 			},
 			orderBy: [{ isPinned: 'desc' }, { createdAt: 'desc' }],
 			include: {
