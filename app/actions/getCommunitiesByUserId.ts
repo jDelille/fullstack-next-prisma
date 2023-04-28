@@ -6,16 +6,14 @@ interface IParams {
 export default async function getCommunitiesByUserId(params: IParams) {
 	try {
 		const { userId } = params;
-
+		let where = {};
+		if (userId) {
+			where = { memberIds: { has: userId } };
+		}
 		const communities = await prisma.community.findMany({
-			where: {
-				memberIds: {
-					has: userId,
-				},
-			},
+			where,
 		});
-
-		return communities ?? [];
+		return communities;
 	} catch (error: any) {
 		throw new Error(error);
 	}
