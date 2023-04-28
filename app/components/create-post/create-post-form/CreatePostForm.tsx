@@ -17,6 +17,8 @@ type CreatePostFormProps = {
   isComment: boolean;
   postId?: string;
   isBordered?: boolean;
+  isCommunity?: boolean
+  communityId?: string;
 };
 
 const CreatePostForm = ({
@@ -25,6 +27,8 @@ const CreatePostForm = ({
   isComment,
   postId,
   isBordered,
+  isCommunity,
+  communityId
 }: CreatePostFormProps) => {
   const router = useRouter();
 
@@ -61,6 +65,8 @@ const CreatePostForm = ({
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+
+    data.communityId = isCommunity ? communityId : null;
 
     axios
       .post(isComment ? `/api/comment/${postId}` : '/api/post', data)
