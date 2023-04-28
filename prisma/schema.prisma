@@ -44,22 +44,21 @@ model Comment {
 }
 
 model User {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  email         String     @unique
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String    @unique
   name          String
   username      String
   bio           String?
   password      String
   photo         String?
   Post          Post[]
-  totalBets     Int        @default(0)
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  totalBets     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   emailVerified DateTime?
-  followingIds  String[]   @db.ObjectId
-  isVerified    Boolean    @default(false)
-  Community     Community? @relation(fields: [communityId], references: [id])
-  communityId   String?    @db.ObjectId
+  followingIds  String[]  @db.ObjectId
+  isVerified    Boolean   @default(false)
+  communityId   String?   @db.ObjectId
 }
 
 model Bet {
@@ -82,12 +81,12 @@ model Bet {
 }
 
 model Community {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  members     User[]
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  memberIds   String[] @db.ObjectId
   name        String
   description String
   photo       String
-  isPrivate   Boolean @default(false)
+  isPrivate   Boolean  @default(false)
   Post        Post[]
-  adminId     String  @db.ObjectId
+  adminId     String   @db.ObjectId
 }
