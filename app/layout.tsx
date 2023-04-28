@@ -1,4 +1,5 @@
 
+import getCommunitiesByUserId from './actions/getCommunitiesByUserId'
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import Footer from './components/footer/Footer'
@@ -24,6 +25,9 @@ export default async function RootLayout({
 }) {
 
   const currentUser = await getCurrentUser();
+  const communities = await getCommunitiesByUserId({ userId: currentUser?.id });
+
+
 
   return (
     <html lang="en">
@@ -37,7 +41,7 @@ export default async function RootLayout({
           <EditProfileModal />
           <CreateCommunityModal />
           <div className='sidebarContainer'>
-            <Navbar currentUser={currentUser} />
+            <Navbar currentUser={currentUser} communities={communities} />
           </div>
 
           <div className="gamebarContainer">

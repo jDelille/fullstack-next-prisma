@@ -11,11 +11,13 @@ import { FaUserAlt, FaUsers } from 'react-icons/fa'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdAddCircle, MdNotifications } from 'react-icons/md'
 import useCreateCommunityModal from '@/app/hooks/useCreateCommunityModal';
+import Image from 'next/image';
 type UserMenu = {
  currentUser?: SafeUser | null
+ communities?: any
 }
 
-const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
+const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
  const registerModal = useRegisterModal();
  const loginModal = useLoginModal();
  const router = useRouter();
@@ -60,18 +62,29 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser }) => {
      </>
     )}
    </div>
-   <div className={styles.community}>
-    <p className={styles.label}>My community <span>0</span></p>
-    <div className={styles.Link} onClick={createCommunityModal.onOpen}>
-     <MdAddCircle size={20} />
-     <p>Create a community</p>
+   <div className={styles.communities}>
+    <p className={styles.label}>My community <span>{communities.length}</span></p>
+    <div className={styles.createButton} onClick={createCommunityModal.onOpen}>
+     <MdAddCircle size={20} color='#20b46a' />
+     <p >Create a community</p>
     </div>
+    {communities.map((community: any) => (
+     <div key={community.id} className={styles.community} onClick={() => { router.push(`/community/${community.id}`) }}>
+      <div className={styles.image}>
+       <Image src={community.photo} alt='community-photo' width={30} height={30} />
+      </div>
+      <div className={styles.name}>
+       <p>{community.name}</p>
+       <p className={styles.members}>{community.memberIds.length} members</p>
+      </div>
+     </div>
+    ))}
    </div>
    <div className={styles.events}>
     <p className={styles.label}>Events <span>0</span></p>
     <div className={styles.Link}>
      <MdAddCircle size={20} />
-     <p>Create an event</p>
+     <p>Comming soon...</p>
     </div>
    </div>
   </div>

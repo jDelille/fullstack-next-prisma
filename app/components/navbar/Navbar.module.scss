@@ -51,7 +51,7 @@
 	height: calc(100% - 104px - 1rem);
 	margin-top: 2rem;
 	.pages,
-	.community,
+	.communities,
 	.events {
 		padding: 1rem 0;
 		border-bottom: 1px solid $lightGray;
@@ -78,7 +78,8 @@
 				border-radius: 50%;
 			}
 		}
-		.Link {
+		.Link,
+		.createButton {
 			@include button();
 			color: $secondaryText;
 			border: none;
@@ -87,7 +88,53 @@
 			width: 90%;
 			margin: 0 auto;
 			padding: 1rem;
-			margin-bottom: 1rem;
+			// margin-bottom: 1rem;
+		}
+	}
+
+	.pages {
+		gap: 0.5rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.createButton {
+		background-color: $lightGray;
+	}
+
+	.communities {
+		.community {
+			@include button();
+			border: none;
+			font-size: 16px;
+			font-weight: 300;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1rem 0rem;
+			display: flex;
+			align-items: center;
+
+			margin-top: 1rem;
+			.image {
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				img {
+					object-fit: cover;
+					border-radius: 50%;
+				}
+			}
+			.name {
+				color: $white;
+				font-weight: 400;
+				font-size: 13px;
+				.members {
+					color: $secondaryText;
+					font-weight: 300;
+				}
+			}
 		}
 	}
 
