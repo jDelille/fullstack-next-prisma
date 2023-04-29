@@ -4,7 +4,7 @@
 <hr />
 
 ![mobile (11)](https://user-images.githubusercontent.com/84540947/235290179-9b963ed5-1543-4dc4-8480-bbf88db50c56.png)
-
+<hr />
 <br />
 - Create an account
 - Create posts (text / images)
