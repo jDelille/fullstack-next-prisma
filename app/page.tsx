@@ -19,9 +19,6 @@ export default async function Home() {
         />
         <PostFeed posts={posts} currentUser={currentUser} />
       </div>
-
-
-
     </main>
   );
 }
