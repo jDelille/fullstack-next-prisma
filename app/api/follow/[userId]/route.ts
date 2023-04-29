@@ -29,6 +29,42 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		throw new Error('Invalid Id');
 	}
 
+	const followedUser = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+	});
+
+	if (!followedUser) {
+		throw new Error('Invalid ID');
+	}
+
+	// start notification
+
+	try {
+		if (followedUser?.id) {
+			await prisma.notification.create({
+				data: {
+					body: 'Someone followed you',
+					userId: followedUser.id,
+				},
+			});
+
+			await prisma.user.update({
+				where: {
+					id: followedUser.id,
+				},
+				data: {
+					hasNotification: true,
+				},
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+
+	// end notification
+
 	let updatedFollowingIds = [...(currentUser.followingIds || [])];
 	updatedFollowingIds.push(userId);
 

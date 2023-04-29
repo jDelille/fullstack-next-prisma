@@ -1,0 +1,14 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.page {
+	@include page();
+	.notificationCard {
+		padding: 1rem;
+		background-color: $gray;
+		border: 1px solid $lightGray;
+		margin-top: 1rem;
+		border-radius: 4px;
+	}
+}

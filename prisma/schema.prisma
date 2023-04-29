@@ -44,21 +44,23 @@ model Comment {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  email         String    @unique
-  name          String
-  username      String
-  bio           String?
-  password      String
-  photo         String?
-  Post          Post[]
-  totalBets     Int       @default(0)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  emailVerified DateTime?
-  followingIds  String[]  @db.ObjectId
-  isVerified    Boolean   @default(false)
-  communityId   String?   @db.ObjectId
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
+  email           String         @unique
+  name            String
+  username        String
+  bio             String?
+  password        String
+  photo           String?
+  Post            Post[]
+  totalBets       Int            @default(0)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  emailVerified   DateTime?
+  followingIds    String[]       @db.ObjectId
+  isVerified      Boolean        @default(false)
+  communityId     String?        @db.ObjectId
+  notification    Notification[]
+  hasNotification Boolean?
 }
 
 model Bet {
@@ -89,4 +91,13 @@ model Community {
   isPrivate   Boolean  @default(false)
   Post        Post[]
   adminId     String   @db.ObjectId
+}
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
+  userId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

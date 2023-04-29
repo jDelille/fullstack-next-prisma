@@ -46,6 +46,32 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 	let updatedCommentedIds = new Set(post.commentedIds || []);
 	updatedCommentedIds.add(currentUser?.id);
 
+	// start notification
+
+	try {
+		if (post?.userId) {
+			await prisma.notification.create({
+				data: {
+					body: 'Someone commented on your post',
+					userId: post?.userId,
+				},
+			});
+
+			await prisma.user.update({
+				where: {
+					id: post?.userId,
+				},
+				data: {
+					hasNotification: true,
+				},
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+
+	// end notification
+
 	const updatedPost = await prisma.post.update({
 		where: {
 			id: postId,

@@ -4,7 +4,7 @@ import Button from '../button/Button';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
 import styles from './Navbar.module.scss';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome } from 'react-icons/ai'
 import { FaUserAlt, FaUsers } from 'react-icons/fa'
 import { BiMoneyWithdraw } from 'react-icons/bi'
@@ -51,13 +51,10 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
    label: 'Communities',
    href: `/community`
   },
-  {
-   id: 4,
-   icon: MdNotifications,
-   label: 'Notifications',
-   href: `/notifications`
-  },
  ]
+ const pathname = usePathname()
+ const linkStyle = pathname === '/notifications' ? styles.activeLink : styles.Link
+
 
  return (
   <div className={styles.userMenu}>
@@ -68,6 +65,12 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
       {navlinks.map((link) => (
        <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
       ))}
+
+      <div onClick={() => router.push(`/notifications/${currentUser?.id}`)} className={linkStyle} >
+       {/* <MdNotifications /> */}
+       <p>Notifications</p>
+       {currentUser?.hasNotification && <div className={styles.notificationDot}></div>}
+      </div >
       <div className={styles.logoutWrapper}>
        <Button label='Logout' onClick={() => signOut()} />
       </div>

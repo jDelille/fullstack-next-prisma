@@ -89,6 +89,12 @@
 			width: 90%;
 			margin: 0 auto;
 			padding: 1rem;
+			.notificationDot {
+				width: 10px;
+				height: 10px;
+				background-color: $accent;
+				border-radius: 50%;
+			}
 		}
 	}
 

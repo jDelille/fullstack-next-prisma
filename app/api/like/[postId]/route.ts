@@ -32,6 +32,32 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 	let updatedLikedIds = [...(post.likedIds || [])];
 	updatedLikedIds.push(currentUser?.id);
 
+	// start notification
+
+	try {
+		if (post?.userId) {
+			await prisma.notification.create({
+				data: {
+					body: 'Someone liked your post',
+					userId: post?.userId,
+				},
+			});
+
+			await prisma.user.update({
+				where: {
+					id: post.userId,
+				},
+				data: {
+					hasNotification: true,
+				},
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+
+	// end notification
+
 	const updatedPost = await prisma.post.update({
 		where: {
 			id: postId,
