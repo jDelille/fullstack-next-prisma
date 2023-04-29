@@ -1,4 +1,6 @@
-## Sports betting social platform built with Nextjs, React, TypeScript, Prisma, Axios, and SCSS. 
+## Oddspot 
+### Sports betting social platform built with Nextjs, React, TypeScript, Prisma, Axios, and SCSS. 
+<br />
 ![mobile (11)](https://user-images.githubusercontent.com/84540947/235290179-9b963ed5-1543-4dc4-8480-bbf88db50c56.png)
 
 <br />
