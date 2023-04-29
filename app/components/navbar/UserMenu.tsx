@@ -5,7 +5,7 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
 import styles from './Navbar.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
-import { AiFillHome } from 'react-icons/ai'
+import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
 import { FaUserAlt, FaUsers } from 'react-icons/fa'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdAddCircle, MdNotifications } from 'react-icons/md'
@@ -17,11 +17,12 @@ import MenuItem from './MenuItem';
 type UserMenu = {
  currentUser?: SafeUser | null
  communities?: any
+ setIsMenuOpen?: (value: boolean) => void;
 }
 
 
 
-const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
+const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen }) => {
  const loginModal = useLoginModal();
  const router = useRouter();
  const createCommunityModal = useCreateCommunityModal();
@@ -58,6 +59,9 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
 
  return (
   <div className={styles.userMenu}>
+   <div className={styles.closeMenu} onClick={() => setIsMenuOpen && setIsMenuOpen(false)}>
+    <AiOutlineClose color='#20b46a' size={18} />
+   </div>
    <div className={styles.pages}>
     <p className={styles.label}>Menu </p>
     {currentUser ? (
@@ -102,13 +106,13 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
      </div>
     ))}
    </div>
-   <div className={styles.events}>
+   {/* <div className={styles.events}>
     <p className={styles.label}>Events <span>0</span></p>
     <div className={styles.Link}>
      <MdAddCircle size={20} />
      <p>Comming soon...</p>
     </div>
-   </div>
+   </div> */}
   </div>
  );
 }

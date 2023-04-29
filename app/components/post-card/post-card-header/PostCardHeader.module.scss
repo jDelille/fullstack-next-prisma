@@ -14,16 +14,26 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		@include breakpoint(xs) {
+			justify-content: center;
+		}
 		.name {
 			display: flex;
 			gap: 10px;
+
 			.fullName {
 				display: flex;
 				gap: 5px;
 				align-items: center;
+				@include breakpoint(xs) {
+					font-size: 14px;
+				}
 				svg {
 					position: relative;
 					top: 1px;
+					@include breakpoint(xs) {
+						top: 0px;
+					}
 				}
 			}
 			.followBtn {
@@ -64,10 +74,8 @@
 		gap: 3px;
 		display: flex;
 		height: 100%;
-		padding-top: 2px;
+		padding-top: 4px;
 		@include breakpoint(sm) {
-			position: relative;
-			top: 1px;
 		}
 		svg {
 			&:nth-of-type(1) {

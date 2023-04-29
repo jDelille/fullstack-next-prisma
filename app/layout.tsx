@@ -13,6 +13,7 @@ import Navbar from './components/navbar/Navbar'
 import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
+import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
 
 export const metadata = {
   title: 'Create Next App',
@@ -49,6 +50,9 @@ export default async function RootLayout({
 
           <div className="gamebarContainer">
             <Scoreboard />
+          </div>
+          <div className='mobileNavbarContainer'>
+            <MobileNavbar currentUser={currentUser} communities={communities} />
           </div>
           <div className='rightSidebar'>
           </div>

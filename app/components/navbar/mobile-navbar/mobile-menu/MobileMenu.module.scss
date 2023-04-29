@@ -1,0 +1,12 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.mobileMenu {
+	background-color: $gray;
+	width: 65%;
+	height: 100vh;
+	position: fixed;
+	right: 0;
+	top: 0;
+	border-left: 1px solid $lightGray;
+}

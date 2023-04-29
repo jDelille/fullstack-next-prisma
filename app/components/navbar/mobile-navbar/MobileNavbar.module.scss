@@ -1,0 +1,27 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.mobileNavbar {
+	height: 55px;
+	width: 100vw;
+	background-color: $gray;
+	border-bottom: 1px solid $lightGray;
+	display: flex;
+	align-items: center;
+	color: $secondaryText;
+	padding: 0 1.5rem;
+	.menu {
+		display: flex;
+		align-items: center;
+		margin-right: 1rem;
+	}
+	.userMenu {
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100vh;
+		width: 65%;
+		background-color: $gray;
+		border-right: 1px solid $lightGray;
+	}
+}

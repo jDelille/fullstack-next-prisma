@@ -7,8 +7,8 @@
 	.postBody {
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;
-
 		@include breakpoint(xs) {
+			font-size: 14px;
 			margin: 0;
 		}
 	}
@@ -16,7 +16,6 @@
 		max-height: 300px;
 		position: relative;
 		border: 1px solid $lightGray;
-		// border-bottom: 1px solid $lightGray;
 		img {
 			max-height: 300px;
 			position: relative !important;

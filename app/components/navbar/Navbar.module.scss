@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
 
 .sidebar {
 	position: relative;
@@ -50,6 +50,16 @@
 	position: relative;
 	height: calc(100% - 104px - 1rem);
 	margin-top: 2rem;
+	.closeMenu {
+		display: none;
+
+		@include breakpoint(xs) {
+			display: flex;
+			position: absolute;
+			top: 0rem;
+			right: 1rem;
+		}
+	}
 	.pages,
 	.communities,
 	.events {

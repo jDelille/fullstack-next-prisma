@@ -50,6 +50,16 @@ body {
 	}
 }
 
+.mobileNavbarContainer {
+	position: fixed;
+	top: $gamebarHeight;
+	z-index: 99;
+	display: none;
+	@include breakpoint(xs) {
+		display: block;
+	}
+}
+
 .mainContainer {
 	width: 100%;
 	min-height: 100vh;
@@ -89,5 +99,4 @@ body {
 }
 
 .login-footer {
-	background-color: orange;
 }

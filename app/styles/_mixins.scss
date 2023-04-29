@@ -26,6 +26,7 @@
 	font-size: 13px;
 	color: $black;
 	font-weight: 500;
+	
 }
 
 @mixin page {
@@ -61,7 +62,7 @@
 	@include breakpoint(xs) {
 		margin: 0;
 		padding: 0 1rem;
-		margin-top: calc($gamebarHeight + 2rem);
+		margin-top: calc($gamebarHeight + 5rem);
 	}
 }
 
