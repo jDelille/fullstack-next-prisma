@@ -3,7 +3,8 @@ import styles from './Scoreboard.module.scss';
 import useSWR from 'swr'
 import GameCard from './game-card/GameCard';
 import Select from 'react-select';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
+import { IoChevronForwardOutline, IoChevronBackOutline } from 'react-icons/io5'
 
 const fetcher = (...args: [RequestInfo, RequestInit?]): Promise<any> =>
  fetch(...args).then((res) => res.json());
@@ -20,9 +21,6 @@ const Scoreboard: React.FC = () => {
 
  const games = data && data.events
  // const date = data && data.day.date
-
-
-
 
 
  const customStyles = {
@@ -73,6 +71,16 @@ const Scoreboard: React.FC = () => {
   { value: 'usa.1', label: 'MLS', league: 'soccer' },
  ]
 
+ const gameScrollerRef = useRef<HTMLDivElement>(null);
+
+ const scrollContainer = (scrollOffset: number) => {
+  if (gameScrollerRef.current) {
+   gameScrollerRef.current.scrollBy({
+    left: scrollOffset,
+    behavior: 'smooth',
+   });
+  }
+ };
 
 
  return (
@@ -81,11 +89,17 @@ const Scoreboard: React.FC = () => {
     <Select placeholder="MLB" isClearable={false} options={sports} styles={customStyles} defaultValue={sports[0]} onChange={(value) => { setSport(value?.league as string); setLeague(value?.value as string) }} />
     {/* <p>{date}</p> */}
    </div>
-   <div className={styles.games}>
+   <div className={styles.games} ref={gameScrollerRef}>
     {games?.map((game: any) => (
      <GameCard key={game.id} game={game} />
     ))}
    </div>
+   {games?.length > 2 && (
+    <div className={styles.gameScroller}>
+     <div className={styles.arrow} onClick={() => scrollContainer(-300)}><IoChevronBackOutline color='#abadb1' size={20} /></div>
+     <div className={styles.arrow} onClick={() => scrollContainer(300)}><IoChevronForwardOutline color='#abadb1' size={20} /></div>
+    </div>
+   )}
 
   </div>
  );

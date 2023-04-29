@@ -7,6 +7,7 @@ import CreatePostForm from '@/app/components/create-post/create-post-form/Create
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import PostFeed from '@/app/components/post-feed/PostFeed';
 import getPostsByCommunityId from '@/app/actions/getPostsByCommunityId';
+import { usePathname } from 'next/navigation';
 
 interface IParams {
  communityId?: string;
@@ -17,6 +18,7 @@ const Community = async ({ params }: { params: IParams }) => {
 
  const community = await getCommunityById(params)
  const currentUser = await getCurrentUser();
+
 
  let admin: SafeUser | null = null;
  let posts: any | null = null

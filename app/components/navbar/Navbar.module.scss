@@ -79,6 +79,7 @@
 			}
 		}
 		.Link,
+		.activeLink,
 		.createButton {
 			@include button();
 			color: $secondaryText;
@@ -88,8 +89,12 @@
 			width: 90%;
 			margin: 0 auto;
 			padding: 1rem;
-			// margin-bottom: 1rem;
 		}
+	}
+
+	.activeLink {
+		background-color: $lightGray;
+		color: $accent !important;
 	}
 
 	.pages {

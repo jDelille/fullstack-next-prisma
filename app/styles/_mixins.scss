@@ -14,7 +14,7 @@
 	gap: 1rem;
 	&:hover {
 		cursor: pointer;
-		background-color: lighten($gray, 2%);
+		background-color: lighten($lightGray, 2%);
 	}
 }
 
@@ -73,7 +73,7 @@
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background: $accent;
+		background: $lightGray;
 	}
 
 	&::-webkit-scrollbar-track {

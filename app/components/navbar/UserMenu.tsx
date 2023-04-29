@@ -1,6 +1,5 @@
 
 import { SafeUser } from '@/app/types';
-import useRegisterModal from '@/app/hooks/useRegitserModal';
 import Button from '../button/Button';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
@@ -12,16 +11,53 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdAddCircle, MdNotifications } from 'react-icons/md'
 import useCreateCommunityModal from '@/app/hooks/useCreateCommunityModal';
 import Image from 'next/image';
+import MenuItem from './MenuItem';
+
+
 type UserMenu = {
  currentUser?: SafeUser | null
  communities?: any
 }
 
+
+
 const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
- const registerModal = useRegisterModal();
  const loginModal = useLoginModal();
  const router = useRouter();
  const createCommunityModal = useCreateCommunityModal();
+
+ const navlinks = [
+  {
+   id: 0,
+   icon: AiFillHome,
+   label: 'Home',
+   href: '/'
+  },
+  {
+   id: 1,
+   icon: FaUserAlt,
+   label: 'Profile',
+   href: `/user/${currentUser?.id}`
+  },
+  {
+   id: 2,
+   icon: BiMoneyWithdraw,
+   label: 'My Bets',
+   href: `/myBets/${currentUser?.id}`
+  },
+  {
+   id: 3,
+   icon: FaUsers,
+   label: 'Communities',
+   href: `/community`
+  },
+  {
+   id: 4,
+   icon: MdNotifications,
+   label: 'Notifications',
+   href: `/notifications`
+  },
+ ]
 
  return (
   <div className={styles.userMenu}>
@@ -29,26 +65,9 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities }) => {
     <p className={styles.label}>Menu </p>
     {currentUser ? (
      <>
-      <div onClick={() => { router.push('/') }} className={styles.Link}>
-       <AiFillHome size={20} />
-       <p>Home</p>
-      </div>
-      <div onClick={() => router.push(`/user/${currentUser?.id}`)} className={styles.Link}>
-       <FaUserAlt size={20} />
-       <p>My Profile</p>
-      </div>
-      <div onClick={() => router.push(`/myBets/${currentUser?.id}`)} className={styles.Link}>
-       <BiMoneyWithdraw size={20} />
-       <p>My Bets</p>
-      </div>
-      <div onClick={() => router.push(`/community`)} className={styles.Link}>
-       <FaUsers size={20} />
-       <p>Communities</p>
-      </div>
-      <div onClick={() => router.push(`/myBets/${currentUser?.id}`)} className={styles.Link}>
-       <MdNotifications size={20} />
-       <p>Notifications</p>
-      </div>
+      {navlinks.map((link) => (
+       <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
+      ))}
       <div className={styles.logoutWrapper}>
        <Button label='Logout' onClick={() => signOut()} />
       </div>
