@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({
      {/* content */}
      <div className={styles.modalContent}>
       <div className={styles.modalHeader}>
-       {Icon && <Icon size={18} className={styles.modalIcon} onClick={handleClose} />}
+       {Icon && <Icon size={30} className={styles.modalIcon} onClick={handleClose} />}
        {title}
       </div>
       <div className={styles.modalBody}>

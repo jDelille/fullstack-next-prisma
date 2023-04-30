@@ -49,7 +49,7 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen 
   {
    id: 3,
    icon: FaUsers,
-   label: 'Communities',
+   label: 'Groups',
    href: `/community`
   },
  ]
@@ -89,15 +89,15 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen 
     )}
    </div>
    <div className={styles.communities}>
-    <p className={styles.label}>My community <span>{communities.length}</span></p>
+    <p className={styles.label}>Groups<span>{communities.length}</span></p>
     <div className={styles.createButton} onClick={currentUser ? createCommunityModal.onOpen : loginModal.onOpen}>
      <MdAddCircle size={20} color='#20b46a' />
-     <p >Create a community</p>
+     <p >Create a group</p>
     </div>
     {communities.map((community: any) => (
      <div key={community.id} className={styles.community} onClick={() => { router.push(`/community/${community.id}`) }}>
       <div className={styles.image}>
-       <Image src={community.photo} alt='community-photo' width={30} height={30} />
+       <p>{community.photo}</p>
       </div>
       <div className={styles.name}>
        <p>{community.name}</p>

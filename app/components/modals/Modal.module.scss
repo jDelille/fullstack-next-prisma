@@ -21,16 +21,17 @@
 .modal,
 .hideModal {
 	position: fixed;
-	width: 35%;
+	width: 30%;
+	max-width: 450px;
 	height: fit-content;
 	padding: 1rem;
 	border-radius: 12px;
-	background-color: $black;
+	background-color: #242424;
 	color: $white;
 	transition: 300ms ease-in-out;
 	opacity: 1;
 	@include breakpoint(md) {
-		width: 65%;
+		width: 50%;
 	}
 	@include breakpoint(xs) {
 		width: 100%;
@@ -49,15 +50,13 @@
 			width: 100%;
 			padding: 10px;
 			display: flex;
-			justify-content: center;
 			align-items: center;
-			border-bottom: 1px solid $lightGray;
+			border-bottom: 1px solid #4d4d4d;
 			position: relative;
-			.modalIcon {
-				position: absolute;
-				left: 10px;
-				cursor: pointer;
-			}
+			gap: 1rem;
+			font-size: 20px;
+			font-weight: 600;
+			padding-bottom: 24px;
 		}
 		.modalBody {
 			.chooseLeague,
@@ -105,6 +104,117 @@
 					}
 				}
 			}
+			.tabs {
+				background-color: transparent;
+				height: 35px;
+				border-radius: 15px;
+				width: 88%;
+				margin: 0 auto;
+				display: flex;
+				border: 1px solid #373737;
+				justify-content: space-between;
+				@include breakpoint(xs) {
+					width: 100%;
+				}
+				p,
+				.selected {
+					flex: 1;
+					border-radius: 15px;
+					font-size: 12px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-transform: uppercase;
+					font-weight: 500;
+					padding: 8px;
+					cursor: pointer;
+				}
+				.selected {
+					background-color: #4d4d4d;
+				}
+			}
+			.groupSettingsName {
+				text-transform: uppercase;
+				font-weight: 600;
+				margin-top: 2rem;
+			}
+			.groupName {
+				margin-top: 1rem;
+			}
+			.emojiSelector,
+			.advancedSettings {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				font-weight: 600;
+				font-size: 16px;
+				padding-bottom: 24px;
+				border-bottom: 1px solid #4d4d4d;
+				margin-top: 1rem;
+				.content {
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+					.selector {
+						height: 48px;
+						width: 48px;
+						border-radius: 16px;
+						min-width: 48px;
+						background-color: #373737;
+						font-size: 2rem;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						padding-bottom: 3px;
+						position: relative;
+						cursor: pointer;
+					}
+					.picker {
+						position: absolute;
+						top: -150%;
+						left: 100%;
+						font-size: 14px;
+						z-index: 9999;
+					}
+					.description {
+						font-size: 12px;
+						color: #c5c5c5;
+						font-weight: 400;
+						width: 70%;
+					}
+				}
+			}
+			.advancedSettings {
+				text-transform: uppercase;
+				font-weight: 600;
+				margin-top: 24px;
+
+				.setting {
+					margin-top: 1rem;
+					text-transform: none;
+					font-size: 14px;
+					display: flex;
+					align-items: center;
+					.text {
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+						.name {
+						}
+						.description {
+							font-size: 12px;
+							color: #c5c5c5;
+							font-weight: 400;
+							width: 90%;
+						}
+					}
+					.toggle {
+						width: fit-content;
+						margin-left: auto;
+					}
+				}
+			}
 			.addProfilePicture {
 				height: fit-content;
 				font-size: 12px;
@@ -112,6 +222,7 @@
 				align-items: center;
 				margin-top: 10px;
 				gap: 1rem;
+				padding: 2rem 0;
 				.label {
 					padding-bottom: 10px;
 				}
@@ -158,9 +269,11 @@
 				width: 100%;
 				background-color: $accent;
 				&:nth-of-type(1) {
-					background-color: $gray;
+					background-color: #4d4d4d;
+					font-weight: 600;
+					font-size: 16px;
 					&:hover {
-						background-color: darken($gray, 2%);
+						background-color: darken(#4d4d4d, 2%);
 					}
 				}
 				&:hover {

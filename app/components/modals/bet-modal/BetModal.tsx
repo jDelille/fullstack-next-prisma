@@ -112,7 +112,11 @@ const BetModal = () => {
       return onNext();
     }
 
+
+
     setIsLoading(true);
+
+    data.communityId = null;
 
     const payload = {
       ...data,

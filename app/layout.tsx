@@ -5,7 +5,6 @@ import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import Footer from './components/footer/Footer'
 import BetModal from './components/modals/bet-modal/BetModal'
-import CreateCommunityModal from './components/modals/CreateCommunityModal'
 import EditProfileModal from './components/modals/EditProfileModal'
 import LoginModal from './components/modals/LoginModal'
 import RegisterModal from './components/modals/RegisterModal'
@@ -14,6 +13,7 @@ import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
 import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
+import CreateGroupModal from './components/modals/CreateGroupModal'
 
 export const metadata = {
   title: 'OddSpot',
@@ -43,7 +43,7 @@ export default async function RootLayout({
           <LoginModal />
           <BetModal />
           <EditProfileModal />
-          <CreateCommunityModal />
+          <CreateGroupModal />
           <div className='sidebarContainer'>
             <Navbar currentUser={currentUser} communities={communities} />
           </div>

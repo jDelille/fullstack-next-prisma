@@ -87,13 +87,12 @@ const Scoreboard: React.FC = () => {
   <div className={styles.scoreboard}>
    <div className={styles.sportSelector}>
     <Select placeholder="MLB" isClearable={false} options={sports} styles={customStyles} defaultValue={sports[0]} onChange={(value) => { setSport(value?.league as string); setLeague(value?.value as string) }} />
-    {/* <p>{date}</p> */}
    </div>
-   <div className={styles.games} ref={gameScrollerRef}>
+   <div className={styles.games} ref={gameScrollerRef} >
     {games?.map((game: any) => (
      <GameCard key={game.id} game={game} />
     ))}
-   </div>
+   </div >
    {games?.length > 2 && (
     <div className={styles.gameScroller}>
      <div className={styles.arrow} onClick={() => scrollContainer(-300)}><IoChevronBackOutline color='#abadb1' size={20} /></div>
@@ -101,7 +100,7 @@ const Scoreboard: React.FC = () => {
     </div>
    )}
 
-  </div>
+  </div >
  );
 }
 

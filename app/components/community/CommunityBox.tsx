@@ -1,6 +1,5 @@
 'use client'
 
-import Image from "next/image";
 import styles from './CommunityBox.module.scss';
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { useCallback } from "react";
@@ -9,7 +8,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FaUsers } from 'react-icons/fa'
-import { AiFillWechat } from 'react-icons/ai'
 import Button from "../button/Button";
 export type CommunityProps = {
   id: string;
@@ -70,7 +68,7 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
   return (
     <div key={community.id} className={styles.communityBox}>
       <div className={styles.communityImage}>
-        <Image src={community.photo} alt="communityImage" width={50} height={50} />
+        <p>{community.photo}</p>
       </div>
       <div className={styles.communityName}>
         <p className={styles.name}>{community.name} <p className={styles.members}><FaUsers />{community.memberIds.length}</p></p>

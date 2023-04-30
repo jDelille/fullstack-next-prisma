@@ -6,20 +6,21 @@
 	flex-direction: column;
 	gap: 10px;
 	label {
-		font-size: 12px;
+		font-size: 16px;
 		margin-top: 10px;
+		font-weight: 600;
 	}
 	.textarea {
 		width: 100%;
-		padding: 10px;
-		border-radius: 4px;
+		padding: 13px;
+		border-radius: 8px;
 		outline: none;
 		height: 45px;
-		border: 1px solid $lightGray;
-		background-color: $black;
-		color: $white;
+		border: none;
+		background-color: #373737;
+		color: #dadada;
 		resize: none;
-		height: 100px;
+		max-height: 100px;
 		:disabled {
 			cursor: not-allowed;
 		}

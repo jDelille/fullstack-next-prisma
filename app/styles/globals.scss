@@ -43,10 +43,11 @@ body {
 	position: fixed;
 	top: 0;
 	left: 280px;
-	width: 100vw;
-	z-index: 2;
+	width: calc(100vw - 297px);
+	z-index: 999;
 	@include breakpoint(xs) {
 		left: 0;
+		width: 100vw;
 	}
 }
 
