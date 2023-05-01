@@ -116,7 +116,7 @@ const BetModal = () => {
 
     setIsLoading(true);
 
-    data.communityId = null;
+    data.groupId = null;
 
     const payload = {
       ...data,
