@@ -13,6 +13,8 @@
 - Like / Follow / Subscribe
 - View live sports scores and odds (ESPN API)
 
+#### TODO: Check if user bets either won or lost. users will be given points based on the decimal value of their won bet. if users place bets in a group, that group will also gain points. Users and groups will be ordered by their win loss ratio and points.
+
 <hr />
 
 #### Sports included so far...
