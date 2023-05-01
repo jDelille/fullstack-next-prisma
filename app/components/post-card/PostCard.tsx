@@ -48,11 +48,11 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   };
 
   useEffect(() => {
-    if (post.Bet.status === 'open') {
+    if (post.Bet?.status === 'open') {
       onCheck(post.betId)
     }
 
-  }, [onCheck, post.Bet.status, post.betId])
+  }, [onCheck, post?.Bet?.status, post?.betId])
 
   return (
     <div

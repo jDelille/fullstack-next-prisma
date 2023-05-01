@@ -20,7 +20,7 @@ import OddsSelect from './odds-select/OddsSelect';
 import Input from '../../input/Input';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ConfidenceSelect from './confidence-select/ConfidenceSelect';
 enum STEPS {
   LEAGUE = 0,
@@ -32,6 +32,7 @@ enum STEPS {
 const BetModal = () => {
   const router = useRouter();
   const betModal = useBetModal();
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [matchId, setMatchId] = useState('');
@@ -56,6 +57,13 @@ const BetModal = () => {
 
   const league = watch('league');
   const match = watch('match');
+
+  const pathname = usePathname()
+  let id = ""
+  // Check if pathname includes "groups"
+  if (pathname && pathname.includes('groups')) {
+    id = pathname && pathname.split('/').pop() as string;
+  }
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -116,9 +124,7 @@ const BetModal = () => {
 
     setIsLoading(true);
 
-    console.log(league)
-
-    data.groupId = null;
+    data.groupId = id || null;
 
     const payload = {
       ...data,

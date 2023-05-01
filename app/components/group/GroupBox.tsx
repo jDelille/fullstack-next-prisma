@@ -69,7 +69,7 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
         <p>{group.photo}</p>
       </div>
       <div className={styles.groupName}>
-        <p className={styles.name}>{group.name} <p className={styles.members}><FaUsers />{group.memberIds.length}</p></p>
+        <p className={styles.name}>{group.name} <span className={styles.members}><FaUsers />{group.memberIds.length}</span></p>
         <p className={styles.description}>{group.description}</p>
       </div>
       <div className={styles.groupInfo}>

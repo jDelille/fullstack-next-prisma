@@ -41,7 +41,7 @@ const Group = async ({ params }: { params: IParams }) => {
     </div>
    </div>
    <div className={styles.body}>
-    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup userPhoto={currentUser?.photo as string} groupId={group?.id as string} />
+    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} />
     <PostFeed currentUser={currentUser} posts={posts} />
    </div>
   </div>

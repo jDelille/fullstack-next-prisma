@@ -1,3 +1,4 @@
+import getCurrentUser from '@/app/actions/getCurrentUser';
 import prisma from '@/app/libs/prismadb';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
@@ -8,7 +9,7 @@ interface IParams {
 
 export async function POST(request: Request, { params }: { params: IParams }) {
 	const { betId } = params;
-
+	const currentUser = await getCurrentUser();
 	const bet = await prisma.bet.findUnique({
 		where: {
 			id: betId,
@@ -104,6 +105,34 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				status: result,
 			},
 		});
-		return NextResponse.json(updatedBet);
+
+		if (result !== 'loss') {
+			const positiveOdds = (bet.odds + 100) / 100;
+			const negativeOdds = (100 - bet.odds) / 100;
+			const currentPoints = currentUser?.points || 0;
+
+			let decimalOdds = 0;
+			if (bet.odds > 0) {
+				decimalOdds = parseFloat(
+					((currentPoints as number) + positiveOdds).toFixed(2)
+				);
+			} else {
+				decimalOdds = parseFloat(
+					((currentPoints as number) + negativeOdds).toFixed(2)
+				);
+			}
+
+			console.log(decimalOdds);
+
+			const updatedUser = await prisma.user.update({
+				where: {
+					id: currentUser?.id,
+				},
+				data: {
+					points: decimalOdds,
+				},
+			});
+			return NextResponse.json({ updatedBet, updatedUser });
+		}
 	}
 }
