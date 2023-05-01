@@ -82,6 +82,10 @@ model Bet {
   payout     Float?
   confidence String
   Post       Post[]
+  gameId     Int
+  homeId     Int
+  awayId     Int
+  sport      String
 }
 
 model Group {

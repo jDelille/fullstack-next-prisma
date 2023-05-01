@@ -116,11 +116,15 @@ const BetModal = () => {
 
     setIsLoading(true);
 
+    console.log(league)
+
     data.groupId = null;
 
     const payload = {
       ...data,
-      payout: payout
+      payout: payout,
+      league: league,
+
     }
 
     axios
@@ -207,6 +211,7 @@ const BetModal = () => {
       <div>
         <Heading title='Choose your bet' subTitle={match?.name} />
         <div className={styles.chooseOdds}>
+
           <OddsSelect
             id='odds'
             required
@@ -215,6 +220,8 @@ const BetModal = () => {
             name={match?.name}
             homeTeam={match?.homeTeam}
             awayTeam={match?.awayTeam}
+            homeId={match?.homeId}
+            awayId={match?.awayId}
             leagueName={leagueName}
             onClick={(value) => setCustomValue('odds', value)}
           />

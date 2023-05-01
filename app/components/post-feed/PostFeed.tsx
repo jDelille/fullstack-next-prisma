@@ -11,6 +11,8 @@ type PostFeedProps = {
 
 const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser }) => {
 
+
+
  return (
   <div className={styles.postFeed}>
    {posts.map((post: any) => (

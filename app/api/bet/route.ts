@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 			league,
 			homeTeam: match.homeTeam,
 			awayTeam: match.awayTeam,
-			status: match.status,
+			status: 'open',
 			odds: odds.odds,
 			type: odds.type,
 			favorite: odds.favorite,
@@ -29,6 +29,10 @@ export async function POST(request: Request) {
 			location: odds.location,
 			name: match.name,
 			payout: payout,
+			homeId: parseInt(odds.homeId),
+			awayId: parseInt(odds.awayId),
+			gameId: parseInt(odds.gameId),
+			sport: odds.sport,
 		},
 	});
 

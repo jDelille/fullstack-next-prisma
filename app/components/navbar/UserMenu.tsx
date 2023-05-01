@@ -56,7 +56,6 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
  const pathname = usePathname()
  const linkStyle = pathname === '/notifications' ? styles.activeLink : styles.Link
 
- console.log(groups)
  return (
   <div className={styles.userMenu}>
    <div className={styles.closeMenu} onClick={() => setIsMenuOpen && setIsMenuOpen(false)}>

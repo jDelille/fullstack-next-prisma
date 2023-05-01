@@ -8,8 +8,9 @@ import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardComment from './post-card-comment/PostCardComment';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import CommentFeed from '../comment-feed/CommentFeed';
+import axios from 'axios';
 
 type PostCardProps = {
   post: any;
@@ -24,6 +25,16 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
     setIsComment(!isComment)
   }, [isComment])
 
+  const onCheck = useCallback((id: string) => {
+    axios.post(`/api/checkBet/${id}`)
+      .then(() => {
+        router.refresh()
+      })
+      .catch(() => {
+        console.log('something went wrong')
+      })
+  }, [router])
+
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {
       return <div className={styles.ezBadge}>{post.Bet?.confidence}</div>;
@@ -35,6 +46,13 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       return <div className={styles.riskyBadge}>{post.Bet?.confidence}</div>;
     }
   };
+
+  useEffect(() => {
+    if (post.Bet.status === 'open') {
+      onCheck(post.betId)
+    }
+
+  }, [onCheck, post.Bet.status, post.betId])
 
   return (
     <div

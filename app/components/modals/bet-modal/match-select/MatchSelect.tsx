@@ -78,7 +78,7 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
           }
           id={id}
           {...register(id, { required })}
-          onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail, homeTeam: match.competitions[0].competitors[0].team.displayName, awayTeam: match.competitions[0].competitors[1].team.displayName })}>
+          onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail, homeTeam: match.competitions[0].competitors[0].team.displayName, awayTeam: match.competitions[0].competitors[1].team.displayName, homeId: match.competitions[0].competitors[0].team.id, awayId: match.competitions[0].competitors[1].team.id })} >
           {match.name}
         </div>
       ))}

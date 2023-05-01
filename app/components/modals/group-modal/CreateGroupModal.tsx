@@ -70,8 +70,6 @@ const CreateGroupModal = () => {
       });
   }
 
-  console.log(step)
-
 
   let bodyContent = (
     <div className={styles.bodyContent}>

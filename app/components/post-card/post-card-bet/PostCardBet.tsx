@@ -17,8 +17,11 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 
 	return (
 		<div className={styles.postBet}>
+			<p>{bet.status}</p>
 			<div className={styles.postBetHeader}>
 				<p>{bet.name}</p>
+
+
 
 				<p className={styles.betOdds}>{bet.odds}</p>
 			</div>
