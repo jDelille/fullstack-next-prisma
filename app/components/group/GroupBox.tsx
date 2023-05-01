@@ -63,6 +63,8 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
 
   const hasJoined = group.memberIds.includes(currentUserId);
 
+  console.log(group.memberIds)
+
   return (
     <div key={group.id} className={styles.groupBox}>
       <div className={styles.groupImage}>

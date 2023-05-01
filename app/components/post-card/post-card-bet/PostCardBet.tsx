@@ -15,14 +15,25 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 		}
 	};
 
+	const winOrLossBadge = () => {
+		if (bet.status === 'win') {
+			return <div className={styles.winBadge}>Win</div>
+		} else if (bet.status === "loss") {
+			return <div className={styles.lossBadge}>Loss</div>
+		} else if (bet.status === 'open') {
+			return <div className={styles.openBadge}>Open</div>
+
+		}
+	}
+
 	return (
 		<div className={styles.postBet}>
-			<p>{bet.status}</p>
+
+			<div className={styles.postBetStatus}>
+				{winOrLossBadge()}
+			</div>
 			<div className={styles.postBetHeader}>
 				<p>{bet.name}</p>
-
-
-
 				<p className={styles.betOdds}>{bet.odds}</p>
 			</div>
 			<div className={styles.postBetBody}>

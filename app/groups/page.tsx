@@ -2,6 +2,7 @@ import getGroups from '../actions/getGroups';
 import styles from './Page.module.scss';
 import GroupBox from '../components/group/GroupBox';
 import getCurrentUser from '../actions/getCurrentUser';
+import getUserById from '../actions/getUserById';
 
 interface IParams {
  groupId?: string;
@@ -12,6 +13,7 @@ const Groups = async ({ params }: { params: IParams }) => {
 
  const groups = await getGroups();
  const currentUser = await getCurrentUser();
+
 
  return (
   <div className={styles.page}>

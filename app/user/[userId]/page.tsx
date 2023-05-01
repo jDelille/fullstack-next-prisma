@@ -9,6 +9,8 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import { BsCalendar2WeekFill } from 'react-icons/bs'
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
+import getGroupsByUserId from '@/app/actions/getGroupsByUserId';
+import Image from 'next/image';
 interface IParams {
  userId?: string;
 }
@@ -20,9 +22,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const currentUser = await getCurrentUser()
  let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
 
-
-
-
+ const groups = await getGroupsByUserId(params)
 
  return (
   <div className={styles.page}>
@@ -42,6 +42,11 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     <div className={styles.middle}>
      <div className={styles.bio}>
       <p>{user?.bio}</p>
+      <div className={styles.points}>
+       <Image src={'/images/star.png'} alt='star' width={15} height={15} />
+       <span>{user?.points || 0}</span>
+
+      </div>
       <div className={styles.joined}>
        <BsCalendar2WeekFill />
        <p>joined {joinedDate} ago</p>
@@ -59,6 +64,9 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
      </div>
      <div className={styles.userInfo}>
       <p>Bets</p> <p>{user?.totalBets}</p>
+     </div>
+     <div className={styles.userInfo}>
+      <p>Groups</p> <p>{groups.length || 0}</p>
      </div>
     </div>
    </div>
