@@ -4,9 +4,8 @@ import { useRouter } from 'next/navigation';
 import styles from './MobileNavbar.module.scss'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from 'react';
-import MobileMenu from './mobile-menu/MobileMenu';
 import { SafeUser } from '@/app/types';
-import { Community } from '@prisma/client';
+import { Group } from '@prisma/client';
 import UserMenu from '../UserMenu';
 
 type MobileNavbarProps = {

@@ -35,8 +35,8 @@ const CreateGroupModal = () => {
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      communityName: '',
-      communityBio: '',
+      groupName: '',
+      groupBio: '',
     },
   });
 

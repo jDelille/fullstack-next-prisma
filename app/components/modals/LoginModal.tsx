@@ -55,7 +55,7 @@ const LoginModal = () => {
     setIsLoading(true);
 
     signIn('credentials', {
-      email: 'sloth@gmail.com',
+      email: 'buzz@gmail.com',
       password: 'password',
       redirect: false,
     }).then((callback) => {
