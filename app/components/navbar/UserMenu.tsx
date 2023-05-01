@@ -9,23 +9,23 @@ import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
 import { FaUserAlt, FaUsers } from 'react-icons/fa'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdAddCircle, MdNotifications } from 'react-icons/md'
-import useCreateCommunityModal from '@/app/hooks/useCreateCommunityModal';
-import Image from 'next/image';
 import MenuItem from './MenuItem';
+import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
+import { Group } from '@prisma/client';
 
 
 type UserMenu = {
  currentUser?: SafeUser | null
- communities?: any
+ groups?: Group[] | null
  setIsMenuOpen?: (value: boolean) => void;
 }
 
 
 
-const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen }) => {
+const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) => {
  const loginModal = useLoginModal();
  const router = useRouter();
- const createCommunityModal = useCreateCommunityModal();
+ const createGroupModal = useCreateGroupModal();
 
  const navlinks = [
   {
@@ -50,13 +50,13 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen 
    id: 3,
    icon: FaUsers,
    label: 'Groups',
-   href: `/community`
+   href: `/groups`
   },
  ]
  const pathname = usePathname()
  const linkStyle = pathname === '/notifications' ? styles.activeLink : styles.Link
 
-
+ console.log(groups)
  return (
   <div className={styles.userMenu}>
    <div className={styles.closeMenu} onClick={() => setIsMenuOpen && setIsMenuOpen(false)}>
@@ -88,20 +88,20 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, communities, setIsMenuOpen 
      </>
     )}
    </div>
-   <div className={styles.communities}>
-    <p className={styles.label}>Groups<span>{communities.length}</span></p>
-    <div className={styles.createButton} onClick={currentUser ? createCommunityModal.onOpen : loginModal.onOpen}>
+   <div className={styles.groups}>
+    <p className={styles.label}>Groups<span>{groups?.length}</span></p>
+    <div className={styles.createButton} onClick={currentUser ? createGroupModal.onOpen : loginModal.onOpen}>
      <MdAddCircle size={20} color='#20b46a' />
      <p >Create a group</p>
     </div>
-    {communities.map((community: any) => (
-     <div key={community.id} className={styles.community} onClick={() => { router.push(`/community/${community.id}`) }}>
+    {groups?.map((group: any) => (
+     <div key={group.id} className={styles.group} onClick={() => { router.push(`/groups/${group.id}`) }}>
       <div className={styles.image}>
-       <p>{community.photo}</p>
+       <p>{group.photo}</p>
       </div>
       <div className={styles.name}>
-       <p>{community.name}</p>
-       <p className={styles.members}>{community.memberIds.length} members</p>
+       <p>{group.name}</p>
+       <p className={styles.members}>{group.memberIds.length} members</p>
       </div>
      </div>
     ))}

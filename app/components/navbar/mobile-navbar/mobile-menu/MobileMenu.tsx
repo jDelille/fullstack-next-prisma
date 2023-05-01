@@ -5,18 +5,18 @@ import styles from './MobileMenu.module.scss';
 import { FaUserAlt, FaUsers } from 'react-icons/fa';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import { SafeUser } from '@/app/types';
-import { Community } from '@prisma/client';
 import { usePathname } from 'next/navigation';
 import MenuItem from '../../MenuItem';
+import { Group } from '@prisma/client';
 
 
 type MobileMenuProps = {
  currentUser: SafeUser | null;
- communities: Community[] | null
+ groups: Group[] | null
 
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ currentUser, communities }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ currentUser, groups }) => {
 
  const pathname = usePathname()
  const linkStyle = pathname === '/notifications' ? styles.activeLink : styles.Link
@@ -43,8 +43,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentUser, communities }) => 
   {
    id: 3,
    icon: FaUsers,
-   label: 'Communities',
-   href: `/community`
+   label: 'Groups',
+   href: `/group`
   },
  ]
 

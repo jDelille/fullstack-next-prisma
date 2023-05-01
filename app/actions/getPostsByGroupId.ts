@@ -1,14 +1,14 @@
 import prisma from '@/app/libs/prismadb';
 
 interface IParams {
-	communityId?: string;
+	groupId?: string;
 }
-export default async function getPostsByCommunityId(params: IParams) {
+export default async function getPostsByGroupId(params: IParams) {
 	try {
-		const { communityId } = params;
+		const { groupId } = params;
 		const posts = await prisma.post.findMany({
 			where: {
-				communityId: communityId,
+				groupId: groupId,
 			},
 			orderBy: { createdAt: 'desc' },
 			include: {

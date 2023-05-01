@@ -10,7 +10,7 @@ export default async function getPostsByUserId(params: IParams) {
 			where: {
 				userId: userId,
 				NOT: {
-					communityId: {
+					groupId: {
 						not: null,
 					},
 				},

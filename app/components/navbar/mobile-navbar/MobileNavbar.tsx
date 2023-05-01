@@ -11,10 +11,10 @@ import UserMenu from '../UserMenu';
 
 type MobileNavbarProps = {
  currentUser: SafeUser | null;
- communities: Community[] | null
+ groups: Group[] | null
 }
 
-const MobileNavbar: React.FC<MobileNavbarProps> = ({ currentUser, communities }) => {
+const MobileNavbar: React.FC<MobileNavbarProps> = ({ currentUser, groups }) => {
  const router = useRouter()
  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -26,7 +26,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ currentUser, communities })
    {/* <p onClick={() => router.push('/')}>Home</p> */}
    {isMenuOpen && (
     <div className={styles.userMenu}>
-     <UserMenu currentUser={currentUser} communities={communities} setIsMenuOpen={setIsMenuOpen} />
+     <UserMenu currentUser={currentUser} groups={groups} setIsMenuOpen={setIsMenuOpen} />
     </div>
    )}
   </div>

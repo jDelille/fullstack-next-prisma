@@ -10,17 +10,18 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json();
-	const { photo, communityName, communityBio, visibility } = body;
+	const { photo, groupName, groupBio, visibility } = body;
 
-	const newCommunity = await prisma.community.create({
+	const newGroup = await prisma.group.create({
 		data: {
 			adminId: currentUser.id,
-			name: communityName,
-			description: communityBio,
+			name: groupName,
+			description: groupBio,
 			photo: photo,
 			isPrivate: visibility,
+			memberIds: [currentUser.id],
 		},
 	});
 
-	return NextResponse.json(newCommunity);
+	return NextResponse.json(newGroup);
 }

@@ -11,22 +11,22 @@ datasource db {
 }
 
 model Post {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   body          String?
   photo         String?
-  userId        String     @db.ObjectId
-  user          User       @relation(fields: [userId], references: [id])
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  Bet           Bet?       @relation(fields: [betId], references: [id])
-  betId         String?    @db.ObjectId
-  likedIds      String[]   @db.ObjectId
-  commentedIds  String[]   @db.ObjectId
+  userId        String    @db.ObjectId
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Bet           Bet?      @relation(fields: [betId], references: [id])
+  betId         String?   @db.ObjectId
+  likedIds      String[]  @db.ObjectId
+  commentedIds  String[]  @db.ObjectId
   comments      Comment[]
-  taggedUserIds String[]   @db.ObjectId
-  isPinned      Boolean?   @default(false)
-  Community     Community? @relation(fields: [communityId], references: [id])
-  communityId   String?    @db.ObjectId
+  taggedUserIds String[]  @db.ObjectId
+  isPinned      Boolean?  @default(false)
+  Group         Group?    @relation(fields: [groupId], references: [id])
+  groupId       String?   @db.ObjectId
 }
 
 model Comment {
@@ -44,23 +44,25 @@ model Comment {
 }
 
 model User {
-  id              String         @id @default(auto()) @map("_id") @db.ObjectId
-  email           String         @unique
-  name            String
-  username        String
-  bio             String?
-  password        String
-  photo           String?
-  Post            Post[]
-  totalBets       Int            @default(0)
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  emailVerified   DateTime?
-  followingIds    String[]       @db.ObjectId
-  isVerified      Boolean        @default(false)
-  communityId     String?        @db.ObjectId
-  notification    Notification[]
-  hasNotification Boolean?
+  id                  String         @id @default(auto()) @map("_id") @db.ObjectId
+  email               String         @unique
+  name                String
+  username            String
+  bio                 String?
+  password            String
+  photo               String?
+  Post                Post[]
+  totalBets           Int            @default(0)
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  emailVerified       DateTime?
+  followingIds        String[]       @db.ObjectId
+  isVerified          Boolean        @default(false)
+  groupIds            String[]       @db.ObjectId
+  notification        Notification[]
+  hasNotification     Boolean?
+  betNotificationIds  String[]
+  postNotificationIds String[]
 }
 
 model Bet {
@@ -82,15 +84,17 @@ model Bet {
   Post       Post[]
 }
 
-model Community {
+model Group {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  memberIds   String[] @db.ObjectId
   name        String
   description String
   photo       String
   isPrivate   Boolean  @default(false)
+  betFilters  String[]
   Post        Post[]
   adminId     String   @db.ObjectId
+  memberIds   String[] @db.ObjectId
+  memberLimit Int?
 }
 
 model Notification {

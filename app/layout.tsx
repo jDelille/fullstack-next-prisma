@@ -1,6 +1,6 @@
 
-import { Community } from '@prisma/client'
-import getCommunitiesByUserId from './actions/getCommunitiesByUserId'
+import { Group } from '@prisma/client'
+import getGroupsByUserId from './actions/getGroupsByUserId'
 import getCurrentUser from './actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import Footer from './components/footer/Footer'
@@ -13,7 +13,7 @@ import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
 import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
-import CreateGroupModal from './components/modals/CreateGroupModal'
+import CreateGroupModal from './components/modals/group-modal/CreateGroupModal'
 
 export const metadata = {
   title: 'OddSpot',
@@ -28,9 +28,9 @@ export default async function RootLayout({
 
   const currentUser = await getCurrentUser();
 
-  let communities: Community[] = [];
+  let groups: Group[] = [];
   if (currentUser) {
-    communities = await getCommunitiesByUserId({ userId: currentUser.id });
+    groups = await getGroupsByUserId({ userId: currentUser.id });
   }
 
   return (
@@ -45,14 +45,14 @@ export default async function RootLayout({
           <EditProfileModal />
           <CreateGroupModal />
           <div className='sidebarContainer'>
-            <Navbar currentUser={currentUser} communities={communities} />
+            <Navbar currentUser={currentUser} groups={groups} />
           </div>
 
           <div className="gamebarContainer">
             <Scoreboard />
           </div>
           <div className='mobileNavbarContainer'>
-            <MobileNavbar currentUser={currentUser} communities={communities} />
+            <MobileNavbar currentUser={currentUser} groups={groups} />
           </div>
           <div className='rightSidebar'>
           </div>

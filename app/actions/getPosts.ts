@@ -8,7 +8,7 @@ export default async function getPosts() {
 			},
 			where: {
 				NOT: {
-					communityId: {
+					groupId: {
 						not: null,
 					},
 				},

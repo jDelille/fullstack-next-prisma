@@ -3,7 +3,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import prisma from '@/app/libs/prismadb';
 
 interface IParams {
-	communityId?: string;
+	groupId?: string;
 }
 
 export async function POST(request: Request, { params }: { params: IParams }) {
@@ -13,35 +13,35 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		return NextResponse.error();
 	}
 
-	const { communityId } = params;
+	const { groupId } = params;
 
-	if (!communityId || typeof communityId !== 'string') {
+	if (!groupId || typeof groupId !== 'string') {
 		throw new Error('Invalid Id');
 	}
 
-	const community = await prisma.community.findUnique({
+	const group = await prisma.group.findUnique({
 		where: {
-			id: communityId,
+			id: groupId,
 		},
 	});
 
-	if (!community) {
+	if (!group) {
 		throw new Error('Invalid Id');
 	}
 
-	let updatedMembersIds = [...(community.memberIds || [])];
+	let updatedMembersIds = [...(group.memberIds || [])];
 	updatedMembersIds.push(currentUser?.id);
 
-	const updatedCommunity = await prisma.community.update({
+	const updatedGroup = await prisma.group.update({
 		where: {
-			id: communityId,
+			id: groupId,
 		},
 		data: {
 			memberIds: updatedMembersIds,
 		},
 	});
 
-	return NextResponse.json(updatedCommunity);
+	return NextResponse.json(updatedGroup);
 }
 
 export async function DELETE(
@@ -54,36 +54,36 @@ export async function DELETE(
 		return NextResponse.error();
 	}
 
-	const { communityId } = params;
+	const { groupId } = params;
 
-	if (!communityId || typeof communityId !== 'string') {
+	if (!groupId || typeof groupId !== 'string') {
 		throw new Error('Invalid Id');
 	}
 
-	const community = await prisma.community.findUnique({
+	const group = await prisma.group.findUnique({
 		where: {
-			id: communityId,
+			id: groupId,
 		},
 	});
 
-	if (!community) {
+	if (!group) {
 		throw new Error('Invalid Id');
 	}
 
-	let updatedMembersIds = [...(community.memberIds || [])];
+	let updatedMembersIds = [...(group.memberIds || [])];
 
 	updatedMembersIds = updatedMembersIds.filter(
 		(memberId) => memberId !== currentUser?.id
 	);
 
-	const updatedCommunity = await prisma.community.update({
+	const updatedGroup = await prisma.group.update({
 		where: {
-			id: communityId,
+			id: groupId,
 		},
 		data: {
 			memberIds: updatedMembersIds,
 		},
 	});
 
-	return NextResponse.json(updatedCommunity);
+	return NextResponse.json(updatedGroup);
 }

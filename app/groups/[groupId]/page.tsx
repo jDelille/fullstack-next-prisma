@@ -1,4 +1,4 @@
-import getCommunityById from '@/app/actions/getCommunityById';
+import getgroupById from '@/app/actions/getGroupById';
 import styles from './Page.module.scss';
 import getUserById from '@/app/actions/getUserById';
 import { SafeUser } from '@/app/types';
@@ -6,46 +6,46 @@ import ProfileMenu from '@/app/components/menu/ProfileMenu';
 import CreatePostForm from '@/app/components/create-post/create-post-form/CreatePostForm';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import PostFeed from '@/app/components/post-feed/PostFeed';
-import getPostsByCommunityId from '@/app/actions/getPostsByCommunityId';
-import { usePathname } from 'next/navigation';
+import getGroupById from '@/app/actions/getGroupById';
+import getPostsByGroupId from '@/app/actions/getPostsByGroupId';
 
 interface IParams {
- communityId?: string;
+ groupId?: string;
 }
 
 
-const Community = async ({ params }: { params: IParams }) => {
+const Group = async ({ params }: { params: IParams }) => {
 
- const community = await getCommunityById(params)
+ const group = await getGroupById(params)
  const currentUser = await getCurrentUser();
 
 
  let admin: SafeUser | null = null;
  let posts: any | null = null
- if (community) {
-  admin = await getUserById({ userId: community.adminId });
-  posts = await getPostsByCommunityId({ communityId: community.id })
+ if (group) {
+  admin = await getUserById({ userId: group.adminId });
+  posts = await getPostsByGroupId({ groupId: group.id })
  }
 
  return (
   <div className={styles.page}>
    <div className={styles.header}>
     <div className={styles.name}>
-     <h1>{community?.name}</h1>
+     <h1>{group?.name}</h1>
     </div>
-    <p className={styles.description}>{community?.description}</p>
+    <p className={styles.description}>{group?.description}</p>
     <p className={styles.admin}>Created by {admin?.name}</p>
-    <p className={styles.members}> Members {community?.memberIds.length}</p>
+    <p className={styles.members}> Members {group?.memberIds.length}</p>
     <div className={styles.menu}>
-     <ProfileMenu isCommunityPage />
+     <ProfileMenu isGroupPage />
     </div>
    </div>
    <div className={styles.body}>
-    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isCommunity userPhoto={currentUser?.photo as string} communityId={community?.id as string} />
+    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup userPhoto={currentUser?.photo as string} groupId={group?.id as string} />
     <PostFeed currentUser={currentUser} posts={posts} />
    </div>
   </div>
  );
 }
 
-export default Community;
+export default Group;

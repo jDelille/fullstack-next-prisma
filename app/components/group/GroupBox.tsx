@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './CommunityBox.module.scss';
+import styles from './GroupBox.module.scss';
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { useCallback } from "react";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FaUsers } from 'react-icons/fa'
 import Button from "../button/Button";
-export type CommunityProps = {
+export type GroupProps = {
   id: string;
   name: string,
   description: string,
@@ -18,15 +18,13 @@ export type CommunityProps = {
   isPrivate: boolean;
 }
 
-type CommunityBoxProps = {
-  community: CommunityProps
+type GroupBoxProps = {
+  group: GroupProps
   currentUserId: string;
 }
 
 
-
-
-const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId }) => {
+const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -37,9 +35,9 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
     }
 
     axios
-      .post(`/api/community/${id}`)
+      .post(`/api/group/${id}`)
       .then(() => {
-        toast.success('Community joined')
+        toast.success('Group joined')
         router.refresh()
       })
       .catch(() => {
@@ -53,9 +51,9 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
     }
 
     axios
-      .delete(`/api/community/${id}`)
+      .delete(`/api/group/${id}`)
       .then(() => {
-        toast.success('You left community')
+        toast.success('You left group')
         router.refresh()
       })
       .catch(() => {
@@ -63,25 +61,25 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
       })
   }, [currentUserId, loginModal, router])
 
-  const hasJoined = community.memberIds.includes(currentUserId);
+  const hasJoined = group.memberIds.includes(currentUserId);
 
   return (
-    <div key={community.id} className={styles.communityBox}>
-      <div className={styles.communityImage}>
-        <p>{community.photo}</p>
+    <div key={group.id} className={styles.groupBox}>
+      <div className={styles.groupImage}>
+        <p>{group.photo}</p>
       </div>
-      <div className={styles.communityName}>
-        <p className={styles.name}>{community.name} <p className={styles.members}><FaUsers />{community.memberIds.length}</p></p>
-        <p className={styles.description}>{community.description}</p>
+      <div className={styles.groupName}>
+        <p className={styles.name}>{group.name} <p className={styles.members}><FaUsers />{group.memberIds.length}</p></p>
+        <p className={styles.description}>{group.description}</p>
       </div>
-      <div className={styles.communityInfo}>
+      <div className={styles.groupInfo}>
         {hasJoined ? (
-          <Button label='Leave' onClick={() => onLeave(community?.id)} />
+          <Button label='Leave' onClick={() => onLeave(group?.id)} />
         ) : (
-          <Button label={community.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(community?.id)} />
+          <Button label={group.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(group?.id)} />
         )}
         <div className={styles.privacy}>
-          {community.isPrivate ? (
+          {group.isPrivate ? (
             <>
               <AiFillLock size={16} />
               <p> Private </p>
@@ -99,4 +97,4 @@ const CommunityBox: React.FC<CommunityBoxProps> = ({ community, currentUserId })
   );
 }
 
-export default CommunityBox;
+export default GroupBox;

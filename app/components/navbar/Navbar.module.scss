@@ -61,7 +61,7 @@
 		}
 	}
 	.pages,
-	.communities,
+	.groups,
 	.events {
 		padding: 1rem 0;
 		border-bottom: 1px solid $lightGray;
@@ -123,8 +123,8 @@
 		background-color: $lightGray;
 	}
 
-	.communities {
-		.community {
+	.groups {
+		.group {
 			@include button();
 			border: none;
 			font-size: 16px;
@@ -136,7 +136,7 @@
 			align-items: center;
 			margin-top: 1rem;
 			.image {
-				background-color: #4d4d4d;
+				background-color: $lightGray;
 				border-radius: 6px;
 				padding: 4px;
 				p {
@@ -163,7 +163,5 @@
 		border-top: 1px solid $lightGray;
 		display: flex;
 		align-items: center;
-		button {
-		}
 	}
 }
