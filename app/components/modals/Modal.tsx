@@ -19,6 +19,8 @@ type ModalProps = {
  icon?: IconType;
  onDemoSubmit?: () => void | undefined;
  isDemoLogin?: boolean;
+ step?: number;
+ setStep?: (value: number) => void;
 
 };
 
@@ -35,7 +37,9 @@ const Modal: React.FC<ModalProps> = ({
  secondaryAction,
  secondaryActionLabel,
  onDemoSubmit,
- isDemoLogin
+ isDemoLogin,
+ step,
+ setStep
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -53,6 +57,12 @@ const Modal: React.FC<ModalProps> = ({
    onClose();
   }, 300);
  }, [disabled, onClose]);
+
+ const backToSettings = () => {
+  if (setStep) {
+   setStep(0)
+  }
+ }
 
  const handleSubmit = useCallback(() => {
   if (disabled) {
@@ -79,10 +89,18 @@ const Modal: React.FC<ModalProps> = ({
     <div className={showModal ? styles.modal : styles.hideModal}>
      {/* content */}
      <div className={styles.modalContent}>
-      <div className={styles.modalHeader}>
-       {Icon && <Icon size={30} className={styles.modalIcon} onClick={handleClose} />}
-       {title}
-      </div>
+      {step !== 3 ? (
+       <div className={styles.modalHeader}>
+        {Icon && <Icon size={30} className={styles.modalIcon} onClick={handleClose} />}
+        {title}
+       </div>
+      ) : (
+       <div className={styles.modalHeader}>
+        {Icon && <Icon size={30} className={styles.modalIcon} onClick={backToSettings} />}
+        Edit Filters
+       </div>
+      )}
+
       <div className={styles.modalBody}>
        {body}
       </div>
@@ -94,11 +112,13 @@ const Modal: React.FC<ModalProps> = ({
          onClick={handleSecondaryAction}
         />
        )}
-       <Button
-        label={actionLabel}
-        onClick={handleSubmit}
-        disabled={disabled}
-       />
+       {step !== 3 && (
+        <Button
+         label={actionLabel}
+         onClick={handleSubmit}
+         disabled={disabled}
+        />
+       )}
       </div>
       {isDemoLogin && onDemoSubmit && (
        <div className={styles.demoLogin}>

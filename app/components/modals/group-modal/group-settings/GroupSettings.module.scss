@@ -1,0 +1,37 @@
+.setting {
+	margin-top: 1rem;
+	text-transform: none;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		.name {
+		}
+		.description {
+			font-size: 12px;
+			color: #c5c5c5;
+			font-weight: 400;
+			width: 100%;
+		}
+	}
+	input {
+		max-width: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		font-weight: 600;
+	}
+	.toggle {
+		width: fit-content;
+		margin-left: auto;
+	}
+}

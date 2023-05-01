@@ -9,15 +9,18 @@ import styles from '../Modal.module.scss';
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
 import useCreateGroupModal from "@/app/hooks/useCreateGroupModal"
-import GroupSettings from "./GroupSettings"
+import GroupSettings from "./group-settings/GroupSettings"
 import Tabs from "./Tabs"
 import MySettings from "./MySettings"
 import Members from "./Members"
+import Toggle from "react-toggle"
+import SportFilter from "./group-settings/SportFilter"
 
 enum STEPS {
   GROUPSETTINGS = 0,
   MYSETTINGS = 1,
-  MEMBERS = 2
+  MEMBERS = 2,
+  FILTERS = 3
 }
 
 const CreateGroupModal = () => {
@@ -73,7 +76,7 @@ const CreateGroupModal = () => {
   let bodyContent = (
     <div className={styles.bodyContent}>
       <Tabs setStep={setStep} step={step} />
-      <GroupSettings isLoading={isLoading} register={register} errors={errors} setCustomValue={setCustomValue} />
+      <GroupSettings isLoading={isLoading} register={register} errors={errors} setCustomValue={setCustomValue} setStep={setStep} />
     </div>
   )
 
@@ -95,6 +98,14 @@ const CreateGroupModal = () => {
     )
   }
 
+  if (step === STEPS.FILTERS) {
+    bodyContent = (
+      <div className={styles.bodyContent}>
+        <SportFilter setCustomValue={setCustomValue} />
+      </div>
+    )
+  }
+
   return (
     <Modal
       disabled={isLoading}
@@ -105,6 +116,8 @@ const CreateGroupModal = () => {
       icon={MdOutlineKeyboardBackspace}
       body={bodyContent}
       onSubmit={handleSubmit(onSubmit)}
+      step={step}
+      setStep={setStep}
     />
   )
 }

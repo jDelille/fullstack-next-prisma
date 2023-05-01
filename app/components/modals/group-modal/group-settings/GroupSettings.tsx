@@ -2,12 +2,13 @@
 import Toggle from 'react-toggle'
 import EmojiPicker, { EmojiStyle } from 'emoji-picker-react';
 import { Theme } from 'emoji-picker-react';
-import Input from "../../input/Input"
-import styles from '../Modal.module.scss';
+import Input from "../../../input/Input"
+import styles from '../../Modal.module.scss';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import "react-toggle/style.css"
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { AiOutlineRight } from 'react-icons/ai';
 
 type GroupSettingsProps = {
   isLoading?: boolean;
@@ -15,10 +16,11 @@ type GroupSettingsProps = {
   errors: FieldErrors;
   required?: boolean;
   setCustomValue: (id: string, value: any) => void;
+  setStep: (value: number) => void
 }
 
 
-const GroupSettings: React.FC<GroupSettingsProps> = ({ isLoading, register, errors, required, setCustomValue }) => {
+const GroupSettings: React.FC<GroupSettingsProps> = ({ isLoading, register, errors, required, setCustomValue, setStep }) => {
 
   const [privacy, setPrivacy] = useState(false)
   const [emoji, setEmoji] = useState('');
@@ -96,15 +98,13 @@ const GroupSettings: React.FC<GroupSettingsProps> = ({ isLoading, register, erro
           </div>
 
         </div>
-        <div className={styles.setting}>
+        <div className={styles.setting} style={{ cursor: 'pointer' }} onClick={() => setStep(3)}>
           <div className={styles.text}>
             <p className={styles.name}>Bet Filters (All Selected)</p>
             <p className={styles.description}>Select the sports or leagues you want shared with this group. </p>
           </div>
           <div className={styles.toggle}>
-            <Toggle
-              defaultChecked={privacy as boolean}
-              onChange={() => setPrivacy(!privacy)} icons={false} />
+            <AiOutlineRight size={25} />
           </div>
         </div>
       </div>
