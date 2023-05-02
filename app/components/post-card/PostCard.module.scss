@@ -13,13 +13,15 @@
 		}
 	}
 	.postPhoto {
-		max-height: 300px;
+		max-height: 400px;
 		position: relative;
 		border: 1px solid $lightGray;
+
 		img {
-			max-height: 300px;
+			max-height: 400px;
 			position: relative !important;
 			width: 100%;
+			object-fit: scale-down;
 		}
 	}
 	.badges {

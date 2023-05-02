@@ -1,52 +1,23 @@
-@import '../../styles/breakpoints';
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
 
 .overlay {
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	overflow-x: hidden;
-	overflow-y: auto;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 99999999;
-	outline: none;
-	background-color: rgba(3, 3, 3, 0.7);
+	@include overlay();
 }
 
 .modal,
 .hideModal {
-	position: fixed;
-	width: 30%;
-	max-width: 450px;
-	height: fit-content;
-	padding: 1rem;
-	border-radius: 12px;
-	background-color: #242424;
-	color: $white;
-	transition: 300ms ease-in-out;
-	opacity: 1;
-	@include breakpoint(md) {
-		width: 50%;
-	}
-	@include breakpoint(xs) {
-		width: 100%;
-		min-height: 100vh;
-		top: 0;
-		border-radius: 0;
-		overflow-y: scroll;
-	}
+	@include modal();
 	.modalContent {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		height: 100%;
+		min-height: 100vh;
 		position: relative;
 		padding: 10px 0;
+		overflow-y: scroll;
+
 		.modalHeader {
 			width: 100%;
 			padding: 10px;
@@ -103,6 +74,16 @@
 					label {
 						font-size: 12px;
 					}
+				}
+			}
+			.bodyContent {
+				.imageUploadLabel {
+					font-size: 16px;
+					font-weight: 600;
+					margin-bottom: 10px;
+				}
+				img {
+					border-radius: 50%;
 				}
 			}
 			.tabs {
@@ -279,7 +260,7 @@
 			display: flex;
 			gap: 1rem;
 			margin-top: auto;
-
+			padding-top: 1rem;
 			button {
 				width: 100%;
 				background-color: $accent;
@@ -303,41 +284,17 @@
 			align-items: center;
 			gap: 1rem;
 			p {
-				font-size: 12px;
+				font-size: 14px;
 				margin-top: 10px;
 			}
 			button {
 				background-color: $accent;
+				font-size: 16px;
+				font-weight: 600;
 				&:hover {
 					background-color: darken($accent, 5%);
 				}
 			}
-		}
-	}
-}
-
-.footerContent {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	width: 100%;
-	position: relative;
-	justify-content: center;
-	bottom: 0;
-	padding: 10px 0;
-	margin-top: 10px;
-	.navigate {
-		display: flex;
-		justify-content: center;
-		font-size: 14px;
-		gap: 5px;
-		border-top: 1px solid $lightGray;
-		align-items: center;
-		padding-top: 10px;
-		span {
-			text-decoration: underline;
-			text-decoration-color: $accent;
-			cursor: pointer;
 		}
 	}
 }

@@ -26,7 +26,6 @@
 	font-size: 13px;
 	color: $black;
 	font-weight: 500;
-	
 }
 
 @mixin page {
@@ -96,4 +95,46 @@
 	color: $white;
 	display: flex;
 	flex-direction: column;
+}
+
+@mixin overlay() {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 99999999;
+	outline: none;
+	background-color: rgba(3, 3, 3, 0.7);
+}
+
+@mixin modal() {
+	position: fixed;
+	width: 30%;
+	max-width: 450px;
+	height: fit-content;
+	padding: 1rem;
+	border-radius: 12px;
+	background-color: #242424;
+	color: $white;
+	transition: 300ms ease-in-out;
+	opacity: 1;
+	@include breakpoint(md) {
+		width: 50%;
+	}
+	@include breakpoint(xs) {
+		width: 100%;
+		max-width: 100vh;
+		min-height: 100vh;
+		top: 0;
+		border-radius: 0;
+		left: 0;
+		overflow-y: scroll;
+		position: relative;
+	}
 }

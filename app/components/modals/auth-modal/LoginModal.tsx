@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import Modal from './Modal';
+import Modal from '../Modal';
 import { IoMdClose } from 'react-icons/io';
-import styles from './Modal.module.scss';
-import Heading from '../heading/Heading';
-import Input from '../input/Input';
+import styles from './AuthModal.module.scss';
+import Heading from '../../heading/Heading';
+import Input from '../../input/Input';
 import { toast } from 'react-hot-toast';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react'
@@ -75,7 +75,6 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className={styles.bodyContent}>
-      <Heading title='Welcome back' subTitle='Log in to your account' />
       <Input
         id='email'
         label='Email'
@@ -106,8 +105,8 @@ const LoginModal = () => {
   const footerContent = (
     <div className={styles.footerContent}>
       <div className={styles.navigate} onClick={() => openModal()}>
-        <div>Already have an account? </div>
-        <div>Sign up</div>
+        <div>New to Wagerly? </div>
+        <span>Sign up</span>
       </div>
     </div>
   )
@@ -118,7 +117,7 @@ const LoginModal = () => {
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title='Login'
-      actionLabel='Continue'
+      actionLabel='Log in'
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       icon={IoMdClose}

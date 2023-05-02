@@ -4,15 +4,13 @@ import { AiFillGithub } from 'react-icons/ai';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import useRegisterModal from '@/app/hooks/useRegitserModal';
-import Modal from './Modal';
+import Modal from '../Modal';
 import { IoMdClose } from 'react-icons/io';
-import styles from './Modal.module.scss';
-import Heading from '../heading/Heading';
-import Input from '../input/Input';
+import styles from './AuthModal.module.scss';
+import Heading from '../../heading/Heading';
+import Input from '../../input/Input';
 import { toast } from 'react-hot-toast';
-import Button from '../button/Button';
-import { FcGoogle } from 'react-icons/fc'
-import ImageUpload from '../image-upload/ImageUpload';
+import ImageUpload from '../../image-upload/ImageUpload';
 import Image from 'next/image';
 import useLoginModal from '@/app/hooks/useLoginModal';
 const RegisterModal = () => {
@@ -75,7 +73,7 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className={styles.bodyContent}>
-      <Heading title='Welcome to OddSpot' subTitle='Create an account' />
+
       <Input
         id='email'
         label='Email'
@@ -113,20 +111,13 @@ const RegisterModal = () => {
         required
       />
       <div className={styles.addProfilePicture}>
-        <div className={styles.imagePreview}>
-          <p className={styles.label}>Add your profile picture</p>
-          <div className={styles.image}>
-
-            <Image src={photo || '/images/placeholder.png'} alt='profile-picture' width='100' height='100' />
-
-          </div>
-        </div>
+        <p>Profile Picture</p>
         <div className={styles.imageSelector}>
           <ImageUpload
             value={photo}
             onChange={(image) => setPhoto(image)}
             setCustomValue={setCustomValue}
-            label={photo ? 'Change your profile picture' : 'Add your profile picture'}
+            label={''}
             isRegister
           />
 
@@ -139,8 +130,6 @@ const RegisterModal = () => {
 
   const footerContent = (
     <div className={styles.footerContent}>
-      {/* <Button label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
-      <Button label='Continue with Github' icon={AiFillGithub} onClick={() => { }} /> */}
       <div className={styles.navigate} onClick={() => openModal()}>
         <div>Already have an account? </div>
         <span>Log in</span>

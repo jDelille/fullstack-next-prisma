@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser, groups }) => {
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>
     {/* <LogoIcon /> */}
-    <h1>Betr</h1>
+    <h1>Wagerly</h1>
     {/* <div className={styles.profileImage}>
      <Image fill src={'/images/placeholder.png'} alt="profile-pic" />
     </div>

@@ -63,6 +63,7 @@ const EditProfileModal = () => {
 
 	const bodyContent = (
 		<div className={styles.bodyContent}>
+			<p className={styles.imageUploadLabel}>Profile picture</p>
 			<ImageUpload
 				value={photo}
 				onChange={(image) => setPhoto(image)}
@@ -71,7 +72,7 @@ const EditProfileModal = () => {
 			/>
 			<Input
 				id='name'
-				label='Update your name'
+				label='Name'
 				disabled={isLoading}
 				register={register}
 				errors={errors}
@@ -80,7 +81,7 @@ const EditProfileModal = () => {
 			/>
 			<Input
 				id='username'
-				label='Update your username'
+				label='Username'
 				disabled={isLoading}
 				register={register}
 				errors={errors}
@@ -89,7 +90,7 @@ const EditProfileModal = () => {
 			/>
 			<Textarea
 				id='bio'
-				label='Update your bio'
+				label='Bio'
 				disabled={isLoading}
 				register={register}
 				errors={errors}

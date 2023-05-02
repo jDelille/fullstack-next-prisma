@@ -76,6 +76,24 @@
 				align-items: center;
 				font-weight: 600;
 				color: #f1c40f;
+				position: relative;
+				width: fit-content;
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Total points';
+						background-color: $black;
+						color: $secondaryText;
+						padding: 3px 5px;
+						border-radius: 4px;
+						top: 1.2rem;
+						right: -65px;
+						width: 85px;
+						font-size: 13px;
+						display: flex;
+						justify-content: center;
+					}
+				}
 			}
 			.bio {
 				padding: 1rem 0;

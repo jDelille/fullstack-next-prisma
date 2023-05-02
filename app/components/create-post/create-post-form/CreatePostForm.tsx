@@ -10,7 +10,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
-
+import { TbReportMoney } from 'react-icons/tb'
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
@@ -106,12 +106,9 @@ const CreatePostForm = ({
               />
             </div>
             <div className={styles.inputButtons}>
-              <Button
-                onClick={() => {
-                  !userId ? loginModal.onOpen() : betModal.onOpen();
-                }}
-                label='Post a bet'
-              />
+              <TbReportMoney color="#abadb1" size={24} onClick={() => {
+                !userId ? loginModal.onOpen() : betModal.onOpen();
+              }} />
               {userId && (
                 <ImageUpload
                   value={photo}
@@ -119,6 +116,7 @@ const CreatePostForm = ({
                   setCustomValue={setCustomValue}
                   label='Post a photo'
                   userId={userId as string}
+                  isPost
                 />
               )}
 

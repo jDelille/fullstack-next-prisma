@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Button from "../button/Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { AiFillCamera, AiOutlineCamera } from "react-icons/ai";
 
 type ImageUploadProps = {
  onChange: (base64: string) => void;
@@ -11,10 +12,11 @@ type ImageUploadProps = {
  setCustomValue: (id: string, value: any) => void;
  userId?: string
  isRegister?: boolean;
+ isPost?: boolean
 }
 
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost }) => {
 
  const [base64, setBase64] = useState(value)
  const loginModal = useLoginModal();
@@ -48,12 +50,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomVal
  return (
   <div {...getRootProps({})} >
    <input {...getInputProps()} placeholder="upload" width='100px' height='50px' />
-   {base64 ? (
-    // <Image src={base64} height='100' width='100' alt='uploaded image' />
-    <Button onClick={() => { }} label={label} disabled={value.length > 0} />
+   {!isPost ? (
+    <Image src={base64 || '/images/placeholder.png'} alt='profile-picture' width='50' height='50' />
    ) : (
-    <Button onClick={() => { }} label={label} />
-
+    <AiOutlineCamera size={24} color="#abadb1" />
    )}
   </div>
  );

@@ -1,7 +1,7 @@
 @import '@/app/styles/variables';
 
 .inputContainer {
-	min-height: 100px;
+	min-height: 90px;
 	position: relative;
 	min-width: 100%;
 	height: fit-content;
@@ -12,11 +12,12 @@
 		color: white;
 		min-height: 45px !important;
 		position: relative;
-		padding: 10px;
+		padding: 0px 10px;
 		display: flex;
 		flex-direction: column;
 		height: fit-content;
-
+		min-height: 115px;
+		gap: 5px;
 		.createPostWrapper {
 			display: flex;
 			align-items: center;
@@ -32,10 +33,19 @@
 			align-items: center;
 			padding-left: 50px;
 			gap: 10px;
+			svg {
+				position: relative;
+				top: 2px;
+				cursor: pointer;
+				&:nth-child(1) {
+					position: relative;
+					top: -1.5px;
+				}
+			}
 			button {
 				background-color: $lightGray;
 				width: fit-content;
-				padding: 5px 8px;
+				padding: 3px 15px;
 				border-radius: 5px;
 				display: flex;
 				align-items: center;
@@ -44,7 +54,7 @@
 				&:hover {
 					background-color: lighten($lightGray, 2%);
 				}
-				&:nth-of-type(2) {
+				&:nth-of-type(1) {
 					margin-left: auto;
 				}
 			}
@@ -52,7 +62,7 @@
 	}
 	.inputWrapperBordered {
 		border: 2px solid $lightGray;
-		padding: 1rem;
+		padding: 5px 15px;
 		margin-bottom: 1rem;
 	}
 	.inputWrapper {
