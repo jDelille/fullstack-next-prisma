@@ -1,19 +1,20 @@
-## Oddspot
+## Wagerly
 ### Social platform for sports fans and sports betters.
 #### Built with Nextjs 13, React, TypeScript, Prisma, MongoDB, SCSS, ESPN api
 <hr />
 
-![mobile (11)](https://user-images.githubusercontent.com/84540947/235290179-9b963ed5-1543-4dc4-8480-bbf88db50c56.png)
+![mobile](https://user-images.githubusercontent.com/84540947/235589115-c06dc7be-320f-466a-9a1e-43170aec55f6.png)
+
 <hr />
 <br />
 - Create an account
 - Create posts (text / images)
 - Create bet posts (post your bet)
-- Create polls
+- Rank up your points by winning your picks.
 - Like / Follow / Subscribe
 - View live sports scores and odds (ESPN API)
 
-#### TODO: Check if user bets either won or lost. users will be given points based on the decimal value of their won bet. if users place bets in a group, that group will also gain points. Users and groups will be ordered by their win loss ratio and points.
+#### TODO: Create polls
 
 <hr />
 
