@@ -11,6 +11,7 @@
 - Create posts (text / images)
 - Create bet posts (post your bet)
 - Rank up your points by winning your picks.
+- Create and join groups 
 - Like / Follow / Subscribe
 - View live sports scores and odds (ESPN API)
 
