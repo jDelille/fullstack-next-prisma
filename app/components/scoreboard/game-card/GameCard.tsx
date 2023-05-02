@@ -9,13 +9,13 @@ type GameCardProps = {
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
  return (
   <div className={styles.gameCard}>
-   {/* <div className={styles.status}>
+   <div className={styles.status}>
     <p>{game.status.type.shortDetail}</p>
-   </div> */}
+   </div>
    <div className={styles.teams}>
     {game.competitions.map((team) => (
      <>
-      <div key={team.competitors[0].id} className={styles.team}>
+      <div key={team.competitors[0].id} className={styles.team} >
        <Image src={team.competitors[0].team.logo} alt="logo" width={20} height={20} />
        <p>{team.competitors[0].team.abbreviation}</p>
        <p className={styles.score}>{team.competitors[0].score}</p>

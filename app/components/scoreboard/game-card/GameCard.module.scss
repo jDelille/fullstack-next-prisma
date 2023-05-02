@@ -6,9 +6,11 @@
 	color: white;
 	padding: 5px 10px;
 	.status {
-		font-size: 12px;
+		font-size: 10px;
 		display: flex;
 		width: 100%;
+		color: $secondaryText;
+		padding-bottom: 2px;
 	}
 	.teams {
 		display: flex;
@@ -16,14 +18,16 @@
 		height: 100%;
 		.team {
 			display: flex;
-			height: 50%;
+			height: 41%;
 			width: 100%;
-			color: $white;
 			font-size: 13px;
 			align-items: center;
 			gap: 5px;
+			// padding: 5px;
+
 			.score {
 				margin-left: auto;
+				color: $secondaryText;
 			}
 		}
 	}

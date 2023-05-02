@@ -82,8 +82,6 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
     }
   }, [leagueName, matchId, sport]);
 
-  console.log(odds);
-
   return (
     <>
       {odds && (
