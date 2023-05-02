@@ -102,7 +102,7 @@
 	align-items: center;
 	display: flex;
 	overflow-x: hidden;
-	overflow-y: auto;
+	// overflow-y: auto;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -130,11 +130,11 @@
 	@include breakpoint(xs) {
 		width: 100%;
 		max-width: 100vh;
-		min-height: 100vh;
+		height: fit-content;
 		top: 0;
 		border-radius: 0;
 		left: 0;
-		overflow-y: scroll;
-		position: relative;
+		bottom: 0;
+		position: absolute;
 	}
 }
