@@ -11,6 +11,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import getGroupsByUserId from '@/app/actions/getGroupsByUserId';
 import Image from 'next/image';
+import getBetRecord from '@/app/actions/getBetRecord';
 interface IParams {
  userId?: string;
 }
@@ -21,6 +22,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const followerCount = await getFollowersCount(params);
  const currentUser = await getCurrentUser()
  let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
+ const record = await getBetRecord(params)
 
  const groups = await getGroupsByUserId(params)
 
@@ -42,10 +44,13 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     <div className={styles.middle}>
      <div className={styles.bio}>
       <p>{user?.bio}</p>
+      <div className={styles.record}>
+       W / L {" "}
+       <span>({record.winCount} - {record.lossCount})</span>
+      </div>
       <div className={styles.points}>
        <Image src={'/images/star.png'} alt='star' width={15} height={15} />
        <span>{user?.points || 0}</span>
-
       </div>
       <div className={styles.joined}>
        <BsCalendar2WeekFill />

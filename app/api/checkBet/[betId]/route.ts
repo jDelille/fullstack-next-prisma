@@ -89,11 +89,23 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			}
 		}
 
-		if (bet.type === 'Moneyline' && bet.location === 'away') {
-			if (homeScore > awayScore) {
+		if (bet.type === 'Spread' && bet.location === 'away') {
+			let awayScoreWithSpread = awayScore + (bet.value as number);
+
+			if (homeScore > awayScoreWithSpread) {
 				result = 'loss';
 			} else {
 				result = 'win';
+			}
+		}
+
+		if (bet.type === 'Spread' && bet.location === 'home') {
+			let homeScoreWithSpread = homeScore + (bet.value as number);
+
+			if (homeScoreWithSpread > awayScore) {
+				result = 'win';
+			} else {
+				result = 'loss';
 			}
 		}
 
@@ -121,8 +133,6 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 					((currentPoints as number) + negativeOdds).toFixed(2)
 				);
 			}
-
-			console.log(decimalOdds);
 
 			const updatedUser = await prisma.user.update({
 				where: {

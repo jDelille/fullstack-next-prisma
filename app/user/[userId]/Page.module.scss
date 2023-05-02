@@ -70,7 +70,8 @@
 			@include breakpoint(xs) {
 				padding: 0;
 			}
-			.points {
+			.points,
+			.record {
 				display: flex;
 				gap: 5px;
 				align-items: center;
@@ -92,6 +93,17 @@
 						font-size: 13px;
 						display: flex;
 						justify-content: center;
+					}
+				}
+			}
+			.record {
+				color: $secondaryText;
+				span {
+					color: #f1c40f;
+				}
+				&:hover {
+					&::after {
+						content: 'Bet record';
 					}
 				}
 			}
