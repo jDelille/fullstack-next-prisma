@@ -36,9 +36,12 @@ const Group = async ({ params }: { params: IParams }) => {
     <p className={styles.description}>{group?.description}</p>
     <p className={styles.admin}>Created by {admin?.name}</p>
     <p className={styles.members}> Members {group?.memberIds.length}</p>
-    <div className={styles.menu}>
-     <ProfileMenu isGroupPage />
-    </div>
+    {currentUser?.id === admin?.id && (
+     <div className={styles.menu}>
+      <ProfileMenu isGroupPage />
+     </div>
+    )}
+
    </div>
    <div className={styles.body}>
     <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} />
