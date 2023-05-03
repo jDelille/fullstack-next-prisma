@@ -138,6 +138,9 @@
 			display: flex;
 			align-items: center;
 			margin-top: 1rem;
+			&:hover {
+				background-color: $lightGray;
+			}
 			.image {
 				background-color: $lightGray;
 				border-radius: 6px;
