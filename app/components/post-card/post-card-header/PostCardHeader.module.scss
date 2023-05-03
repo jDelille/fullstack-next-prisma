@@ -64,6 +64,44 @@
 				background-color: $secondaryText;
 				border-radius: 50%;
 			}
+			.points {
+				font-size: 11px;
+				font-weight: 600;
+				color: #f1c40f;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				// cursor: pointer;
+				position: relative;
+				.infoModal {
+					background-color: $black;
+					position: absolute;
+					min-width: 260px;
+					padding: 1rem;
+					top: 2rem;
+					left: -130px;
+					border-radius: 6px;
+					color: $white;
+					font-size: 18px;
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px,
+						rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+					.closeIcon {
+						position: absolute;
+						right: 1rem;
+						top: 1rem;
+					}
+					.infoDescription {
+						display: flex;
+						gap: 1rem;
+						font-weight: 300;
+						font-size: 14px;
+						color: lightgray;
+					}
+				}
+			}
 		}
 	}
 	.postMenu {

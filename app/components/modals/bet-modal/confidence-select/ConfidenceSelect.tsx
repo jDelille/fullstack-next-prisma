@@ -10,31 +10,31 @@ const confidenceLevels = [
 const customStyles = {
  control: (provided: any) => ({
   ...provided,
-  borderRadius: '4px',
-  borderColor: '#27282f',
+  borderRadius: '8px',
+  borderColor: '#373737',
   boxShadow: 'none',
-  backgroundColor: '#17181c',
+  backgroundColor: '#373737',
   color: '#fcfeff',
   cursor: 'pointer'
  }),
  option: (provided: any, state: any) => ({
   ...provided,
-  backgroundColor: state.isSelected ? '#537fe7' : '#17181c',
+  backgroundColor: state.isSelected ? '#20b46a' : '#373737',
   color: state.isSelected ? '#fcfeff' : '#fcfeff',
   cursor: 'pointer',
   ':hover': {
-   backgroundColor: state.isSelected ? '#537fe7' : '#1e1f23',
+   backgroundColor: state.isSelected ? '#20b46a' : '#373737',
    color: state.isSelected ? '#fcfeff' : '#fcfeff'
   }
  }),
  menu: (provided: any) => ({
   ...provided,
-  backgroundColor: '#17181c',
+  backgroundColor: '#373737',
 
  }),
  menuList: (provided: any) => ({
   ...provided,
-  backgroundColor: '#17181c',
+  backgroundColor: '#373737',
   color: '#fcfeff',
  }),
  singleValue: (provided: any) => ({

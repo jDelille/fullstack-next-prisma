@@ -23,5 +23,6 @@
 
 .awayOddBordered,
 .homeOddBordered {
-	border: 1px solid dodgerblue;
+	border: 1px solid $accent;
+	background-color: #373737;
 }

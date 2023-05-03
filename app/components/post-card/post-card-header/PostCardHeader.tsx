@@ -8,6 +8,9 @@ import Avatar from '../../avatar/Avatar';
 import { AiFillPushpin } from 'react-icons/ai';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import useFollow from '@/app/hooks/useFollow';
+import Image from 'next/image';
+import { IoMdClose } from 'react-icons/io';
+
 
 type PostCardHeaderProps = {
   post: any;
@@ -22,6 +25,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { handleFollow, isLoading } = useFollow(post?.user.id, post?.user.name, currentUserId as string, setIsMenuOpen)
+
+  const [showModal, setShowModal] = useState(false);
 
   const createdAt = useMemo(() => {
     if (!post?.createdAt) {
@@ -38,6 +43,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   }, [post?.createdAt]);
 
   let isFollowing = followingIds?.includes(post?.user.id);
+
 
   return (
     <div className={styles.postHeader}>
@@ -63,8 +69,22 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         </div>
         <div className={styles.username}>
           {post?.user.username}
-          <div className={styles.dot}></div>
-          <span>Bets {post?.user.totalBets}</span>
+          {/* <div className={styles.dot}></div> */}
+          <div className={styles.points} onClick={(e) => { e.stopPropagation(); setShowModal(true) }}>
+            <Image src={'/images/star.png'} alt='star' width={10} height={10} />
+            <p>{post?.user.points}</p>
+            {/* {showModal && (
+              <div className={styles.infoModal}>
+                <p>Points</p>
+                <IoMdClose className={styles.closeIcon} onClick={closeModal} />
+                <div className={styles.infoDescription}>
+                  <Image src={'/images/star.png'} alt='star' width={15} height={15} />
+                  <p>Points are earned from winning bets. The higher the odds of a won bet, the more points you earn.</p>
+                </div>
+              </div>
+            )} */}
+          </div>
+
         </div>
       </div>
       <div className={styles.postMenu}>

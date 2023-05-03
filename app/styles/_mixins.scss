@@ -14,7 +14,7 @@
 	gap: 1rem;
 	&:hover {
 		cursor: pointer;
-		background-color: lighten($lightGray, 2%);
+		background-color: #373737;
 	}
 }
 
@@ -124,6 +124,7 @@
 	color: $white;
 	transition: 300ms ease-in-out;
 	opacity: 1;
+	height: fit-content;
 	@include breakpoint(md) {
 		width: 50%;
 	}

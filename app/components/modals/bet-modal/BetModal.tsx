@@ -253,7 +253,7 @@ const BetModal = () => {
           </div>
           <Input
             id='thoughts'
-            label='Share your thoughts on this'
+            label='Share your thoughts'
             disabled={isLoading}
             register={register}
             errors={errors}

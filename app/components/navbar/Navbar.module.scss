@@ -19,7 +19,7 @@
 			color: $white;
 		}
 		.profileImage {
-			background-color: dodgerblue;
+			border: 1px solid $accent;
 			width: 50px;
 			height: 50px;
 			border-radius: 50%;
@@ -99,6 +99,9 @@
 			width: 90%;
 			margin: 0 auto;
 			padding: 1rem;
+			&:hover {
+				background-color: $lightGray;
+			}
 			.notificationDot {
 				width: 10px;
 				height: 10px;
