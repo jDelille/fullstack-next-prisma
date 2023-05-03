@@ -27,7 +27,6 @@ const LeagueInput: React.FC<LeagueInputProps> = ({
  errors
 }) => {
 
- console.log(errors)
 
  return (
   <div

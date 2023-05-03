@@ -13,6 +13,7 @@ export type Game = {
 			completed: boolean;
 			detail: string;
 			shortDetail: string;
+			state: string;
 		};
 	};
 	season: {

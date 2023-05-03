@@ -21,6 +21,8 @@ type ModalProps = {
  isDemoLogin?: boolean;
  step?: number;
  setStep?: (value: number) => void;
+ noMatches?: boolean;
+ setIsEmpty?: (value: boolean) => void;
 
 };
 
@@ -39,7 +41,9 @@ const Modal: React.FC<ModalProps> = ({
  onDemoSubmit,
  isDemoLogin,
  step,
- setStep
+ setStep,
+ noMatches,
+ setIsEmpty
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -76,8 +80,12 @@ const Modal: React.FC<ModalProps> = ({
    return;
   }
 
+  if (noMatches) {
+   setIsEmpty && setIsEmpty(false)
+  }
+
   secondaryAction();
- }, [secondaryAction, disabled]);
+ }, [disabled, secondaryAction, noMatches, setIsEmpty]);
 
  if (!isOpen) {
   return null;
@@ -112,13 +120,18 @@ const Modal: React.FC<ModalProps> = ({
          onClick={handleSecondaryAction}
         />
        )}
-       {step !== 3 && (
-        <Button
-         label={actionLabel}
-         onClick={handleSubmit}
-         disabled={disabled}
-        />
+       {noMatches ? (
+        null
+       ) : (
+        step !== 3 && (
+         <Button
+          label={actionLabel}
+          onClick={handleSubmit}
+          disabled={disabled}
+         />
+        )
        )}
+
       </div>
       {isDemoLogin && onDemoSubmit && (
        <div className={styles.demoLogin}>

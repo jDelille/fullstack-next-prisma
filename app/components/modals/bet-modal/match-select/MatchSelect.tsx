@@ -12,11 +12,20 @@ type MatchSelectProps = {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   id: string;
+  setIsEmpty?: (value: boolean) => void;
 };
 
-const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName, required, register, id }) => {
+const MatchSelect: React.FC<MatchSelectProps> = ({
+  selected,
+  onClick,
+  leagueName,
+  required,
+  register,
+  id,
+  setIsEmpty,
+}) => {
   const [matches, setMatches] = useState<Game[] | null>();
-  const [sport, setSport] = useState("baseball")
+  const [sport, setSport] = useState('baseball');
 
   useEffect(() => {
     switch (leagueName) {
@@ -41,8 +50,7 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
     }
   }, [leagueName]);
 
-
-  const lowerCaseLeagueName = leagueName?.toLowerCase()
+  const lowerCaseLeagueName = leagueName?.toLowerCase();
 
   useEffect(() => {
     async function getMatchData() {
@@ -65,23 +73,47 @@ const MatchSelect: React.FC<MatchSelectProps> = ({ selected, onClick, leagueName
     getMatchData();
   }, [lowerCaseLeagueName, sport]);
 
+  const currentMatches = matches?.filter(
+    (match) =>
+      match.status.type.state !== 'post' &&
+      (match.status.type.state === 'in' || match.status.type.state === 'pre')
+  );
 
-
+  useEffect(() => {
+    if (currentMatches && currentMatches.length === 0) {
+      setIsEmpty && setIsEmpty(true)
+    } else {
+      setIsEmpty && setIsEmpty(false)
+    }
+  }, [currentMatches])
 
   return (
     <>
-      {matches?.map((match) => (
-        <div
-          key={match.id}
-          className={
-            selected === match.id ? styles.borderedMatch : styles.match
-          }
-          id={id}
-          {...register(id, { required })}
-          onClick={() => onClick({ matchId: match.id, name: match.name, status: match.status.type.shortDetail, homeTeam: match.competitions[0].competitors[0].team.displayName, awayTeam: match.competitions[0].competitors[1].team.displayName, homeId: match.competitions[0].competitors[0].team.id, awayId: match.competitions[0].competitors[1].team.id })} >
-          {match.name}
-        </div>
-      ))}
+      {currentMatches?.length === 0 && <div> No More matches today</div>}
+      {currentMatches &&
+        currentMatches?.length > 0 &&
+        currentMatches?.map((match) => (
+          <div
+            key={match.id}
+            className={
+              selected === match.id ? styles.borderedMatch : styles.match
+            }
+            id={id}
+            {...register(id, { required })}
+            onClick={() =>
+              onClick({
+                matchId: match.id,
+                name: match.name,
+                status: match.status.type.shortDetail,
+                homeTeam: match.competitions[0].competitors[0].team.displayName,
+                awayTeam: match.competitions[0].competitors[1].team.displayName,
+                homeId: match.competitions[0].competitors[0].team.id,
+                awayId: match.competitions[0].competitors[1].team.id,
+              })
+            }>
+            {match.name}
+          </div>
+        ))}
     </>
   );
 };

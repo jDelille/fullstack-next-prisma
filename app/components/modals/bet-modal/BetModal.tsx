@@ -40,7 +40,7 @@ const BetModal = () => {
   const [odds, setOdds] = useState(0);
   const [wagerAmount, setWagerAmount] = useState(0);
   const [leagueName, setLeagueName] = useState('')
-
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const {
     register,
@@ -205,7 +205,7 @@ const BetModal = () => {
             selected={match?.matchId}
             onClick={(value) => setCustomValue('match', value)}
             leagueName={leagueName}
-
+            setIsEmpty={setIsEmpty}
           />
         </SimpleBar>
       </div>
@@ -276,7 +276,9 @@ const BetModal = () => {
       disabled={isLoading}
       icon={IoMdClose}
       onSubmit={handleSubmit(onSubmit)}
+      setIsEmpty={setIsEmpty}
       title='Post a bet'
+      noMatches={isEmpty}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.LEAGUE ? undefined : onBack}
