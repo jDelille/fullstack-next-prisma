@@ -3,7 +3,7 @@
 #### Built with Nextjs 13, React, TypeScript, Prisma, MongoDB, SCSS, ESPN api
 <hr />
 
-![mobile](https://user-images.githubusercontent.com/84540947/235589115-c06dc7be-320f-466a-9a1e-43170aec55f6.png)
+![mobile (2)](https://user-images.githubusercontent.com/84540947/236141866-f05fd716-8714-4923-819e-07f6cd75b7ef.png)
 
 <hr />
 <br />
