@@ -22,7 +22,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const followerCount = await getFollowersCount(params);
  const currentUser = await getCurrentUser()
  let joinedDate = formatDistanceToNowStrict(new Date(user?.createdAt as string))
- const record = await getBetRecord(params)
+
 
  const groups = await getGroupsByUserId(params)
 

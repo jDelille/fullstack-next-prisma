@@ -37,6 +37,10 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		console.error(`Error checking NBA game: ${error}`);
 	}
 
+	if (gameStatus === false) {
+		return;
+	}
+
 	if (gameStatus) {
 		const gameId = bet.gameId;
 		const homeId = bet.homeId;

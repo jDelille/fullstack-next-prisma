@@ -26,6 +26,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   }, [isComment])
 
   const onCheck = useCallback((id: string) => {
+    if (post.Bet?.status !== 'open') {
+      return;
+    }
     axios.post(`/api/checkBet/${id}`)
       .then(() => {
         router.refresh()
@@ -33,7 +36,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       .catch(() => {
         console.log('something went wrong')
       })
-  }, [router])
+  }, [post.Bet?.status, router])
 
   const confidenceBadge = () => {
     if (post.Bet?.confidence === 'Easy Money') {

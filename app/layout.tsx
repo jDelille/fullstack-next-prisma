@@ -14,6 +14,8 @@ import ToasterProvider from './providers/ToasterProvider'
 import './styles/globals.scss'
 import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
 import CreateGroupModal from './components/modals/group-modal/CreateGroupModal'
+import UserBox from './components/user-box/UserBox'
+import getBetRecord from './actions/getBetRecord'
 
 export const metadata = {
   title: 'Wagerly',
@@ -29,9 +31,13 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   let groups: Group[] = [];
+  let record: any;
   if (currentUser) {
     groups = await getGroupsByUserId({ userId: currentUser.id });
+    record = await getBetRecord({ userId: currentUser.id })
   }
+
+
 
   return (
     <html lang="en">
@@ -55,6 +61,9 @@ export default async function RootLayout({
             <MobileNavbar currentUser={currentUser} groups={groups} />
           </div>
           <div className='rightSidebar'>
+            {currentUser && (
+              <UserBox currentUser={currentUser} record={record} />
+            )}
           </div>
           <Footer currentUserId={currentUser?.id} />
 
