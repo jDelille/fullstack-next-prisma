@@ -31,7 +31,7 @@
 			height: 45px;
 			display: flex;
 			align-items: center;
-			padding-left: 50px;
+			// padding-left: 50px;
 			gap: 10px;
 			svg {
 				position: relative;
@@ -39,7 +39,7 @@
 				cursor: pointer;
 				&:nth-child(1) {
 					position: relative;
-					top: -1.5px;
+					top: -0px;
 				}
 			}
 			button {
@@ -61,7 +61,6 @@
 		}
 	}
 	.inputWrapperBordered {
-		border: 2px solid $lightGray;
 		padding: 5px 15px;
 		margin-bottom: 1rem;
 	}

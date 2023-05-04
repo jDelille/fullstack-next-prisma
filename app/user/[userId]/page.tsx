@@ -44,10 +44,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     <div className={styles.middle}>
      <div className={styles.bio}>
       <p>{user?.bio}</p>
-      <div className={styles.record}>
+      {/* <div className={styles.record}>
        W / L {" "}
        <span>({record.winCount} - {record.lossCount})</span>
-      </div>
+      </div> */}
       <div className={styles.points}>
        <Image src={'/images/star.png'} alt='star' width={15} height={15} />
        <span>{user?.points || 0}</span>

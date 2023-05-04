@@ -83,7 +83,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       {post?.Bet && <PostCardBet post={post.Bet} />}
       <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} commentCount={post.comments.length || 0} commentArray={post.commentedIds} />
       {isComment && (
-        <PostCardComment postId={post?.id} userId={currentUser?.id} userPhoto={currentUser?.photo as string} />
+        <PostCardComment postId={post?.id} userId={currentUser?.id} userPhoto={currentUser?.photo as string} postUser={post?.user.name} />
       )}
       {post?.comments && isComment && (
         <CommentFeed comments={post} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />

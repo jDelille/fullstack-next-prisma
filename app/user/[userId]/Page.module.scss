@@ -10,7 +10,7 @@
 		height: fit-content;
 		padding: 1rem;
 		position: relative;
-		border: 2px solid $lightGray;
+		// border: 2px solid $lightGray;
 		border-radius: 6px;
 		.top {
 			display: flex;
@@ -28,11 +28,11 @@
 					height: 50px;
 				}
 				img {
-					border-radius: 50%;
+					border-radius: 5px;
 					width: 75px;
 					height: 75px;
 					object-fit: cover;
-					border: 1px solid $white;
+					// border: 1px solid $secondaryText;
 					@include breakpoint(xs) {
 						max-width: 50px;
 						max-height: 50px;

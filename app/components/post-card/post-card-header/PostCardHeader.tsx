@@ -69,10 +69,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         </div>
         <div className={styles.username}>
           {post?.user.username}
-          {/* <div className={styles.dot}></div> */}
+          <div className={styles.dot}></div>
           <div className={styles.points} onClick={(e) => { e.stopPropagation(); setShowModal(true) }}>
-            <Image src={'/images/star.png'} alt='star' width={10} height={10} />
-            <p>{post?.user.points}</p>
+            {/* <Image src={'/images/star.png'} alt='star' width={10} height={10} /> */}
+            <p>{post?.user.points} pts.</p>
             {/* {showModal && (
               <div className={styles.infoModal}>
                 <p>Points</p>

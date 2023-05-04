@@ -74,9 +74,16 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
        <p>Notifications</p>
        {currentUser?.hasNotification && <div className={styles.notificationDot}></div>}
       </div >
-      <div className={styles.logoutWrapper}>
+      {/* <div className={styles.logoutWrapper}>
        <Button label='Logout' onClick={() => signOut()} />
+      </div> */}
+      <div className={styles.logout}>
+       <div onClick={() => signOut()} className={linkStyle} >
+        {/* <MdNotifications /> */}
+        <p>Logout</p>
+       </div >
       </div>
+
      </>
     ) : (
      <>

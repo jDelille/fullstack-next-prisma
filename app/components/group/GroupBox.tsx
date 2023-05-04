@@ -71,30 +71,31 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
       <div className={styles.groupName}>
         <p className={styles.name}>{group.name} <span className={styles.members}><FaUsers />{group.memberIds.length}</span></p>
         <p className={styles.description}>{group.description}</p>
-      </div>
-      <div className={styles.groupInfo}>
-        {hasJoined ? (
-          <div className={styles.buttons}>
-            <Button label='Open' onClick={() => { router.push(`/groups/${group.id}`) }} />
-            <Button label='Leave' onClick={() => onLeave(group?.id)} />
-          </div>
-        ) : (
-          <Button label={group.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(group?.id)} />
-        )}
-        <div className={styles.privacy}>
-          {group.isPrivate ? (
-            <>
-              <AiFillLock size={16} />
-              <p> Private </p>
-            </>
+        <div className={styles.groupInfo}>
+          {hasJoined ? (
+            <div className={styles.buttons}>
+              <Button label='Open' onClick={() => { router.push(`/groups/${group.id}`) }} />
+              <Button label='Leave' onClick={() => onLeave(group?.id)} />
+            </div>
           ) : (
-            <>
-              <AiFillUnlock size={16} />
-              <p>Public </p>
-            </>
+            <Button label={group.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(group?.id)} />
           )}
+          <div className={styles.privacy}>
+            {group.isPrivate ? (
+              <>
+                <AiFillLock size={16} />
+                <p> Private </p>
+              </>
+            ) : (
+              <>
+                <AiFillUnlock size={16} />
+                <p>Public </p>
+              </>
+            )}
+          </div>
         </div>
       </div>
+
 
     </div>
   );

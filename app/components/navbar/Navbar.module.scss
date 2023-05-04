@@ -8,10 +8,9 @@
 	padding: 0 10px;
 	.sidebarHeader {
 		width: 100%;
-		height: $gamebarHeight;
 		display: flex;
 		align-items: center;
-		padding: 0 2rem;
+		padding: 1rem;
 		gap: 1rem;
 		color: $white;
 		h1 {
@@ -49,7 +48,7 @@
 .userMenu {
 	position: relative;
 	height: calc(100% - 104px - 1rem);
-	margin-top: 2rem;
+	margin-top: 0rem;
 	.closeMenu {
 		display: none;
 
@@ -162,12 +161,11 @@
 		}
 	}
 
-	.logoutWrapper {
-		position: absolute;
-		bottom: 0rem;
+	.logout {
 		width: 100%;
-		border-top: 1px solid $lightGray;
 		display: flex;
 		align-items: center;
+		position: absolute;
+		bottom: 0;
 	}
 }

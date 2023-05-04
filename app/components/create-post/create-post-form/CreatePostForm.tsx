@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { TbReportMoney } from 'react-icons/tb'
+import { AiFillCamera, AiOutlineCamera } from 'react-icons/ai';
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
@@ -19,6 +20,7 @@ type CreatePostFormProps = {
   isBordered?: boolean;
   isGroup?: boolean
   groupId?: string;
+  placeholder?: string;
 };
 
 const CreatePostForm = ({
@@ -28,7 +30,8 @@ const CreatePostForm = ({
   postId,
   isBordered,
   isGroup,
-  groupId
+  groupId,
+  placeholder
 }: CreatePostFormProps) => {
   const router = useRouter();
 
@@ -99,16 +102,19 @@ const CreatePostForm = ({
                 photo={postPhoto}
                 userPhoto={userPhoto}
                 userId={userId}
-                placeholder="What's Happening?"
+                placeholder={placeholder ? placeholder : "What's Happening?"}
                 id='postBody'
                 body={body}
                 setPhoto={setPhoto}
               />
             </div>
             <div className={styles.inputButtons}>
-              <TbReportMoney color="#abadb1" size={24} onClick={() => {
+              <TbReportMoney color="#abadb1" size={23} onClick={() => {
                 !userId ? loginModal.onOpen() : betModal.onOpen();
               }} />
+              {!userId && (
+                <AiOutlineCamera size={23} color="#abadb1" onClick={() => loginModal.onOpen()} />
+              )}
               {userId && (
                 <ImageUpload
                   value={photo}
@@ -137,7 +143,7 @@ const CreatePostForm = ({
               photo={photo}
               userPhoto={userPhoto}
               userId={userId}
-              placeholder='Comment'
+              placeholder={placeholder ? placeholder : 'Comment'}
               isComment
               body={body}
               handleSubmit={handleSubmit}

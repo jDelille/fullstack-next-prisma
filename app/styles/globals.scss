@@ -18,21 +18,35 @@ body {
 
 .sidebarContainer {
 	background-color: $gray;
-	border-right: 1px solid $lightGray;
-	height: 100vh;
+	// border: 1px solid $lightGray;
+	height: calc(100vh - $gamebarHeight - 4rem);
 	width: 280px;
 	position: fixed;
-	left: 0;
-	top: 0px;
+	left: 255px;
+	top: $gamebarHeight;
+	margin-top: 2rem;
+	border-radius: 8px;
 	z-index: 2;
+	@include breakpoint(xl) {
+		max-width: 280px;
+		min-width: 280px;
+		left: 55px;
+	}
+	// @include breakpoint(lg) {
+	// 	max-width: 280px;
+	// 	min-width: 280px;
+	// 	left: 10px;
+	// }
 	@include breakpoint(md) {
 		max-width: 280px;
 		min-width: 280px;
+		left: 10px;
 	}
 
 	@include breakpoint(xs) {
 		max-width: 0;
 		display: none;
+		left: 1rem;
 	}
 }
 
@@ -42,8 +56,8 @@ body {
 	height: $gamebarHeight;
 	position: fixed;
 	top: 0;
-	left: 280px;
-	width: calc(100vw - 297px);
+	left: 0;
+	width: 100vw;
 	z-index: 999;
 	@include breakpoint(xs) {
 		left: 0;

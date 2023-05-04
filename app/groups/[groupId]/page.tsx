@@ -1,4 +1,3 @@
-import getgroupById from '@/app/actions/getGroupById';
 import styles from './Page.module.scss';
 import getUserById from '@/app/actions/getUserById';
 import { SafeUser } from '@/app/types';
@@ -8,6 +7,8 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import PostFeed from '@/app/components/post-feed/PostFeed';
 import getGroupById from '@/app/actions/getGroupById';
 import getPostsByGroupId from '@/app/actions/getPostsByGroupId';
+import { FaUsers } from 'react-icons/fa';
+import { TbReportMoney } from 'react-icons/tb'
 
 interface IParams {
  groupId?: string;
@@ -31,11 +32,11 @@ const Group = async ({ params }: { params: IParams }) => {
   <div className={styles.page}>
    <div className={styles.header}>
     <div className={styles.name}>
-     <h1>{group?.name}</h1>
+     <h1>{group?.name} {group?.photo}</h1>
     </div>
     <p className={styles.description}>{group?.description}</p>
-    <p className={styles.admin}>Created by {admin?.name}</p>
-    <p className={styles.members}> Members {group?.memberIds.length}</p>
+    {/* <p className={styles.admin}>Created by {admin?.name}</p> */}
+    <p className={styles.members}> <FaUsers /> {group?.memberIds.length}</p>
     {currentUser?.id === admin?.id && (
      <div className={styles.menu}>
       <ProfileMenu isGroupPage />
@@ -44,7 +45,7 @@ const Group = async ({ params }: { params: IParams }) => {
 
    </div>
    <div className={styles.body}>
-    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} />
+    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} placeholder={`Let ${group?.name} know what's happening`} />
     <PostFeed currentUser={currentUser} posts={posts} />
    </div>
   </div>
