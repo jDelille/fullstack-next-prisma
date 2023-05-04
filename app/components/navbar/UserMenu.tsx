@@ -40,12 +40,12 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
-  {
-   id: 2,
-   icon: BiMoneyWithdraw,
-   label: 'My Bets',
-   href: `/myBets/${currentUser?.id}`
-  },
+  // {
+  //  id: 2,
+  //  icon: BiMoneyWithdraw,
+  //  label: 'My Bets',
+  //  href: `/myBets/${currentUser?.id}`
+  // },
   {
    id: 3,
    icon: FaUsers,
