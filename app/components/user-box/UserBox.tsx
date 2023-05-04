@@ -2,13 +2,19 @@ import { SafeUser } from "@/app/types";
 import styles from './UserBox.module.scss';
 import Image from "next/image";
 import VerifiedIcon from "@/app/icons/VerifiedIcon";
+import { Group } from "@prisma/client";
 
 type UserBoxProps = {
  currentUser?: SafeUser | null;
  record?: any;
+ groups?: Group[] | null
+
 }
 
-const UserBox: React.FC<UserBoxProps> = ({ currentUser, record }) => {
+const UserBox: React.FC<UserBoxProps> = ({ currentUser, record, groups }) => {
+
+ console.log(currentUser)
+
  return (
   <div className={styles.userBox}>
    <div className={styles.top}>
@@ -23,7 +29,7 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, record }) => {
     <p className={styles.points}>{currentUser?.points} pts.</p>
     <p>{record.winCount} wins</p>
     <p>{record.lossCount} losses</p>
-    <p>{currentUser?.groupIds.length || 0} groups</p>
+    <p>{groups?.length || 0} groups</p>
    </div >
   </div >
  );

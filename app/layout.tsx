@@ -62,7 +62,7 @@ export default async function RootLayout({
           </div>
           <div className='rightSidebar'>
             {currentUser && (
-              <UserBox currentUser={currentUser} record={record} />
+              <UserBox currentUser={currentUser} record={record} groups={groups} />
             )}
           </div>
           <Footer currentUserId={currentUser?.id} />
