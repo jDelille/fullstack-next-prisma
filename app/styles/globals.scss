@@ -16,31 +16,39 @@ body {
 	background-color: $black;
 }
 
+.layout {
+	width: 1367px;
+	min-height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	position: relative;
+}
+
 .sidebarContainer {
 	background-color: $gray;
 	height: calc(100vh - $gamebarHeight - 4rem);
-	width: 280px;
-	position: fixed;
-	left: 255px;
-	top: $gamebarHeight;
-	margin-top: 2rem;
+	min-width: 280px;
+	position: sticky;
+	left: 0px;
+	top: calc($gamebarHeight + 2rem);
+
 	border-radius: 8px;
 	z-index: 2;
 	@include breakpoint(xl) {
 		max-width: 280px;
 		min-width: 280px;
-		left: 55px;
+		// left: 55px;
 	}
 	@include breakpoint(md) {
 		max-width: 280px;
 		min-width: 280px;
-		left: 10px;
+		// left: 10px;
 	}
 
 	@include breakpoint(xs) {
 		max-width: 0;
 		display: none;
-		left: 1rem;
+		// left: 1rem;
 	}
 }
 
@@ -75,7 +83,7 @@ body {
 }
 
 .main {
-	background-color: $black;
+	// background-color: $black;
 	color: #222222;
 	height: fit-content;
 	position: relative;
@@ -87,16 +95,16 @@ body {
 
 .rightSidebar {
 	height: calc(100vh - $gamebarHeight - 4rem);
-	width: 280px;
-	position: fixed;
-	right: 285px;
-	top: $gamebarHeight;
+	min-width: 280px;
+	position: sticky;
+
+	top: calc($gamebarHeight + 2rem);
 	margin-top: 2rem;
 	border-radius: 8px;
 	z-index: 2;
-
 	@include breakpoint(md) {
 		right: 0.75rem;
+		display: none;
 	}
 	@include breakpoint(sm) {
 		display: none;

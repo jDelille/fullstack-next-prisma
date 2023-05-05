@@ -42,35 +42,38 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <div className='layout'>
+          <ClientOnly>
+            <ToasterProvider />
+            <RegisterModal />
+            <LoginModal />
+            <BetModal />
+            <EditProfileModal />
+            <CreateGroupModal />
+            <div className='sidebarContainer'>
+              <Navbar currentUser={currentUser} groups={groups} />
+            </div>
 
-        <ClientOnly>
-          <ToasterProvider />
-          <RegisterModal />
-          <LoginModal />
-          <BetModal />
-          <EditProfileModal />
-          <CreateGroupModal />
-          <div className='sidebarContainer'>
-            <Navbar currentUser={currentUser} groups={groups} />
-          </div>
+            <div className="gamebarContainer">
+              <Scoreboard />
+            </div>
+            <div className='mobileNavbarContainer'>
+              <MobileNavbar currentUser={currentUser} groups={groups} />
+            </div>
 
-          <div className="gamebarContainer">
-            <Scoreboard />
-          </div>
-          <div className='mobileNavbarContainer'>
-            <MobileNavbar currentUser={currentUser} groups={groups} />
-          </div>
-          <div className='rightSidebar'>
-            {currentUser && (
-              <UserBox currentUser={currentUser} record={record} groups={groups} />
-            )}
-          </div>
-          <Footer currentUserId={currentUser?.id} />
+            <Footer currentUserId={currentUser?.id} />
 
-          <div className="mainContainer">
-            {children}
-          </div>
-        </ClientOnly>
+            <div className="mainContainer">
+              {children}
+            </div>
+
+            <div className='rightSidebar'>
+              {currentUser && (
+                <UserBox currentUser={currentUser} record={record} groups={groups} />
+              )}
+            </div>
+          </ClientOnly>
+        </div>
       </body>
     </html >
   )
