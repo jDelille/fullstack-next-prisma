@@ -13,8 +13,6 @@ type UserBoxProps = {
 
 const UserBox: React.FC<UserBoxProps> = ({ currentUser, record, groups }) => {
 
- console.log(currentUser)
-
  return (
   <div className={styles.userBox}>
    <div className={styles.top}>
