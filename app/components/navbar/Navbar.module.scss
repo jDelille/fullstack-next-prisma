@@ -55,8 +55,9 @@
 		@include breakpoint(xs) {
 			display: flex;
 			position: absolute;
-			top: 0rem;
+			top: 1rem;
 			right: 1rem;
+			cursor: pointer;
 		}
 	}
 	.pages,
