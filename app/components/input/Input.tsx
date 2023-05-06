@@ -2,7 +2,7 @@
 
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.scss';
-import { BiDollar } from 'react-icons/bi'
+
 type InputProps = {
  id: string;
  label: string;
@@ -13,6 +13,7 @@ type InputProps = {
  errors: FieldErrors;
  formatPrice?: boolean;
  onChange?: (value: any) => void;
+ placeholder?: string
 };
 
 const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
  register,
  errors,
  formatPrice,
+ placeholder,
  onChange
 }) => {
  return (
@@ -34,7 +36,7 @@ const Input: React.FC<InputProps> = ({
     id={id}
     disabled={disabled}
     {...register(id, { required })}
-    placeholder=' '
+    placeholder={placeholder ? placeholder : ""}
     type={type}
     className={styles.input}
     onChange={onChange}

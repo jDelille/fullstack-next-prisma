@@ -13,10 +13,11 @@ type ImageUploadProps = {
  userId?: string
  isRegister?: boolean;
  isPost?: boolean
+ placeholder?: string;
 }
 
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost, placeholder }) => {
 
  const [base64, setBase64] = useState(value)
  const loginModal = useLoginModal();

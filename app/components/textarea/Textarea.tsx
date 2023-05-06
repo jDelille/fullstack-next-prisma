@@ -11,6 +11,7 @@ type TextareaProps = {
  register: UseFormRegister<FieldValues>;
  errors: FieldErrors;
  onChange?: (value: any) => void;
+ placeholder?: string;
 };
 
 const Textarea: React.FC<TextareaProps> = ({
@@ -20,6 +21,7 @@ const Textarea: React.FC<TextareaProps> = ({
  required,
  register,
  errors,
+ placeholder,
  onChange
 }) => {
  return (
@@ -30,7 +32,7 @@ const Textarea: React.FC<TextareaProps> = ({
     id={id}
     disabled={disabled}
     {...register(id, { required })}
-    placeholder=' '
+    placeholder={placeholder ? placeholder : ""}
     className={styles.textarea}
     onChange={onChange}
 

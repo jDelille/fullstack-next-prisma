@@ -13,7 +13,14 @@ import { useRouter } from 'next/navigation';
 import Textarea from '../textarea/Textarea';
 import ImageUpload from '../image-upload/ImageUpload';
 
-const EditProfileModal = () => {
+type EditProfileModalProps = {
+	name?: string;
+	username?: string;
+	bio?: string;
+	userPhoto?: string
+}
+
+const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio, userPhoto }) => {
 	const router = useRouter();
 
 	const editProfileModal = useEditProfileModal();
@@ -65,16 +72,18 @@ const EditProfileModal = () => {
 		<div className={styles.bodyContent}>
 			<p className={styles.imageUploadLabel}>Profile picture</p>
 			<ImageUpload
-				value={photo}
+				value={photo || userPhoto as string}
 				onChange={(image) => setPhoto(image)}
 				setCustomValue={setCustomValue}
 				label='Edit your profile picture'
+				placeholder={userPhoto}
 			/>
 			<Input
 				id='name'
 				label='Name'
 				disabled={isLoading}
 				register={register}
+				placeholder={name}
 				errors={errors}
 				type='text'
 				onChange={(e) => setCustomValue('name', e.target.value)}
@@ -84,6 +93,7 @@ const EditProfileModal = () => {
 				label='Username'
 				disabled={isLoading}
 				register={register}
+				placeholder={username}
 				errors={errors}
 				type='text'
 				onChange={(e) => setCustomValue('username', e.target.value)}
@@ -91,6 +101,7 @@ const EditProfileModal = () => {
 			<Textarea
 				id='bio'
 				label='Bio'
+				placeholder={bio}
 				disabled={isLoading}
 				register={register}
 				errors={errors}

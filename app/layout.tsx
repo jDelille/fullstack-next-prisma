@@ -48,7 +48,7 @@ export default async function RootLayout({
             <RegisterModal />
             <LoginModal />
             <BetModal />
-            <EditProfileModal />
+            <EditProfileModal name={currentUser?.name} username={currentUser?.username} bio={currentUser?.bio as string} userPhoto={currentUser?.photo as string} />
             <CreateGroupModal />
             <div className='sidebarContainer'>
               <Navbar currentUser={currentUser} groups={groups} />
