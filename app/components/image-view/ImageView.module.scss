@@ -1,0 +1,26 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.overlay {
+	@include overlay();
+}
+
+.imageView {
+	position: fixed;
+	max-width: 98%;
+	min-width: 96%;
+	height: 90%;
+	padding: 1rem;
+	.close {
+		position: absolute;
+		z-index: 99;
+		right: 0rem;
+		top: 0rem;
+		cursor: pointer;
+	}
+	.image {
+		width: fit-content;
+		height: fit-content;
+		object-fit: contain;
+	}
+}

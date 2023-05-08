@@ -11,6 +11,7 @@ import PostCardComment from './post-card-comment/PostCardComment';
 import { useState, useCallback, useEffect } from 'react';
 import CommentFeed from '../comment-feed/CommentFeed';
 import axios from 'axios';
+import ImageView from '../image-view/ImageView';
 
 type PostCardProps = {
   post: any;
@@ -20,6 +21,7 @@ type PostCardProps = {
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
   const router = useRouter();
   const [isComment, setIsComment] = useState(false)
+  const [imageView, setImageView] = useState('')
 
   const onComment = useCallback(() => {
     setIsComment(!isComment)
@@ -75,8 +77,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
             alt='Uploaded Image'
             className={styles.imagePreview}
             style={{ objectFit: 'cover' }}
+            onClick={(e) => { e.stopPropagation(); setImageView(post?.photo.url || post?.photo) }}
           />
         </div>
+      )}
+      {imageView && (
+        <ImageView url={imageView} setImageView={setImageView} />
       )}
       {post?.Bet && (
         <div className={styles.badges}>
