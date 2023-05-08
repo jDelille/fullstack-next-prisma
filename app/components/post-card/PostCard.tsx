@@ -70,7 +70,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       {post?.photo && (
         <div className={styles.postPhoto}>
           <Image
-            src={post?.photo}
+            src={post?.photo.url || post?.photo}
             fill
             alt='Uploaded Image'
             className={styles.imagePreview}

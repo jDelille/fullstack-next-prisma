@@ -13,15 +13,17 @@
 		}
 	}
 	.postPhoto {
-		max-height: 400px;
+		// max-height: 400px;
 		position: relative;
 		border: 1px solid $lightGray;
+		max-width: 100%;
 
 		img {
-			max-height: 400px;
+			max-height: 450px;
 			position: relative !important;
 			width: 100%;
-			object-fit: scale-down;
+			object-fit: cover;
+			aspect-ratio: 13/9;
 		}
 	}
 	.badges {

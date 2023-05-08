@@ -1,0 +1,10 @@
+.gifs {
+	width: 500px;
+	height: 300px;
+	overflow-y: scroll;
+	position: absolute;
+	top: 100px;
+	z-index: 99999;
+	padding: 10px;
+	overflow-x: hidden;
+}

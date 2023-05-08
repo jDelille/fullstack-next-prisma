@@ -39,8 +39,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       .replace(' minutes', 'm')
       .replace(' minute', 'm')
       .replace(' hours', 'h')
-      .replace('days', 'd')
-      .replace("day", 'd')
+      .replace(' days', 'd')
+      .replace(" day", 'd')
       .replace(' hour', 'h');
   }, [post?.createdAt]);
 

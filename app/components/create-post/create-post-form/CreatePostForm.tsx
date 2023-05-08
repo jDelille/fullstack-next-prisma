@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { TbReportMoney } from 'react-icons/tb'
 import { AiFillCamera, AiOutlineCamera } from 'react-icons/ai';
+import { HiGif } from 'react-icons/hi2'
+import Gifs from '../../gifs/Gifs';
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
@@ -39,7 +41,7 @@ const CreatePostForm = ({
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const loginModal = useLoginModal();
-
+  const [showGifs, setShowGifs] = useState(false)
   const {
     register,
     handleSubmit,
@@ -115,6 +117,11 @@ const CreatePostForm = ({
               {!userId && (
                 <AiOutlineCamera size={23} color="#abadb1" onClick={() => loginModal.onOpen()} />
               )}
+              {/* <HiGif onClick={() => setShowGifs(true)} />
+              {showGifs && (
+                <Gifs onChange={(image) => setPhoto(image)}
+                  setCustomValue={setCustomValue} />
+              )} */}
               {userId && (
                 <ImageUpload
                   value={photo}

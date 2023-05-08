@@ -95,6 +95,7 @@
 	color: $white;
 	display: flex;
 	flex-direction: column;
+	height: fit-content;
 }
 
 @mixin overlay() {
