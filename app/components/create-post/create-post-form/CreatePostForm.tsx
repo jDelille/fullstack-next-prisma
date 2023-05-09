@@ -11,7 +11,7 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { TbReportMoney } from 'react-icons/tb'
-import { AiFillCamera, AiOutlineCamera } from 'react-icons/ai';
+import { AiFillCamera, AiOutlineCamera, AiOutlineFileGif } from 'react-icons/ai';
 import { HiGif } from 'react-icons/hi2'
 import Gifs from '../../gifs/Gifs';
 type CreatePostFormProps = {
@@ -117,11 +117,15 @@ const CreatePostForm = ({
               {!userId && (
                 <AiOutlineCamera size={23} color="#abadb1" onClick={() => loginModal.onOpen()} />
               )}
-              {/* <HiGif onClick={() => setShowGifs(true)} />
+              {/* <AiOutlineFileGif color="#abadb1" size={23} onClick={() => setShowGifs(true)} /> */}
               {showGifs && (
-                <Gifs onChange={(image) => setPhoto(image)}
-                  setCustomValue={setCustomValue} />
-              )} */}
+                <Gifs
+                  onChange={(image) => setPhoto(image)}
+                  setCustomValue={setCustomValue}
+                  register={register}
+                  errors={errors}
+                />
+              )}
               {userId && (
                 <ImageUpload
                   value={photo}

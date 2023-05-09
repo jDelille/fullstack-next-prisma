@@ -25,6 +25,7 @@
 				display: flex;
 				gap: 5px;
 				align-items: center;
+				// padding-left: 1px;
 				@include breakpoint(xs) {
 					font-size: 14px;
 				}

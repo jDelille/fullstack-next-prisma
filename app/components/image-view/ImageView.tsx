@@ -7,12 +7,11 @@ type ImageViewProps = {
  setImageView: Dispatch<SetStateAction<string>>
 }
 
-
 const ImageView: React.FC<ImageViewProps> = ({ url, setImageView }) => {
  return (
   <>
-   <div className={styles.overlay}>
-    <div className={styles.imageView} onClick={(e) => e.stopPropagation()}>
+   <div className={styles.overlay} onClick={(e) => { e.stopPropagation(); setImageView('') }}>
+    <div className={styles.imageView} onClick={(e) => { e.stopPropagation(); setImageView('') }}>
      <div className={styles.close}>
       <AiFillCloseSquare size={40} onClick={() => setImageView('')} />
      </div>
@@ -21,7 +20,7 @@ const ImageView: React.FC<ImageViewProps> = ({ url, setImageView }) => {
       fill
       alt='Uploaded Image'
       className={styles.image}
-
+      
      />
     </div>
    </div>

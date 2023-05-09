@@ -7,20 +7,24 @@
 
 .imageView {
 	position: fixed;
-	max-width: 98%;
-	min-width: 96%;
-	height: 90%;
+	max-width: 100%;
+	min-width: 100%;
+	height: 100%;
 	padding: 1rem;
+
 	.close {
 		position: absolute;
 		z-index: 99;
-		right: 0rem;
-		top: 0rem;
+		right: 1rem;
+		top: 6px;
 		cursor: pointer;
 	}
+
 	.image {
-		width: fit-content;
-		height: fit-content;
+		width: auto;
+		height: auto;
+		max-height: 100%;
+		max-width: 100%;
 		object-fit: contain;
 	}
 }

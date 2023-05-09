@@ -34,13 +34,16 @@
 			// padding-left: 50px;
 			gap: 10px;
 			svg {
-				position: relative;
-				top: 2px;
+				// position: relative;
+				// top: 2px;
+				height: 100%;
+				display: flex;
+				align-items: center;
 				cursor: pointer;
-				&:nth-child(1) {
-					position: relative;
-					top: -0px;
-				}
+				// &:nth-child(1) {
+				// 	position: relative;
+				// 	top: -0px;
+				// }
 			}
 			button {
 				background-color: $lightGray;
