@@ -79,6 +79,10 @@
 				color: #f1c40f;
 				position: relative;
 				width: fit-content;
+				height: 20px;
+				svg {
+					max-width: 15px;
+				}
 				&:hover {
 					&::after {
 						position: absolute;

@@ -12,6 +12,7 @@ import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import getGroupsByUserId from '@/app/actions/getGroupsByUserId';
 import Image from 'next/image';
 import getBetRecord from '@/app/actions/getBetRecord';
+import CoinIcon from '@/app/icons/CoinIcon';
 interface IParams {
  userId?: string;
 }
@@ -49,7 +50,8 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
        <span>({record.winCount} - {record.lossCount})</span>
       </div> */}
       <div className={styles.points}>
-       <Image src={'/images/star.png'} alt='star' width={15} height={15} />
+       {/* <Image src={'/images/star.png'} alt='star' width={15} height={15} /> */}
+       <CoinIcon />
        <span>{user?.points || 0}</span>
       </div>
       <div className={styles.joined}>
