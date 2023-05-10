@@ -1,7 +1,7 @@
 'use client';
 
 import useEditProfileModal from '@/app/hooks/useEditProfileModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Modal.module.scss';
 import Modal from './Modal';
@@ -38,6 +38,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 		defaultValues: {
 			name: '',
 			username: '',
+			bio: ''
 		},
 	});
 
@@ -67,6 +68,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 				setIsLoading(false);
 			});
 	};
+
 
 	const bodyContent = (
 		<div className={styles.bodyContent}>

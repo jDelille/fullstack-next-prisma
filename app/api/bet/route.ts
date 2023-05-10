@@ -10,8 +10,18 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json();
-	const { league, match, odds, thoughts, wager, confidence, payout, groupId } =
-		body;
+	const {
+		league,
+		match,
+		odds,
+		thoughts,
+		wager,
+		confidence,
+		payout,
+		groupId,
+		isPrivate,
+		shouldNotify,
+	} = body;
 
 	const newBet = await prisma.bet.create({
 		data: {
@@ -33,6 +43,8 @@ export async function POST(request: Request) {
 			awayId: parseInt(odds.awayId),
 			gameId: parseInt(odds.gameId),
 			sport: odds.sport,
+			isPrivate,
+			shouldNotify,
 		},
 	});
 

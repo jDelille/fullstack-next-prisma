@@ -23,7 +23,7 @@ type ModalProps = {
  setStep?: (value: number) => void;
  noMatches?: boolean;
  setIsEmpty?: (value: boolean) => void;
-
+ isButtonDisabled?: boolean
 };
 
 const Modal: React.FC<ModalProps> = ({
@@ -43,7 +43,8 @@ const Modal: React.FC<ModalProps> = ({
  step,
  setStep,
  noMatches,
- setIsEmpty
+ setIsEmpty,
+ isButtonDisabled
 }) => {
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -118,6 +119,7 @@ const Modal: React.FC<ModalProps> = ({
          disabled={disabled}
          label={secondaryActionLabel}
          onClick={handleSecondaryAction}
+
         />
        )}
        {noMatches ? (
@@ -128,6 +130,7 @@ const Modal: React.FC<ModalProps> = ({
           label={actionLabel}
           onClick={handleSubmit}
           disabled={disabled}
+          isButtonDisabled={isButtonDisabled}
          />
         )
        )}

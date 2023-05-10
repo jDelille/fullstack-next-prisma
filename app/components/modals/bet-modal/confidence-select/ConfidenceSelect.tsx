@@ -15,7 +15,8 @@ const customStyles = {
   boxShadow: 'none',
   backgroundColor: '#373737',
   color: '#fcfeff',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  height: '45px'
  }),
  option: (provided: any, state: any) => ({
   ...provided,
@@ -43,7 +44,7 @@ const customStyles = {
  }),
  indicatorSeparator: (provided: any) => ({
   ...provided,
-  backgroundColor: '#fcfeff',
+  backgroundColor: '#4d4d4d',
  }),
 };
 

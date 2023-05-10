@@ -2,7 +2,32 @@
 
 .odds {
 	display: flex;
-	gap: 1rem;
+	gap: 5px;
+	position: relative;
+	padding: 3px;
+	margin-bottom: 10px;
+	.teamNames {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		gap: 10px;
+		label {
+			font-size: 12px;
+			margin-bottom: 10px;
+		}
+		p {
+			height: 50%;
+			@include button();
+			display: flex;
+			justify-content: flex-start;
+			border: none;
+			&:hover {
+				background-color: transparent;
+				cursor: default;
+			}
+		}
+	}
 }
 .oddsWrapper {
 	display: flex;
@@ -11,6 +36,7 @@
 	width: 100%;
 	label {
 		font-size: 12px;
+		margin-bottom: 10px;
 	}
 }
 .homeOdd,
@@ -18,7 +44,14 @@
 .awayOddBordered,
 .homeOddBordered {
 	@include button();
-	justify-content: space-evenly;
+	flex-direction: column;
+	gap: 0;
+	justify-content: center;
+	font-size: 13px;
+	.oddsNumber {
+		color: $accent;
+		font-size: 13px;
+	}
 }
 
 .awayOddBordered,

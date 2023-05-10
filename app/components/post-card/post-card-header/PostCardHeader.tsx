@@ -10,6 +10,7 @@ import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import useFollow from '@/app/hooks/useFollow';
 import Image from 'next/image';
 import { IoMdClose } from 'react-icons/io';
+import { FaLock } from 'react-icons/fa';
 
 
 type PostCardHeaderProps = {
@@ -90,6 +91,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         </div>
       </div>
       <div className={styles.postMenu}>
+        {post?.Bet?.isPrivate && (<>
+          <span>Followers only</span>
+
+        </>)}
         {post?.isPinned && <AiFillPushpin size={14} />}
         <p>{createdAt}</p>
         <BiDotsVerticalRounded

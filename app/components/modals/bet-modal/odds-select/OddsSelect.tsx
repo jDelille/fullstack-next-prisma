@@ -17,6 +17,8 @@ type OddsSelectProps = {
   id: string;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
+  homeAbbrv: string;
+  awayAbbrv: string;
 };
 
 const OddsSelect: React.FC<OddsSelectProps> = ({
@@ -31,6 +33,8 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
   register,
   homeId,
   awayId,
+  homeAbbrv,
+  awayAbbrv,
 }) => {
   const [odds, setOdds] = useState<Odds | null>();
   const [selected, setSelected] = useState('');
@@ -86,61 +90,14 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
     <>
       {odds && (
         <>
-          {/* moneyline */}
+
           <div className={styles.odds}>
-            <div className={styles.oddsWrapper}>
-              <label>Moneyline</label>
-              <div
-                className={
-                  selected === 'homeML'
-                    ? styles.homeOddBordered
-                    : styles.homeOdd
-                }
-                id={id}
-                {...register(id, { required })}
-                onClick={() => {
-                  onClick({
-                    odds: odds?.homeTeamOdds.moneyLine,
-                    type: 'Moneyline',
-                    favorite: odds?.homeTeamOdds.favorite,
-                    value: null,
-                    homeTeam: homeTeam,
-                    location: 'home',
-                    homeId: homeId,
-                    awayId: awayId,
-                    gameId: matchId,
-                    sport: sport,
-                  });
-                  setSelected('homeML');
-                }}>
-                <p>{odds?.homeTeamOdds.moneyLine}</p>
-              </div>
-              <div
-                className={
-                  selected === 'awayML'
-                    ? styles.awayOddBordered
-                    : styles.awayOdd
-                }
-                id={id}
-                {...register(id, { required })}
-                onClick={() => {
-                  onClick({
-                    odds: odds?.awayTeamOdds.moneyLine,
-                    type: 'Moneyline',
-                    favorite: odds?.awayTeamOdds.favorite,
-                    value: null,
-                    awayTeam: awayTeam,
-                    location: 'away',
-                    homeId: homeId,
-                    awayId: awayId,
-                    gameId: matchId,
-                    sport: sport,
-                  });
-                  setSelected('awayML');
-                }}>
-                <p>{odds?.awayTeamOdds.moneyLine}</p>
-              </div>
+            <div className={styles.teamNames}>
+              <label>Team</label>
+              <p>{homeAbbrv}</p>
+              <p>{awayAbbrv}</p>
             </div>
+
             {/* spread */}
             {odds?.homeTeamOdds?.spreadOdds && (
               <div className={styles.oddsWrapper}>
@@ -169,10 +126,10 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
                     setSelected('homeSpread');
                   }}>
                   <p>
-                    {odds.homeTeamOdds.favorite ? '-' : '+'}
-                    {odds.spread.toString().slice(1)}
+                    {odds.homeTeamOdds.favorite ? odds.spread : '+' + Math.abs(odds.spread)}
+                    { }
                   </p>
-                  <p>{odds?.homeTeamOdds.spreadOdds}</p>
+                  <p className={styles.oddsNumber}>{odds?.homeTeamOdds.spreadOdds}</p>
                 </div>
                 <div
                   className={
@@ -198,17 +155,16 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
                     setSelected('awaySpread');
                   }}>
                   <p>
-                    {odds.awayTeamOdds.favorite ? '-' : '+'}
-                    {odds.spread.toString().slice(0)}
+                    {odds.awayTeamOdds.favorite ? odds.spread : '+' + Math.abs(odds.spread)}
                   </p>
-                  <p>{odds?.awayTeamOdds.spreadOdds}</p>
+                  <p className={styles.oddsNumber}>{odds?.awayTeamOdds.spreadOdds}</p>
                 </div>
               </div>
             )}
 
             {/* over/under */}
             <div className={styles.oddsWrapper}>
-              <label>Over / Under</label>
+              <label>Total</label>
               <div
                 id={id}
                 {...register(id, { required })}
@@ -231,7 +187,7 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
                   setSelected('over');
                 }}>
                 <p>O {odds.overUnder}</p>
-                <p>{odds?.overOdds}</p>
+                <p className={styles.oddsNumber}>{odds?.overOdds}</p>
               </div>
               <div
                 id={id}
@@ -255,7 +211,61 @@ const OddsSelect: React.FC<OddsSelectProps> = ({
                   setSelected('under');
                 }}>
                 <p>U {odds.overUnder}</p>
-                <p>{odds?.underOdds}</p>
+                <p className={styles.oddsNumber}> {odds?.underOdds}</p>
+              </div>
+            </div>
+            {/* moneyline */}
+            <div className={styles.oddsWrapper}>
+              <label>Moneyline</label>
+              <div
+                className={
+                  selected === 'homeML'
+                    ? styles.homeOddBordered
+                    : styles.homeOdd
+                }
+                id={id}
+                {...register(id, { required })}
+                onClick={() => {
+                  onClick({
+                    odds: odds?.homeTeamOdds.moneyLine,
+                    type: 'Moneyline',
+                    favorite: odds?.homeTeamOdds.favorite,
+                    value: null,
+                    homeTeam: homeTeam,
+                    location: 'home',
+                    homeId: homeId,
+                    awayId: awayId,
+                    gameId: matchId,
+                    sport: sport,
+                  });
+                  setSelected('homeML');
+                }}>
+                <p className={styles.oddsNumber}>{odds?.homeTeamOdds.moneyLine}</p>
+              </div>
+              <div
+                className={
+                  selected === 'awayML'
+                    ? styles.awayOddBordered
+                    : styles.awayOdd
+                }
+                id={id}
+                {...register(id, { required })}
+                onClick={() => {
+                  onClick({
+                    odds: odds?.awayTeamOdds.moneyLine,
+                    type: 'Moneyline',
+                    favorite: odds?.awayTeamOdds.favorite,
+                    value: null,
+                    awayTeam: awayTeam,
+                    location: 'away',
+                    homeId: homeId,
+                    awayId: awayId,
+                    gameId: matchId,
+                    sport: sport,
+                  });
+                  setSelected('awayML');
+                }}>
+                <p className={styles.oddsNumber}>{odds?.awayTeamOdds.moneyLine}</p>
               </div>
             </div>
           </div>

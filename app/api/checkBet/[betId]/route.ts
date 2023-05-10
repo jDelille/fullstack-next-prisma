@@ -138,6 +138,32 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				);
 			}
 
+			// start notification
+
+			try {
+				if (currentUser?.id) {
+					await prisma.notification.create({
+						data: {
+							body: 'Your bet ...',
+							userId: currentUser.id,
+						},
+					});
+
+					await prisma.user.update({
+						where: {
+							id: currentUser.id,
+						},
+						data: {
+							hasNotification: true,
+						},
+					});
+				}
+			} catch (error) {
+				console.log(error);
+			}
+
+			// end notification
+
 			const updatedUser = await prisma.user.update({
 				where: {
 					id: currentUser?.id,

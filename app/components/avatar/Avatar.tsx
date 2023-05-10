@@ -13,6 +13,10 @@ const Avatar: React.FC<AvatarProps> = ({ src, userId }) => {
 
  const router = useRouter()
 
+ const handleMouseEnter = () => {
+  router.prefetch(`/user/${userId}`)
+ }
+
 
  return (
   <Image
@@ -23,6 +27,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, userId }) => {
    alt='profile-picture'
    style={{ objectFit: 'cover' }}
    onClick={(e) => { e.stopPropagation(); userId && router.push(`user/${userId}`) }}
+   onMouseEnter={handleMouseEnter}
   />
  );
 }

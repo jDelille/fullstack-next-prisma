@@ -10,11 +10,7 @@ import styles from '../Modal.module.scss';
 import LeagueInput from './league-input/LeagueInput';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-import {
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import MatchSelect from './match-select/MatchSelect';
 import OddsSelect from './odds-select/OddsSelect';
 import Input from '../../input/Input';
@@ -22,6 +18,8 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
 import ConfidenceSelect from './confidence-select/ConfidenceSelect';
+import Toggle from 'react-toggle';
+
 enum STEPS {
   LEAGUE = 0,
   MATCH = 1,
@@ -33,14 +31,15 @@ const BetModal = () => {
   const router = useRouter();
   const betModal = useBetModal();
 
-
   const [isLoading, setIsLoading] = useState(false);
   const [matchId, setMatchId] = useState('');
   const [step, setStep] = useState(STEPS.LEAGUE);
   const [odds, setOdds] = useState(0);
   const [wagerAmount, setWagerAmount] = useState(0);
-  const [leagueName, setLeagueName] = useState('')
+  const [leagueName, setLeagueName] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
+  const [shouldNotify, setShouldNotify] = useState(true);
+  const [isPrivate, setIsPrivate] = useState(false);
 
   const {
     register,
@@ -52,17 +51,19 @@ const BetModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       league: '',
+      match: '',
     },
   });
 
   const league = watch('league');
   const match = watch('match');
+  const oddsData = watch("odds");
 
-  const pathname = usePathname()
-  let id = ""
+  const pathname = usePathname();
+  let id = '';
   // Check if pathname includes "groups"
   if (pathname && pathname.includes('groups')) {
-    id = pathname && pathname.split('/').pop() as string;
+    id = pathname && (pathname.split('/').pop() as string);
   }
 
   const setCustomValue = (id: string, value: any) => {
@@ -74,10 +75,10 @@ const BetModal = () => {
 
     if (id === 'league') {
       if (value === 'MLS') {
-        setLeagueName('usa.1')
+        setLeagueName('usa.1');
         return;
       }
-      setLeagueName(value)
+      setLeagueName(value);
     }
 
     if (id === 'match') {
@@ -119,9 +120,6 @@ const BetModal = () => {
     if (step !== STEPS.ODDS) {
       return onNext();
     }
-
-
-
     setIsLoading(true);
 
     data.groupId = id || null;
@@ -130,8 +128,9 @@ const BetModal = () => {
       ...data,
       payout: payout,
       league: league,
-
-    }
+      shouldNotify: shouldNotify,
+      isPrivate: isPrivate,
+    };
 
     axios
       .post('/api/bet', payload)
@@ -155,22 +154,61 @@ const BetModal = () => {
       return 'Post bet';
     }
 
+    if (step === STEPS.LEAGUE) {
+      return 'Choose matchup'
+    }
+
+    if (step === STEPS.MATCH) {
+      return 'Choose odds'
+    }
+
     return 'Next';
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
     if (step === STEPS.LEAGUE) {
-      return undefined;
+      return 'Close';
     }
 
     return 'Back';
   }, [step]);
 
+  const headerTitle = useMemo(() => {
+    if (step === STEPS.ODDS) {
+      return 'Choose your odds';
+    }
 
+    if (step === STEPS.LEAGUE) {
+      return 'Choose a league'
+    }
+
+    if (step === STEPS.MATCH) {
+      return 'Choose a matchup'
+    }
+  }, [step])
+
+  const disableButton = useMemo(() => {
+    if (step === STEPS.ODDS && odds && wagerAmount) {
+      return false
+    }
+
+    if (step === STEPS.LEAGUE && league) {
+      return false
+    }
+
+    if (step === STEPS.MATCH && match) {
+      return false
+    }
+
+    return true
+
+  }, [step, odds, wagerAmount, league, match]);
+
+  console.log(errors);
 
   let bodyContent = (
     <div>
-      <Heading title='Choose a league' subTitle={errors.league?.type && 'Please pick a sport'} />
+
       <SimpleBar className={styles.chooseLeague}>
         {leagues.map((item) => (
           <div key={item.label}>
@@ -196,10 +234,10 @@ const BetModal = () => {
   if (step === STEPS.MATCH) {
     bodyContent = (
       <div>
-        <Heading title='Choose a matchup' subTitle={errors.match?.type && 'Please pick a matchup'} />
+
         <SimpleBar className={styles.chooseMatch}>
           <MatchSelect
-            id="match"
+            id='match'
             register={register}
             required
             selected={match?.matchId}
@@ -215,9 +253,8 @@ const BetModal = () => {
   if (step === STEPS.ODDS) {
     bodyContent = (
       <div>
-        <Heading title='Choose your bet' subTitle={match?.name} />
-        <div className={styles.chooseOdds}>
 
+        <div className={styles.chooseOdds}>
           <OddsSelect
             id='odds'
             required
@@ -229,6 +266,8 @@ const BetModal = () => {
             homeId={match?.homeId}
             awayId={match?.awayId}
             leagueName={leagueName}
+            homeAbbrv={match?.homeAbbrv}
+            awayAbbrv={match?.awayAbbrv}
             onClick={(value) => setCustomValue('odds', value)}
           />
           <div className={styles.wager}>
@@ -261,8 +300,38 @@ const BetModal = () => {
           />
           <div className={styles.confidence}>
             <label>Share your confidence level</label>
-            <ConfidenceSelect id='confidence' register={register} required onChange={(value) => setCustomValue('confidence', value)} />
+            <ConfidenceSelect
+              id='confidence'
+              register={register}
+              required
+              onChange={(value) => setCustomValue('confidence', value)}
+            />
           </div>
+          <div className={styles.setting}>
+            <div className={styles.text}>
+              <p className={styles.name}>Make Bet Private</p>
+              <p className={styles.description}>Choose whether or not you want to only show this bet for followers.</p>
+            </div>
+            <div className={styles.toggle}>
+              <Toggle
+                defaultChecked={false}
+                onChange={() => setIsPrivate(!isPrivate)} icons={false} />
+            </div>
+
+          </div>
+          <div className={styles.setting}>
+            <div className={styles.text}>
+              <p className={styles.name}>Turn on notifications</p>
+              <p className={styles.description}>Choose whether or not you want you to be notified of this bets status.</p>
+            </div>
+            <div className={styles.toggle}>
+              <Toggle
+                defaultChecked={true}
+                onChange={() => setShouldNotify(!shouldNotify)} icons={false} />
+            </div>
+
+          </div>
+
         </div>
       </div>
     );
@@ -277,11 +346,12 @@ const BetModal = () => {
       icon={IoMdClose}
       onSubmit={handleSubmit(onSubmit)}
       setIsEmpty={setIsEmpty}
-      title='Post a bet'
+      title={headerTitle}
       noMatches={isEmpty}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.LEAGUE ? undefined : onBack}
+      secondaryAction={step === STEPS.LEAGUE ? betModal.onClose : onBack}
+      isButtonDisabled={disableButton}
     />
   );
 };

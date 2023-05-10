@@ -10,11 +10,12 @@
 	gap: 5px;
 	width: 100%;
 	justify-content: center;
-	background-color: $gray;
+	background-color: #373737;
 	color: $white;
 	position: relative;
 	border-radius: 5px;
 	cursor: pointer;
+
 	.buttonIcon {
 		position: absolute;
 		left: 10px;

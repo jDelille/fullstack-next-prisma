@@ -67,26 +67,28 @@ model User {
 }
 
 model Bet {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  league     String
-  status     String
-  homeTeam   String
-  awayTeam   String
-  name       String
-  location   String
-  favorite   Boolean
-  odds       Int
-  type       String
-  value      Float?
-  thoughts   String
-  wager      Float?
-  payout     Float?
-  confidence String
-  Post       Post[]
-  gameId     Int
-  homeId     Int
-  awayId     Int
-  sport      String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  league       String
+  status       String
+  homeTeam     String
+  awayTeam     String
+  name         String
+  location     String
+  favorite     Boolean
+  odds         Int
+  type         String
+  value        Float?
+  thoughts     String
+  wager        Float?
+  payout       Float?
+  confidence   String
+  Post         Post[]
+  gameId       Int
+  homeId       Int
+  awayId       Int
+  sport        String
+  isPrivate    Boolean? @default(false)
+  shouldNotify Boolean? @default(true)
 }
 
 model Group {

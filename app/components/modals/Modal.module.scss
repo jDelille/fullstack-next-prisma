@@ -29,7 +29,6 @@
 			gap: 1rem;
 			font-size: 20px;
 			font-weight: 600;
-			// padding-bottom: 24px;
 		}
 		.modalBody {
 			.chooseLeague,
@@ -37,7 +36,7 @@
 			.chooseOdds {
 				display: flex;
 				flex-direction: column;
-				gap: 1rem;
+				// gap: 1rem;
 				height: fit-content;
 			}
 			.chooseMatch {
@@ -45,6 +44,7 @@
 			}
 			.chooseOdds {
 				height: unset;
+
 				label {
 					font-size: 12px;
 				}
@@ -84,6 +84,40 @@
 					padding: 1rem 0;
 					label {
 						font-size: 12px;
+					}
+				}
+				.setting {
+					margin-top: 1rem;
+					text-transform: none;
+					font-size: 14px;
+					display: flex;
+					align-items: center;
+					.text {
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+						.description {
+							font-size: 12px;
+							color: #c5c5c5;
+							font-weight: 400;
+							width: 98%;
+						}
+					}
+					input {
+						max-width: 50px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						&::-webkit-outer-spin-button,
+						&::-webkit-inner-spin-button {
+							-webkit-appearance: none;
+							margin: 0;
+						}
+						font-weight: 600;
+					}
+					.toggle {
+						width: fit-content;
+						margin-left: auto;
 					}
 				}
 			}
@@ -195,8 +229,7 @@
 						display: flex;
 						flex-direction: column;
 						gap: 5px;
-						.name {
-						}
+
 						.description {
 							font-size: 12px;
 							color: #c5c5c5;
@@ -270,11 +303,13 @@
 		.buttonsContainer {
 			display: flex;
 			gap: 1rem;
-			// margin-top: auto;
-			// padding-top: 1rem;
+			padding: 1rem 0;
 			button {
 				width: 100%;
 				background-color: $accent;
+				font-size: 16px;
+				font-weight: 600;
+				height: 45px;
 				&:nth-of-type(1) {
 					background-color: #4d4d4d;
 					font-weight: 600;
@@ -283,9 +318,14 @@
 						background-color: darken(#4d4d4d, 2%);
 					}
 				}
-				&:hover {
-					background-color: darken($accent, 5%);
+				background-color: $accent;
+				&:disabled {
+					background-color: #4d4d4d;
+					cursor: default;
 				}
+				// &:hover {
+				// 	background-color: darken($accent, 5%);
+				// }
 			}
 		}
 		.demoLogin {

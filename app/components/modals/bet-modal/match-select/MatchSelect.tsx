@@ -109,6 +109,8 @@ const MatchSelect: React.FC<MatchSelectProps> = ({
                 awayTeam: match.competitions[0].competitors[1].team.displayName,
                 homeId: match.competitions[0].competitors[0].team.id,
                 awayId: match.competitions[0].competitors[1].team.id,
+                homeAbbrv: match.competitions[0].competitors[0].team.abbreviation,
+                awayAbbrv: match.competitions[0].competitors[1].team.abbreviation
               })
             }>
             {match.name}
