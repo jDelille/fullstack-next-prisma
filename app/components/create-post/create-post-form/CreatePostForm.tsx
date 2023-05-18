@@ -91,7 +91,7 @@ const CreatePostForm = ({
   };
 
   return (
-    <div className={styles.inputContainer}>
+    <div className={isComment ? styles.inputCommentContainer : styles.inputContainer}>
       <div
         className={
           isBordered ? styles.inputWrapperBordered : styles.inputWrapper

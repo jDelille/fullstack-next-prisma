@@ -4,6 +4,7 @@
 
 .page {
 	@include page();
+	padding-top: 2rem;
 
 	.noGroupMessage {
 		margin-top: 1rem;

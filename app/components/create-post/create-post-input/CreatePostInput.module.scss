@@ -1,6 +1,7 @@
 @import '@/app/styles/variables';
 
-.createPostInput {
+.createPostInput,
+.createCommentInput {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -72,4 +73,12 @@
 			margin-top: 10px;
 		}
 	}
+}
+
+.createCommentInput {
+	position: relative;
+	padding-top: 0;
+	margin-top: 0;
+	padding: 10px;
+	border-top: 1px solid $lightGray;
 }

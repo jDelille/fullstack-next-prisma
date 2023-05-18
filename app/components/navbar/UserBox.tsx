@@ -16,10 +16,6 @@ type UserBoxProps = {
 const UserBox: React.FC<UserBoxProps> = ({ currentUser, notifications }) => {
 
  const [openMenu, setOpenMenu] = useState(false)
-
-
- console.log(notifications)
-
  return (
   <div className={styles.userBox}>
    <div className={styles.userBoxHeader}>

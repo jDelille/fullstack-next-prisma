@@ -1,14 +1,19 @@
 @import '@/app/styles/variables';
 
-.inputContainer {
+.inputContainer,
+.commentInputContainer {
 	min-height: 90px;
 	position: relative;
 	min-width: 100%;
 	height: fit-content;
+	position: sticky;
+	top: $gamebarHeight;
+	z-index: 999;
+	padding-top: 2rem;
+	background-color: $black;
 	.inputWrapper,
 	.inputWrapperBordered {
 		background-color: $gray;
-		// border-radius: 10px;
 		color: white;
 		min-height: 45px !important;
 		position: relative;
@@ -77,4 +82,10 @@
 			}
 		}
 	}
+}
+
+.commentInputContainer {
+	position: relative;
+	padding-top: 0;
+	padding: 10px;
 }

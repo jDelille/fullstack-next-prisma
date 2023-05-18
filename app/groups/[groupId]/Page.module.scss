@@ -4,7 +4,7 @@
 
 .page {
 	@include page();
-
+	padding-top: 2rem;
 	.header {
 		border-bottom: 1px solid $lightGray;
 		display: flex;

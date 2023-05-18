@@ -54,7 +54,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
   }
 
   return (
-    <div className={styles.createPostInput}>
+    <div className={isComment ? styles.createCommentInput : styles.createPostInput}>
       <div className={styles.profilePicture} >
         <Avatar src={userPhoto} userId={userId} />
       </div>
