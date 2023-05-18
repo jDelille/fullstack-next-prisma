@@ -35,12 +35,15 @@
 		}
 		.winBadge {
 			background-color: $accent;
+			color: $white;
 		}
 		.lossBadge {
 			background-color: #f55050;
+			color: $white;
 		}
 		.openBadge {
 			background-color: #7286d3;
+			color: $white;
 		}
 	}
 	.postBetHeader {

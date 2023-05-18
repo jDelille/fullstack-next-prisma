@@ -44,10 +44,12 @@
 			color: $white;
 		}
 		.optimisticBadge {
-			background-color: #7286d3;
+			background-color: #138496;
+			color: $white;
 		}
 		.riskyBadge {
-			background-color: #f55050;
+			background-color: #dc3545;
+			color: $white;
 		}
 	}
 }
