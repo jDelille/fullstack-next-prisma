@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ currentUserId }) => {
      <div className={styles.footerWrapper}>
       <div className={styles.text}>
        <p>{"Don't miss what's happening"}</p>
-       <p>People on OddSpot are the first to know.</p>
+       <p>People on Wagerly are the first to know.</p>
       </div>
       <div className={styles.buttons}>
        <Button label='Log in' onClick={loginModal.onOpen} />
