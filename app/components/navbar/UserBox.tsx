@@ -6,6 +6,7 @@ import styles from './Navbar.module.scss';
 import { MdLogout, MdNotifications } from "react-icons/md";
 import { useState } from "react";
 import NotificationsPopup from "./NotificationsPopup";
+import { signOut } from "next-auth/react";
 
 type UserBoxProps = {
  currentUser?: SafeUser | null;
@@ -44,7 +45,7 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, notifications }) => {
     <p className={styles.points}>{currentUser?.points} pts.</p>
     <div className={styles.icons}>
 
-     <MdLogout color="lightGray" size={18} />
+     <MdLogout color="lightGray" size={18} onClick={() => signOut()} />
     </div>
 
    </div>
