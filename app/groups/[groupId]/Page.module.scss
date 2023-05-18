@@ -5,6 +5,11 @@
 .page {
 	@include page();
 	padding-top: 2rem;
+	@include breakpoint(xs) {
+		position: relative;
+		top: $gamebarHeight;
+		padding-top: 2rem;
+	}
 	.header {
 		border-bottom: 1px solid $lightGray;
 		display: flex;
@@ -50,5 +55,8 @@
 	}
 	.body {
 		margin-top: 2rem;
+		@include breakpoint(xs) {
+			margin: 0;
+		}
 	}
 }

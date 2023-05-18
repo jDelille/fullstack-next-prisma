@@ -1,4 +1,5 @@
 @import '@/app/styles/variables';
+@import '@/app/styles/mixins';
 
 .inputContainer {
 	min-height: 100px;
@@ -6,6 +7,9 @@
 	min-width: 100%;
 	// margin-bottom: 1rem;
 	border-bottom: 2px solid $lightGray;
+	@include breakpoint(sm) {
+		padding-top: 2rem;
+	}
 	.inputWrapper {
 		background-color: $gray;
 		// border-radius: 10px;

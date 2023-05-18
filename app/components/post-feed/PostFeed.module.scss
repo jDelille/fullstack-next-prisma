@@ -1,5 +1,12 @@
+@import '@/app/styles/mixins';
+
 .postFeed {
 	display: flex;
 	flex-direction: column;
 	// gap: 1rem;
+	@include breakpoint(xs) {
+		position: relative;
+		top: 55px;
+		padding-top: 1.2rem;
+	}
 }
