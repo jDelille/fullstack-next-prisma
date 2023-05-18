@@ -1,14 +1,11 @@
 
 import { SafeUser } from '@/app/types';
-import Button from '../button/Button';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { signOut } from 'next-auth/react'
 import styles from './Navbar.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
 import { FaUserAlt, FaUsers } from 'react-icons/fa'
-import { BiMoneyWithdraw } from 'react-icons/bi'
-import { MdAddCircle, MdNotifications } from 'react-icons/md'
+import { MdAddCircle } from 'react-icons/md'
 import MenuItem from './MenuItem';
 import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
@@ -62,22 +59,6 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
       {navlinks.map((link) => (
        <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
       ))}
-
-      {/* <div onClick={() => router.push(`/notifications/${currentUser?.id}`)} className={linkStyle} >
-       <MdNotifications />
-       <p>Notifications</p>
-       {currentUser?.hasNotification && <div className={styles.notificationDot}></div>}
-      </div > */}
-      {/* <div className={styles.logoutWrapper}>
-       <Button label='Logout' onClick={() => signOut()} />
-      </div> */}
-      {/* <div className={styles.logout}>
-       <div onClick={() => signOut()} className={linkStyle} >
-        <MdNotifications />
-        <p>Logout</p>
-       </div >
-      </div> */}
-
      </>
     ) : (
      <>
@@ -106,13 +87,6 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
      </div>
     ))}
    </div>
-   {/* <div className={styles.events}>
-    <p className={styles.label}>Events <span>0</span></p>
-    <div className={styles.Link}>
-     <MdAddCircle size={20} />
-     <p>Comming soon...</p>
-    </div>
-   </div> */}
   </div>
  );
 }
