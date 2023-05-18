@@ -71,12 +71,12 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
       {/* <div className={styles.logoutWrapper}>
        <Button label='Logout' onClick={() => signOut()} />
       </div> */}
-      <div className={styles.logout}>
+      {/* <div className={styles.logout}>
        <div onClick={() => signOut()} className={linkStyle} >
-        {/* <MdNotifications /> */}
+        <MdNotifications />
         <p>Logout</p>
        </div >
-      </div>
+      </div> */}
 
      </>
     ) : (

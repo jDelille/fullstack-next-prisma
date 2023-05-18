@@ -47,7 +47,7 @@
 
 .userMenu {
 	position: relative;
-	height: calc(100% - 104px - 1rem);
+	height: calc(100% - 150px - 1rem);
 	margin-top: 0rem;
 	.closeMenu {
 		display: none;
@@ -168,5 +168,110 @@
 		align-items: center;
 		position: absolute;
 		bottom: -2.2rem;
+	}
+}
+
+.userBox {
+	width: 90%;
+	margin: 0 auto;
+	height: fit-content;
+	.userBoxHeader {
+		display: flex;
+		gap: 10px;
+		border-bottom: 1px solid $lightGray;
+		padding-bottom: 15px;
+		position: relative;
+		img {
+			max-width: 35px;
+			height: 35px;
+		}
+		.userName {
+			display: flex;
+			flex-direction: column;
+			gap: 0px;
+			p {
+				&:nth-of-type(1) {
+					font-size: 13px;
+					color: lightgray;
+				}
+				font-size: 11px;
+				color: $secondaryText;
+			}
+		}
+		.notifications {
+			cursor: pointer;
+			position: relative;
+			display: flex;
+			align-items: center;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			.hasNotification {
+				position: absolute;
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: $accent;
+				right: 0;
+				top: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				align-items: center;
+				color: $white;
+				font-size: 9px;
+			}
+		}
+	}
+	.userBoxFooter {
+		width: 100%;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 0 24px;
+		.points {
+			font-size: 13px;
+			font-weight: 400;
+			color: #f1c40f;
+			position: relative;
+			bottom: 10px;
+		}
+		.icons {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			position: relative;
+			bottom: 10px;
+		}
+	}
+}
+
+.overlay {
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.notificationsPopup {
+	width: 200px;
+	height: fit-content;
+	max-height: 150px;
+	border: 2px solid $lightGray;
+	background-color: $black;
+	position: absolute;
+	right: -240px;
+	top: -200px;
+	border-radius: 6px;
+	padding: 10px;
+	color: $white;
+	font-size: 13px;
+	.notification {
+		padding: 5px;
 	}
 }

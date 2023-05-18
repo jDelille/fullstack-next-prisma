@@ -2,10 +2,8 @@ import dynamic from 'next/dynamic';
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import CreatePostForm from './components/create-post/create-post-form/CreatePostForm';
-import PostFeed from './components/post-feed/PostFeed';
-import './styles/globals.scss';
-import CreatePostFormSkeleton from './components/skeletons/create-post-form-skeleton/CreatePostFormSkeleton';
 import PostCardSkeleton from './components/skeletons/post-card-skeleton/PostCardSkeleton';
+import { Suspense } from 'react';
 
 export default async function Home() {
   const posts = await getPosts();
@@ -28,7 +26,9 @@ export default async function Home() {
           isBordered={true}
           isComment={false}
         />
-        <DynamicPostFeed posts={posts} currentUser={currentUser} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <DynamicPostFeed posts={posts} currentUser={currentUser} />
+        </Suspense>
       </div>
     </main>
   );

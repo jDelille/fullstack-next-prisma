@@ -16,6 +16,7 @@ import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
 import CreateGroupModal from './components/modals/group-modal/CreateGroupModal'
 import UserBox from './components/user-box/UserBox'
 import getBetRecord from './actions/getBetRecord'
+import getNotificationByUserId from './actions/getNotificationByUserId'
 
 export const metadata = {
   title: 'Wagerly',
@@ -32,9 +33,21 @@ export default async function RootLayout({
 
   let groups: Group[] = [];
   let record: any;
+  let notifications: any;
   if (currentUser) {
     groups = await getGroupsByUserId({ userId: currentUser.id });
     record = await getBetRecord({ userId: currentUser.id })
+    notifications = await getNotificationByUserId({ userId: currentUser.id })
+  }
+
+  async function getNotifications() {
+    'use server';
+    const notifications = await prisma?.notification.findMany({
+      where: {
+        userId: currentUser?.id,
+      }
+    })
+    return notifications
   }
 
 
@@ -51,7 +64,7 @@ export default async function RootLayout({
           <CreateGroupModal />
 
           <div className='sidebarContainer'>
-            <Navbar currentUser={currentUser} groups={groups} />
+            <Navbar currentUser={currentUser} groups={groups} notifications={notifications} />
           </div>
 
           <div className="gamebarContainer">
