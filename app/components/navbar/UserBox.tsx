@@ -24,19 +24,19 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, notifications }) => {
      <p>{currentUser?.name}</p>
      <p>{currentUser?.username}</p>
     </div>
-    <div className={styles.notifications} onClick={() => setOpenMenu(!openMenu)}>
+    {/* <div className={styles.notifications} onClick={() => setOpenMenu(!openMenu)}>
      {currentUser?.hasNotification && (
       <div className={styles.hasNotification}>
        <p>{notifications?.length}</p>
       </div>
      )}
      <MdNotifications color="lightGray" size={20} />
-    </div>
+    </div> */}
 
    </div>
-   {openMenu && (
+   {/* {openMenu && (
     <NotificationsPopup notifications={notifications} setOpenMenu={setOpenMenu} />
-   )}
+   )} */}
    <div className={styles.userBoxFooter}>
     <p className={styles.points}>{currentUser?.points} pts.</p>
     <div className={styles.icons}>

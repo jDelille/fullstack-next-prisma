@@ -207,6 +207,7 @@
 			position: absolute;
 			right: 0px;
 			top: 0px;
+			background-color: red;
 			.hasNotification {
 				position: absolute;
 				width: 12px;
@@ -247,6 +248,9 @@
 			align-items: center;
 			position: relative;
 			bottom: 10px;
+			svg {
+				cursor: pointer;
+			}
 		}
 	}
 }
@@ -267,7 +271,7 @@
 	background-color: $black;
 	position: absolute;
 	right: -240px;
-	top: -200px;
+	top: 00px;
 	border-radius: 6px;
 	padding: 10px;
 	color: $white;
