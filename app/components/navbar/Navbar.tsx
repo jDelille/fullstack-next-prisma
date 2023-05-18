@@ -14,8 +14,6 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser, groups }) => {
 
-
-
  return (
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>

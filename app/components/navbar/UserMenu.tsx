@@ -40,12 +40,6 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
-  // {
-  //  id: 2,
-  //  icon: BiMoneyWithdraw,
-  //  label: 'My Bets',
-  //  href: `/myBets/${currentUser?.id}`
-  // },
   {
    id: 3,
    icon: FaUsers,
@@ -69,11 +63,11 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
        <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
       ))}
 
-      <div onClick={() => router.push(`/notifications/${currentUser?.id}`)} className={linkStyle} >
-       {/* <MdNotifications /> */}
+      {/* <div onClick={() => router.push(`/notifications/${currentUser?.id}`)} className={linkStyle} >
+       <MdNotifications />
        <p>Notifications</p>
        {currentUser?.hasNotification && <div className={styles.notificationDot}></div>}
-      </div >
+      </div > */}
       {/* <div className={styles.logoutWrapper}>
        <Button label='Logout' onClick={() => signOut()} />
       </div> */}

@@ -1,0 +1,145 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.profileHeader {
+	background-color: $gray;
+	width: 100%;
+	height: fit-content;
+	padding: 1rem;
+	position: relative;
+	border-radius: 6px;
+	.top {
+		display: flex;
+		gap: 1rem;
+		width: 100%;
+		align-items: center;
+		position: relative;
+		height: 60px;
+		.profilePicture {
+			width: 75px;
+			height: 75px;
+			border-radius: 50%;
+			@include breakpoint(xs) {
+				width: 50px;
+				height: 50px;
+			}
+			img {
+				border-radius: 5px;
+				width: 75px;
+				height: 75px;
+				object-fit: cover;
+				@include breakpoint(xs) {
+					max-width: 50px;
+					max-height: 50px;
+				}
+			}
+		}
+		.profileName {
+			h1 {
+				font-size: 26px;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				@include breakpoint(xs) {
+					font-size: 20px;
+				}
+				svg {
+					width: 20px;
+					height: 20px;
+					position: relative;
+					top: 0px;
+				}
+			}
+			p {
+				font-size: 16px;
+				color: $secondaryText;
+				font-weight: 300;
+			}
+		}
+	}
+	.middle {
+		display: flex;
+		align-items: center;
+		padding: 1rem 0;
+		height: fit-content;
+		@include breakpoint(xs) {
+			padding: 0;
+		}
+		.points,
+		.record {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			font-weight: 600;
+			color: #f1c40f;
+			position: relative;
+			width: fit-content;
+			height: 20px;
+			svg {
+				max-width: 15px;
+			}
+			&:hover {
+				&::after {
+					position: absolute;
+					content: 'Total points';
+					background-color: $black;
+					color: $secondaryText;
+					padding: 3px 5px;
+					border-radius: 4px;
+					top: 1.2rem;
+					right: -65px;
+					width: 85px;
+					font-size: 13px;
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+		.record {
+			color: $secondaryText;
+			span {
+				color: #f1c40f;
+			}
+			&:hover {
+				&::after {
+					content: 'Bet record';
+				}
+			}
+		}
+		.bio {
+			padding: 1rem 0;
+			font-size: 14px;
+			color: $secondaryText;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			.joined {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				width: 100%;
+			}
+		}
+	}
+	.bottom {
+		width: 100%;
+		border-top: 1px solid $lightGray;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		// padding: 0 1rem;
+		justify-content: space-evenly;
+		position: relative;
+		padding-top: 1rem;
+		.userInfo {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			height: 100%;
+			@include breakpoint(xs) {
+				font-size: 14px;
+			}
+		}
+	}
+}

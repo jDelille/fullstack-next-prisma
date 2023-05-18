@@ -1,0 +1,48 @@
+@import '@/app/styles/variables';
+
+.inputContainer {
+	min-height: 100px;
+	position: relative;
+	min-width: 100%;
+	margin-bottom: 1rem;
+	.inputWrapper {
+		background-color: $gray;
+		border-radius: 10px;
+		color: white;
+		position: relative;
+		padding: 10px 15px;
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+		min-height: 115px;
+		gap: 5px;
+		.createPostWrapper {
+			display: flex;
+			align-items: center;
+			position: relative;
+			min-height: 50px;
+			gap: 1rem;
+			height: fit-content;
+			.profilePicture {
+				width: 45px;
+				height: 45px;
+				border-radius: 6px;
+				background-color: $lightGray;
+			}
+			.textarea {
+				width: 100%;
+				height: 45px;
+				border-radius: 6px;
+				background-color: $lightGray;
+			}
+		}
+	}
+	.postButton {
+		margin-left: auto;
+		width: 50px;
+		height: 25px;
+		background-color: $lightGray;
+		border-radius: 6px;
+		margin-top: 10px;
+	}
+}

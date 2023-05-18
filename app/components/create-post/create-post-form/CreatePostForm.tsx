@@ -143,7 +143,7 @@ const CreatePostForm = ({
                 }}
                 label='Post a poll'
               /> */}
-              <Button onClick={handleSubmit(onSubmit)} label='Post' disabled={body.length === 0} />
+              <Button onClick={handleSubmit(onSubmit)} label='Post' isButtonDisabled={!body} />
             </div>
           </>
         )}

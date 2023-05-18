@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '@/app/styles/variables';
 
 .button {
 	padding: 10px 30px;
@@ -15,7 +15,10 @@
 	position: relative;
 	border-radius: 5px;
 	cursor: pointer;
-
+	&:disabled {
+		background-color: lighten($lightGray, 1%) !important;
+		cursor: default !important;
+	}
 	.buttonIcon {
 		position: absolute;
 		left: 10px;

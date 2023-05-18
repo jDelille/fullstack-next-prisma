@@ -40,7 +40,8 @@
 			@include badge();
 		}
 		.ezBadge {
-			background-color: #00ce79;
+			background-color: #198754;
+			color: $white;
 		}
 		.optimisticBadge {
 			background-color: #7286d3;

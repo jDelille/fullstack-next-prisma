@@ -8,7 +8,7 @@ import PostFeed from '@/app/components/post-feed/PostFeed';
 import getGroupById from '@/app/actions/getGroupById';
 import getPostsByGroupId from '@/app/actions/getPostsByGroupId';
 import { FaUsers } from 'react-icons/fa';
-import { TbReportMoney } from 'react-icons/tb'
+import dynamic from 'next/dynamic';
 
 interface IParams {
  groupId?: string;
@@ -20,6 +20,13 @@ const Group = async ({ params }: { params: IParams }) => {
  const group = await getGroupById(params)
  const currentUser = await getCurrentUser();
 
+ const DynamicPostFeed = dynamic(() => import('../../components/post-feed/PostFeed'), {
+  loading: () => <p>Loading...</p>
+ })
+
+ const DynamicCreatePostForm = dynamic(() => import('../../components/create-post/create-post-form/CreatePostForm'), {
+  loading: () => <p>Loading...</p>
+ })
 
  let admin: SafeUser | null = null;
  let posts: any | null = null
@@ -45,8 +52,8 @@ const Group = async ({ params }: { params: IParams }) => {
 
    </div>
    <div className={styles.body}>
-    <CreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} placeholder={`Let ${group?.name} know what's happening`} />
-    <PostFeed currentUser={currentUser} posts={posts} />
+    <DynamicCreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} placeholder={`Let ${group?.name} know what's happening`} />
+    <DynamicPostFeed currentUser={currentUser} posts={posts} />
    </div>
   </div>
  );

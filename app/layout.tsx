@@ -43,36 +43,38 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <div className='layout'>
+          <ToasterProvider />
+          <RegisterModal />
+          <LoginModal />
+          <BetModal />
+          <EditProfileModal name={currentUser?.name} username={currentUser?.username} bio={currentUser?.bio as string} userPhoto={currentUser?.photo as string} />
+          <CreateGroupModal />
+
+          <div className='sidebarContainer'>
+            <Navbar currentUser={currentUser} groups={groups} />
+          </div>
+
+          <div className="gamebarContainer">
+            <Scoreboard />
+          </div>
+
+          <div className='mobileNavbarContainer'>
+            <MobileNavbar currentUser={currentUser} groups={groups} />
+          </div>
+
+          <Footer currentUserId={currentUser?.id} />
+
           <ClientOnly>
-            <ToasterProvider />
-            <RegisterModal />
-            <LoginModal />
-            <BetModal />
-            <EditProfileModal name={currentUser?.name} username={currentUser?.username} bio={currentUser?.bio as string} userPhoto={currentUser?.photo as string} />
-            <CreateGroupModal />
-            <div className='sidebarContainer'>
-              <Navbar currentUser={currentUser} groups={groups} />
-            </div>
-
-            <div className="gamebarContainer">
-              <Scoreboard />
-            </div>
-            <div className='mobileNavbarContainer'>
-              <MobileNavbar currentUser={currentUser} groups={groups} />
-            </div>
-
-            <Footer currentUserId={currentUser?.id} />
-
             <div className="mainContainer">
               {children}
             </div>
-
-            <div className='rightSidebar'>
-              {currentUser && (
-                <UserBox currentUser={currentUser} record={record} groups={groups} />
-              )}
-            </div>
           </ClientOnly>
+
+          <div className='rightSidebar'>
+            {currentUser && (
+              <UserBox currentUser={currentUser} record={record} groups={groups} />
+            )}
+          </div>
         </div>
       </body>
     </html >
