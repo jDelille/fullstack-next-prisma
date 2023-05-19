@@ -22,7 +22,7 @@
 		gap: 5px;
 		cursor: pointer;
 		&:hover {
-			background-color: lighten($lightGray, 2%);
+			background-color: lighten($secondaryAccent, 2%);
 		}
 		span {
 			position: relative;

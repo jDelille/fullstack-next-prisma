@@ -306,13 +306,14 @@
 			button {
 				width: 100%;
 				background-color: $accent;
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: 600;
 				height: 45px;
+				padding: 0;
 				&:nth-of-type(1) {
 					background-color: $secondaryAccent;
 					font-weight: 600;
-					font-size: 16px;
+					font-size: 14px;
 					&:hover {
 						background-color: darken($secondaryAccent, 2%);
 					}

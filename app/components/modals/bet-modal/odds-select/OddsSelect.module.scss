@@ -22,6 +22,8 @@
 			display: flex;
 			justify-content: flex-start;
 			border: none;
+			padding: 0;
+			margin-right: 10px;
 			&:hover {
 				background-color: transparent;
 				cursor: default;
@@ -49,6 +51,9 @@
 	justify-content: center;
 	font-size: 13px;
 	border: 1px solid $border;
+	&:hover {
+		background-color: lighten($secondaryAccent, 2%);
+	}
 	.oddsNumber {
 		color: $accent;
 		font-size: 13px;
@@ -58,5 +63,8 @@
 .awayOddBordered,
 .homeOddBordered {
 	border: 1px solid $accent;
-	background-color: #373737;
+	background-color: $secondaryAccent;
+	&:hover {
+		background-color: $secondaryAccent;
+	}
 }

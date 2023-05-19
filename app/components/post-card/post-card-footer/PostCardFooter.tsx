@@ -6,8 +6,8 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { FaRegCommentDots, FaComment } from 'react-icons/fa'
-import PostCardComment from '../post-card-comment/PostCardComment';
 import useLoginModal from '@/app/hooks/useLoginModal';
+
 type PostCardFooterProps = {
   postId: string;
   likeCount: number;
@@ -29,6 +29,14 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
   const [id, setId] = useState('');
   const router = useRouter();
   const loginModal = useLoginModal();
+  const [localLikeCount, setLocalLikeCount] = useState(likeCount);
+
+  const likeSet = new Set(likeArray);
+  const hasLiked = () => {
+    return likeSet.has(currentUserId as string);
+  }
+
+  const [localHasLiked, setLocalHasLiked] = useState(hasLiked())
 
   const onLike = useCallback(
     (id: string) => {
@@ -38,14 +46,18 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         return loginModal.onOpen()
       }
 
+      setLocalLikeCount((prevLikeCount) => prevLikeCount + 1);
+      setLocalHasLiked(true);
+
       axios
         .post(`/api/like/${id}`)
         .then(() => {
-          toast.success('Post liked');
           router.refresh();
         })
         .catch(() => {
           toast.error('Something went wrong');
+          setLocalLikeCount((prevLikeCount) => prevLikeCount - 1);
+          setLocalHasLiked(false);
         })
         .finally(() => {
           setId('');
@@ -58,14 +70,18 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
     (id: string) => {
       setId(id);
 
+      setLocalLikeCount((prevLikeCount) => prevLikeCount - 1);
+      setLocalHasLiked(false);
+
       axios
         .delete(`/api/like/${id}`)
         .then(() => {
-          toast.success('Post unliked');
           router.refresh();
         })
         .catch(() => {
           toast.error('Something went wrong');
+          setLocalLikeCount((prevLikeCount) => prevLikeCount + 1);
+          setLocalHasLiked(true);
         })
         .finally(() => {
           setId('');
@@ -76,11 +92,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 
 
 
-  const likeSet = new Set(likeArray);
 
-  const hasLiked = () => {
-    return likeSet.has(currentUserId as string);
-  }
 
   const hasComments = () => {
     return commentCount > 0;
@@ -88,14 +100,14 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
 
   return (
     <div className={styles.postCardFooter}>
-      <div className={styles.likePost} onClick={(e) => { e.stopPropagation(); !hasLiked() ? onLike(postId) : onRemoveLike(postId) }}>
-        {hasLiked() ? (
+      <div className={styles.likePost} onClick={(e) => { e.stopPropagation(); !localHasLiked ? onLike(postId) : onRemoveLike(postId) }}>
+        {localHasLiked ? (
           <AiFillLike color='#20b46a' />
         ) : (
           <AiOutlineLike color='white' />
         )}
-        {hasLiked() ? 'Liked' : 'Like'}
-        <span>{likeCount}</span>{' '}
+        {localHasLiked ? 'Liked' : 'Like'}
+        <span>{localLikeCount}</span>{' '}
       </div>
       <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
         {hasComments() ? (

@@ -286,7 +286,7 @@ const BetModal = () => {
             </div>
 
             <div className={styles.payoutContainer}>
-              <label>Potential Payout</label>
+              <label>Payout</label>
               <div className={styles.payout}>${payout}</div>
             </div>
           </div>

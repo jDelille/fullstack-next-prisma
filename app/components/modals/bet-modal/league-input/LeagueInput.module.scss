@@ -6,6 +6,9 @@
 .noBorder {
 	@include button();
 	margin: 10px 0;
+	&:hover {
+		background-color: lighten($secondaryAccent, 2%);
+	}
 	.shortLabel {
 		display: none;
 		@include breakpoint(xs) {
@@ -23,4 +26,7 @@
 .bordered {
 	border: 1px solid $accent;
 	background-color: $secondaryAccent;
+	&:hover {
+		background-color: $secondaryAccent;
+	}
 }
