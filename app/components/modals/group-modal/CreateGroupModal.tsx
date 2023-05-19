@@ -13,7 +13,6 @@ import GroupSettings from "./group-settings/GroupSettings"
 import Tabs from "./Tabs"
 import MySettings from "./MySettings"
 import Members from "./Members"
-import Toggle from "react-toggle"
 import SportFilter from "./group-settings/SportFilter"
 
 enum STEPS {

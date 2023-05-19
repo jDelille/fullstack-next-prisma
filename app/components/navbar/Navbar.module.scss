@@ -101,7 +101,7 @@
 			margin: 0 auto;
 			padding: 1rem;
 			&:hover {
-				background-color: $lightGray;
+				background-color: darken($secondaryAccent, 1%);
 			}
 			.notificationDot {
 				width: 10px;
@@ -115,6 +115,9 @@
 	.activeLink {
 		background-color: $lightGray;
 		color: $accent !important;
+		&:hover {
+			background-color: $lightGray !important;
+		}
 	}
 
 	.pages {
@@ -124,7 +127,10 @@
 	}
 
 	.createButton {
-		background-color: $lightGray;
+		background-color: $secondaryAccent;
+		&:hover {
+			background-color: darken($secondaryAccent, 1%) !important;
+		}
 	}
 
 	.groups {
@@ -161,14 +167,6 @@
 				}
 			}
 		}
-	}
-
-	.logout {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		position: absolute;
-		bottom: -2.2rem;
 	}
 }
 
@@ -207,7 +205,6 @@
 			position: absolute;
 			right: 0px;
 			top: 0px;
-			background-color: red;
 			.hasNotification {
 				position: absolute;
 				width: 12px;
@@ -248,8 +245,18 @@
 			align-items: center;
 			position: relative;
 			bottom: 10px;
+			width: 30px;
+			height: 30px;
+			padding: 5px;
+			border-radius: 50%;
+			&:hover {
+				background-color: $secondaryAccent;
+				outline: 1px solid $border;
+			}
 			svg {
 				cursor: pointer;
+				position: relative;
+				left: 3px;
 			}
 		}
 	}

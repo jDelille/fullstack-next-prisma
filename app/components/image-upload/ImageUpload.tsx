@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import Button from "../button/Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { AiFillCamera, AiOutlineCamera } from "react-icons/ai";
+import styles from '@/app/components/create-post/create-post-form/createPostForm.module.scss'
 
 type ImageUploadProps = {
  onChange: (base64: string) => void;
@@ -20,7 +21,6 @@ type ImageUploadProps = {
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost, placeholder }) => {
 
  const [base64, setBase64] = useState(value)
- const loginModal = useLoginModal();
 
  const handleChange = useCallback((base64: string) => {
   onChange(base64);
@@ -54,7 +54,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomVal
    {!isPost ? (
     <Image src={base64 || '/images/placeholder.png'} alt='profile-picture' width='50' height='50' />
    ) : (
-    <AiOutlineCamera size={24} color="#abadb1" />
+    <div className={styles.icon}>
+     <AiOutlineCamera size={20} color="#abadb1" />
+     <span>Photo</span>
+    </div>
    )}
   </div>
  );

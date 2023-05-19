@@ -40,7 +40,7 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, notifications }) => {
    <div className={styles.userBoxFooter}>
     <p className={styles.points}>{currentUser?.points} pts.</p>
     <div className={styles.icons}>
-
+     
      <MdLogout color="lightGray" size={18} onClick={() => signOut()} />
     </div>
 

@@ -3,6 +3,9 @@
 .loadingContent {
 	@include page();
 	padding-top: 2rem;
+	@include breakpoint(sm) {
+		padding-top: 0;
+	}
 	@include breakpoint(xs) {
 		padding-top: 0;
 	}

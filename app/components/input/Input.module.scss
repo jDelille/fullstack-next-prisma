@@ -18,12 +18,10 @@
 		outline: none;
 		height: 45px;
 		border: none;
-		background-color: #373737;
+		background-color: $secondaryAccent;
 		color: #dadada;
 		:disabled {
 			cursor: not-allowed;
 		}
-	}
-	.inputLabel {
 	}
 }

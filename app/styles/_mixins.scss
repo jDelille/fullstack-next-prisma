@@ -14,17 +14,17 @@
 	gap: 1rem;
 	&:hover {
 		cursor: pointer;
-		background-color: #373737;
+		background-color: darken($secondaryAccent, 5%);
 	}
 }
 
 @mixin badge {
-	padding: 5px;
+	padding: 4px 5px;
 	color: white;
 	width: fit-content;
 	border-radius: 4px;
 	font-size: 13px;
-	color: $black;
+	color: #1a222c;
 	font-weight: 400;
 }
 
@@ -123,7 +123,7 @@
 	height: fit-content;
 	padding: 1rem;
 	border-radius: 12px;
-	background-color: #242424;
+	background-color: $lightGray;
 	color: $white;
 	transition: 300ms ease-in-out;
 	opacity: 1;

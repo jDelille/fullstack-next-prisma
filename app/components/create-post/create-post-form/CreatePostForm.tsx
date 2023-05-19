@@ -12,8 +12,9 @@ import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { TbReportMoney } from 'react-icons/tb'
 import { AiFillCamera, AiOutlineCamera, AiOutlineFileGif } from 'react-icons/ai';
-import { HiGif } from 'react-icons/hi2'
+import { HiGif, HiOutlineBanknotes } from 'react-icons/hi2'
 import Gifs from '../../gifs/Gifs';
+import { IoCashOutline } from 'react-icons/io5';
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
@@ -111,11 +112,15 @@ const CreatePostForm = ({
               />
             </div>
             <div className={styles.inputButtons}>
-              <TbReportMoney color="#abadb1" size={23} onClick={() => {
+              <div className={styles.icon} onClick={() => {
                 !userId ? loginModal.onOpen() : betModal.onOpen();
-              }} />
+              }}>
+                <HiOutlineBanknotes color="#abadb1" size={20} />
+                <span>Bet</span>
+              </div>
+
               {!userId && (
-                <AiOutlineCamera size={23} color="#abadb1" onClick={() => loginModal.onOpen()} />
+                <AiOutlineCamera size={20} color="#abadb1" onClick={() => loginModal.onOpen()} />
               )}
               {/* <AiOutlineFileGif color="#abadb1" size={23} onClick={() => setShowGifs(true)} /> */}
               {showGifs && (
@@ -127,22 +132,18 @@ const CreatePostForm = ({
                 />
               )}
               {userId && (
-                <ImageUpload
-                  value={photo}
-                  onChange={(image) => setPhoto(image)}
-                  setCustomValue={setCustomValue}
-                  label='Post a photo'
-                  userId={userId as string}
-                  isPost
-                />
-              )}
+                <div className={styles.icon}>
+                  <ImageUpload
+                    value={photo}
+                    onChange={(image) => setPhoto(image)}
+                    setCustomValue={setCustomValue}
+                    label='Post a photo'
+                    userId={userId as string}
+                    isPost
+                  />
+                </div>
 
-              {/* <Button
-                onClick={() => {
-                  !userId ? loginModal.onOpen() : null;
-                }}
-                label='Post a poll'
-              /> */}
+              )}
               <Button onClick={handleSubmit(onSubmit)} label='Post' isButtonDisabled={!body} />
             </div>
           </>

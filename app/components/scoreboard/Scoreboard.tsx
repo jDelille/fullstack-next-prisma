@@ -27,30 +27,30 @@ const Scoreboard: React.FC = () => {
   control: (provided: any) => ({
    ...provided,
    borderRadius: '4px',
-   borderColor: '#27282f',
+   borderColor: '#2a333f',
    boxShadow: 'none',
-   backgroundColor: '#17181c',
+   backgroundColor: '#2a333f',
    color: '#fcfeff',
    cursor: 'pointer'
   }),
   option: (provided: any, state: any) => ({
    ...provided,
-   backgroundColor: state.isSelected ? '#20b46a' : '#17181c',
+   backgroundColor: state.isSelected ? '#20b46a' : '#2a333f',
    color: state.isSelected ? '#fcfeff' : '#fcfeff',
    cursor: 'pointer',
    ':hover': {
-    backgroundColor: state.isSelected ? '#20b46a' : '#1e1f23',
+    backgroundColor: state.isSelected ? '#20b46a' : '#1c2631',
     color: state.isSelected ? '#fcfeff' : '#fcfeff'
    }
   }),
   menu: (provided: any) => ({
    ...provided,
-   backgroundColor: '#17181c',
+   backgroundColor: '#2a333f',
 
   }),
   menuList: (provided: any) => ({
    ...provided,
-   backgroundColor: '#17181c',
+   backgroundColor: '#2a333f',
    color: '#fcfeff',
   }),
   singleValue: (provided: any) => ({

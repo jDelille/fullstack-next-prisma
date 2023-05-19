@@ -11,31 +11,31 @@ const customStyles = {
  control: (provided: any) => ({
   ...provided,
   borderRadius: '8px',
-  borderColor: '#373737',
+  borderColor: '#484e56',
   boxShadow: 'none',
-  backgroundColor: '#373737',
+  backgroundColor: '#2a333f',
   color: '#fcfeff',
   cursor: 'pointer',
   height: '45px'
  }),
  option: (provided: any, state: any) => ({
   ...provided,
-  backgroundColor: state.isSelected ? '#20b46a' : '#373737',
+  backgroundColor: state.isSelected ? '#20b46a' : '#2a333f',
   color: state.isSelected ? '#fcfeff' : '#fcfeff',
   cursor: 'pointer',
   ':hover': {
-   backgroundColor: state.isSelected ? '#20b46a' : '#373737',
+   backgroundColor: state.isSelected ? '#20b46a' : '#2a333f',
    color: state.isSelected ? '#fcfeff' : '#fcfeff'
   }
  }),
  menu: (provided: any) => ({
   ...provided,
-  backgroundColor: '#373737',
+  backgroundColor: '#2a333f',
 
  }),
  menuList: (provided: any) => ({
   ...provided,
-  backgroundColor: '#373737',
+  backgroundColor: '#2a333f',
   color: '#fcfeff',
  }),
  singleValue: (provided: any) => ({
@@ -44,7 +44,7 @@ const customStyles = {
  }),
  indicatorSeparator: (provided: any) => ({
   ...provided,
-  backgroundColor: '#4d4d4d',
+  backgroundColor: '#484e56',
  }),
 };
 

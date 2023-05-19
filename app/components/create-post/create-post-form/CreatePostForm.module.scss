@@ -42,13 +42,28 @@
 			height: 45px;
 			display: flex;
 			align-items: center;
-			gap: 10px;
+			gap: 8px;
 			svg {
 				height: 100%;
 				display: flex;
 				align-items: center;
 				cursor: pointer;
 			}
+			.icon {
+				display: flex;
+				gap: 5px;
+				align-items: center;
+				padding: 2px 5px;
+				cursor: pointer;
+				&:hover {
+					background-color: $secondaryAccent;
+					border-radius: 4px;
+				}
+				span {
+					font-size: 14px;
+				}
+			}
+
 			button {
 				background-color: $lightGray;
 				width: fit-content;
@@ -93,4 +108,19 @@
 	position: relative;
 	padding-top: 0;
 	padding: 10px;
+}
+
+.icon {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	padding: 2px 5px;
+	cursor: pointer;
+	&:hover {
+		background-color: $secondaryAccent;
+		border-radius: 4px;
+	}
+	span {
+		font-size: 14px;
+	}
 }

@@ -4,7 +4,7 @@
 
 .postBet {
 	padding: 10px 1rem;
-	background-color: #1c1d22;
+	background-color: $secondaryAccent;
 	border-top: 1px solid $lightGray;
 	border-bottom: 1px solid $lightGray;
 	width: 100%;
@@ -27,23 +27,23 @@
 		.lossBadge,
 		.openBadge {
 			text-transform: uppercase;
-			font-weight: 600;
+			font-weight: 400;
 			font-size: 12px;
-			padding: 3px;
+			padding: 3px 5px;
 			border-radius: 4px;
 			color: $black;
 		}
 		.winBadge {
-			background-color: $accent;
-			color: $white;
+			background-color: #d1f7c4;
+			color: #07420b;
 		}
 		.lossBadge {
-			background-color: #f55050;
-			color: $white;
+			background-color: #fa7777;
+			color: #42090b;
 		}
 		.openBadge {
 			background-color: #7286d3;
-			color: $white;
+			color: #062349;
 		}
 	}
 	.postBetHeader {
@@ -63,7 +63,7 @@
 			max-width: fit-content;
 			border-radius: 4px;
 			margin-left: auto;
-			background-color: $secondaryAccent;
+			background-color: $black;
 			color: $accent;
 			font-weight: 600;
 		}

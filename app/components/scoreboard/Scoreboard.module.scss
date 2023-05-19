@@ -6,7 +6,7 @@
 	width: 100%;
 	position: relative;
 	display: flex;
-
+	border-bottom: 1px solid $border;
 	@include breakpoint(xs) {
 		width: 100%;
 	}
@@ -21,6 +21,7 @@
 		justify-content: center;
 		gap: 5px;
 		width: 100px;
+
 		p {
 			color: $secondaryText;
 		}
@@ -36,7 +37,7 @@
 	.gameScroller {
 		position: relative;
 		width: 60px;
-		height: $gamebarHeight;
+		height: calc($gamebarHeight - 3px);
 		z-index: 999;
 		display: flex;
 		align-items: center;

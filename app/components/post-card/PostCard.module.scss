@@ -38,18 +38,19 @@
 		.optimisticBadge,
 		.riskyBadge {
 			@include badge();
+			font-weight: 400;
 		}
 		.ezBadge {
-			background-color: #198754;
-			color: $white;
+			background-color: #d1f7c4;
+			color: #07420b;
 		}
 		.optimisticBadge {
-			background-color: #138496;
-			color: $white;
+			background-color: #7286d3;
+			color: #062349;
 		}
 		.riskyBadge {
-			background-color: #dc3545;
-			color: $white;
+			background-color: #fa7777;
+			color: #42090b;
 		}
 	}
 }

@@ -4,19 +4,19 @@
 	padding: 10px 30px;
 	outline: none;
 	border: none;
-	outline: 1px solid $lightGray;
+	// outline: 1px solid $border;
 	display: flex;
 	align-items: center;
 	gap: 5px;
 	width: 100%;
 	justify-content: center;
-	background-color: #373737;
+	background-color: $secondaryAccent;
 	color: $white;
 	position: relative;
 	border-radius: 5px;
 	cursor: pointer;
 	&:disabled {
-		background-color: lighten($lightGray, 1%) !important;
+		background-color: lighten($secondaryAccent, 1%) !important;
 		cursor: default !important;
 	}
 	.buttonIcon {

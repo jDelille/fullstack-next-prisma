@@ -24,7 +24,7 @@
 			padding: 10px;
 			display: flex;
 			align-items: center;
-			border-bottom: 1px solid #4d4d4d;
+			border-bottom: 1px solid $border;
 			position: relative;
 			gap: 1rem;
 			font-size: 20px;
@@ -36,7 +36,6 @@
 			.chooseOdds {
 				display: flex;
 				flex-direction: column;
-				// gap: 1rem;
 				height: fit-content;
 			}
 			.chooseMatch {
@@ -66,12 +65,12 @@
 						}
 						.payout {
 							@include button();
-							background-color: #373737;
+							background-color: $secondaryAccent;
 							border-radius: 8px;
 							color: $accent;
 							font-weight: 800;
 							&:hover {
-								background-color: #373737;
+								background-color: $secondaryAccent;
 								cursor: default;
 							}
 						}
@@ -138,7 +137,7 @@
 				width: 88%;
 				margin: 0 auto;
 				display: flex;
-				border: 1px solid #373737;
+				border: 1px solid $border;
 				justify-content: space-between;
 				@include breakpoint(xs) {
 					width: 100%;
@@ -158,7 +157,7 @@
 					cursor: pointer;
 				}
 				.selected {
-					background-color: #4d4d4d;
+					background-color: $secondaryAccent;
 				}
 			}
 			.groupSettingsName {
@@ -178,7 +177,7 @@
 				font-weight: 600;
 				font-size: 16px;
 				padding-bottom: 24px;
-				border-bottom: 1px solid #4d4d4d;
+				border-bottom: 1px solid $border;
 				margin-top: 1rem;
 				.content {
 					display: flex;
@@ -189,7 +188,7 @@
 						width: 48px;
 						border-radius: 16px;
 						min-width: 48px;
-						background-color: #373737;
+						background-color: $secondaryAccent;
 						font-size: 2rem;
 						display: flex;
 						justify-content: center;
@@ -311,11 +310,11 @@
 				font-weight: 600;
 				height: 45px;
 				&:nth-of-type(1) {
-					background-color: #4d4d4d;
+					background-color: $secondaryAccent;
 					font-weight: 600;
 					font-size: 16px;
 					&:hover {
-						background-color: darken(#4d4d4d, 2%);
+						background-color: darken($secondaryAccent, 2%);
 					}
 				}
 				background-color: $accent;
@@ -323,9 +322,6 @@
 					background-color: #4d4d4d;
 					cursor: default;
 				}
-				// &:hover {
-				// 	background-color: darken($accent, 5%);
-				// }
 			}
 		}
 		.demoLogin {
