@@ -120,7 +120,11 @@ const CreatePostForm = ({
               </div>
 
               {!userId && (
-                <AiOutlineCamera size={20} color="#abadb1" onClick={() => loginModal.onOpen()} />
+                <div className={styles.icon} onClick={() => loginModal.onOpen()}>
+                  <AiOutlineCamera size={20} color="#abadb1" />
+                  <span>Photo</span>
+                </div>
+
               )}
               {/* <AiOutlineFileGif color="#abadb1" size={23} onClick={() => setShowGifs(true)} /> */}
               {showGifs && (
