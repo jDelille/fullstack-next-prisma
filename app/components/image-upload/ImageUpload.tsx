@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import Button from "../button/Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { AiFillCamera, AiOutlineCamera } from "react-icons/ai";
-import styles from '@/app/components/create-post/create-post-form/createPostForm.module.scss'
+import styles from '../create-post/create-post-form/CreatePostForm.module.scss'
 
 type ImageUploadProps = {
  onChange: (base64: string) => void;
