@@ -13,6 +13,7 @@ import { toast } from 'react-hot-toast';
 import ImageUpload from '../../image-upload/ImageUpload';
 import Image from 'next/image';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { signIn } from 'next-auth/react';
 const RegisterModal = () => {
 
   const registerModal = useRegisterModal();
@@ -25,6 +26,7 @@ const RegisterModal = () => {
     handleSubmit,
     setValue,
     formState: { errors },
+    watch,
     reset
   } = useForm<FieldValues>({
     defaultValues: {
@@ -35,6 +37,9 @@ const RegisterModal = () => {
       photo: '',
     },
   });
+
+  const email = watch('email')
+  const password = watch("password")
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -51,6 +56,12 @@ const RegisterModal = () => {
       .post('/api/register', data)
       .then(() => {
         registerModal.onClose();
+      })
+      .then(() => {
+        signIn('credentials', {
+          ...data,
+          redirect: true
+        })
       })
       .catch((error) => {
         toast.error('Error')
