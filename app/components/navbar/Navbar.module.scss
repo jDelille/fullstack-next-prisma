@@ -178,6 +178,11 @@
 	width: 90%;
 	margin: 0 auto;
 	height: fit-content;
+	position: absolute;
+	bottom: 0;
+	@include breakpoint(xs) {
+		position: relative;
+	}
 	.userBoxHeader {
 		display: flex;
 		gap: 10px;
@@ -243,11 +248,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding: 0 24px;
-		@include breakpoint(sm) {
+
+		@include breakpoint(xs) {
 			position: relative;
 			width: 100%;
 			padding: 0 1px;
@@ -257,20 +259,13 @@
 			font-weight: 400;
 			color: #f1c40f;
 			position: relative;
-			bottom: 10px;
-			@include breakpoint(sm) {
-				bottom: 0;
-			}
+			bottom: 0px;
 		}
 		.icons {
 			display: flex;
 			gap: 1rem;
 			align-items: center;
 			position: relative;
-			bottom: 10px;
-			@include breakpoint(sm) {
-				bottom: 0;
-			}
 			width: 30px;
 			height: 30px;
 			padding: 5px;
