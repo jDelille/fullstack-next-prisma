@@ -12,6 +12,7 @@ import Input from '../input/Input';
 import { useRouter } from 'next/navigation';
 import Textarea from '../textarea/Textarea';
 import ImageUpload from '../image-upload/ImageUpload';
+import Button from '../button/Button';
 
 type EditProfileModalProps = {
 	name?: string;
@@ -20,12 +21,18 @@ type EditProfileModalProps = {
 	userPhoto?: string
 }
 
+enum STEPS {
+	DEFAULT = 0,
+	PASSWORD = 1
+}
+
 const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio, userPhoto }) => {
 	const router = useRouter();
 
 	const editProfileModal = useEditProfileModal();
 	const [isLoading, setIsLoading] = useState(false);
 	const [photo, setPhoto] = useState('');
+	const [step, setStep] = useState(STEPS.DEFAULT);
 
 	const {
 		register,
@@ -70,7 +77,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 	};
 
 
-	const bodyContent = (
+	let bodyContent = (
 		<div className={styles.bodyContent}>
 			<p className={styles.imageUploadLabel}>Profile picture</p>
 			<ImageUpload
@@ -109,8 +116,47 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 				errors={errors}
 				onChange={(e) => setCustomValue('bio', e.target.value)}
 			/>
+			<div className={styles.changePasswordButton}>
+				<Button label='Change password' onClick={() => { setStep(STEPS.PASSWORD) }} />
+			</div>
 		</div>
 	);
+
+	if (step === STEPS.PASSWORD) {
+		bodyContent = (
+			<div className={styles.bodyContent}>
+				<Input
+					id='password'
+					label='Current password'
+					disabled={isLoading}
+					register={register}
+					placeholder={'Current password'}
+					errors={errors}
+					type='password'
+					onChange={(e) => setCustomValue('password', e.target.value)} />
+
+				<Input
+					id='newPassword'
+					label='New password'
+					disabled={isLoading}
+					register={register}
+					placeholder={'New password'}
+					errors={errors}
+					type='password'
+					onChange={(e) => setCustomValue('newPassword', e.target.value)} />
+
+				<Input
+					id='confirmPassword'
+					label='Confirm password'
+					disabled={isLoading}
+					register={register}
+					placeholder={'Confirm password'}
+					errors={errors}
+					type='password'
+					onChange={(e) => setCustomValue('confirmPassword', e.target.value)} />
+			</div>
+		)
+	}
 
 	return (
 		<Modal

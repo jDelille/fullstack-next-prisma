@@ -129,6 +129,12 @@
 				img {
 					border-radius: 50%;
 				}
+				.changePasswordButton {
+					margin-top: 30px;
+					button {
+						outline: 1px solid $accent;
+					}
+				}
 			}
 			.tabs {
 				background-color: transparent;

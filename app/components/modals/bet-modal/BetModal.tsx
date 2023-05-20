@@ -1,7 +1,6 @@
 'use client';
 
 import useBetModal from '@/app/hooks/useBetModal';
-import Heading from '../../heading/Heading';
 import Modal from '../Modal';
 import { useMemo, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
