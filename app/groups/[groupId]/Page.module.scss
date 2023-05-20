@@ -15,11 +15,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		padding: 1rem 0;
+		padding: 1rem 15px;
 		padding-top: 0;
 		position: relative;
 		color: $secondaryText;
-		// align-items: center;
+		background: $gray;
 		.name {
 			display: flex;
 			align-items: center;
@@ -41,8 +41,7 @@
 			font-style: italic;
 			font-weight: 400;
 		}
-		.admin {
-		}
+
 		.members {
 			color: $accent;
 		}
@@ -54,7 +53,7 @@
 		}
 	}
 	.body {
-		margin-top: 2rem;
+		// margin-top: 2rem;
 		@include breakpoint(xs) {
 			margin: 0;
 		}

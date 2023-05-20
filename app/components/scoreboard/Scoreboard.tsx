@@ -3,7 +3,7 @@ import styles from './Scoreboard.module.scss';
 import useSWR from 'swr'
 import GameCard from './game-card/GameCard';
 import Select from 'react-select';
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { IoChevronForwardOutline, IoChevronBackOutline } from 'react-icons/io5'
 
 const fetcher = (...args: [RequestInfo, RequestInit?]): Promise<any> =>

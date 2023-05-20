@@ -1,18 +1,40 @@
+import { User } from '@prisma/client';
+import UserCard from './UserCard';
+import styles from './FollowUsers.module.scss';
 
+type FollowUsersProps = {
+ users: User[] | null;
+ currentUserId?: string;
+ followingIds?: string[];
+};
 
-import getUsers from "@/app/actions/getUsers";
-
-const FollowUsers = async () => {
-
- const users = await getUsers()
-
+const FollowUsers: React.FC<FollowUsersProps> = ({
+ users,
+ currentUserId,
+ followingIds,
+}) => {
  return (
-  <div>
-   {users.map((user) => (
-    <div key={user.id}>{user.name}</div>
-   ))}
+  <div className={styles.followUsers}>
+   <p className={styles.title}>Who to follow</p>
+   {users?.map((user, index) => {
+    if (
+     currentUserId &&
+     user.id !== currentUserId &&
+     !followingIds?.includes(user?.id) &&
+     index < 4
+    ) {
+     return (
+      <UserCard
+       key={user.id}
+       user={user}
+       currentUserId={currentUserId}
+       followingIds={followingIds as string[]}
+      />
+     );
+    }
+   })}
   </div>
  );
-}
+};
 
 export default FollowUsers;

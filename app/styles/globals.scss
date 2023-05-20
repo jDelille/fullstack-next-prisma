@@ -100,7 +100,7 @@ body {
 	height: calc(100vh - $gamebarHeight - 4rem);
 	min-width: 280px;
 	position: sticky;
-
+	max-width: 280px;
 	top: calc($gamebarHeight + 2rem);
 	margin-top: 2rem;
 	border-radius: 8px;

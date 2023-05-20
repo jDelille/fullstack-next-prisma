@@ -6,8 +6,8 @@ const LogoIcon = () => {
     <path d="M164.272 55.76L142.128 146H111.28L98.864 90.704L86.192 146H55.344L33.456 55.76H60.592L71.088 117.456L85.296 55.76H112.816L126.64 116.944L137.136 55.76H164.272Z" fill="#1E2349" />
    </g>
    <defs>
-    <filter id="filter0_d_5_4" x="0" y="0" width="198" height="195" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-     <feFlood flood-opacity="0" result="BackgroundImageFix" />
+    <filter id="filter0_d_5_4" x="0" y="0" width="198" height="195" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+     <feFlood floodOpacity="0" result="BackgroundImageFix" />
      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
      <feOffset dy="4" />
      <feGaussianBlur stdDeviation="2" />
