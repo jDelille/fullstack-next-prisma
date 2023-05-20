@@ -64,6 +64,7 @@ model User {
   betNotificationIds  String[]
   postNotificationIds String[]
   points              Float?         @default(0)
+  affiliated          Boolean?       @default(false)
 }
 
 model Bet {

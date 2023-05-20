@@ -6,17 +6,20 @@
 	width: 100%;
 	height: 100%;
 	padding: 0 10px;
-
 	.sidebarHeader {
 		width: 100%;
 		display: flex;
 		align-items: center;
 		padding: 1rem;
-		gap: 1rem;
+		gap: 10px;
 		color: $white;
 		h1 {
 			font-size: 24px;
 			color: $white;
+		}
+		svg {
+			max-width: 30px;
+			max-height: 30px;
 		}
 		.profileImage {
 			border: 1px solid $accent;
@@ -48,8 +51,9 @@
 
 .userMenu {
 	position: relative;
-	height: calc(100% - 150px - 1rem);
+	height: calc(100% - 190px - 1rem);
 	margin-top: 0rem;
+
 	.closeMenu {
 		display: none;
 
@@ -170,7 +174,7 @@
 	}
 }
 
-.userBox {
+.userBoxNav {
 	width: 90%;
 	margin: 0 auto;
 	height: fit-content;
@@ -195,6 +199,17 @@
 				}
 				font-size: 11px;
 				color: $secondaryText;
+			}
+			svg {
+				&:nth-of-type(2) {
+					max-width: 14px;
+					max-height: 14px;
+				}
+			}
+			.name {
+				display: flex;
+				align-items: center;
+				gap: 5px;
 			}
 		}
 		.notifications {
@@ -232,12 +247,20 @@
 		bottom: 0;
 		left: 0;
 		padding: 0 24px;
+		@include breakpoint(sm) {
+			position: relative;
+			width: 100%;
+			padding: 0 1px;
+		}
 		.points {
 			font-size: 13px;
 			font-weight: 400;
 			color: #f1c40f;
 			position: relative;
 			bottom: 10px;
+			@include breakpoint(sm) {
+				bottom: 0;
+			}
 		}
 		.icons {
 			display: flex;
@@ -245,6 +268,9 @@
 			align-items: center;
 			position: relative;
 			bottom: 10px;
+			@include breakpoint(sm) {
+				bottom: 0;
+			}
 			width: 30px;
 			height: 30px;
 			padding: 5px;

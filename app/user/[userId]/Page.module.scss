@@ -13,7 +13,7 @@
 	.profilePosts {
 		margin-top: 1rem;
 		@include breakpoint(xs) {
-			margin: 0;
+			margin-top: -55px;
 		}
 	}
 }

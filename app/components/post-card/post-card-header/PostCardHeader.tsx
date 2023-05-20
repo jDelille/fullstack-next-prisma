@@ -11,6 +11,7 @@ import useFollow from '@/app/hooks/useFollow';
 import Image from 'next/image';
 import { IoMdClose } from 'react-icons/io';
 import { FaLock } from 'react-icons/fa';
+import LogoIcon from '@/app/icons/LogoIcon';
 
 
 type PostCardHeaderProps = {

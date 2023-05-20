@@ -22,6 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser, groups, notifications }) =
  return (
   <div className={styles.sidebar}>
    <div className={styles.sidebarHeader}>
+    <LogoIcon />
     <h1>Wagerly</h1>
    </div>
    <UserMenu currentUser={currentUser} groups={groups} />

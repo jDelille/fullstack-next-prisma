@@ -32,6 +32,11 @@
 				svg {
 					position: relative;
 					top: 1px;
+					&:nth-of-type(2) {
+						max-width: 14px;
+						max-height: 14px;
+					}
+
 					@include breakpoint(xs) {
 						top: 0px;
 					}

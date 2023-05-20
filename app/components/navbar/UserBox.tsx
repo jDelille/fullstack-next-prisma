@@ -7,6 +7,9 @@ import { MdLogout, MdNotifications } from "react-icons/md";
 import { useState } from "react";
 import NotificationsPopup from "./NotificationsPopup";
 import { signOut } from "next-auth/react";
+import { VerifiedBadge } from "@giphy/react-components";
+import VerifiedIcon from "@/app/icons/VerifiedIcon";
+import LogoIcon from "@/app/icons/LogoIcon";
 
 type UserBoxProps = {
  currentUser?: SafeUser | null;
@@ -17,11 +20,11 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, notifications }) => {
 
  const [openMenu, setOpenMenu] = useState(false)
  return (
-  <div className={styles.userBox}>
+  <div className={styles.userBoxNav}>
    <div className={styles.userBoxHeader}>
     <Avatar src={currentUser?.photo as string} />
     <div className={styles.userName}>
-     <p>{currentUser?.name}</p>
+     <p className={styles.name}>{currentUser?.name} {currentUser?.isVerified && <VerifiedIcon />} </p>
      <p>{currentUser?.username}</p>
     </div>
     {/* <div className={styles.notifications} onClick={() => setOpenMenu(!openMenu)}>

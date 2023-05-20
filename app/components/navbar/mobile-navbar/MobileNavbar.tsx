@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { SafeUser } from '@/app/types';
 import { Group } from '@prisma/client';
 import UserMenu from '../UserMenu';
+import UserBox from '../UserBox';
 
 type MobileNavbarProps = {
  currentUser: SafeUser | null;
@@ -31,6 +32,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ currentUser, groups }) => {
 
    <div className={isMenuOpen ? styles.userMenu : styles.hideUserMenu}>
     <UserMenu currentUser={currentUser} groups={groups} setIsMenuOpen={setIsMenuOpen} />
+    <UserBox currentUser={currentUser} />
    </div>
 
   </div>

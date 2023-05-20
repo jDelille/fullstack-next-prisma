@@ -4,9 +4,9 @@
 	@include page();
 	padding-top: 2rem;
 	@include breakpoint(sm) {
-		padding-top: 0;
+		padding-top: 55px;
 	}
 	@include breakpoint(xs) {
-		padding-top: 0;
+		padding-top: calc(55px + 1.1rem);
 	}
 }
