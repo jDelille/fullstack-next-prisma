@@ -11,12 +11,12 @@ import RegisterModal from './components/modals/auth-modal/RegisterModal'
 import Navbar from './components/navbar/Navbar'
 import Scoreboard from './components/scoreboard/Scoreboard'
 import ToasterProvider from './providers/ToasterProvider'
-import './styles/globals.scss'
 import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar'
 import CreateGroupModal from './components/modals/group-modal/CreateGroupModal'
 import UserBox from './components/user-box/UserBox'
 import getBetRecord from './actions/getBetRecord'
 import getNotificationByUserId from './actions/getNotificationByUserId'
+import './styles/globals.scss'
 
 export const metadata = {
   title: 'Wagerly',
