@@ -20,7 +20,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, label, href }) => {
 
  return (
   <div onClick={() => router.push(href as string)} className={linkStyle} >
-   {/* <Icon /> */}
+   <Icon size={22} />
    {label}
   </div >
 

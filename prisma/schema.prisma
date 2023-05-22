@@ -27,6 +27,7 @@ model Post {
   isPinned      Boolean?  @default(false)
   Group         Group?    @relation(fields: [groupId], references: [id])
   groupId       String?   @db.ObjectId
+  tags          String[]
 }
 
 model Comment {

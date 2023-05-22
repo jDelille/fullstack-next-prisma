@@ -12,6 +12,7 @@ import { useState, useCallback, useEffect } from 'react';
 import CommentFeed from '../comment-feed/CommentFeed';
 import axios from 'axios';
 import ImageView from '../image-view/ImageView';
+import ConfidenceBadge from '../confidence-badge/ConfidenceBadge';
 
 type PostCardProps = {
   post: any;
@@ -40,17 +41,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       })
   }, [post.Bet?.status, router])
 
-  const confidenceBadge = () => {
-    if (post.Bet?.confidence === 'Easy Money') {
-      return <div className={styles.ezBadge}>{post.Bet?.confidence}</div>;
-    } else if (post.Bet?.confidence === 'Optimistic') {
-      return (
-        <div className={styles.optimisticBadge}>{post.Bet?.confidence}</div>
-      );
-    } else {
-      return <div className={styles.riskyBadge}>{post.Bet?.confidence}</div>;
-    }
-  };
+ 
 
   useEffect(() => {
     if (post.Bet?.status === 'open') {
@@ -85,9 +76,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         <ImageView url={imageView} setImageView={setImageView} />
       )}
       {post?.Bet && (
-        <div className={styles.badges}>
-          {confidenceBadge()}
-        </div>
+        <ConfidenceBadge value={post?.Bet?.confidence} />
       )}
       {post?.Bet && <PostCardBet post={post.Bet} />}
       <PostCardFooter postId={post.id} likeCount={post.likedIds.length || 0} likeArray={post.likedIds} currentUserId={currentUser?.id} onComment={onComment} commentCount={post.comments.length || 0} commentArray={post.commentedIds} />

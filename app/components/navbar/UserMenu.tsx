@@ -4,12 +4,13 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import styles from './Navbar.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
-import { FaUserAlt, FaUsers } from 'react-icons/fa'
+import { FaUser, FaUsers } from 'react-icons/fa'
+import { TbHash } from 'react-icons/tb'
 import { MdAddCircle } from 'react-icons/md'
 import MenuItem from './MenuItem';
 import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
-
+import { HiUserCircle } from 'react-icons/hi'
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -33,15 +34,21 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
   },
   {
    id: 1,
-   icon: FaUserAlt,
-   label: 'Profile',
-   href: `/user/${currentUser?.id}`
-  },
-  {
-   id: 3,
    icon: FaUsers,
    label: 'Groups',
    href: `/groups`
+  },
+  // {
+  //  id: 2,
+  //  icon: TbHash,
+  //  label: 'Explore',
+  //  href: `/explore`
+  // },
+  {
+   id: 2,
+   icon: HiUserCircle,
+   label: 'Profile',
+   href: `/user/${currentUser?.id}`
   },
  ]
  const pathname = usePathname()

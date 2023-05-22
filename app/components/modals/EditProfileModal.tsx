@@ -1,7 +1,7 @@
 'use client';
 
 import useEditProfileModal from '@/app/hooks/useEditProfileModal';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Modal.module.scss';
 import Modal from './Modal';
@@ -76,6 +76,20 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 			});
 	};
 
+	const headerTitle = useMemo(() => {
+		if (step === STEPS.DEFAULT) {
+			return 'Edit Profile'
+		}
+		if (step === STEPS.PASSWORD) {
+			return 'Change Password'
+		}
+	}, [step])
+
+	const onClose = () => {
+		editProfileModal.onClose();
+		setStep(STEPS.DEFAULT)
+	}
+
 
 	let bodyContent = (
 		<div className={styles.bodyContent}>
@@ -116,9 +130,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 				errors={errors}
 				onChange={(e) => setCustomValue('bio', e.target.value)}
 			/>
-			<div className={styles.changePasswordButton}>
+			{/* <div className={styles.changePasswordButton}>
 				<Button label='Change password' onClick={() => { setStep(STEPS.PASSWORD) }} />
-			</div>
+			</div> */}
 		</div>
 	);
 
@@ -162,9 +176,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 		<Modal
 			disabled={isLoading}
 			isOpen={editProfileModal.isOpen}
-			title='Edit Profile'
+			title={headerTitle}
 			actionLabel='Save'
-			onClose={editProfileModal.onClose}
+			onClose={onClose}
 			icon={IoMdClose}
 			body={bodyContent}
 			onSubmit={handleSubmit(onSubmit)}
