@@ -1,4 +1,4 @@
-import CreatePostForm from '../../create-post/create-post-form/CreatePostForm';
+import CreateCommentForm from '../../comment-form/CommentForm';
 import styles from './PostCardComment.module.scss';
 
 type PostCardCommentProps = {
@@ -11,7 +11,7 @@ type PostCardCommentProps = {
 const PostCardComment: React.FC<PostCardCommentProps> = ({ postId, userId, userPhoto, postUser }) => {
  return (
   <div className={styles.commentContainer} onClick={(e) => e.stopPropagation()}>
-   <CreatePostForm isComment postId={postId} isBordered={false} userId={userId} userPhoto={userPhoto} placeholder={`Comment on ${postUser}'s post`} />
+   <CreateCommentForm isComment postId={postId} isBordered={false} userId={userId} userPhoto={userPhoto} placeholder={`Comment on ${postUser}'s post`} />
   </div >
  );
 }

@@ -66,6 +66,7 @@ const CreatePostForm = ({
     }
   }, [])
 
+  const isMobile = window.innerWidth <= 768;
 
   const {
     register,
@@ -116,7 +117,7 @@ const CreatePostForm = ({
   };
 
   return (
-    <div className={show ? isComment ? styles.inputCommentContainer : styles.inputContainer : styles.hideForm}>
+    <div className={show ? styles.inputContainer : styles.hideForm}>
       <div
         className={
           isBordered ? styles.inputWrapperBordered : styles.inputWrapper

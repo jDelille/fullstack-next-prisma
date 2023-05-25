@@ -56,12 +56,13 @@
 	}
 	@include breakpoint(sm) {
 		// margin: 0 280px;
-		min-width: calc(100% - 280px);
 		margin-top: $gamebarHeight;
+		min-width: 100%;
 	}
 	@include breakpoint(xs) {
 		margin: 0;
 		padding: 0;
+		width: 100vw;
 		// margin-top: 55px;
 	}
 }

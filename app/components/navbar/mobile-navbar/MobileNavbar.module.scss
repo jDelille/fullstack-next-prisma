@@ -43,5 +43,7 @@
 }
 
 .hideMobileNavbar {
-	opacity: 0;
+	@include breakpoint(xs) {
+		opacity: 0;
+	}
 }
