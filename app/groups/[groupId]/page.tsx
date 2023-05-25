@@ -28,10 +28,10 @@ const Group = async ({ params }: { params: IParams }) => {
   loading: () => <p>Loading...</p>
  })
 
- let admin: SafeUser | null = null;
+ // let admin: SafeUser | null = null;
  let posts: any | null = null
  if (group) {
-  admin = await getUserById({ userId: group.adminId });
+  // admin = await getUserById({ userId: group.adminId });
   posts = await getPostsByGroupId({ groupId: group.id })
  }
 
@@ -44,11 +44,11 @@ const Group = async ({ params }: { params: IParams }) => {
     <p className={styles.description}>{group?.description}</p>
     {/* <p className={styles.admin}>Created by {admin?.name}</p> */}
     <p className={styles.members}> <FaUsers /> {group?.memberIds.length}</p>
-    {currentUser?.id === admin?.id && (
+    {/* {currentUser?.id === admin?.id && (
      <div className={styles.menu}>
       <ProfileMenu isGroupPage />
      </div>
-    )}
+    )} */}
 
    </div>
    <div className={styles.body}>
