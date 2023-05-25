@@ -18,6 +18,7 @@ import getNotificationByUserId from './actions/getNotificationByUserId';
 import './styles/globals.scss';
 import FollowUsers from './components/followUsers/FollowUsers';
 import getUsers from './actions/getUsers';
+import PollModal from './components/modals/poll-modal/PollModal';
 
 export const metadata = {
   title: 'Wagerly',
@@ -66,6 +67,7 @@ export default async function RootLayout({
             userPhoto={currentUser?.photo as string}
           />
           <CreateGroupModal />
+          <PollModal />
 
           <div className='sidebarContainer'>
             <Navbar

@@ -135,6 +135,10 @@
 						outline: 1px solid $accent;
 					}
 				}
+				.pollExpiration {
+					display: flex;
+					gap: 10px;
+				}
 			}
 			.tabs {
 				background-color: transparent;

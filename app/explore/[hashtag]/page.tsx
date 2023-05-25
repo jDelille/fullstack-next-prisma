@@ -23,8 +23,6 @@ const ExploreHashtag = async ({ params }: { params: IParams }) => {
   }
  );
 
- console.log(cleanText)
-
 
  return (
   <div className={styles.page}>

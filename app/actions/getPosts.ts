@@ -17,6 +17,7 @@ export default async function getPosts() {
 				Bet: true,
 				user: true,
 				comments: true,
+				Poll: true,
 			},
 		});
 

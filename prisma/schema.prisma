@@ -20,6 +20,8 @@ model Post {
   updatedAt     DateTime  @updatedAt
   Bet           Bet?      @relation(fields: [betId], references: [id])
   betId         String?   @db.ObjectId
+  Poll          Poll?     @relation(fields: [pollId], references: [id])
+  pollId        String?   @db.ObjectId
   likedIds      String[]  @db.ObjectId
   commentedIds  String[]  @db.ObjectId
   comments      Comment[]
@@ -66,6 +68,19 @@ model User {
   postNotificationIds String[]
   points              Float?         @default(0)
   affiliated          Boolean?       @default(false)
+}
+
+model Poll {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  option1      String
+  option2      String
+  option1Votes Int      @default(0)
+  option2Votes Int      @default(0)
+  expiration   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  votersIds    String[] @db.ObjectId
+  Post         Post[]
 }
 
 model Bet {

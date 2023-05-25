@@ -10,11 +10,12 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { TbReportMoney } from 'react-icons/tb'
-import { AiFillCamera, AiOutlineCamera, AiOutlineFileGif } from 'react-icons/ai';
-import { HiGif, HiOutlineBanknotes } from 'react-icons/hi2'
+import { AiOutlineCamera } from 'react-icons/ai';
+import { HiOutlineBanknotes } from 'react-icons/hi2'
 import Gifs from '../../gifs/Gifs';
-import { IoCashOutline } from 'react-icons/io5';
+import { CgPoll } from 'react-icons/cg'
+import usePollModal from '@/app/hooks/usePollModal';
+
 type CreatePostFormProps = {
   userPhoto?: string;
   userId?: string;
@@ -37,11 +38,12 @@ const CreatePostForm = ({
   placeholder
 }: CreatePostFormProps) => {
   const router = useRouter();
-
   const betModal = useBetModal();
+  const loginModal = useLoginModal();
+  const pollModal = usePollModal();
+
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const loginModal = useLoginModal();
   const [showGifs, setShowGifs] = useState(false)
   const {
     register,
@@ -119,6 +121,7 @@ const CreatePostForm = ({
                 <span>Bet</span>
               </div>
 
+
               {!userId && (
                 <div className={styles.icon} onClick={() => loginModal.onOpen()}>
                   <AiOutlineCamera size={20} color="#abadb1" />
@@ -148,6 +151,11 @@ const CreatePostForm = ({
                 </div>
 
               )}
+              <div className={styles.icon} onClick={() => pollModal.onOpen()}>
+                <CgPoll size={20} color="#abadb1" />
+                <span>Poll</span>
+              </div>
+
               <Button onClick={handleSubmit(onSubmit)} label='Post' isButtonDisabled={!body} />
             </div>
           </>

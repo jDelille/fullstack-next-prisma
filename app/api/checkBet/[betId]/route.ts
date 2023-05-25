@@ -1,10 +1,12 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import getUserById from '@/app/actions/getUserById';
 import prisma from '@/app/libs/prismadb';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
 interface IParams {
 	betId?: string;
+	userId?: string;
 }
 
 export async function POST(request: Request, { params }: { params: IParams }) {

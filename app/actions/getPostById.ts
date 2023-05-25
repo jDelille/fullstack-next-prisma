@@ -15,6 +15,7 @@ export default async function getPostById(params: IParams) {
 				Bet: true,
 				user: true,
 				comments: true,
+				Poll: true,
 			},
 		});
 

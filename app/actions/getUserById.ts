@@ -22,6 +22,7 @@ export default async function getUserById(params: IParams) {
 			createdAt: user.createdAt.toISOString(),
 			updatedAt: user.updatedAt.toISOString(),
 			emailVerified: user.emailVerified?.toISOString() || null,
+			points: user.points?.toString() || null,
 		};
 	} catch (error: any) {
 		throw new Error(error);
