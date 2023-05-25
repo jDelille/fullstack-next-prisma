@@ -11,52 +11,69 @@ import { FaUsers } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
 interface IParams {
- groupId?: string;
+	groupId?: string;
 }
 
-
 const Group = async ({ params }: { params: IParams }) => {
+	const group = await getGroupById(params);
+	const currentUser = await getCurrentUser();
 
- const group = await getGroupById(params)
- const currentUser = await getCurrentUser();
+	const DynamicPostFeed = dynamic(
+		() => import('../../components/post-feed/PostFeed'),
+		{
+			loading: () => <p>Loading...</p>,
+		}
+	);
 
- const DynamicPostFeed = dynamic(() => import('../../components/post-feed/PostFeed'), {
-  loading: () => <p>Loading...</p>
- })
+	const DynamicCreatePostForm = dynamic(
+		() =>
+			import('../../components/create-post/create-post-form/CreatePostForm'),
+		{
+			loading: () => <p>Loading...</p>,
+		}
+	);
 
- const DynamicCreatePostForm = dynamic(() => import('../../components/create-post/create-post-form/CreatePostForm'), {
-  loading: () => <p>Loading...</p>
- })
+	// let admin: SafeUser | null = null;
+	let posts: any | null = null;
+	if (group) {
+		// admin = await getUserById({ userId: group.adminId });
+		posts = await getPostsByGroupId({ groupId: group.id });
+	}
 
- // let admin: SafeUser | null = null;
- let posts: any | null = null
- if (group) {
-  // admin = await getUserById({ userId: group.adminId });
-  posts = await getPostsByGroupId({ groupId: group.id })
- }
-
- return (
-  <div className={styles.page}>
-   <div className={styles.header}>
-    <div className={styles.name}>
-     <h1>{group?.name} {group?.photo}</h1>
-    </div>
-    <p className={styles.description}>{group?.description}</p>
-    {/* <p className={styles.admin}>Created by {admin?.name}</p> */}
-    <p className={styles.members}> <FaUsers /> {group?.memberIds.length}</p>
-    {/* {currentUser?.id === admin?.id && (
+	return (
+		<div className={styles.page}>
+			<div className={styles.header}>
+				<div className={styles.name}>
+					<h1>
+						{group?.name} {group?.photo}
+					</h1>
+				</div>
+				<p className={styles.description}>{group?.description}</p>
+				{/* <p className={styles.admin}>Created by {admin?.name}</p> */}
+				<p className={styles.members}>
+					{' '}
+					<FaUsers /> {group?.memberIds.length}
+				</p>
+				{/* {currentUser?.id === admin?.id && (
      <div className={styles.menu}>
       <ProfileMenu isGroupPage />
      </div>
     )} */}
-
-   </div>
-   <div className={styles.body}>
-    <DynamicCreatePostForm isComment={false} isBordered userId={currentUser?.id as string} isGroup={true} userPhoto={currentUser?.photo as string} groupId={group?.id as string} placeholder={`Let ${group?.name} know what's happening`} />
-    <DynamicPostFeed currentUser={currentUser} posts={posts} />
-   </div>
-  </div>
- );
-}
+			</div>
+			<div className={styles.body}>
+				<DynamicCreatePostForm
+					isComment={false}
+					isBordered
+					userId={currentUser?.id as string}
+					isGroup={true}
+					userPhoto={currentUser?.photo as string}
+					groupId={group?.id as string}
+					placeholder={`Let ${group?.name} know what's happening`}
+				/>
+				<DynamicPostFeed currentUser={currentUser} posts={posts} />
+			</div>
+		</div>
+	);
+};
 
 export default Group;
