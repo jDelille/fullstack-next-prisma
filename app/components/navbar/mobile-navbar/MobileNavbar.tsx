@@ -17,15 +17,35 @@ type MobileNavbarProps = {
 const MobileNavbar: React.FC<MobileNavbarProps> = ({ currentUser, groups }) => {
  const router = useRouter()
  const pathname = usePathname()
-
  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+ const [show, setShow] = useState(true);
+ const controlNavbar = () => {
+  if (window.scrollY > 100) {
+   setShow(window.scrollY < prevScrollY ? true : false);
+  } else {
+   setShow(true);
+  }
+  prevScrollY = window.scrollY;
+ };
+
+ let prevScrollY = 0;
+
+ useEffect(() => {
+  window.addEventListener('scroll', controlNavbar)
+  return () => {
+   window.removeEventListener("scroll", controlNavbar)
+  }
+ }, [])
+
+
 
  useEffect(() => {
   setIsMenuOpen(false)
  }, [pathname])
 
  return (
-  <div className={styles.mobileNavbar}>
+  <div className={show ? styles.mobileNavbar : styles.hideMobileNavbar}>
    <div className={styles.menu}>
     <GiHamburgerMenu size={18} onClick={() => setIsMenuOpen(true)} />
    </div>

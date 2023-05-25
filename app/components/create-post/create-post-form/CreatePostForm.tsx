@@ -3,7 +3,7 @@ import styles from './CreatePostForm.module.scss';
 import Button from '../../button/Button';
 import useBetModal from '@/app/hooks/useBetModal';
 import ImageUpload from '../../image-upload/ImageUpload';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreatePostInput from '../create-post-input/CreatePostInput';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -45,6 +45,28 @@ const CreatePostForm = ({
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showGifs, setShowGifs] = useState(false)
+  const [show, setShow] = useState(true);
+
+  const controlForm = () => {
+    if (window.scrollY > 100) {
+      setShow(window.scrollY < prevScrollY ? true : false);
+    } else {
+      setShow(true);
+    }
+    prevScrollY = window.scrollY;
+  };
+
+  let prevScrollY = 0;
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlForm)
+    return () => {
+      window.removeEventListener("scroll", controlForm)
+    }
+  }, [])
+
+
   const {
     register,
     handleSubmit,
@@ -94,7 +116,7 @@ const CreatePostForm = ({
   };
 
   return (
-    <div className={isComment ? styles.inputCommentContainer : styles.inputContainer}>
+    <div className={show ? isComment ? styles.inputCommentContainer : styles.inputContainer : styles.hideForm}>
       <div
         className={
           isBordered ? styles.inputWrapperBordered : styles.inputWrapper

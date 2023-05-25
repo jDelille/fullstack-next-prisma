@@ -30,16 +30,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const currentUser = await getCurrentUser();
-  const users = await getUsers();
+  // const currentUser = await getCurrentUser();
+  // const users = await getUsers();
+
+  const [currentUser, users] = await Promise.all([getCurrentUser(), getUsers()]);
 
   let groups: Group[] = [];
   let record: any;
   let notifications: any;
   if (currentUser) {
-    groups = await getGroupsByUserId({ userId: currentUser.id });
-    record = await getBetRecord({ userId: currentUser.id });
-    notifications = await getNotificationByUserId({ userId: currentUser.id });
+    [groups, record, notifications] = await Promise.all([
+      getGroupsByUserId({ userId: currentUser.id }),
+      getBetRecord({ userId: currentUser.id }),
+      getNotificationByUserId({ userId: currentUser.id }),
+    ]);
   }
 
   async function getNotifications() {

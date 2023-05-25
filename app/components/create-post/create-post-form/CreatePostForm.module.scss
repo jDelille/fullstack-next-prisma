@@ -2,7 +2,8 @@
 @import '@/app/styles/mixins';
 
 .inputContainer,
-.commentInputContainer {
+.commentInputContainer,
+.hideForm {
 	min-height: 90px;
 	position: relative;
 	min-width: 100%;
@@ -12,9 +13,12 @@
 	z-index: 2;
 	padding-top: 2rem;
 	background-color: $black;
+	transition-timing-function: ease-in-out;
+	transition: 200ms;
+	opacity: 1;
 	@include breakpoint(xs) {
-		padding-top: 2rem;
-		top: calc($gamebarHeight + 55px);
+		padding-top: 45px;
+		// top: calc($gamebarHeight + 55px);
 	}
 	.inputWrapper,
 	.inputWrapperBordered {
@@ -102,6 +106,10 @@
 			}
 		}
 	}
+}
+
+.hideForm {
+	opacity: 0;
 }
 
 .commentInputContainer {

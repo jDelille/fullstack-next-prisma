@@ -1,16 +1,20 @@
 @import '@/app/styles/variables';
 @import '@/app/styles/mixins';
 
-.mobileNavbar {
-	height: 55px;
+.mobileNavbar,
+.hideMobileNavbar {
+	height: 45px;
 	width: 100vw;
 	background-color: $gray;
-	// border-bottom: 1px solid $border;
 	display: flex;
 	align-items: center;
 	color: $secondaryText;
 	padding: 0 1.5rem;
-
+	position: fixed;
+	top: $gamebarHeight;
+	transition-timing-function: ease-in-out;
+	transition: 200ms;
+	opacity: 1;
 	.menu {
 		display: flex;
 		align-items: center;
@@ -36,4 +40,8 @@
 		transform: translateX(-650px);
 		opacity: 0;
 	}
+}
+
+.hideMobileNavbar {
+	opacity: 0;
 }
