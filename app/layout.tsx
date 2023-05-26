@@ -84,7 +84,7 @@ export default async function RootLayout({
             {!currentUser && (
               <>
                 <div className='message'>
-                  <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your account on a different server.</p>
+                  <p>Login to follow profiles or groups, like and reply to posts. You can also view sports scores and news, post polls, post images, and post your sports bets.</p>
                 </div>
                 <div className='auth-buttons'>
                   <AuthButtons />
