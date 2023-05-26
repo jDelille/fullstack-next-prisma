@@ -38,7 +38,7 @@ export default async function RootLayout({
   // const currentUser = await getCurrentUser();
   // const users = await getUsers();
 
-  const [currentUser, users] = await Promise.all([getCurrentUser(), getUsers()]);
+  const [currentUser] = await Promise.all([getCurrentUser()]);
 
   let groups: Group[] = [];
   let record: any;
@@ -100,7 +100,7 @@ export default async function RootLayout({
                     groups={groups} />
                 </div>
                 <GroupsBox groups={groups} currentUser={currentUser} />
-                <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
+                {/* <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} /> */}
               </>
 
 
