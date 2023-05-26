@@ -125,7 +125,7 @@ export default async function RootLayout({
             <div className='mainContainer'>{children}</div>
           </ClientOnly>
 
-          {/* <Footer currentUserId={currentUser?.id} /> */}
+          <Footer currentUserId={currentUser?.id} />
 
 
           <div className='rightSidebar'>
