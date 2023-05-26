@@ -6,10 +6,8 @@ type NewsCardProps = {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
-
-
  return (
-  <a className={styles.newsCard} href={news.links.web.href} target
+  <a className={styles.newsCard} href={news.links?.web.href} target
    ="_blank" >
 
    <div className={styles.newsCardBody}>
@@ -18,7 +16,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
      <p className={styles.description}>{news.description}</p>
     </div>
     <div className={styles.newsCardImage}>
-     <Image src={news.images[0].url} alt='image' width={135} height={125} style={{ objectFit: 'fill' }} />
+     <Image src={news?.images?.[0].url} alt='image' width={135} height={105} style={{ objectFit: 'cover' }} />
     </div>
    </div>
   </a>

@@ -46,7 +46,7 @@
 		}
 		.newsCardImage {
 			width: 135px;
-			height: 145px;
+			height: 105px;
 			border-radius: 4px;
 			position: absolute;
 			right: 10px;
@@ -54,6 +54,7 @@
 			img {
 				max-width: 135px;
 				max-height: 105px;
+				min-height: 105px;
 				border-radius: 4px;
 			}
 		}
