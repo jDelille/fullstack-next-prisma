@@ -13,7 +13,7 @@ const News = () => {
 
 
  const { data, error, isLoading } = useSWR(
-  `https://site.api.espn.com/apis/site/v2/sports/football/nfl/news?limit=3&page=1`,
+  `https://site.api.espn.com/apis/site/v2/sports/football/nfl/news?limit=50&page=1`,
   fetcher
  );
 
@@ -25,9 +25,6 @@ const News = () => {
 
  return (
   <div className={styles.news}>
-   <div className={styles.newsHeader}>
-    <p className={styles.newsTitle}>News <span>beta</span></p>
-   </div>
    {newsData?.map((news: any) => (
     <NewsCard key={news.id} news={news} />
    ))}

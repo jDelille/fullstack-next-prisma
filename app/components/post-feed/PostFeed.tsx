@@ -6,6 +6,7 @@ import styles from './PostFeed.module.scss';
 import { SafeUser } from '@/app/types';
 import { User } from '@prisma/client';
 import PeopleBox from '../people-box/PeopleBox';
+import News from '../news/News';
 
 type PostFeedProps = {
  posts: any;
@@ -61,6 +62,12 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users }) => {
      {users?.map((user) => (
       <PeopleBox key={user?.id} user={user} />
      ))}
+    </div>
+   )}
+
+   {tab === 'news' && (
+    <div className={styles.newsFeed}>
+     <News />
     </div>
    )}
   </div>
