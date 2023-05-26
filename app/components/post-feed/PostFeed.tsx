@@ -13,9 +13,10 @@ type PostFeedProps = {
  currentUser: SafeUser | null;
  totalBets?: number;
  users: User[] | null;
+ isProfilePage?: boolean;
 };
 
-const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users }) => {
+const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfilePage }) => {
  const [tab, setTab] = useState('posts');
 
  return (
@@ -26,21 +27,36 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users }) => {
      className={tab === 'posts' ? styles.activeTab : styles.tab}>
      Posts
     </p>
+
     <p
      onClick={() => setTab('bets')}
      className={tab === 'bets' ? styles.activeTab : styles.tab}>
      Bets
     </p>
-    <p
-     onClick={() => setTab('people')}
-     className={tab === 'people' ? styles.activeTab : styles.tab}>
-     People
-    </p>
-    <p
-     onClick={() => setTab('news')}
-     className={tab === 'news' ? styles.activeTab : styles.tab}>
-     News
-    </p>
+
+    {isProfilePage && (
+     <p
+      onClick={() => setTab('media')}
+      className={tab === 'media' ? styles.activeTab : styles.tab}>
+      Media
+     </p>
+    )}
+
+    {!isProfilePage && (
+     <>
+      <p
+       onClick={() => setTab('people')}
+       className={tab === 'people' ? styles.activeTab : styles.tab}>
+       People
+      </p>
+      <p
+       onClick={() => setTab('news')}
+       className={tab === 'news' ? styles.activeTab : styles.tab}>
+       News
+      </p>
+     </>
+    )}
+
    </div>
 
    {tab === 'posts' &&
@@ -68,6 +84,12 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users }) => {
    {tab === 'news' && (
     <div className={styles.newsFeed}>
      <News />
+    </div>
+   )}
+
+   {tab === 'media' && (
+    <div>
+
     </div>
    )}
   </div>

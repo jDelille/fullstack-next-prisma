@@ -48,7 +48,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     groups={groups.length}
    />
    <div className={styles.profilePosts}>
-    <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} />
+    <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} isProfilePage />
    </div>
   </div >
  );

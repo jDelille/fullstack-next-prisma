@@ -4,6 +4,7 @@
 
 .page {
 	@include page();
+	gap: 0 !important;
 	@include breakpoint(xs) {
 		position: relative;
 		top: $gamebarHeight;
@@ -28,7 +29,6 @@
 		}
 	}
 	.profilePosts {
-		margin-top: 1rem;
 		@include breakpoint(xs) {
 			margin-top: -55px;
 		}
