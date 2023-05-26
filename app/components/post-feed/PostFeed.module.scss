@@ -1,4 +1,5 @@
 @import '@/app/styles/mixins';
+@import '@/app/styles/variables';
 
 .postFeed {
 	display: flex;
@@ -8,5 +9,48 @@
 		position: relative;
 		top: 55px;
 		padding-top: 1.2rem;
+	}
+	.feedToggle {
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		background-color: darken($black, 2%);
+		color: $secondaryText;
+		font-size: 14px;
+
+		@include breakpoint(xs) {
+			position: relative;
+			top: 0;
+			max-width: 100vw;
+		}
+		.tab,
+		.activeTab {
+			font-weight: 500;
+			position: relative;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+		.activeTab {
+			color: $white;
+			&:after {
+				position: absolute;
+				content: '';
+				width: 0;
+				height: 0;
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+				border-bottom: 10px solid $gray;
+				bottom: -5px;
+				transform: translate(0%, -50%);
+			}
+		}
+	}
+	.peopleFeed {
+		background-color: $gray;
+		padding: 10px;
 	}
 }

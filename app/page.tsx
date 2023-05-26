@@ -1,14 +1,14 @@
 import dynamic from 'next/dynamic';
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
-import CreatePostForm from './components/create-post/create-post-form/CreatePostForm';
 import PostCardSkeleton from './components/skeletons/post-card-skeleton/PostCardSkeleton';
 import { Suspense } from 'react';
 import FeedHeader from './components/feed-header/FeedHeader';
 import { BiHash } from 'react-icons/bi';
+import getUsers from './actions/getUsers';
 
 export default async function Home() {
-  const [posts, currentUser] = await Promise.all([getPosts(), getCurrentUser()])
+  const [posts, currentUser, users] = await Promise.all([getPosts(), getCurrentUser(), getUsers()])
 
   const DynamicPostFeed = dynamic(() => import('./components/post-feed/PostFeed'), {
     loading: () => <>
@@ -29,13 +29,8 @@ export default async function Home() {
         /> */}
         <FeedHeader label='Explore' icon={BiHash} />
         <Suspense fallback={<p>Loading...</p>}>
-          <div className='feedToggle'>
-            <p>Posts</p>
-            <p>Bets</p>
-            <p>People</p>
-            <p>News</p>
-          </div>
-          <DynamicPostFeed posts={posts} currentUser={currentUser} />
+
+          <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} />
         </Suspense>
       </div>
     </main>
