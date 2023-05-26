@@ -15,10 +15,11 @@ type ImageUploadProps = {
  isRegister?: boolean;
  isPost?: boolean
  placeholder?: string;
+ disabled?: boolean
 }
 
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost, placeholder }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomValue, label, userId, isRegister, isPost, placeholder, disabled }) => {
 
  const [base64, setBase64] = useState(value)
 
@@ -49,17 +50,29 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, setCustomVal
  })
 
  return (
-  <div {...getRootProps({})} >
-   <input {...getInputProps()} placeholder="upload" width='100px' height='50px' />
-   {!isPost ? (
-    <Image src={base64 || '/images/placeholder.png'} alt='profile-picture' width='50' height='50' />
-   ) : (
-    <div className={styles.icon}>
-     <AiOutlineCamera size={20} color="#abadb1" />
-     <span>Photo</span>
+  <>
+   {!disabled && (
+    <div {...getRootProps({})} >
+     <input {...getInputProps()} placeholder="upload" width='100px' height='50px' />
+
+     {!isPost ? (
+      <Image src={base64 || '/images/placeholder.png'} alt='profile-picture' width='50' height='50' style={{ objectFit: 'contain' }} />
+     ) : (
+      <div className={styles.icon}>
+       <AiOutlineCamera size={22} color="#2a333f" />
+      </div>
+     )}
     </div>
    )}
-  </div>
+
+   {disabled && (
+    <div className={styles.icon}>
+     <AiOutlineCamera size={22} color="#2a333f" />
+    </div>
+   )}
+
+  </>
+
  );
 }
 

@@ -24,6 +24,7 @@ import AuthButtons from './components/auth-buttons/AuthButtons';
 import News from './components/news/News';
 import UserMenu from './components/navbar/UserMenu';
 import GroupsBox from './components/groups-box/GroupsBox';
+import CreatePostTextarea from './components/create-post/create-post-textarea/CreatePostTextarea';
 
 export const metadata = {
   title: 'Wagerly',
@@ -99,7 +100,11 @@ export default async function RootLayout({
                     record={record}
                     groups={groups} />
                 </div>
-                <GroupsBox groups={groups} currentUser={currentUser} />
+                <CreatePostTextarea
+                  userId={currentUser?.id}
+                  
+                />
+                {/* <GroupsBox groups={groups} currentUser={currentUser} /> */}
                 {/* <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} /> */}
               </>
 
@@ -138,7 +143,7 @@ export default async function RootLayout({
                 notifications={notifications} />
             </div>
             <div>
-              <News />
+              {/* <News /> */}
             </div>
 
           </div>

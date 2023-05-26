@@ -6,12 +6,13 @@ import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
 import { FaUser, FaUsers } from 'react-icons/fa'
 import { TbHash } from 'react-icons/tb'
-import { MdAddCircle } from 'react-icons/md'
+import { MdAddCircle, MdLogout } from 'react-icons/md'
 import MenuItem from './MenuItem';
 import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
 import { HiUserCircle } from 'react-icons/hi'
 import { BiHash } from 'react-icons/bi';
+import { signOut } from 'next-auth/react';
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -61,6 +62,10 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
       {navlinks.map((link) => (
        <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
       ))}
+      <div className={styles.Link}>
+       <MdLogout size={16} />
+       <p onClick={() => signOut()}>Logout</p>
+      </div>
      </>
     ) : (
      <>

@@ -1,0 +1,80 @@
+@import '@/app/styles/variables';
+
+.createPost {
+	background-color: $white;
+	width: 100%;
+	min-height: 175px;
+	height: auto;
+	border-radius: 4px;
+	margin-top: 15px;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	max-height: 500px;
+	.textarea {
+		padding: 10px;
+		width: 100%;
+		min-height: 130px;
+		height: fit-content;
+		resize: none;
+		border: none;
+	}
+	.imagePreview {
+		max-height: 150px;
+		min-height: 150px;
+		height: 150px;
+		width: 100%;
+		position: relative;
+		margin-top: auto;
+		padding: 10px;
+		overflow: hidden;
+		image {
+			border-radius: 4px;
+		}
+		.closeImagePreview {
+			position: absolute;
+			top: 13px;
+			right: 13px;
+			z-index: 9999;
+			cursor: pointer;
+		}
+	}
+	.createPostButtons {
+		height: 45px;
+		background-color: #ebebeb;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		padding: 0 10px;
+		.icon {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			padding: 2px 5px;
+			cursor: pointer;
+
+			cursor: pointer;
+			&:hover {
+				background-color: darken(#ebebeb, 5%);
+			}
+		}
+		.textCount {
+			margin-left: auto;
+			font-weight: 500;
+			font-size: 14px;
+			.lengthError {
+				color: red;
+			}
+		}
+	}
+}
+
+.postButton {
+	margin-top: 15px;
+	button {
+		width: fit-content;
+		margin-left: auto;
+		background-color: $accent;
+	}
+}

@@ -28,7 +28,7 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, record, groups }) => {
     <p>{record.winCount} wins</p>
     <p>{record.lossCount} losses</p>
     <p>{groups?.length || 0} groups</p>
-   </div >
+   </div>
   </div >
  );
 }

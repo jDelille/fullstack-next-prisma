@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import styles from './Navbar.module.scss';
 import { IconType } from 'react-icons';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 type MenuItemProps = {
  icon: IconType;
@@ -23,7 +24,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, label, href }) => {
    <Icon size={18} />
    {label}
   </div >
-
  );
 }
 

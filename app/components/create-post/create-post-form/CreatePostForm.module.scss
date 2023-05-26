@@ -126,10 +126,6 @@
 	align-items: center;
 	padding: 2px 5px;
 	cursor: pointer;
-	&:hover {
-		background-color: $secondaryAccent;
-		border-radius: 4px;
-	}
 	span {
 		font-size: 14px;
 	}
