@@ -10,6 +10,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoArrowBack } from 'react-icons/io5';
+import getUsers from '@/app/actions/getUsers';
 
 interface IParams {
  userId?: string;
@@ -21,6 +22,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const followerCount = await getFollowersCount(params);
  const currentUser = await getCurrentUser();
  const groups = await getGroupsByUserId(params);
+ const users = await getUsers()
 
  const DynamicPostFeed = dynamic(
   () => import('../../components/post-feed/PostFeed'),
@@ -46,7 +48,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     groups={groups.length}
    />
    <div className={styles.profilePosts}>
-    <DynamicPostFeed posts={posts} currentUser={currentUser} />
+    <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} />
    </div>
   </div >
  );
