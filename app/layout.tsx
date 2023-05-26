@@ -19,6 +19,11 @@ import './styles/globals.scss';
 import FollowUsers from './components/followUsers/FollowUsers';
 import getUsers from './actions/getUsers';
 import PollModal from './components/modals/poll-modal/PollModal';
+import Button from './components/button/Button';
+import AuthButtons from './components/auth-buttons/AuthButtons';
+import News from './components/news/News';
+import UserMenu from './components/navbar/UserMenu';
+import GroupsBox from './components/groups-box/GroupsBox';
 
 export const metadata = {
   title: 'Wagerly',
@@ -74,11 +79,37 @@ export default async function RootLayout({
           <PollModal />
 
           <div className='sidebarContainer'>
-            <Navbar
-              currentUser={currentUser}
-              groups={groups}
-              notifications={notifications}
-            />
+            <input type='text' className='searchInput' placeholder='Search' />
+
+            {!currentUser && (
+              <>
+                <div className='message'>
+                  <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your account on a different server.</p>
+                </div>
+                <div className='auth-buttons'>
+                  <AuthButtons />
+                </div>
+              </>
+            )}
+
+            {currentUser && (
+              <>
+                <div className='userBox'>
+                  <UserBox currentUser={currentUser}
+                    record={record}
+                    groups={groups} />
+                </div>
+                <GroupsBox groups={groups} currentUser={currentUser} />
+                <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
+              </>
+
+
+            )}
+
+            <div className='disclaimer'>
+              <p>Sports data is provided by ESPN. To learn more about the api used, <a href="/">click here.</a></p>
+              <p>To see what technologies are used in Wagerly and how it was built, checkout our <a href="/">github repo</a></p>
+            </div>
           </div>
 
           <div className='gamebarContainer'>
@@ -89,26 +120,50 @@ export default async function RootLayout({
             <MobileNavbar currentUser={currentUser} groups={groups} />
           </div>
 
-          <Footer currentUserId={currentUser?.id} />
 
           <ClientOnly>
             <div className='mainContainer'>{children}</div>
           </ClientOnly>
 
+          {/* <Footer currentUserId={currentUser?.id} /> */}
+
+
           <div className='rightSidebar'>
-            {currentUser && (
-              <>
-                <UserBox
-                  currentUser={currentUser}
-                  record={record}
-                  groups={groups}
-                />
-                <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
-              </>
-            )}
+            <div className='siteTitle'>
+              <h1>Wagerly</h1>
+            </div>
+            <div className='navLinks'>
+              <Navbar currentUser={currentUser}
+                groups={groups}
+                notifications={notifications} />
+            </div>
+            <div>
+              <News />
+            </div>
+
           </div>
         </div>
       </body>
     </html>
   );
 }
+
+
+{/* <Navbar
+              currentUser={currentUser}
+              groups={groups}
+              notifications={notifications}
+            /> */}
+
+// {
+//   currentUser && (
+//     <>
+//       <UserBox
+//         currentUser={currentUser}
+//         record={record}
+//         groups={groups}
+//       />
+//       <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
+//     </>
+//   )
+// }

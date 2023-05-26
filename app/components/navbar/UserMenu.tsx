@@ -1,4 +1,4 @@
-
+'use client '
 import { SafeUser } from '@/app/types';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import styles from './Navbar.module.scss';
@@ -11,6 +11,7 @@ import MenuItem from './MenuItem';
 import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
 import { HiUserCircle } from 'react-icons/hi'
+import { BiHash } from 'react-icons/bi';
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -28,8 +29,8 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
  const navlinks = [
   {
    id: 0,
-   icon: AiFillHome,
-   label: 'Home',
+   icon: BiHash,
+   label: 'Explore',
    href: '/'
   },
   {
@@ -38,12 +39,6 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Groups',
    href: `/groups`
   },
-  // {
-  //  id: 2,
-  //  icon: TbHash,
-  //  label: 'Explore',
-  //  href: `/explore`
-  // },
   {
    id: 2,
    icon: HiUserCircle,

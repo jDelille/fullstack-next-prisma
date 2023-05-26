@@ -3,11 +3,32 @@
 .news {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 10px;
 	position: relative;
 	width: 100%;
-	padding: 10px;
 	margin-top: 2rem;
-	// background-color: $gray;
 	color: $white;
+	padding: 10px;
+	.newsHeader {
+		display: flex;
+		justify-content: space-between;
+		.newsTitle {
+			font-size: 14px;
+			color: $secondaryText;
+			font-weight: 400;
+			span {
+				font-style: italic;
+				font-size: 11px;
+			}
+		}
+		.newsPage {
+			display: flex;
+			gap: 4px;
+			align-items: center;
+			color: $secondaryText;
+			svg {
+				cursor: pointer;
+			}
+		}
+	}
 }

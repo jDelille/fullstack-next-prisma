@@ -9,6 +9,8 @@ import getGroupById from '@/app/actions/getGroupById';
 import getPostsByGroupId from '@/app/actions/getPostsByGroupId';
 import { FaUsers } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
+import FeedHeader from '@/app/components/feed-header/FeedHeader';
+import { IoArrowBack } from 'react-icons/io5';
 
 interface IParams {
 	groupId?: string;
@@ -42,6 +44,8 @@ const Group = async ({ params }: { params: IParams }) => {
 
 	return (
 		<div className={styles.page}>
+			<FeedHeader label='Back' icon={IoArrowBack} isBack />
+
 			<div className={styles.header}>
 				<div className={styles.name}>
 					<h1>

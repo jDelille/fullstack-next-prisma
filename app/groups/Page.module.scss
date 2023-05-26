@@ -5,7 +5,10 @@
 .page {
 	@include page();
 	padding-top: 2rem;
-
+	@include breakpoint(xs) {
+		padding: 0 15px !important;
+		padding-top: calc($gamebarHeight + 55px) !important;
+	}
 	.noGroupMessage {
 		margin-top: 1rem;
 		background-color: $gray;

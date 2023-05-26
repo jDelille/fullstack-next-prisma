@@ -1,0 +1,77 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.groups {
+	color: $white;
+	font-weight: 300;
+	padding: 1.2rem 0;
+	background-color: $gray;
+	gap: 5px;
+	padding: 10px;
+	padding-bottom: 15px;
+	margin-top: 15px;
+	border-radius: 4px;
+	.label {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 16px;
+		font-weight: 500;
+		padding: 10px 0;
+		padding-bottom: 0;
+		color: $white;
+		span {
+			background-color: $lightGray;
+			color: $white;
+			padding: 5px;
+			width: 20px;
+			height: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+		}
+	}
+
+	.group {
+		@include button();
+		border: none;
+		font-size: 16px;
+		font-weight: 300;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		margin-top: 1rem;
+		border-radius: 0;
+		padding: 0;
+		&:hover {
+			background-color: $secondaryAccent;
+		}
+		.image {
+			background-color: $secondaryAccent;
+			border-radius: 6px;
+			padding: 4px;
+			p {
+				font-size: 1.2rem;
+				padding-bottom: 1px;
+			}
+		}
+		.name {
+			color: $white;
+			font-weight: 400;
+			font-size: 13px;
+			.members {
+				color: $accent;
+				font-weight: 300;
+			}
+		}
+	}
+	.createButton {
+		background-color: $secondaryAccent;
+		&:hover {
+			background-color: darken($secondaryAccent, 1%) !important;
+		}
+	}
+}

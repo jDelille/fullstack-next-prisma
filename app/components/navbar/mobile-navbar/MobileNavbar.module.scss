@@ -10,11 +10,16 @@
 	align-items: center;
 	color: $secondaryText;
 	padding: 0 1.5rem;
-	position: fixed;
+	position: sticky;
 	top: $gamebarHeight;
 	transition-timing-function: ease-in-out;
 	transition: 200ms;
 	opacity: 1;
+	z-index: 9999;
+	@include breakpoint(sm) {
+		display: none;
+	}
+
 	.menu {
 		display: flex;
 		align-items: center;

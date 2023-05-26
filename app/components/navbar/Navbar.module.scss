@@ -5,7 +5,9 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-	padding: 0 10px;
+	@include breakpoint(sm) {
+		padding: 0 10px;
+	}
 	.sidebarHeader {
 		width: 100%;
 		display: flex;
@@ -13,6 +15,10 @@
 		padding: 1rem;
 		gap: 10px;
 		color: $white;
+		display: none;
+		@include breakpoint(sm) {
+			display: block;
+		}
 		h1 {
 			font-size: 24px;
 			color: $white;
@@ -53,10 +59,9 @@
 	position: relative;
 	height: calc(100% - 190px - 1rem);
 	margin-top: 0rem;
-
+	padding: 0 10px;
 	.closeMenu {
 		display: none;
-
 		@include breakpoint(xs) {
 			display: flex;
 			position: absolute;
@@ -68,8 +73,6 @@
 	.pages,
 	.groups,
 	.events {
-		padding: 1rem 0;
-		border-bottom: 1px solid $lightGray;
 		color: $white;
 		font-weight: 300;
 		.label {
@@ -81,6 +84,10 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			display: none;
+			@include breakpoint(sm) {
+				display: block;
+			}
 			span {
 				background-color: $lightGray;
 				color: $white;
@@ -101,11 +108,14 @@
 			border: none;
 			font-size: 16px;
 			font-weight: 300;
-			width: 90%;
+			width: 100%;
 			margin: 0 auto;
-			padding: 1rem;
+			gap: 9px !important;
+			padding: 0;
 			&:hover {
 				background-color: darken($secondaryAccent, 1%);
+				background: none;
+				color: $white;
 			}
 			.notificationDot {
 				width: 10px;
@@ -119,8 +129,10 @@
 	.activeLink {
 		background-color: $lightGray;
 		color: $accent !important;
+		background: none;
 		&:hover {
-			background-color: $lightGray !important;
+			background-color: $lightGray;
+			background: none;
 		}
 	}
 
@@ -138,6 +150,10 @@
 	}
 
 	.groups {
+		display: none;
+		@include breakpoint(sm) {
+			display: block;
+		}
 		.group {
 			@include button();
 			border: none;
@@ -181,7 +197,10 @@
 	position: absolute;
 	bottom: 0;
 	padding: 0 12px;
-
+	display: none;
+	@include breakpoint(sm) {
+		display: block;
+	}
 	@include breakpoint(xs) {
 		position: relative;
 	}
