@@ -11,6 +11,7 @@ import { FaUsers } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import { IoArrowBack } from 'react-icons/io5';
+import getUsers from '@/app/actions/getUsers';
 
 interface IParams {
 	groupId?: string;
@@ -19,6 +20,7 @@ interface IParams {
 const Group = async ({ params }: { params: IParams }) => {
 	const group = await getGroupById(params);
 	const currentUser = await getCurrentUser();
+	const users = await getUsers()
 
 	const DynamicPostFeed = dynamic(
 		() => import('../../components/post-feed/PostFeed'),
@@ -67,7 +69,7 @@ const Group = async ({ params }: { params: IParams }) => {
 					groupId={group?.id as string}
 					placeholder={`Let ${group?.name} know what's happening`}
 				/> */}
-				<DynamicPostFeed currentUser={currentUser} posts={posts} />
+				<DynamicPostFeed currentUser={currentUser} posts={posts} users={users} />
 			</div>
 		</div>
 	);
