@@ -27,8 +27,13 @@
 		gap: 5px;
 		border-top-left-radius: 4px;
 		border-top-right-radius: 4px;
-		p {
+		a {
 			cursor: pointer;
+			color: $white;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }

@@ -1,16 +1,14 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type BackButtonProps = {
  label: string;
 }
 
 const BackButton: React.FC<BackButtonProps> = ({ label }) => {
- const router = useRouter();
 
  return (
-  <p onClick={() => router.push('/')}>{label}</p>
+  <Link href={'/'}>{label}</Link>
  );
 }
 

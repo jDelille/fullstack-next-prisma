@@ -1,8 +1,10 @@
+import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import styles from './Page.module.scss';
 import getNotificationByUserId from '@/app/actions/getNotificationByUserId';
 import Notification from '@/app/components/notification/Notification';
 import prisma from '@/app/libs/prismadb';
 import dynamic from 'next/dynamic';
+import { FaBell } from 'react-icons/fa';
 
 interface IParams {
  userId?: string;
@@ -26,7 +28,7 @@ const Notifications = async ({ params }: { params: IParams }) => {
 
  return (
   <div className={styles.page}>
-   <h1> Notifications </h1>
+   <FeedHeader label='Notiications' icon={FaBell} />
    {notifications.map((notification) => (
     <DynamicNotification key={notification.id} id={notification.id} body={notification} className={styles.notificationCard} />
    ))}

@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FaUsers } from 'react-icons/fa'
 import Button from "../button/Button";
+import Link from 'next/link';
 export type GroupProps = {
   id: string;
   name: string,
@@ -74,7 +75,7 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
         <div className={styles.groupInfo}>
           {hasJoined ? (
             <div className={styles.buttons}>
-              <Button label='Open' onClick={() => { router.push(`/groups/${group.id}`) }} />
+              <Link href={`/groups/${group.id}`}>Open</Link>
               <Button label='Leave' onClick={() => onLeave(group?.id)} />
             </div>
           ) : (

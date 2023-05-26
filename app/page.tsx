@@ -8,8 +8,7 @@ import FeedHeader from './components/feed-header/FeedHeader';
 import { BiHash } from 'react-icons/bi';
 
 export default async function Home() {
-  const posts = await getPosts();
-  const currentUser = await getCurrentUser();
+  const [posts, currentUser] = await Promise.all([getPosts(), getCurrentUser()])
 
   const DynamicPostFeed = dynamic(() => import('./components/post-feed/PostFeed'), {
     loading: () => <>

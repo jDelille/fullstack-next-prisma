@@ -20,7 +20,6 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const posts = await getPostsByUserId(params);
  const followerCount = await getFollowersCount(params);
  const currentUser = await getCurrentUser();
-
  const groups = await getGroupsByUserId(params);
 
  const DynamicPostFeed = dynamic(
@@ -40,7 +39,6 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  return (
   <div className={styles.page}>
    <FeedHeader label='Back' icon={IoArrowBack} isBack />
-
    <DynamicProfileHeader
     user={user}
     currentUserId={currentUser?.id as string}

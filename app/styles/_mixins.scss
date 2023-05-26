@@ -35,17 +35,15 @@
 	position: relative;
 	min-height: calc(100vh - $gamebarHeight);
 	height: fit-content;
-	// margin: 0 520px;
 	margin-top: $gamebarHeight;
-	// padding: 2rem;
 	padding-top: 0;
 	color: $white;
+	padding-bottom: 2rem;
+
 	@include breakpoint(xl) {
-		// margin: 0 320px;
 		margin-top: $gamebarHeight;
 	}
 	@include breakpoint(lg) {
-		// margin: 0 320px;
 		margin-top: $gamebarHeight;
 	}
 	@include breakpoint(md) {
@@ -53,7 +51,6 @@
 		max-width: 600px;
 	}
 	@include breakpoint(sm) {
-		// margin: 0 280px;
 		margin-top: $gamebarHeight;
 		min-width: 100%;
 	}

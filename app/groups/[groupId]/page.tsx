@@ -45,7 +45,6 @@ const Group = async ({ params }: { params: IParams }) => {
 	return (
 		<div className={styles.page}>
 			<FeedHeader label='Back' icon={IoArrowBack} isBack />
-
 			<div className={styles.header}>
 				<div className={styles.name}>
 					<h1>
@@ -53,19 +52,13 @@ const Group = async ({ params }: { params: IParams }) => {
 					</h1>
 				</div>
 				<p className={styles.description}>{group?.description}</p>
-				{/* <p className={styles.admin}>Created by {admin?.name}</p> */}
 				<p className={styles.members}>
 					{' '}
 					<FaUsers /> {group?.memberIds.length}
 				</p>
-				{/* {currentUser?.id === admin?.id && (
-     <div className={styles.menu}>
-      <ProfileMenu isGroupPage />
-     </div>
-    )} */}
 			</div>
 			<div className={styles.body}>
-				<DynamicCreatePostForm
+				{/* <DynamicCreatePostForm
 					isComment={false}
 					isBordered
 					userId={currentUser?.id as string}
@@ -73,7 +66,7 @@ const Group = async ({ params }: { params: IParams }) => {
 					userPhoto={currentUser?.photo as string}
 					groupId={group?.id as string}
 					placeholder={`Let ${group?.name} know what's happening`}
-				/>
+				/> */}
 				<DynamicPostFeed currentUser={currentUser} posts={posts} />
 			</div>
 		</div>

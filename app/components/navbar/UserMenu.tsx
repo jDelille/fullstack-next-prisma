@@ -4,7 +4,7 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import styles from './Navbar.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
-import { FaUser, FaUsers } from 'react-icons/fa'
+import { FaBell, FaUser, FaUsers } from 'react-icons/fa'
 import { TbHash } from 'react-icons/tb'
 import { MdAddCircle, MdLogout } from 'react-icons/md'
 import MenuItem from './MenuItem';
@@ -34,17 +34,23 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Explore',
    href: '/'
   },
+  // {
+  //  id: 1,
+  //  icon: FaUsers,
+  //  label: 'Groups',
+  //  href: `/groups`
+  // },
   {
    id: 1,
-   icon: FaUsers,
-   label: 'Groups',
-   href: `/groups`
-  },
-  {
-   id: 2,
    icon: HiUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
+  },
+  {
+   id: 2,
+   icon: FaBell,
+   label: 'Notifications',
+   href: `/notifications/${currentUser?.id}`
   },
  ]
  const pathname = usePathname()

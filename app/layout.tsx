@@ -62,6 +62,7 @@ export default async function RootLayout({
     return notifications;
   }
 
+
   return (
     <html lang='en'>
       <body>
@@ -95,14 +96,14 @@ export default async function RootLayout({
 
             {currentUser && (
               <>
-                <div className='userBox'>
+                {/* <div className='userBox'>
                   <UserBox currentUser={currentUser}
                     record={record}
                     groups={groups} />
-                </div>
+                </div> */}
                 <CreatePostTextarea
                   userId={currentUser?.id}
-                  
+
                 />
                 {/* <GroupsBox groups={groups} currentUser={currentUser} /> */}
                 {/* <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} /> */}
