@@ -107,8 +107,8 @@ export default async function RootLayout({
             )}
 
             <div className='disclaimer'>
-              <p>Sports data is provided by ESPN. To learn more about the api used, <a href="/">click here.</a></p>
-              <p>To see what technologies are used in Wagerly and how it was built, checkout our <a href="/">github repo</a></p>
+              <p>Sports data is provided by ESPN. To learn more about the api used, <a href="https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b" target='_blank'>click here.</a></p>
+              <p>To see what technologies are used in Wagerly and how it was built, checkout our <a href="https://github.com/jDelille/fullstack-next-prisma" target='_blank'>github repo</a></p>
             </div>
           </div>
 
