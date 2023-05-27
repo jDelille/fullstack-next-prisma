@@ -1,4 +1,6 @@
-@import '../../../styles/variables';
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+@import '@/app/styles/breakpoints';
 
 .newsCard {
 	width: 100%;
@@ -32,16 +34,25 @@
 			flex-direction: column;
 			gap: 10px;
 			padding: 10px 0;
+			@include breakpoint(xs) {
+				width: 60%;
+			}
 			.headline {
 				color: $white;
 				font-weight: 600;
 				font-size: 16px;
+				@include breakpoint(xs) {
+					font-size: 14px;
+				}
 			}
 			.description {
 				text-overflow: ellipsis;
 				max-height: 53px;
 				overflow: hidden;
 				white-space: wrap;
+				@include breakpoint(xs) {
+					font-size: 12px;
+				}
 			}
 		}
 		.newsCardImage {

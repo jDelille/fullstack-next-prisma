@@ -1,0 +1,62 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+@import '@/app/styles/breakpoints';
+
+.navigationPanel {
+	position: fixed;
+	right: 0;
+	width: $navigationPanelWidth;
+	display: none;
+	background-color: $gray;
+	height: calc(100vh - $gamebarHeight);
+	top: $gamebarHeight;
+	z-index: 99999;
+	border: 1px solid $border;
+	@include breakpoint(sm) {
+		display: block;
+	}
+
+	@include breakpoint(xs) {
+		display: block;
+	}
+	.links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.link,
+		.activeLink {
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			&:hover {
+				svg {
+					fill: $white;
+				}
+			}
+		}
+		.activeLink {
+			color: $accent;
+			&:hover {
+				svg {
+					fill: $accent;
+				}
+			}
+		}
+	}
+	.logout {
+		border-top: 1px solid $border;
+		border-bottom: 1px solid $border;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px 0;
+		cursor: pointer;
+		&:hover {
+			svg {
+				fill: $white;
+			}
+		}
+	}
+}

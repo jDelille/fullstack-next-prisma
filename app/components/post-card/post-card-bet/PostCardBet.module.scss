@@ -8,6 +8,8 @@
 	border-top: 1px solid $lightGray;
 	border-bottom: 1px solid $lightGray;
 	width: 100%;
+	border-radius: 4px;
+
 	@include breakpoint(xs) {
 		margin: 0;
 	}

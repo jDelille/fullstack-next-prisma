@@ -107,6 +107,7 @@ body {
 	left: 0;
 	width: 100vw;
 	z-index: 999;
+	outline: 1px solid $border;
 	@include breakpoint(xs) {
 		left: 0;
 		width: 100vw;
@@ -135,7 +136,7 @@ body {
 	color: #222222;
 	height: fit-content;
 	position: relative;
-	width: 100%;
+	width: calc(100% - $navigationPanelWidth);
 	.mainFeed {
 		@include page();
 	}

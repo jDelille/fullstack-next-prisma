@@ -84,15 +84,22 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
       {imageView && <ImageView url={imageView} setImageView={setImageView} />}
       {post?.Bet && <ConfidenceBadge value={post?.Bet?.confidence} />}
 
-      {post?.Bet && <PostCardBet post={post.Bet} />}
+      {post?.Bet && (
+        <div className={styles.postBet}>
+          <PostCardBet post={post.Bet} />
+        </div>
+      )}
       {post?.Poll && (
-        <PostCardPoll
-          post={post.Poll}
-          currentUserId={currentUser?.id}
-          option1Count={post?.Poll?.option1Votes}
-          option2Count={post?.Poll?.option2Votes}
+        <div className={styles.postPoll}>
+          <PostCardPoll
+            post={post.Poll}
+            currentUserId={currentUser?.id}
+            option1Count={post?.Poll?.option1Votes}
+            option2Count={post?.Poll?.option2Votes}
 
-        />
+          />
+        </div>
+
       )}
 
       <PostCardFooter

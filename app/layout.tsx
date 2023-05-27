@@ -25,6 +25,7 @@ import News from './components/news/News';
 import UserMenu from './components/navbar/UserMenu';
 import GroupsBox from './components/groups-box/GroupsBox';
 import CreatePostTextarea from './components/create-post/create-post-textarea/CreatePostTextarea';
+import NavigationPanel from './components/navigation-panel/NavigationPanel';
 
 export const metadata = {
   title: 'Wagerly',
@@ -131,6 +132,8 @@ export default async function RootLayout({
           <div className='mobileNavbarContainer'>
             <MobileNavbar currentUser={currentUser} groups={groups} />
           </div>
+
+          <NavigationPanel currentUser={currentUser} />
 
 
           <ClientOnly>

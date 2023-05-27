@@ -10,9 +10,9 @@
 	background-color: $black;
 	padding-top: 2rem;
 	@include breakpoint(sm) {
-		top: calc($gamebarHeight);
-		padding-top: 2rem;
+		top: $gamebarHeight;
 		max-width: 100vw;
+		padding-top: 0;
 	}
 	@include breakpoint(xs) {
 		padding-top: 0;
