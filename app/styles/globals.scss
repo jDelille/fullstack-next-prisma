@@ -57,7 +57,7 @@ body {
 		display: none;
 	}
 
-	.searchInput {
+	.currentUser {
 		width: 100%;
 		padding: 10px;
 		border-radius: 4px;
@@ -138,7 +138,6 @@ body {
 	width: 100%;
 	.mainFeed {
 		@include page();
-
 	}
 }
 

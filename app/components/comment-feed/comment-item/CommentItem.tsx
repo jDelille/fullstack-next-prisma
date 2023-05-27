@@ -16,26 +16,30 @@ type CommentItemProps = {
   body?: string;
   userId?: string;
   userPhoto?: string;
-  userName?: string;
+  name?: string;
+  username?: string;
   commentId?: string;
   likeCount?: number;
   likeArray?: string[];
   isVerified?: boolean;
   currentUserId?: string;
   followingIds?: string[];
+  isPostPage?: boolean;
 };
 
 const CommentItem: React.FC<CommentItemProps> = ({
   body,
   userId,
   userPhoto,
-  userName,
+  username,
+  name,
   commentId,
   likeCount,
   likeArray,
   isVerified,
   currentUserId,
-  followingIds
+  followingIds,
+  isPostPage
 }) => {
   const router = useRouter();
   const loginModal = useLoginModal();
@@ -79,7 +83,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
 
   const likeSet = new Set(likeArray);
   const hasLiked = () => {
-    return likeSet.has(userId as string);
+    return likeSet.has(currentUserId as string);
   };
 
   return (
@@ -92,19 +96,25 @@ const CommentItem: React.FC<CommentItemProps> = ({
           }}
         />
         {isMenuOpen && (
-          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} commentUsername={userName} setIsMenuOpen={setIsMenuOpen} followingIds={followingIds} />
+          <CommentMenu commentId={commentId as string} currentUserId={currentUserId} userId={userId} commentUsername={username} setIsMenuOpen={setIsMenuOpen} followingIds={followingIds} />
         )}
 
       </div>
       <div className={styles.commentBody}>
-        <div className={styles.name}>
+        <div className={styles.top}>
           <Avatar src={userPhoto} userId={userId} />
-          <p className={styles.username}>
-            {userName} {isVerified && <VerifiedIcon />}
-          </p>
+          <div className={styles.userName}>
+            <p className={styles.name}>
+              {name} {isVerified && <VerifiedIcon />}
+            </p>
+            <p className={styles.username}>
+              {username}
+            </p>
+          </div>
         </div>
+
         <div className={styles.body}>
-          <p className={styles.body}>{body}</p>
+          <p >{body}</p>
         </div>
       </div>
       <div className={styles.commentFooter}>

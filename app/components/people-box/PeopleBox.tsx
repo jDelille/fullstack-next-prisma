@@ -13,11 +13,17 @@ type PeopleBoxProps = {
 const PeopleBox: React.FC<PeopleBoxProps> = ({ user }) => {
  return (
   <div className={styles.peopleBox}>
-   <Avatar src={user.photo as string} />
-   <div className={styles.userName}>
-    <p className={styles.name}>{user.name} {user.isVerified && <VerifiedIcon />}</p>
-    <p className={styles.username}>{user.username}</p>
+   <div className={styles.top}>
+    <Avatar src={user.photo as string} userId={user?.id} />
+    <div className={styles.userName}>
+     <p className={styles.name}>{user.name} {user.isVerified && <VerifiedIcon />}</p>
+     <p className={styles.username}>{user.username}</p>
+    </div>
    </div>
+
+   {/* <div className={styles.bio}>
+    {user?.bio}
+   </div> */}
   </div>
  );
 }

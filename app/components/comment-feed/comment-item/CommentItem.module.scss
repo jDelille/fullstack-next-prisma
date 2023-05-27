@@ -1,9 +1,9 @@
 @import '@/app/styles/variables';
 
 .commentItem {
-	padding: 1rem 2rem;
+	padding: 1rem;
 	border-top: 1px solid $lightGray;
-	border-bottom: 1px solid $lightGray;
+	border-bottom: 1px solid $border;
 	position: relative;
 	.commentMenu {
 		position: absolute;
@@ -11,36 +11,54 @@
 		top: 1rem;
 		cursor: pointer;
 	}
+
 	.commentBody {
 		display: flex;
-		gap: 0px;
-		justify-content: center;
 		flex-direction: column;
-		img {
-			max-width: 30px;
-			max-height: 30px;
-			margin-bottom: auto;
-			position: relative;
-			top: 2px;
-		}
-		.name {
+		justify-content: center;
+		gap: 0px;
+		width: 100%;
+		.top {
 			display: flex;
-			align-items: center;
-			.username {
-				font-weight: 500;
-				font-size: 13px;
+			gap: 10px;
+			img {
+				max-width: 45px;
+				max-height: 45px;
+				margin-bottom: auto;
+			}
+			.userName {
 				display: flex;
 				align-items: center;
-				gap: 5px;
-				width: 100%;
-				margin-left: 10px;
+				flex-direction: column;
+				gap: 3px;
+				.name {
+					font-weight: 500;
+					font-size: 15px;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					width: 100%;
+					margin-left: 10px;
+				}
+				.username {
+					font-weight: 400;
+					font-size: 12px;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					width: 100%;
+					margin-left: 10px;
+					color: lightgray;
+				}
 			}
 		}
+
 		.body {
-			color: $secondaryText;
 			font-size: 14px;
-			margin-left: 19px;
+			margin-left: 58px;
 			word-wrap: break-word;
+			color: $white;
+			margin-top: 10px;
 		}
 	}
 	.commentFooter {

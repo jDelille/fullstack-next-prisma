@@ -1,3 +1,4 @@
+'use client'
 import CreateCommentForm from '../../comment-form/CommentForm';
 import styles from './PostCardComment.module.scss';
 

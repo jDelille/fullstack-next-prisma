@@ -75,9 +75,9 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
      </>
     ) : (
      <>
-      <div onClick={() => { router.push('/') }} className={styles.Link}>
-       <AiFillHome size={20} />
-       <p>Home</p>
+      <div onClick={() => { router.push('/') }} className={styles.activeLink}>
+       <BiHash size={20} />
+       <p>Explore</p>
       </div>
      </>
     )}

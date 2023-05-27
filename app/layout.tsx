@@ -81,8 +81,14 @@ export default async function RootLayout({
           <PollModal />
 
           <div className='sidebarContainer'>
-            <input type='text' className='searchInput' placeholder='Search' />
-
+            {/* <input type='text' className='searchInput' placeholder='Search' /> */}
+            <div className='currentUser'>
+              {currentUser ? (
+                <p>Signed in as {currentUser?.name}</p>
+              ) : (
+                <p>Sign in to get started</p>
+              )}
+            </div>
             {!currentUser && (
               <>
                 <div className='message'>

@@ -28,7 +28,8 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			userId: currentUser?.id,
 			postId: postId,
 			photo: currentUser?.photo,
-			userName: currentUser?.name,
+			name: currentUser?.name,
+			username: currentUser?.username,
 			isVerified: currentUser?.isVerified,
 		},
 	});
