@@ -64,8 +64,10 @@
 	.middle {
 		display: flex;
 		align-items: center;
-		padding: 1rem 0;
+		// padding: 1rem 0;
 		height: fit-content;
+		padding-top: 1rem;
+
 		@include breakpoint(xs) {
 			padding: 0;
 		}
@@ -112,37 +114,45 @@
 		}
 		.bio {
 			padding: 1rem 0;
-			font-size: 14px;
-			color: $secondaryText;
+			font-size: 13px;
+			color: $white;
 			display: flex;
 			flex-direction: column;
+			width: 100%;
 			gap: 1rem;
 			.joined {
 				display: flex;
-				align-items: center;
-				gap: 5px;
+				flex-direction: column;
+				gap: 2px;
+				background-color: $black;
+				padding: 10px;
+				border-radius: 4px;
 				width: 100%;
+				p {
+					text-transform: uppercase;
+					color: lighten($secondaryAccent, 35%);
+					font-weight: 500;
+					font-size: 13px;
+				}
+				span {
+					color: lighten($secondaryAccent, 55%);
+					font-size: 12px;
+				}
 			}
 		}
 	}
-	.bottom {
-		width: 100%;
-		border-top: 1px solid $lightGray;
+	.userInfo {
 		display: flex;
-		align-items: center;
 		gap: 1rem;
-		// padding: 0 1rem;
-		justify-content: space-evenly;
-		position: relative;
-		padding-top: 1rem;
-		.userInfo {
-			display: flex;
-			gap: 10px;
-			align-items: center;
-			height: 100%;
-			@include breakpoint(xs) {
-				font-size: 14px;
-			}
+		align-items: center;
+		font-size: 13px;
+		p {
+			font-weight: 600;
+			color: $white;
+		}
+		span {
+			color: #bec8db;
+			font-weight: 400;
 		}
 	}
 }

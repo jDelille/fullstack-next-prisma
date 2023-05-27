@@ -13,6 +13,7 @@ import { IoArrowBack } from 'react-icons/io5';
 import getUsers from '@/app/actions/getUsers';
 import { User } from '@prisma/client';
 import { SafeUser } from '@/app/types';
+import PostCardSkeleton from '@/app/components/skeletons/post-card-skeleton/PostCardSkeleton';
 
 interface IParams {
  userId?: string;
@@ -29,14 +30,28 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const DynamicPostFeed = dynamic(
   () => import('../../components/post-feed/PostFeed'),
   {
-   loading: () => <p>Loading...</p>,
+   loading: () => (
+    <div>
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+    </div>
+   ),
   }
  );
 
  const DynamicProfileHeader = dynamic(
   () => import('../../components/profile-header/ProfileHeader'),
   {
-   loading: () => <p>Loading...</p>,
+   loading: () => (
+    <div>
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+     <PostCardSkeleton />
+    </div>
+   )
   }
  );
 
