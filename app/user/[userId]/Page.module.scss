@@ -8,7 +8,6 @@
 	@include breakpoint(xs) {
 		position: relative;
 		top: $gamebarHeight;
-		// padding-top: calc(55px + 2rem);
 	}
 	.feedHeader {
 		font-weight: 500;
@@ -17,7 +16,6 @@
 		max-width: 600px;
 		z-index: 9999;
 		background-color: $black;
-		// padding-top: 2rem;
 		.header {
 			background-color: lighten($gray, 7%);
 			height: 45px;

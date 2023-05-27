@@ -96,10 +96,14 @@ const CreatePostForm = ({
 
 
 
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
     data.groupId = isGroup ? groupId : null;
+
+    console.log(data.groupId)
+
 
     axios
       .post(isComment ? `/api/comment/${postId}` : '/api/post', data)
@@ -117,7 +121,7 @@ const CreatePostForm = ({
   };
 
   return (
-    <div className={show ? styles.inputContainer : styles.hideForm}>
+    <div className={groupId ? styles.groupInputContainer : styles.inputContainer}>
       <div
         className={
           isBordered ? styles.inputWrapperBordered : styles.inputWrapper
@@ -145,7 +149,7 @@ const CreatePostForm = ({
               </div>
 
 
-              {!userId && (
+              {!userId && !isGroup && (
                 <div className={styles.icon} onClick={() => loginModal.onOpen()}>
                   <AiOutlineCamera size={20} color="#abadb1" />
                   <span>Photo</span>
@@ -161,7 +165,7 @@ const CreatePostForm = ({
                   errors={errors}
                 />
               )}
-              {userId && (
+              {userId && !isGroup && (
                 <div className={styles.icon}>
                   <ImageUpload
                     value={photo}
@@ -174,10 +178,13 @@ const CreatePostForm = ({
                 </div>
 
               )}
-              <div className={styles.icon} onClick={() => pollModal.onOpen()}>
-                <CgPoll size={20} color="#abadb1" />
-                <span>Poll</span>
-              </div>
+              {!isGroup && (
+                <div className={styles.icon} onClick={() => pollModal.onOpen()}>
+                  <CgPoll size={20} color="#abadb1" />
+                  <span>Poll</span>
+                </div>
+              )}
+
 
               <Button onClick={handleSubmit(onSubmit)} label='Post' isButtonDisabled={!body} />
             </div>

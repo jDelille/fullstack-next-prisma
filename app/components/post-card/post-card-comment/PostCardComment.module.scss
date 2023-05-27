@@ -1,3 +1,7 @@
+@import '@/app/styles/variables';
+
 .commentContainer {
 	width: 100%;
+	padding: 0 6px;
+	background-color: darken($secondaryAccent, 4%);
 }

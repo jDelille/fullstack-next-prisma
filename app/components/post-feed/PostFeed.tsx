@@ -62,7 +62,7 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfil
 
    {tab === 'posts' &&
     posts.map((post: any) => (
-     <PostCard post={post} key={post.id} currentUser={currentUser} />
+     <PostCard post={post} key={post.id} currentUser={currentUser} hideComment={false} />
     ))}
 
    {tab === 'bets' &&
@@ -71,10 +71,12 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfil
       return (
        <div key={user.id} className={styles.noBetsMessage}>{user?.name} has not made any bets yet!</div>
       )
+
+
      }
      if (post?.Bet) {
       return (
-       <PostCard post={post} key={post.id} currentUser={currentUser} />
+       <PostCard post={post} key={post.id} currentUser={currentUser} hideComment={false} />
       );
      }
     })}

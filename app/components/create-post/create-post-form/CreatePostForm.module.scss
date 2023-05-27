@@ -3,7 +3,7 @@
 
 .inputContainer,
 .commentInputContainer,
-.hideForm {
+.groupInputContainer {
 	min-height: 90px;
 	position: relative;
 	min-width: 100%;
@@ -106,6 +106,10 @@
 			}
 		}
 	}
+}
+
+.groupInputContainer {
+	padding-top: 0;
 }
 
 .hideForm {

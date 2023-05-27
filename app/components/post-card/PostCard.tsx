@@ -18,9 +18,10 @@ import PostCardPoll from './post-card-poll/PostCardPoll';
 type PostCardProps = {
   post: any;
   currentUser?: SafeUser | null;
+  hideComment?: boolean;
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) => {
   const router = useRouter();
   const [isComment, setIsComment] = useState(false);
   const [imageView, setImageView] = useState('');
@@ -110,8 +111,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
         onComment={onComment}
         commentCount={post.comments.length || 0}
         commentArray={post.commentedIds}
+        hideComment={hideComment}
       />
-      {isComment && (
+      {isComment && !hideComment && (
         <PostCardComment
           postId={post?.id}
           userId={currentUser?.id}
@@ -119,7 +121,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser }) => {
           postUser={post?.user.name}
         />
       )}
-      {post?.comments && isComment && (
+      {post?.comments && isComment && !hideComment && (
         <CommentFeed
           comments={post}
           currentUserId={currentUser?.id}

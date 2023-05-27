@@ -12,9 +12,8 @@
 		border-bottom: 1px solid $lightGray;
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 1rem;
 		padding: 1rem 15px;
-		padding-top: 0;
 		position: relative;
 		color: $secondaryText;
 		background: $gray;
@@ -24,24 +23,55 @@
 			font-size: 1rem;
 			color: $white;
 			font-weight: 500;
-
+			gap: 1rem;
 			@include breakpoint(sm) {
 				font-size: 1rem;
 			}
-			img {
-				border-radius: 6px;
-				object-fit: cover;
+			.photo {
+				background-color: $secondaryAccent;
+				padding: 6px;
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-items: center;
+				font-size: 2rem;
 			}
 		}
 		.description {
 			display: flex;
-
-			font-style: italic;
 			font-weight: 400;
+			color: $white;
+		}
+
+		.admin {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			background-color: rgba(121, 189, 154, 0.25);
+			padding: 10px;
+			border-radius: 4px;
+			width: 100%;
+			border: 1px solid rgba(121, 189, 154, 0.5);
+			p {
+				text-transform: uppercase;
+				color: #79bd9a;
+				font-weight: 500;
+				font-size: 14px;
+			}
+			span {
+				color: #79bd9a;
+				font-size: 13px;
+			}
 		}
 
 		.members {
-			color: $accent;
+			font-weight: 600;
+			color: $white;
+			font-size: 13px;
+			span {
+				color: #bec8db;
+				font-weight: 400;
+			}
 		}
 		.menu {
 			position: absolute;

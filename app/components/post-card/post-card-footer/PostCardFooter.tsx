@@ -16,6 +16,7 @@ type PostCardFooterProps = {
   onComment: () => void;
   commentCount: number
   commentArray: string[]
+  hideComment?: boolean;
 };
 const PostCardFooter: React.FC<PostCardFooterProps> = ({
   postId,
@@ -24,7 +25,8 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
   currentUserId,
   onComment,
   commentCount,
-  commentArray
+  commentArray,
+  hideComment
 }) => {
   const [id, setId] = useState('');
   const router = useRouter();
@@ -109,15 +111,18 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         {localHasLiked ? 'Liked' : 'Like'}
         <span>{localLikeCount}</span>{' '}
       </div>
-      <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
-        {hasComments() ? (
-          <FaComment color='#20b46a' />
-        ) : (
-          <FaRegCommentDots color='white' />
-        )}
-        <p>Comment</p>
-        <span>{commentCount}</span>{' '}
-      </div>
+      {!hideComment && (
+        <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
+          {hasComments() ? (
+            <FaComment color='#20b46a' />
+          ) : (
+            <FaRegCommentDots color='white' />
+          )}
+          <p>Comment</p>
+          <span>{commentCount}</span>{' '}
+        </div>
+      )}
+
 
     </div >
   );

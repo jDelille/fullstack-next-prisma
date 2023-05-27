@@ -12,6 +12,10 @@ import dynamic from 'next/dynamic';
 import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import { IoArrowBack } from 'react-icons/io5';
 import getUsers from '@/app/actions/getUsers';
+import { format } from 'path';
+import { User } from '@prisma/client';
+import CreatePostFormSkeleton from '@/app/components/skeletons/create-post-form-skeleton/CreatePostFormSkeleton';
+import PostCardSkeleton from '@/app/components/skeletons/post-card-skeleton/PostCardSkeleton';
 
 interface IParams {
 	groupId?: string;
@@ -25,7 +29,12 @@ const Group = async ({ params }: { params: IParams }) => {
 	const DynamicPostFeed = dynamic(
 		() => import('../../components/post-feed/PostFeed'),
 		{
-			loading: () => <p>Loading...</p>,
+			loading: () => <div>
+
+				<PostCardSkeleton />
+				<PostCardSkeleton />
+				<PostCardSkeleton />
+			</div>,
 		}
 	);
 
@@ -33,14 +42,17 @@ const Group = async ({ params }: { params: IParams }) => {
 		() =>
 			import('../../components/create-post/create-post-form/CreatePostForm'),
 		{
-			loading: () => <p>Loading...</p>,
+			loading: () => <div>
+				<CreatePostFormSkeleton />
+
+			</div>,
 		}
 	);
 
-	// let admin: SafeUser | null = null;
+	let admin: SafeUser | null = null;
 	let posts: any | null = null;
 	if (group) {
-		// admin = await getUserById({ userId: group.adminId });
+		admin = await getUserById({ userId: group.adminId });
 		posts = await getPostsByGroupId({ groupId: group.id });
 	}
 
@@ -49,18 +61,25 @@ const Group = async ({ params }: { params: IParams }) => {
 			<FeedHeader label='Back' icon={IoArrowBack} isBack />
 			<div className={styles.header}>
 				<div className={styles.name}>
+					<div className={styles.photo}>
+						{group?.photo}
+					</div>
 					<h1>
-						{group?.name} {group?.photo}
+						{group?.name}
 					</h1>
 				</div>
 				<p className={styles.description}>{group?.description}</p>
+				<div className={styles.admin}>
+					<p>Admin</p>
+					<span>{admin?.name}</span>
+				</div>
 				<p className={styles.members}>
-					{' '}
-					<FaUsers /> {group?.memberIds.length}
+					{group?.memberIds.length} {' '}
+					<span>members</span>
 				</p>
 			</div>
 			<div className={styles.body}>
-				{/* <DynamicCreatePostForm
+				<DynamicCreatePostForm
 					isComment={false}
 					isBordered
 					userId={currentUser?.id as string}
@@ -68,7 +87,7 @@ const Group = async ({ params }: { params: IParams }) => {
 					userPhoto={currentUser?.photo as string}
 					groupId={group?.id as string}
 					placeholder={`Let ${group?.name} know what's happening`}
-				/> */}
+				/>
 				<DynamicPostFeed currentUser={currentUser} posts={posts} users={users} />
 			</div>
 		</div>

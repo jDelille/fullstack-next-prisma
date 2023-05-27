@@ -4,9 +4,9 @@
 	@include page();
 	padding-top: 2rem;
 	@include breakpoint(sm) {
-		padding-top: $gamebarHeight;
+		padding-top: 0;
 	}
 	@include breakpoint(xs) {
-		padding-top: $gamebarHeight;
+		padding-top: 2.7rem;
 	}
 }

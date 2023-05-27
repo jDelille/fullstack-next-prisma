@@ -26,21 +26,22 @@
 		}
 	}
 	.games {
-		width: calc(100% - 165px);
+		width: calc(100% - 155px);
 		@include breakpoint(xs) {
-			max-width: 100%;
+			width: calc(100% - 172px);
 		}
 		display: flex;
 		overflow: hidden;
 	}
 	.gameScroller {
 		position: relative;
-		width: 60px;
+		width: $navigationPanelWidth;
 		height: calc($gamebarHeight);
 		z-index: 999;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		border-left: 1px solid $border;
 		.arrow {
 			height: 100%;
 			display: flex;
