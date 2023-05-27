@@ -53,4 +53,10 @@
 		background-color: $gray;
 		padding: 10px;
 	}
+	.noBetsMessage {
+		background-color: $gray;
+		padding: 1rem;
+		display: flex;
+		justify-content: center;
+	}
 }

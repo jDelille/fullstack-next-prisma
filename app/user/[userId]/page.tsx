@@ -11,6 +11,8 @@ import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoArrowBack } from 'react-icons/io5';
 import getUsers from '@/app/actions/getUsers';
+import { User } from '@prisma/client';
+import { SafeUser } from '@/app/types';
 
 interface IParams {
  userId?: string;
@@ -48,7 +50,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     groups={groups.length}
    />
    <div className={styles.profilePosts}>
-    <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} isProfilePage />
+    <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} isProfilePage user={user as SafeUser} />
    </div>
   </div >
  );

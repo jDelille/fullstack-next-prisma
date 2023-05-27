@@ -14,9 +14,10 @@ type PostFeedProps = {
  totalBets?: number;
  users: User[] | null;
  isProfilePage?: boolean;
+ user?: SafeUser | null
 };
 
-const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfilePage }) => {
+const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfilePage, user }) => {
  const [tab, setTab] = useState('posts');
 
  return (
@@ -66,6 +67,11 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfil
 
    {tab === 'bets' &&
     posts.map((post: any) => {
+     if (user?.totalBets === 0) {
+      return (
+       <div key={user.id} className={styles.noBetsMessage}>{user?.name} has not made any bets yet</div>
+      )
+     }
      if (post?.Bet) {
       return (
        <PostCard post={post} key={post.id} currentUser={currentUser} />
@@ -88,8 +94,8 @@ const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfil
    )}
 
    {tab === 'media' && (
-    <div>
-
+    <div className={styles.noBetsMessage}>
+     <p>Media feature coming soon</p>
     </div>
    )}
   </div>
