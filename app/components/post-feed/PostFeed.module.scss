@@ -57,5 +57,14 @@
 		padding: 1rem;
 		display: flex;
 		justify-content: center;
+		height: calc(100vh - 343px - $gamebarHeight - 2rem - 66px);
+
+		@include breakpoint(sm) {
+			height: calc(100vh - 343px - $gamebarHeight);
+		}
+		position: relative;
+		align-items: center;
+		font-size: 14px;
+		color: lightgray;
 	}
 }

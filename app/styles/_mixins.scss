@@ -52,12 +52,14 @@
 	}
 	@include breakpoint(sm) {
 		margin-top: $gamebarHeight;
-		min-width: 100%;
+		max-width: calc(100% - $navigationPanelWidth);
+		min-width: calc(100% - $navigationPanelWidth);
 	}
 	@include breakpoint(xs) {
 		margin: 0;
 		padding: 0;
-		width: 100%;
+		max-width: calc(100% - $navigationPanelWidth);
+		min-width: calc(100% - $navigationPanelWidth);
 	}
 }
 

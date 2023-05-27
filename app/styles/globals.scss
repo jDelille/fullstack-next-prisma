@@ -136,7 +136,7 @@ body {
 	color: #222222;
 	height: fit-content;
 	position: relative;
-	width: calc(100% - $navigationPanelWidth);
+	width: 100%;
 	.mainFeed {
 		@include page();
 	}
