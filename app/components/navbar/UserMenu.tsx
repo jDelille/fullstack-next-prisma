@@ -4,13 +4,12 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import styles from './Navbar.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { AiFillHome, AiOutlineClose } from 'react-icons/ai'
-import { FaBell, FaUser, FaUsers } from 'react-icons/fa'
+import { FaBell, FaUser, FaUserCircle, FaUsers } from 'react-icons/fa'
 import { TbHash } from 'react-icons/tb'
 import { MdAddCircle, MdLogout } from 'react-icons/md'
 import MenuItem from './MenuItem';
 import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
-import { HiUserCircle } from 'react-icons/hi'
 import { BiHash } from 'react-icons/bi';
 import { signOut } from 'next-auth/react';
 
@@ -42,7 +41,7 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
   // },
   {
    id: 1,
-   icon: HiUserCircle,
+   icon: FaUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
@@ -69,7 +68,7 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
        <MenuItem href={link.href} label={link.label} icon={link.icon} key={link.id} />
       ))}
       <div className={styles.Link}>
-       <MdLogout size={16} />
+       <MdLogout size={20} />
        <p onClick={() => signOut()}>Logout</p>
       </div>
      </>

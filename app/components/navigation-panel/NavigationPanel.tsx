@@ -49,9 +49,12 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
      <NavLink key={link.id} icon={link.icon} label={link.label} href={link.href} />
     ))}
    </div>
-   <div className={styles.logout}>
-    <MdLogout color="lightGray" size={20} onClick={() => signOut()} />
-   </div>
+   {currentUser && (
+    <div className={styles.logout}>
+     <MdLogout color="lightGray" size={20} onClick={() => signOut()} />
+    </div>
+   )}
+
 
   </div>
  );

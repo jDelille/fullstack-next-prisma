@@ -17,36 +17,21 @@
 	box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px,
 		rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
 	display: none;
+
 	@include breakpoint(xs) {
 		display: flex;
 	}
 	.footerWrapper {
-		display: flex;
 		align-items: center;
-		width: 833px;
+		width: calc(100% - $navigationPanelWidth);
 		margin: 0 auto;
 		justify-content: space-between;
-		margin: 0 520px;
-		padding: 0 2rem;
-		@include breakpoint(xl) {
-			margin: 0 320px;
-		}
-		@include breakpoint(lg) {
-			margin: 0 320px;
-		}
-		@include breakpoint(md) {
-			margin-left: 280px;
-			min-width: calc(100% - 280px);
-			max-width: 720px;
-			min-width: 720px;
-		}
-		@include breakpoint(sm) {
-			margin: 0 280px;
-			min-width: calc(100% - 280px);
-		}
+		padding: 0 1rem;
+		display: none;
 		@include breakpoint(xs) {
 			margin: 0;
 			padding: 0 1rem;
+			display: flex;
 		}
 		.text {
 			font-size: 24px;
