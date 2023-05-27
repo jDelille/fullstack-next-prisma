@@ -3,7 +3,7 @@
 #### Built with Nextjs 13, React, TypeScript, Prisma, MongoDB, SCSS, ESPN api
 <hr />
 
-![mobile (4)](https://github.com/jDelille/fullstack-next-prisma/assets/84540947/b461cd0d-f937-495d-810d-260f5bfcc120)
+![mobile (5)](https://github.com/jDelille/fullstack-next-prisma/assets/84540947/9e16e54c-6b3f-4a0d-a8d2-1009ce16f0a7)
 
 
 <hr />
