@@ -1,0 +1,30 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.page {
+	@include page();
+	gap: 0 !important;
+	@include breakpoint(xs) {
+		position: relative;
+		top: $gamebarHeight;
+	}
+	.textareaWrapper {
+		padding: 2rem 15px;
+		.user {
+			display: flex;
+			gap: 10px;
+
+			.name {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+				font-size: 14px;
+			}
+			.username {
+				color: lightgray;
+				font-size: 12px;
+			}
+		}
+	}
+}

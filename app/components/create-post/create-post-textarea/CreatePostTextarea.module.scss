@@ -19,6 +19,7 @@
 		height: fit-content;
 		resize: none;
 		border: none;
+		outline: none;
 	}
 	.imagePreview {
 		max-height: 150px;
@@ -63,6 +64,7 @@
 			margin-left: auto;
 			font-weight: 500;
 			font-size: 14px;
+			color: $black;
 			.lengthError {
 				color: red;
 			}

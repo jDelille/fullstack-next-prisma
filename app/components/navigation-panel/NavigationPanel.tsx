@@ -7,6 +7,8 @@ import { SafeUser } from '@/app/types';
 import NavLink from './Link';
 import { MdLogout } from 'react-icons/md';
 import { signOut } from 'next-auth/react';
+import { IoCreate } from 'react-icons/io5';
+import Link from 'next/link';
 
 type NavigationPanelProps = {
  currentUser: SafeUser | null
@@ -45,13 +47,38 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
   <div className={styles.navigationPanel}>
 
    <div className={styles.links}>
-    {navlinks.map((link) => (
-     <NavLink key={link.id} icon={link.icon} label={link.label} href={link.href} />
-    ))}
+    {currentUser && (
+     navlinks.map((link) => (
+      <NavLink key={link.id} icon={link.icon} label={link.label} href={link.href} />
+     ))
+    )}
+
+    {!currentUser && (
+     navlinks.map((link) => {
+      if (link.label !== 'Profile' && link.label !== "Notifications") {
+       return (
+        <NavLink key={link.id} icon={link.icon} label={link.label} href={link.href} />
+       )
+      }
+     })
+    )}
+
+    {currentUser && (
+     <div className={styles.createPost}>
+      <Link href={'/create-post'}>
+       <IoCreate size={20} color="#abadb1" />
+
+      </Link>
+     </div>
+    )}
+
    </div>
+
+
+
    {currentUser && (
     <div className={styles.logout}>
-     <MdLogout color="lightGray" size={20} onClick={() => signOut()} />
+     <MdLogout color="#abadb1" size={20} onClick={() => signOut()} />
     </div>
    )}
 
