@@ -1,7 +1,8 @@
 @import '@/app/styles/variables';
 @import '@/app/styles/breakpoints';
 
-.feedHeader {
+.feedHeader,
+.feedHeaderMarginBottom {
 	font-weight: 500;
 	position: sticky;
 	top: $gamebarHeight;
@@ -35,5 +36,14 @@
 				text-decoration: underline;
 			}
 		}
+	}
+}
+
+.feedHeaderMarginBottom {
+	@include breakpoint(xs) {
+		padding-top: 0;
+		max-width: 100%;
+		min-width: 100%;
+		margin-bottom: 1.2rem;
 	}
 }

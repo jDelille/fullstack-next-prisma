@@ -8,6 +8,7 @@
 	@include breakpoint(xs) {
 		position: relative;
 		top: $gamebarHeight;
+		// padding-top: calc(55px + 2rem);
 	}
 	.feedHeader {
 		font-weight: 500;
@@ -31,6 +32,11 @@
 	.profilePosts {
 		@include breakpoint(xs) {
 			margin-top: -55px;
+		}
+		.postFeed {
+			@include breakpoint(xs) {
+				padding-top: 0 !important;
+			}
 		}
 	}
 }

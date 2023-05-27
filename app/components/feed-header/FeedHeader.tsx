@@ -9,13 +9,14 @@ type FeedHeaderProps = {
  label: string;
  icon: IconType;
  isBack?: boolean;
+ hasBottomMargin?: boolean;
 }
 
-const FeedHeader: React.FC<FeedHeaderProps> = ({ label, icon: Icon, isBack }) => {
+const FeedHeader: React.FC<FeedHeaderProps> = ({ label, icon: Icon, isBack, hasBottomMargin }) => {
 
 
  return (
-  <div className={styles.feedHeader}>
+  <div className={hasBottomMargin ? styles.feedHeaderMarginBottom : styles.feedHeader}>
    <div className={styles.header}>
     <Icon size={20} />
     {isBack ? (

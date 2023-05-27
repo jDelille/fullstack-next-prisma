@@ -32,8 +32,10 @@
 				min-height: 75px !important;
 				object-fit: fill;
 				@include breakpoint(xs) {
-					max-width: 50px;
-					max-height: 50px;
+					min-width: 50px !important;
+					min-height: 50px !important;
+					max-width: 50px !important;
+					max-height: 50px !important;
 				}
 			}
 		}

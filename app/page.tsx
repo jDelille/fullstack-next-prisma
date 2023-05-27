@@ -27,7 +27,7 @@ export default async function Home() {
           isBordered={true}
           isComment={false}
         /> */}
-        <FeedHeader label='Explore' icon={BiHash} />
+        <FeedHeader label='Explore' icon={BiHash} hasBottomMargin />
         <Suspense fallback={<p>Loading...</p>}>
 
           <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} />
