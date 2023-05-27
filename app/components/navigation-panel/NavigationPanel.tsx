@@ -2,13 +2,14 @@
 
 import styles from './NavigationPanel.module.scss';
 import { BiHash } from 'react-icons/bi';
-import { FaBell, FaUserCircle } from 'react-icons/fa';
+import { FaBell, FaUserCircle, FaUsers } from 'react-icons/fa';
 import { SafeUser } from '@/app/types';
 import NavLink from './Link';
 import { MdLogout } from 'react-icons/md';
 import { signOut } from 'next-auth/react';
 import { IoCreate } from 'react-icons/io5';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type NavigationPanelProps = {
  currentUser: SafeUser | null
@@ -23,25 +24,33 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
    label: 'Explore',
    href: '/'
   },
-  // {
-  //  id: 1,
-  //  icon: FaUsers,
-  //  label: 'Groups',
-  //  href: `/groups`
-  // },
   {
    id: 1,
+   icon: FaUsers,
+   label: 'Groups',
+   href: `/groups`
+  },
+  {
+   id: 2,
    icon: FaUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
   {
-   id: 2,
+   id: 3,
    icon: FaBell,
    label: 'Notifications',
    href: `/notifications/${currentUser?.id}`
   },
+  {
+   id: 4,
+   icon: IoCreate,
+   label: 'Create Post',
+   href: '/create-post'
+  }
  ]
+
+
 
  return (
   <div className={styles.navigationPanel}>
@@ -55,7 +64,7 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
 
     {!currentUser && (
      navlinks.map((link) => {
-      if (link.label !== 'Profile' && link.label !== "Notifications") {
+      if (link.label !== 'Profile' && link.label !== "Notifications" && link.label !== 'Create Post') {
        return (
         <NavLink key={link.id} icon={link.icon} label={link.label} href={link.href} />
        )
@@ -63,14 +72,7 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
      })
     )}
 
-    {currentUser && (
-     <div className={styles.createPost}>
-      <Link href={'/create-post'}>
-       <IoCreate size={20} color="#abadb1" />
 
-      </Link>
-     </div>
-    )}
 
    </div>
 

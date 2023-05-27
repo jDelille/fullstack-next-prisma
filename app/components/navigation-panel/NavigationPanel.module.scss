@@ -12,6 +12,8 @@
 	top: $gamebarHeight;
 	z-index: 99999;
 	border: 1px solid $border;
+	border-right: none;
+	border-bottom: none;
 	@include breakpoint(sm) {
 		display: block;
 	}
@@ -39,6 +41,9 @@
 		}
 		.activeLink {
 			color: $accent;
+			svg {
+				fill: $accent;
+			}
 			&:hover {
 				svg {
 					fill: $accent;

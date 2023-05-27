@@ -112,7 +112,8 @@
 				}
 			}
 		}
-		.bio {
+		.bio,
+		.noBioMessage {
 			padding: 1rem 0;
 			font-size: 13px;
 			color: $white;
@@ -137,6 +138,19 @@
 				span {
 					color: lighten($secondaryAccent, 55%);
 					font-size: 12px;
+				}
+			}
+		}
+
+		.noBioMessage {
+			font-style: italic;
+			display: flex;
+			span {
+				color: $accent;
+				font-style: normal;
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
 				}
 			}
 		}

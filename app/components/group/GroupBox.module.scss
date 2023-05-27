@@ -3,13 +3,11 @@
 @import '@/app/styles/mixins';
 
 .groupBox {
-	margin-top: 1rem;
-	background-color: $gray;
-	border: 1px solid $lightGray;
+	background-color: $secondaryAccent;
+	border-top: 1px solid $lightGray;
 	padding: 1rem;
 	display: flex;
 	gap: 1rem;
-	border-radius: 4px;
 	height: fit-content;
 	position: relative;
 	align-items: center;
@@ -36,11 +34,15 @@
 			display: flex;
 			align-items: center;
 			gap: 10px;
+			justify-content: space-between;
+			@include breakpoint(xs) {
+				font-size: 16px;
+			}
 			.members {
 				display: flex;
 				align-items: center;
 				gap: 5px;
-				color: $secondaryText;
+				color: $accent;
 				font-size: 14px;
 			}
 		}
@@ -61,6 +63,21 @@
 			.buttons {
 				display: flex;
 				gap: 10px;
+				align-items: center;
+				font-size: 13px;
+				a {
+					text-decoration: none;
+					color: $white;
+					width: fit-content;
+					padding: 0;
+					background-color: $lightGray;
+					padding: 5px 15px;
+					border-radius: 5px;
+					&:hover {
+						background-color: $accent;
+						color: $white;
+					}
+				}
 			}
 			button {
 				width: fit-content;
@@ -70,11 +87,11 @@
 				&:hover {
 					background-color: $accent;
 				}
-				&:nth-of-type(2) {
-					&:hover {
-						background-color: #dc3545;
-					}
-				}
+				// &:nth-of-type(1) {
+				// 	&:hover {
+				// 		background-color: #dc3545;
+				// 	}
+				// }
 			}
 		}
 	}

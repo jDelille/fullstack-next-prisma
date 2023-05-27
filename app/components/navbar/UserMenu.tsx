@@ -33,20 +33,20 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Explore',
    href: '/'
   },
-  // {
-  //  id: 1,
-  //  icon: FaUsers,
-  //  label: 'Groups',
-  //  href: `/groups`
-  // },
   {
    id: 1,
+   icon: FaUsers,
+   label: 'Groups',
+   href: `/groups`
+  },
+  {
+   id: 2,
    icon: FaUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
   {
-   id: 2,
+   id: 3,
    icon: FaBell,
    label: 'Notifications',
    href: `/notifications/${currentUser?.id}`

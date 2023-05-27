@@ -70,7 +70,7 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
         <p>{group.photo}</p>
       </div>
       <div className={styles.groupName}>
-        <p className={styles.name}>{group.name} <span className={styles.members}><FaUsers />{group.memberIds.length}</span></p>
+        <p className={styles.name}>{group.name} <span className={styles.members}><FaUsers color='#20b46a' />{group.memberIds.length}</span></p>
         <p className={styles.description}>{group.description}</p>
         <div className={styles.groupInfo}>
           {hasJoined ? (
@@ -81,7 +81,7 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
           ) : (
             <Button label={group.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(group?.id)} />
           )}
-          <div className={styles.privacy}>
+          {/* <div className={styles.privacy}>
             {group.isPrivate ? (
               <>
                 <AiFillLock size={16} />
@@ -93,7 +93,7 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
                 <p>Public </p>
               </>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -1,3 +1,5 @@
+'use client'
+
 import VerifiedIcon from "@/app/icons/VerifiedIcon";
 import Avatar from "../avatar/Avatar";
 import ProfileMenu from "../menu/ProfileMenu";
@@ -7,16 +9,20 @@ import { SafeUser } from "@/app/types";
 import { format } from 'date-fns';
 import styles from './ProfileHeader.module.scss';
 import LogoIcon from "@/app/icons/LogoIcon";
+import useEditProfileModal from "@/app/hooks/useEditProfileModal";
 
 type ProfileHeaderProps = {
   user: SafeUser | null;
   currentUserId: string;
   followerCount: number | null;
   groups: number;
+  bio: string;
 
 }
 
-const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUserId, followerCount, groups }) => {
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUserId, followerCount, groups, bio }) => {
+
+  const editProfileModal = useEditProfileModal();
 
   let joinedDate = format(new Date(user?.createdAt as string), 'MMMM dd, yyyy');
 
@@ -37,11 +43,16 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUserId, foll
       </div>
       <div className={styles.middle}>
         <div className={styles.bio}>
-          <p>{user?.bio}</p>
-          {/* <div className={styles.record}>
-       W / L {" "}
-       <span>({record.winCount} - {record.lossCount})</span>
-      </div> */}
+
+          {bio && (
+            <p>{user?.bio} </p>
+          )}
+
+          {!bio && currentUserId === user?.id && (
+
+            <p className={styles.noBioMessage}>Let others know more about you by adding a bio to your profile! <span onClick={editProfileModal.onOpen}>Edit profile</span></p>
+
+          )}
           <div className={styles.points}>
             {/* <Image src={'/images/star.png'} alt='star' width={15} height={15} /> */}
             <CoinIcon />
@@ -73,7 +84,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, currentUserId, foll
         <p>{followerCount || 0} <span>Followers</span></p>
         <p>{user?.followingIds.length || 0} <span>Following</span></p>
         <p>{user?.totalBets} <span>Bets</span></p>
-
+        <p>{groups || 0} <span>Groups</span></p>
       </div>
     </div>
   );

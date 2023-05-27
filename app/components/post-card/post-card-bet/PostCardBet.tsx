@@ -31,10 +31,11 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 
 			<div className={styles.postBetStatus}>
 				{winOrLossBadge()}
+				<p className={styles.betOdds}>{bet.odds}</p>
+
 			</div>
 			<div className={styles.postBetHeader}>
 				<p>{bet.name}</p>
-				<p className={styles.betOdds}>{bet.odds}</p>
 			</div>
 			<div className={styles.postBetBody}>
 				{bet.location === 'away' ? (
@@ -45,8 +46,8 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 				<p>
 					{bet.type} <span>{bet.value}</span>
 				</p>
-				<p>Wager ${bet.wager}</p>
-				<p>Payout $ {bet.payout}</p>
+				<p className={styles.wager}>Wager ${bet.wager}</p>
+				<p className={styles.payout}>Payout ${bet.payout}</p>
 			</div>
 			<div className={styles.disclaimer}>
 				<p>Odds shown are at time of post and are subject to change.</p>

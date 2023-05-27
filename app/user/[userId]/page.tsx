@@ -63,6 +63,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     currentUserId={currentUser?.id as string}
     followerCount={followerCount}
     groups={groups.length}
+    bio={currentUser?.bio as string}
    />
    <div className={styles.profilePosts}>
     <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} isProfilePage user={user as SafeUser} />

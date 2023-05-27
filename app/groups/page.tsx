@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import FeedHeader from '../components/feed-header/FeedHeader';
 import { IoArrowBack } from 'react-icons/io5';
 import { FaUsers } from 'react-icons/fa';
+import Button from '../components/button/Button';
+import CreateGroupButton from './CreateGroupButton';
 
 
 interface IParams {
@@ -24,12 +26,16 @@ const Groups = async ({ params }: { params: IParams }) => {
  return (
   <div className={styles.page}>
    <FeedHeader label='Groups' icon={FaUsers} />
-   {groups.map((group) => (
-    <DynamicGroupBox group={group} key={group.id} currentUserId={currentUser?.id as string} />
-   ))}
-   {groups.length === 0 && (
-    <NoGroupMessage />
-   )}
+   <div className={styles.groupFeed}>
+    <CreateGroupButton />
+    {groups.map((group) => (
+     <DynamicGroupBox group={group} key={group.id} currentUserId={currentUser?.id as string} />
+    ))}
+    {groups.length === 0 && (
+     <NoGroupMessage />
+    )}
+   </div>
+
   </div>
  );
 }

@@ -98,6 +98,7 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
     width: option2Width,
   };
 
+
   return (
     <div className={styles.pollContainer}>
       <div className={styles.optionsWrapper}>

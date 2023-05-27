@@ -1,6 +1,6 @@
-@import '../../../styles/variables';
-@import '../../../styles/breakpoints';
-@import '../../../styles/mixins';
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
 
 .postBet {
 	padding: 10px 1rem;
@@ -20,11 +20,16 @@
 		justify-content: center;
 		color: $secondaryText;
 		padding-top: 10px;
+		@include breakpoint(xs) {
+			font-size: 9px;
+		}
 	}
 	.postBetStatus {
-		height: 30px;
+		min-height: 30px;
 		display: flex;
 		align-items: center;
+		padding-bottom: 10px;
+		justify-content: space-between;
 		.winBadge,
 		.lossBadge,
 		.openBadge {
@@ -47,6 +52,15 @@
 			background-color: #7286d3;
 			color: #062349;
 		}
+		.betOdds {
+			text-transform: uppercase;
+			font-weight: 500;
+			font-size: 13px;
+			padding: 3px 8px;
+			border-radius: 4px;
+			color: $accent;
+			background-color: $black;
+		}
 	}
 	.postBetHeader {
 		display: flex;
@@ -59,15 +73,6 @@
 			@include breakpoint(xs) {
 				font-size: 12px;
 			}
-		}
-		.betOdds {
-			padding: 10px 30px;
-			max-width: fit-content;
-			border-radius: 4px;
-			margin-left: auto;
-			background-color: $black;
-			color: $accent;
-			font-weight: 600;
 		}
 	}
 	.postBetBody {
@@ -95,6 +100,11 @@
 			.dogBadge {
 				background-color: #f1c40f;
 			}
+		}
+		.wager,
+		.payout {
+			color: $accent;
+			font-weight: 600;
 		}
 		@include breakpoint(xs) {
 			font-size: 12px;

@@ -4,25 +4,44 @@
 
 .page {
 	@include page();
-	@include breakpoint(xs) {
-		padding: 0 15px !important;
-		padding-top: calc($gamebarHeight + 55px) !important;
-	}
-	.noGroupMessage {
-		margin-top: 1rem;
+	padding-top: 0;
+	.groupFeed {
 		background-color: $gray;
-		border: 1px solid $lightGray;
-		padding: 1rem;
-		display: flex;
-		gap: 1rem;
-		border-radius: 4px;
-		height: fit-content;
-		position: relative;
-		align-items: center;
-		button {
-			background: $accent;
-			&:hover {
-				background-color: darken($accent, 5%);
+		padding: 10px;
+		@include breakpoint(xs) {
+			padding: 15px;
+			padding-top: calc(55px + 2rem);
+		}
+
+		.createGroupButton {
+			padding: 10px;
+			background-color: $secondaryAccent;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			font-size: 14px;
+			button {
+				background-color: $accent;
+				color: $white;
+			}
+		}
+		.noGroupMessage {
+			margin-top: calc(55px + 1rem);
+			background-color: $secondaryAccent;
+			border: 1px solid $lightGray;
+			padding: 1rem;
+			display: flex;
+			gap: 1rem;
+			border-radius: 4px;
+			height: fit-content;
+			position: relative;
+			align-items: center;
+			button {
+				background: $accent;
+				&:hover {
+					background-color: darken($accent, 5%);
+				}
 			}
 		}
 	}
