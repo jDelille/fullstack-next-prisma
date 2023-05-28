@@ -10,7 +10,6 @@ const AuthButtons = () => {
  const loginModal = useLoginModal();
  const registerModal = useRegisterModal();
 
-
  return (
   <div className={styles.authButtons}>
    <Button label='Create account' onClick={registerModal.onOpen} />
