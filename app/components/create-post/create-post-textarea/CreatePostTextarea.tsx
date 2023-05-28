@@ -82,6 +82,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
       })
       .finally(() => {
         setIsLoading(false);
+        setPhoto("")
       });
   };
 
