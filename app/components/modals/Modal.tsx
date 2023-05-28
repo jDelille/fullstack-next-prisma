@@ -116,9 +116,10 @@ const Modal: React.FC<ModalProps> = ({
       <div className={styles.buttonsContainer}>
        {secondaryAction && secondaryActionLabel && (
         <Button
-         disabled={disabled}
+         isButtonDisabled={disabled}
          label={secondaryActionLabel}
          onClick={handleSecondaryAction}
+         ariaLabel='Secondary action'
 
         />
        )}
@@ -129,8 +130,8 @@ const Modal: React.FC<ModalProps> = ({
          <Button
           label={actionLabel}
           onClick={handleSubmit}
-          disabled={disabled}
           isButtonDisabled={isButtonDisabled}
+          ariaLabel='Action label'
          />
         )
        )}

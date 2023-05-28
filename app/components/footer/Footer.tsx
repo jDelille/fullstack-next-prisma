@@ -24,8 +24,18 @@ const Footer: React.FC<FooterProps> = ({ currentUserId }) => {
        <p>People on Wagerly are the first to know.</p>
       </div>
       <div className={styles.buttons}>
-       <Button label='Log in' onClick={loginModal.onOpen} />
-       <Button label='Sign up' onClick={registerModal.onOpen} />
+       <Button
+        label='Log in'
+        onClick={loginModal.onOpen}
+        ariaLabel="Log in to your account"
+        tabIndex={1}
+       />
+       <Button
+        label='Sign up'
+        onClick={registerModal.onOpen}
+        tabIndex={2}
+        ariaLabel="Sign up for an account"
+       />
       </div>
      </div>
     </div>

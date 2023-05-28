@@ -27,7 +27,11 @@ const UserCard: React.FC<UserCardProps> = ({ user, currentUserId, followingIds }
     <p className={styles.username}>{user.username}</p>
    </div>
    <div className={styles.followButton}>
-    <Button label={isFollowing ? 'Unfollow' : "Follow"} onClick={isFollowing ? handleUnfollow : handleFollow} />
+    <Button
+     label={isFollowing ? 'Unfollow' : "Follow"}
+     onClick={isFollowing ? handleUnfollow : handleFollow}
+     ariaLabel={`Follow ${user?.name}`}
+    />
    </div>
 
   </div>

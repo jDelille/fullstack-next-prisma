@@ -63,7 +63,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
                 handleFollow();
               }}
               className={styles.followBtn}
-              disabled={isLoading}>
+              disabled={isLoading}
+              aria-label={`Follow ${post?.user?.name}`}
+            >
+
               <p>+ Follow</p>
             </button>
           ) : null}

@@ -11,7 +11,11 @@ const NoGroupMessage = () => {
  return (
   <div className={styles.noGroupMessage}>
    <p>There are no groups</p>
-   <Button label='Create group' onClick={createGroupModal.onOpen} />
+   <Button
+    label='Create group'
+    onClick={createGroupModal.onOpen}
+    ariaLabel="Create group"
+   />
   </div>
  );
 }

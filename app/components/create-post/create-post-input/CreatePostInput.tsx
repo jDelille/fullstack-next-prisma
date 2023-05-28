@@ -74,7 +74,12 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
 
         </textarea>
         {isComment && (
-          <button className={styles.commentBtn} disabled={!body} onClick={handleSubmit && onSubmit && handleSubmit(onSubmit)}>
+          <button
+            className={styles.commentBtn}
+            disabled={!body}
+            onClick={handleSubmit && onSubmit && handleSubmit(onSubmit)}
+            aria-label='Publish your comment'
+          >
             <BsFillSendFill color='white' />
           </button>
         )}

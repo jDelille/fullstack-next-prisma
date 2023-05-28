@@ -186,7 +186,11 @@ const CreatePostForm = ({
               )}
 
 
-              <Button onClick={handleSubmit(onSubmit)} label='Post' isButtonDisabled={!body} />
+              <Button
+                onClick={handleSubmit(onSubmit)} label='Post'
+                isButtonDisabled={!body}
+                ariaLabel='Publish post'
+              />
             </div>
           </>
         )}

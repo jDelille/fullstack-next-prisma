@@ -76,10 +76,18 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
           {hasJoined ? (
             <div className={styles.buttons}>
               <Link href={`/groups/${group.id}`}>Open</Link>
-              <Button label='Leave' onClick={() => onLeave(group?.id)} />
+              <Button
+                label='Leave'
+                onClick={() => onLeave(group?.id)}
+                ariaLabel={`Leave ${group?.name}`}
+              />
             </div>
           ) : (
-            <Button label={group.isPrivate ? 'Request to join' : 'Join'} onClick={() => onJoin(group?.id)} />
+            <Button
+              label={group.isPrivate ? 'Request to join' : 'Join'}
+              onClick={() => onJoin(group?.id)}
+              ariaLabel={`Join ${group?.name}`}
+            />
           )}
           {/* <div className={styles.privacy}>
             {group.isPrivate ? (

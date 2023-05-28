@@ -199,6 +199,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
           onClick={handleSubmit(onSubmit)}
           label='Post'
           isButtonDisabled={!body || postBodyLength > 500}
+          ariaLabel='Publish post'
         />
       </div>
     </>

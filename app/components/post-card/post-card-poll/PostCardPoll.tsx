@@ -167,9 +167,20 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
         {!alreadyVoted() && (
           <div className={styles.voteButton}>
             {!selectedOption ? (
-              <Button label='Vote' onClick={() => { }} isButtonDisabled={!selectedOption} />
+              <Button
+                label='Vote'
+                onClick={() => { }}
+                isButtonDisabled={!selectedOption}
+                ariaLabel='Vote button placeholder'
+              />
             ) : (
-              <button onClick={(e) => { onVote(poll.id); e.stopPropagation() }} className={styles.activeButton}>Vote</button>
+              <button
+                onClick={(e) => { onVote(poll.id); e.stopPropagation() }}
+                className={styles.activeButton}
+                aria-label='Publish poll vote'
+              >
+                Vote
+              </button>
             )}
 
           </div>
