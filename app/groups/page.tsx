@@ -27,7 +27,7 @@ const Groups = async ({ params }: { params: IParams }) => {
   <div className={styles.page}>
    <FeedHeader label='Groups' icon={FaUsers} />
    <div className={styles.groupFeed}>
-    <CreateGroupButton />
+    <CreateGroupButton currentUserId={currentUser?.id as string} />
     {groups.map((group) => (
      <DynamicGroupBox group={group} key={group.id} currentUserId={currentUser?.id as string} />
     ))}

@@ -25,10 +25,10 @@
 				display: flex;
 				gap: 5px;
 				align-items: center;
-				// padding-left: 1px;
 				@include breakpoint(xs) {
-					font-size: 14px;
+					font-size: 13px;
 				}
+
 				svg {
 					position: relative;
 					top: 1px;
@@ -42,6 +42,7 @@
 					}
 				}
 			}
+
 			.followBtn {
 				color: $accent;
 				cursor: pointer;
@@ -53,6 +54,8 @@
 				background: none;
 				outline: none;
 				border: none;
+				position: relative;
+				right: 10px;
 				&:hover {
 					background-color: $lightGray;
 				}
@@ -64,11 +67,18 @@
 			display: flex;
 			align-items: center;
 			gap: 5px;
+			@include breakpoint(xs) {
+				font-size: 12px;
+			}
 			.dot {
 				width: 5px;
 				height: 5px;
 				background-color: $secondaryText;
 				border-radius: 50%;
+				@include breakpoint(xs) {
+					width: 4px;
+					height: 4px;
+				}
 			}
 			.points {
 				font-size: 11px;
@@ -78,6 +88,7 @@
 				align-items: center;
 				gap: 5px;
 				position: relative;
+
 				.infoModal {
 					background-color: $black;
 					position: absolute;

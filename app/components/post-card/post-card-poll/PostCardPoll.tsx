@@ -180,7 +180,7 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
         {alreadyVoted() && (
           <>
             <div className={styles.dot}></div>
-            <p>already voted</p>
+            <p>you already voted</p>
           </>
         )}
       </div>

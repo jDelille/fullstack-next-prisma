@@ -51,8 +51,16 @@
 				overflow: hidden;
 				white-space: wrap;
 				@include breakpoint(xs) {
-					font-size: 12px;
+					display: none;
 				}
+				@include breakpoint(sm) {
+					display: block;
+				}
+			}
+			.byline {
+				display: flex;
+				align-items: center;
+				gap: 3px;
 			}
 		}
 		.newsCardImage {
@@ -60,13 +68,21 @@
 			height: 105px;
 			border-radius: 4px;
 			position: absolute;
-			right: 10px;
+			right: 0px;
 			top: 10px;
+			@include breakpoint(xs) {
+				width: 105px;
+				height: 105px;
+			}
 			img {
 				max-width: 135px;
 				max-height: 105px;
 				min-height: 105px;
 				border-radius: 4px;
+				@include breakpoint(xs) {
+					width: 105px;
+					height: 105px;
+				}
 			}
 		}
 	}

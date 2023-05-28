@@ -8,6 +8,17 @@
 	display: flex;
 	gap: 1rem;
 	flex-direction: column;
+	position: relative;
+	&:hover {
+		background-color: lighten($secondaryAccent, 5%);
+		cursor: pointer;
+	}
+	.addUser {
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		cursor: pointer;
+	}
 	.top {
 		display: flex;
 		align-items: center;
@@ -31,7 +42,7 @@
 		}
 	}
 	.bio {
-		padding-left: 55px;
+		// padding-left: 55px;
 		font-size: 13px;
 		color: $white;
 	}
