@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import styles from './Avatar.module.scss';
 
 type AvatarProps = {
- src: string;
- userId: string;
+ src?: string;
+ userId?: string;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src, userId }) => {
