@@ -6,6 +6,7 @@
 	@include page();
 	.feed {
 		@include breakpoint(xs) {
+			padding-top: 75px;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 	@include page();
 	@include breakpoint(xs) {
 		position: relative;
-		top: $gamebarHeight;
+		padding-top: $gamebarHeight;
 	}
 	.header {
 		border-bottom: 1px solid $lightGray;

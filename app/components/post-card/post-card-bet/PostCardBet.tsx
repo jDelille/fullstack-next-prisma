@@ -57,7 +57,7 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 
 				<div className={styles.wagerAndPayout}>
 					<div className={styles.wager}>
-						<p>Amount Wagered: <span>${bet.wager}</span></p>
+						<p>Wagered: <span>${bet.wager}</span></p>
 					</div>
 					<div className={styles.payout}>
 						Net Profit: ${bet.payout}

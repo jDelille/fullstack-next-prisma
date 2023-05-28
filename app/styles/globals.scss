@@ -139,6 +139,9 @@ body {
 	width: 100%;
 	.mainFeed {
 		@include page();
+		@include breakpoint(xs) {
+			padding-top: 55px;
+		}
 	}
 }
 

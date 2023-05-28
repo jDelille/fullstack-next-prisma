@@ -29,7 +29,7 @@
 	}
 	.profilePosts {
 		@include breakpoint(xs) {
-			margin-top: -55px;
+			margin-top: 0px;
 		}
 		.postFeed {
 			@include breakpoint(xs) {

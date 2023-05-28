@@ -28,7 +28,7 @@
 	.games {
 		width: calc(100% - 155px);
 		@include breakpoint(xs) {
-			width: calc(100% - 172px);
+			width: calc(100% - 152px);
 		}
 		display: flex;
 		overflow: hidden;
