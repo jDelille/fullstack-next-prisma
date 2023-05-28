@@ -22,7 +22,7 @@ const PostPage = async ({ params }: { params: IParams }) => {
    <FeedHeader label='Back' icon={IoArrowBack} isBack />
    <div className={styles.feed}>
     <PostCard post={post} currentUser={currentUser} hideComment={true} />
-    <PostCardComment postId={post?.id as string} postUser={post?.user?.name} />
+    <PostCardComment postId={post?.id as string} postUser={post?.user?.name} username={currentUser?.username} userId={currentUser?.id} userPhoto={currentUser?.photo as string} />
     <CommentFeed
      comments={post as Record<string, any>}
      currentUserId={currentUser?.id}

@@ -41,7 +41,7 @@ const CommentMenu: React.FC<CommentMenuProps> = ({ commentId, currentUserId, use
   return (
     <div className={styles.commentMenu}>
       {currentUserId === userId ? (
-        <p onClick={() => onDeleteComment(commentId as string)}></p>
+        <p onClick={() => onDeleteComment(commentId as string)}>Delete</p>
       ) : (
         <>
           {isFollowing ? (
@@ -51,9 +51,6 @@ const CommentMenu: React.FC<CommentMenuProps> = ({ commentId, currentUserId, use
           )}
         </>
 
-      )}
-      {currentUserId === userId && (
-        <p onClick={() => onDeleteComment(commentId as string)}></p>
       )}
     </div >
   );

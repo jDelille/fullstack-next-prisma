@@ -119,6 +119,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
           userId={currentUser?.id}
           userPhoto={currentUser?.photo as string}
           postUser={post?.user.name}
+          username={currentUser?.username}
         />
       )}
       {post?.comments && isComment && !hideComment && (

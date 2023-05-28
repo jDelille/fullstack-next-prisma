@@ -73,7 +73,7 @@ const CreatePostInput: React.FC<CreatePostInput> = ({ id, setCustomValue, photo,
           c
 
         </textarea>
-        {isComment && body && body.length > 0 && (
+        {isComment && (
           <button className={styles.commentBtn} disabled={!body} onClick={handleSubmit && onSubmit && handleSubmit(onSubmit)}>
             <BsFillSendFill color='white' />
           </button>
