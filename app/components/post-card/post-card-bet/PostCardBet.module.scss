@@ -9,21 +9,10 @@
 	border-bottom: 1px solid $lightGray;
 	width: 100%;
 	border-radius: 4px;
-
 	@include breakpoint(xs) {
 		margin: 0;
 	}
-	.disclaimer {
-		font-size: 10px;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		color: $secondaryText;
-		padding-top: 10px;
-		@include breakpoint(xs) {
-			font-size: 9px;
-		}
-	}
+
 	.postBetStatus {
 		min-height: 30px;
 		display: flex;
@@ -41,16 +30,19 @@
 			color: $black;
 		}
 		.winBadge {
-			background-color: #d1f7c4;
-			color: #07420b;
+			background-color: rgba(121, 189, 154, 0.25);
+			border: 1px solid rgba(121, 189, 154, 0.5);
+			color: #b7d6c6;
 		}
 		.lossBadge {
-			background-color: #fa7777;
-			color: #42090b;
+			background-color: rgba(221, 105, 105, 0.25);
+			border: 1px solid rgba(221, 105, 105, 0.5);
+			color: #f1d3d3;
 		}
 		.openBadge {
-			background-color: #7286d3;
-			color: #062349;
+			background-color: rgba(105, 170, 221, 0.25);
+			border: 1px solid rgba(105, 170, 221, 0.5);
+			color: #c8d9ea;
 		}
 		.betOdds {
 			text-transform: uppercase;
@@ -68,8 +60,8 @@
 		margin-bottom: 10px;
 		font-size: 14px;
 		.betName {
-			font-weight: 500;
-			font-size: 13px;
+			font-size: 12px;
+			color: $secondaryText;
 			@include breakpoint(xs) {
 				font-size: 12px;
 			}
@@ -81,33 +73,72 @@
 		flex-direction: column;
 		gap: 10px;
 		margin-bottom: 1rem;
+		position: relative;
+		@include breakpoint(xs) {
+			font-size: 12px;
+		}
+		.betName {
+			font-size: 14px;
+			color: $secondaryText;
+		}
 		.team {
 			display: flex;
 			gap: 5px;
 			align-items: center;
-			.favBadge,
-			.dogBadge {
-				@include badge();
+			font-weight: 500;
 
-				background-color: $accent;
-				font-weight: 800;
-				text-transform: uppercase;
-				font-size: 10px;
-				height: fit-content;
-				width: fit-content;
-				padding: 1px 5px;
-			}
-			.dogBadge {
-				background-color: #f1c40f;
+			.betOdds {
+				margin-left: auto;
+				color: #33ee91;
+				font-size: 16px;
+				font-weight: 600;
 			}
 		}
-		.wager,
-		.payout {
-			color: $accent;
-			font-weight: 600;
+		.favBadge,
+		.dogBadge {
+			background-color: rgba(121, 189, 154, 0.25);
+			padding: 1px 3px;
+			border-radius: 4px;
+			width: fit-content;
+			border: 1px solid rgba(121, 189, 154, 0.5);
+			font-weight: 400;
+			color: #b7d6c6;
+			font-size: 11px;
+			text-transform: uppercase;
 		}
+		.dogBadge {
+			background-color: rgba(255, 220, 97, 0.25);
+			border: 1px solid rgba(255, 220, 97, 0.5);
+			color: #ebe0b7;
+		}
+		.betType {
+			text-transform: uppercase;
+		}
+		.wagerAndPayout {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 13px;
+			.wager {
+				color: $secondaryText;
+				font-weight: 500;
+			}
+			.payout {
+				color: $accent;
+				font-weight: 600;
+			}
+		}
+	}
+
+	.disclaimer {
+		font-size: 10px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		color: $secondaryText;
+		padding-top: 10px;
 		@include breakpoint(xs) {
-			font-size: 12px;
+			font-size: 9px;
 		}
 	}
 }

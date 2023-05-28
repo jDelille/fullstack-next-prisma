@@ -18,15 +18,18 @@
 		font-weight: 400;
 	}
 	.ezBadge {
-		background-color: #d1f7c4;
-		color: #07420b;
+		background-color: rgba(121, 189, 154, 0.25);
+		border: 1px solid rgba(121, 189, 154, 0.5);
+		color: #b7d6c6;
 	}
 	.optimisticBadge {
-		background-color: #7286d3;
-		color: #062349;
+		background-color: rgba(105, 170, 221, 0.25);
+		border: 1px solid rgba(105, 170, 221, 0.5);
+		color: #c8d9ea;
 	}
 	.riskyBadge {
-		background-color: #fa7777;
-		color: #42090b;
+		background-color: rgba(221, 105, 105, 0.25);
+		border: 1px solid rgba(221, 105, 105, 0.5);
+		color: #f1d3d3;
 	}
 }
