@@ -146,8 +146,6 @@ const CreatePostForm = ({
 										value={photo}
 										onChange={(image) => setPhoto(image)}
 										setCustomValue={setCustomValue}
-										label='Post a photo'
-										userId={userId as string}
 										isPost
 									/>
 								</div>
