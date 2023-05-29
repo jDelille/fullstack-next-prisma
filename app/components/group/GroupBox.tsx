@@ -1,66 +1,71 @@
-'use client'
+'use client';
 
 import styles from './GroupBox.module.scss';
-import { AiFillLock, AiFillUnlock } from 'react-icons/ai'
-import { useCallback } from "react";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { FaUsers } from 'react-icons/fa'
-import Button from "../button/Button";
+import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
+import { useCallback } from 'react';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import { FaUsers } from 'react-icons/fa';
+import Button from '../button/Button';
 import Link from 'next/link';
 export type GroupProps = {
   id: string;
-  name: string,
-  description: string,
-  photo: string,
+  name: string;
+  description: string;
+  photo: string;
   memberIds: string[];
   isPrivate: boolean;
-}
+};
 
 type GroupBoxProps = {
-  group: GroupProps
+  group: GroupProps;
   currentUserId: string;
-}
-
+};
 
 const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
 
-  const onJoin = useCallback((id: string) => {
-    if (!currentUserId) {
-      return loginModal.onOpen();
-    }
+  const onJoin = useCallback(
+    (id: string) => {
+      if (!currentUserId) {
+        return loginModal.onOpen();
+      }
 
-    axios
-      .post(`/api/group/${id}`)
-      .then(() => {
-        toast.success('Group joined')
-        router.refresh()
-      })
-      .catch(() => {
-        toast.error('Something went wrong');
-      })
-  }, [currentUserId, loginModal, router])
+      axios
+        .post(`/api/group/${id}`)
+        .then(() => {
+          toast.success('Group joined');
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error('Something went wrong');
+        });
+    },
+    [currentUserId, loginModal, router]
+  );
 
-  const onLeave = useCallback((id: string) => {
-    if (!currentUserId) {
-      return loginModal.onOpen();
-    }
+  const onLeave = useCallback(
+    (id: string) => {
+      if (!currentUserId) {
+        return loginModal.onOpen();
+      }
 
-    axios
-      .delete(`/api/group/${id}`)
-      .then(() => {
-        toast.success('You left group')
-        router.refresh()
-      })
-      .catch(() => {
-        toast.error('Something went wrong');
-      })
-  }, [currentUserId, loginModal, router])
+      axios
+        .delete(`/api/group/${id}`)
+        .then(() => {
+          toast.success('You left group');
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error('Something went wrong');
+        });
+    },
+    [currentUserId, loginModal, router]
+  );
 
   const hasJoined = group.memberIds.includes(currentUserId);
 
@@ -70,7 +75,13 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
         <p>{group.photo}</p>
       </div>
       <div className={styles.groupName}>
-        <p className={styles.name}>{group.name} <span className={styles.members}><FaUsers color='#20b46a' />{group.memberIds.length}</span></p>
+        <p className={styles.name}>
+          {group.name}{' '}
+          <span className={styles.members}>
+            <FaUsers color='#20b46a' />
+            {group.memberIds.length}
+          </span>
+        </p>
         <p className={styles.description}>{group.description}</p>
         <div className={styles.groupInfo}>
           {hasJoined ? (
@@ -104,10 +115,8 @@ const GroupBox: React.FC<GroupBoxProps> = ({ group, currentUserId }) => {
           </div> */}
         </div>
       </div>
-
-
     </div>
   );
-}
+};
 
 export default GroupBox;

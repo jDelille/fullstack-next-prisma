@@ -13,7 +13,7 @@ type InputProps = {
  errors: FieldErrors;
  formatPrice?: boolean;
  onChange?: (value: any) => void;
- placeholder?: string
+ placeholder?: string;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = ({
  errors,
  formatPrice,
  placeholder,
- onChange
+ onChange,
 }) => {
  return (
   <div className={styles.inputWrapper}>
@@ -36,7 +36,7 @@ const Input: React.FC<InputProps> = ({
     id={id}
     disabled={disabled}
     {...register(id, { required })}
-    placeholder={placeholder ? placeholder : ""}
+    placeholder={placeholder ? placeholder : ''}
     type={type}
     className={styles.input}
     onChange={onChange}

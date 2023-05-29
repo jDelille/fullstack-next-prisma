@@ -4,10 +4,9 @@ import styles from './Heading.module.scss';
 type HeadingProps = {
  title: string;
  subTitle?: string;
- center?: boolean;
 }
 
-const Heading: React.FC<HeadingProps> = ({ title, subTitle, center }) => {
+const Heading: React.FC<HeadingProps> = ({ title, subTitle }) => {
  return (
   <div className={styles.heading}>
    <div className={styles.headingTitle}>{title}</div>

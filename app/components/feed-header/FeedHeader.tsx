@@ -1,9 +1,6 @@
-
-
 import BackButton from './BackButton';
 import styles from './FeedHeader.module.scss';
 import { IconType } from 'react-icons';
-
 
 type FeedHeaderProps = {
  label: string;
@@ -13,7 +10,6 @@ type FeedHeaderProps = {
 }
 
 const FeedHeader: React.FC<FeedHeaderProps> = ({ label, icon: Icon, isBack, hasBottomMargin }) => {
-
 
  return (
   <div className={hasBottomMargin ? styles.feedHeaderMarginBottom : styles.feedHeader}>

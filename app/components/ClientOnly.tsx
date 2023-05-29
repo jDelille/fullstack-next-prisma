@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect, Suspense } from "react";
-import Loading from "./loading/Loading";
 import styles from './ClientOnly.module.scss';
 import CreatePostFormSkeleton from "./skeletons/create-post-form-skeleton/CreatePostFormSkeleton";
 import PostCardSkeleton from "./skeletons/post-card-skeleton/PostCardSkeleton";
@@ -28,7 +27,7 @@ const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
  }
 
  return (
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<p>Loading...</p>}>
    {children}
   </Suspense>
  );
