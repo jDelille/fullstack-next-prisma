@@ -128,7 +128,6 @@ const RegisterModal = () => {
             value={photo}
             onChange={(image) => setPhoto(image)}
             setCustomValue={setCustomValue}
-            label={''}
             isRegister
           />
 

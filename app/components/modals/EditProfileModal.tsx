@@ -98,8 +98,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 				value={photo || userPhoto as string}
 				onChange={(image) => setPhoto(image)}
 				setCustomValue={setCustomValue}
-				label='Edit your profile picture'
-				placeholder={userPhoto}
 			/>
 			<Input
 				id='name'
