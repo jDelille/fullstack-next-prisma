@@ -16,9 +16,10 @@ const CreateGroupButton: React.FC<CreateGroupButtonProps> = ({ currentUserId }) 
 
  return (
   <div className={styles.createGroupButton}>
-   <p>Want to create your own group?</p>
+   <p className={styles.title}>Create new group</p>
+   <p>Make a group • Invite friends • View bets in real-time</p>
    <Button
-    label='Create a group'
+    label='Create Group'
     onClick={currentUserId ? createGroupModal.onOpen : loginModal.onOpen}
     ariaLabel='Create a group'
    />

@@ -16,7 +16,6 @@
 		background-color: $lightGray;
 		color: $secondaryText;
 		font-size: 14px;
-		border-top: 1px solid $border;
 		border-bottom: 1px solid $border;
 		@include breakpoint(xs) {
 			position: relative;

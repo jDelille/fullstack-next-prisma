@@ -14,16 +14,29 @@
 		}
 
 		.createGroupButton {
-			padding: 10px;
+			padding: 15px 10px;
 			background-color: $secondaryAccent;
 			display: flex;
 			flex-direction: column;
-			align-items: center;
-			gap: 10px;
+			gap: 5px;
 			font-size: 14px;
+			.title {
+				font-size: 16px;
+				text-transform: uppercase;
+				font-weight: 600;
+			}
 			button {
 				background-color: $accent;
 				color: $white;
+				max-width: fit-content;
+				padding: 0;
+				padding: 7px 14px;
+				font-size: 14px;
+				margin-top: 15px;
+				font-weight: 500;
+				&:hover {
+					background-color: darken($accent, 5%);
+				}
 			}
 		}
 		.noGroupMessage {
