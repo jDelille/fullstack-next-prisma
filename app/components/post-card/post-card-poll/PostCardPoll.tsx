@@ -124,7 +124,7 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
             )}
 
           </div>
-          {currentUserId && (
+          {currentUserId && alreadyVoted() && (
             <div
               className={option1Votes > option2Votes ? styles.leadingOption : styles.option}
               style={
@@ -154,7 +154,7 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
               </>
             )}
           </div>
-          {currentUserId && (
+          {currentUserId && alreadyVoted() && (
             <div
               className={option2Votes > option1Votes ? styles.leadingOption : styles.option}
               style={option2Style}></div>

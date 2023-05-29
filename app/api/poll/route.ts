@@ -40,7 +40,7 @@ export async function PATCH(request: Request) {
 	}
 
 	const body = await request.json();
-	const { pollId, vote } = body;
+	const { pollId, selectedOption } = body;
 
 	const currentPoll = await prisma.poll.findUnique({
 		where: {
@@ -52,21 +52,24 @@ export async function PATCH(request: Request) {
 		return NextResponse.error();
 	}
 
-	let option1Votes = currentPoll.option1Votes;
-	let option2Votes = currentPoll.option2Votes;
-
-	const poll = await prisma.poll.update({
+	const updatedPoll = await prisma.poll.update({
 		where: {
 			id: pollId,
 		},
 		data: {
-			option1Votes: vote === 1 ? option1Votes + 1 : currentPoll.option1Votes,
-			option2Votes: vote === 2 ? option2Votes + 1 : currentPoll.option2Votes,
+			option1Votes:
+				selectedOption === 1
+					? currentPoll.option1Votes + 1
+					: currentPoll.option1Votes,
+			option2Votes:
+				selectedOption === 2
+					? currentPoll.option2Votes + 1
+					: currentPoll.option2Votes,
 			votersIds: {
-				push: currentUser?.id,
+				push: currentUser.id,
 			},
 		},
 	});
 
-	return NextResponse.json(poll);
+	return NextResponse.json(updatedPoll);
 }
