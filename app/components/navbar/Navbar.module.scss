@@ -75,6 +75,11 @@
 	.events {
 		color: $white;
 		font-weight: 300;
+		border-bottom: 1px solid $border;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 1rem 0;
 		.label {
 			padding: 0 1rem;
 			color: $secondaryText;
@@ -104,19 +109,19 @@
 		.activeLink,
 		.createButton {
 			@include button();
-			color: $secondaryText;
+			color: $white;
 			border: none;
-			font-size: 16px;
-			font-weight: 300;
+			font-size: 15px;
+			font-weight: 400;
 			width: 100%;
 			margin: 0 auto;
 			gap: 9px !important;
 			padding: 0;
 			text-decoration: none;
+			color: darken($white, 2%);
 			&:hover {
-				background-color: darken($secondaryAccent, 1%);
 				background: none;
-				color: $white;
+				color: lighten($white, 5%);
 			}
 			.notificationDot {
 				width: 10px;
@@ -131,6 +136,7 @@
 		background-color: $lightGray;
 		color: $accent !important;
 		background: none;
+		font-weight: 500 !important;
 		&:hover {
 			background-color: $lightGray;
 			background: none;
