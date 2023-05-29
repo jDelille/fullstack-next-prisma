@@ -174,8 +174,6 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               value={photo}
               onChange={(image) => setPhoto(image)}
               setCustomValue={setCustomValue}
-              label='Post a photo'
-              userId={userId as string}
               isPost
               disabled={photo.length > 0}
             />
