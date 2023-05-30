@@ -16,8 +16,10 @@ export async function POST(request: Request) {
 
 	const body = await request.json();
 
+	const { bets, thoughts, odds, wager, payout } = body;
+
 	const createdBets = await Promise.all(
-		body.map((bet: Bet) => prisma.bet.create({ data: bet }))
+		bets.map((bet: Bet) => prisma.bet.create({ data: { ...bet, thoughts } }))
 	);
 
 	const createdParlay = await prisma.parlay.create({
@@ -25,6 +27,9 @@ export async function POST(request: Request) {
 			bets: {
 				connect: createdBets.map((bet) => ({ id: bet.id })),
 			},
+			odds: odds,
+			wager: wager,
+			payout: payout,
 		},
 	});
 

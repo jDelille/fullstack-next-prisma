@@ -1,6 +1,7 @@
 @import '@/app/styles/variables';
 
-.inputWrapper {
+.inputWrapper,
+.numberInputWrapper {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -11,6 +12,11 @@
 		margin-top: 10px;
 		font-weight: 600;
 	}
+	.moneySymbol {
+		position: absolute;
+		left: 0px;
+		top: 5px;
+	}
 	.input {
 		width: 100%;
 		padding: 10px;
@@ -20,8 +26,18 @@
 		border: none;
 		background-color: $secondaryAccent;
 		color: #dadada;
+		&::-webkit-outer-spin-button,
+		::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
 		:disabled {
 			cursor: not-allowed;
 		}
 	}
+}
+
+.numberInputWrapper {
+	margin: 0;
+	gap: 0;
 }

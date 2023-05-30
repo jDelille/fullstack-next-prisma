@@ -31,6 +31,19 @@
 			.title {
 				font-weight: 600;
 				text-transform: uppercase;
+
+				align-items: center;
+				position: relative;
+				.odds {
+					background-color: darken($secondaryAccent, 5%);
+					padding: 8px 20px;
+					border-radius: 4px;
+					font-weight: 600;
+					position: absolute;
+					right: 0;
+					top: 0;
+					color: $accent;
+				}
 			}
 			.picks {
 				display: flex;
@@ -38,6 +51,16 @@
 				color: lightgray;
 				font-size: 12px;
 				flex-wrap: wrap;
+			}
+			.pay {
+				display: flex;
+				gap: 5px;
+				color: lightgray;
+				font-size: 12px;
+				span {
+					color: $accent;
+					font-weight: 600;
+				}
 			}
 			.viewPicks {
 				background-color: lighten(#2a333f, 10%);
@@ -96,7 +119,7 @@
 					border-radius: 4px;
 					font-size: 12px;
 					position: absolute;
-					right: 0px;
+					right: -10px;
 				}
 				.betOdds {
 					margin-left: auto;

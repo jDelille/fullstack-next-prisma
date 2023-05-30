@@ -114,9 +114,12 @@ model Bet {
 }
 
 model Parlay {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  bets Bet[]  @relation(name: "ParlayBets")
-  Post Post[]
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  bets   Bet[]  @relation(name: "ParlayBets")
+  Post   Post[]
+  odds   Float
+  wager  String
+  payout Float
 }
 
 model Group {

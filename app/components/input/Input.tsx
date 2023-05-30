@@ -2,6 +2,7 @@
 
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.scss';
+import { MdAttachMoney } from 'react-icons/md';
 
 type InputProps = {
  id: string;
@@ -14,6 +15,7 @@ type InputProps = {
  formatPrice?: boolean;
  onChange?: (value: any) => void;
  placeholder?: string;
+ inputMode?: 'search' | 'text' | 'email' | 'tel' | 'url' | 'numeric' | 'decimal' | 'none';
 };
 
 const Input: React.FC<InputProps> = ({
@@ -27,11 +29,15 @@ const Input: React.FC<InputProps> = ({
  formatPrice,
  placeholder,
  onChange,
+ inputMode
 }) => {
  return (
-  <div className={styles.inputWrapper}>
-   <label className={styles.inputLabel}>{label}</label>
+  <div className={formatPrice ? styles.numberInputWrapper : styles.inputWrapper}>
+   {!formatPrice && (
+    <label className={styles.inputLabel}>{label}</label>
+   )}
    {/* TODO - add money icon if wager */}
+   <MdAttachMoney className={styles.moneySymbol} size={18} color='#2a333f' />
    <input
     id={id}
     disabled={disabled}
@@ -40,6 +46,7 @@ const Input: React.FC<InputProps> = ({
     type={type}
     className={styles.input}
     onChange={onChange}
+    inputMode={inputMode || 'text'}
    />
   </div>
  );

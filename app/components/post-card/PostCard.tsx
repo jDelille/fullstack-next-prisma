@@ -33,7 +33,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
 
   const onCheck = useCallback(
     (id: string) => {
-      if (post.Bet?.status !== 'open') {
+      if (post?.Bet?.status !== 'open') {
         return;
       }
       axios
@@ -45,7 +45,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
           console.log('something went wrong');
         });
     },
-    [post.Bet?.status, router]
+    [post?.Bet?.status, router]
   );
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         followingIds={currentUser?.followingIds}
       />
       <div className={styles.postBody}>
-        <p>{post?.Bet?.thoughts || post?.body}</p>
+        <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>
       </div>
       {post?.photo && (
         <div className={styles.postPhoto}>
@@ -92,7 +92,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         </div>
       )}
 
-      {post?.Parlay && <PostCardParlay post={post.Parlay.bets} />}
+      {post?.Parlay && <PostCardParlay post={post.Parlay.bets} odds={post.Parlay.odds} wager={post.Parlay.wager} payout={post.Parlay.payout} />}
 
       {post?.Poll && (
         <div className={styles.postPoll}>

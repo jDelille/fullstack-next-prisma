@@ -10,14 +10,30 @@ import { Bet } from '@/app/types/Bet';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import Input from '../input/Input';
+import { FieldValues, useForm } from 'react-hook-form';
 
 const BetSlip = observer(() => {
   const router = useRouter();
 
   const [wagerAmount, setWagerAmount] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [thoughts, setThoughts] = useState("")
 
   let selectedBet = [...betStore.selectedBet]
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      wager: 0,
+    },
+  });
 
   const payout = calculatePayout(wagerAmount, selectedBet.map((bet: Bet) => bet.odds));
 
@@ -39,10 +55,19 @@ const BetSlip = observer(() => {
   });
 
 
+
   const onSubmit = () => {
     setIsLoading(true);
 
-    axios.post('/api/parlay', payload)
+    const betPayload = {
+      bets: payload,
+      thoughts: thoughts,
+      odds: calculateParlayOdds(selectedBet.map((bet) => bet.odds)),
+      wager: wagerAmount,
+      payout
+    }
+
+    axios.post('/api/parlay', betPayload)
       .then(() => {
         toast.success('Bet posted');
         betStore.selectedBet = [];
@@ -85,7 +110,19 @@ const BetSlip = observer(() => {
               <div className={styles.odds}>
                 {bet.odds}
                 {selectedBet.length < 2 && (
-                  <input type='number' placeholder='0.00' />
+                  <Input
+                    id='wager'
+                    label=''
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    type='text'
+                    inputMode="numeric"
+                    required
+                    placeholder='0.00'
+                    formatPrice
+                    onChange={(e) => setWagerAmount(e.target.value)}
+                  />
                 )}
               </div>
             </div>
@@ -106,15 +143,34 @@ const BetSlip = observer(() => {
           </div>
 
           <div className={styles.stake}>
-            <input type='number' placeholder='0.00' onChange={(e) => setWagerAmount(parseFloat(e.target.value))} />
+            <Input
+              id='wager'
+              label=''
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              type='text'
+              inputMode="numeric"
+              placeholder='0.00'
+              required
+              formatPrice
+              onChange={(e) => setWagerAmount(e.target.value)}
+            />
             <p className={styles.payout}>Payout: ${payout}</p>
           </div>
         </div>
       )}
 
       {selectedBet.length > 0 && (
+        <div className={styles.thoughts}>
+          <textarea placeholder='Share your thoughts on this bet' required onChange={(e) => setThoughts(e.target.value)} />
+        </div>
+      )}
+
+
+      {selectedBet.length > 0 && (
         <div className={styles.buttonContainer}>
-          <Button label='Place bet' onClick={onSubmit} />
+          <Button label={selectedBet.length > 1 ? 'Place parlay' : 'Place bet'} onClick={onSubmit} />
         </div>
       )}
     </div>
