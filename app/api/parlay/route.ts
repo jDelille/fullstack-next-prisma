@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import { Bet } from '@prisma/client';
+
+type Parlay = {
+	bets: Bet[];
+};
 
 export async function POST(request: Request) {
 	const currentUser = await getCurrentUser();
@@ -10,41 +15,27 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json();
-	const { league, match, odds, thoughts, wager, confidence, payout, groupId } =
-		body;
 
-	const newBet = await prisma.bet.create({
+	const createdBets = await Promise.all(
+		body.map((bet: Bet) => prisma.bet.create({ data: bet }))
+	);
+
+	const createdParlay = await prisma.parlay.create({
 		data: {
-			league,
-			homeTeam: match.homeTeam,
-			awayTeam: match.awayTeam,
-			status: 'open',
-			odds: odds.odds,
-			type: odds.type,
-			favorite: odds.favorite,
-			value: odds.value,
-			thoughts,
-			wager: parseFloat(wager),
-			confidence,
-			location: odds.location,
-			name: match.name,
-			payout: payout,
-			homeId: parseInt(odds.homeId),
-			awayId: parseInt(odds.awayId),
-			gameId: parseInt(odds.gameId),
-			sport: odds.sport,
+			bets: {
+				connect: createdBets.map((bet) => ({ id: bet.id })),
+			},
 		},
 	});
 
 	const newPost = await prisma.post.create({
 		data: {
 			userId: currentUser.id,
-			betId: newBet.id,
-			groupId,
+			parlayId: createdParlay.id,
+			groupId: null,
 		},
 	});
 
-	// Update the user's bet count and totalBets field
 	let totalBets = currentUser.totalBets;
 
 	const updatedUser = await prisma.user.update({

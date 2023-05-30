@@ -1,0 +1,52 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.sportSelectorContainer {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	padding: 20px 0;
+	background-color: $lightGray;
+	justify-content: space-evenly;
+	.sportSelector {
+		display: flex;
+		gap: 1rem;
+
+		.sport,
+		.selectedSport {
+			border: 1px solid $border;
+			padding: 6px 12px;
+			border-radius: 22px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: $secondaryText;
+			&:hover {
+				color: $white;
+			}
+		}
+		.selectedSport {
+			color: $white;
+			border: 1px solid $white;
+		}
+	}
+}
+
+.sportsbookTable {
+	background-color: $gray;
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	.header {
+		text-transform: uppercase;
+		font-weight: 500;
+		padding-bottom: 10px;
+	}
+	.feed {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}

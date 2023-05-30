@@ -8,6 +8,7 @@ import { SafeUser } from '@/app/types';
 import { usePathname } from 'next/navigation';
 import MenuItem from '../../MenuItem';
 import { Group } from '@prisma/client';
+import { HiOutlineBanknotes } from 'react-icons/hi2';
 
 
 type MobileMenuProps = {
@@ -30,18 +31,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentUser, groups }) => {
   },
   {
    id: 1,
+   icon: HiOutlineBanknotes,
+   label: 'Sportsbook',
+   href: '/sportsbook'
+  },
+  {
+   id: 2,
    icon: FaUserAlt,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
   {
-   id: 2,
+   id: 3,
    icon: BiMoneyWithdraw,
    label: 'My Bets',
    href: `/myBets/${currentUser?.id}`
   },
   {
-   id: 3,
+   id: 4,
    icon: FaUsers,
    label: 'Groups',
    href: `/group`

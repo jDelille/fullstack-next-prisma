@@ -14,6 +14,7 @@ import axios from 'axios';
 import ImageView from '../image-view/ImageView';
 import ConfidenceBadge from '../confidence-badge/ConfidenceBadge';
 import PostCardPoll from './post-card-poll/PostCardPoll';
+import PostCardParlay from './post-card-parlay/PostCardParlay';
 
 type PostCardProps = {
   post: any;
@@ -55,7 +56,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
 
   return (
     <div
-      className={styles.post}
+      className={post.Parlay ? styles.parlayPost : styles.post}
       onClick={(e) => {
         router.push(`post/${post?.id}`);
       }}>
@@ -90,6 +91,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
           <PostCardBet post={post.Bet} />
         </div>
       )}
+
+      {post?.Parlay && <PostCardParlay post={post.Parlay.bets} />}
+
       {post?.Poll && (
         <div className={styles.postPoll}>
           <PostCardPoll

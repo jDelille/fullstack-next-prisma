@@ -6,7 +6,7 @@ import styles from './CreatePostTextarea.module.scss';
 import useBetModal from '@/app/hooks/useBetModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import usePollModal from '@/app/hooks/usePollModal';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ImageUpload from '../../image-upload/ImageUpload';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useRef, useState } from 'react';
@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import BetSlip from '../../bet-slip/BetSlip';
 
 type CreatePostTextareaProps = {
   userPhoto?: string;
@@ -31,6 +32,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   const betModal = useBetModal();
   const loginModal = useLoginModal();
   const pollModal = usePollModal();
+  const pathname = usePathname()
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -125,82 +127,88 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
 
   return (
-    <>
-      <SimpleBar className={styles.createPost}>
-        <textarea
-          placeholder="What's on your mind?"
-          className={styles.textarea}
-          onChange={(event) => {
-            event.stopPropagation();
-            setCustomValue('postBody', event.target.value);
-          }}
-          value={body}
-          ref={textAreaRef}
-          rows={1}>
+    pathname && !pathname?.includes('sportsbook') ? (
+      <>
+        <SimpleBar className={styles.createPost}>
+          <textarea
+            placeholder="What's on your mind?"
+            className={styles.textarea}
+            onChange={(event) => {
+              event.stopPropagation();
+              setCustomValue('postBody', event.target.value);
+            }}
+            value={body}
+            ref={textAreaRef}
+            rows={1}>
 
 
-        </textarea>
+          </textarea>
 
-        {photo && (
-          <div className={styles.imagePreview}>
+          {photo && (
+            <div className={styles.imagePreview}>
 
-            <div
-              className={styles.closeImagePreview}
-              onClick={clearPhoto}>
-              <AiFillCloseCircle size={30} />
+              <div
+                className={styles.closeImagePreview}
+                onClick={clearPhoto}>
+                <AiFillCloseCircle size={30} />
+              </div>
+
+              <Image
+                src={photo}
+                fill
+                alt='Uploaded Image'
+                className={styles.imagePreview}
+                style={{ objectFit: 'cover' }}
+              />
             </div>
 
-            <Image
-              src={photo}
-              fill
-              alt='Uploaded Image'
-              className={styles.imagePreview}
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
+          )}
 
-        )}
+          <div className={styles.createPostButtons}>
+            <div
+              className={styles.icon}
+              onClick={() => {
+                !userId ? loginModal.onOpen() : betModal.onOpen();
+              }}>
+              <HiOutlineBanknotes color='#2a333f' size={21} />
+            </div>
+            <div className={styles.icon}>
+              <ImageUpload
+                value={photo}
+                onChange={(image) => setPhoto(image)}
+                setCustomValue={setCustomValue}
+                isPost
+                disabled={photo.length > 0}
+              />
+            </div>
 
-        <div className={styles.createPostButtons}>
-          <div
-            className={styles.icon}
-            onClick={() => {
-              !userId ? loginModal.onOpen() : betModal.onOpen();
-            }}>
-            <HiOutlineBanknotes color='#2a333f' size={21} />
+            <div className={styles.icon} onClick={() => pollModal.onOpen()}>
+              <CgPoll size={20} color='#2a333f' />
+            </div>
+            <div className={styles.textCount}>
+              {error ? (
+                <p className={styles.lengthError}>{postBodyLength} / 500</p>
+              ) : (
+                <p>{postBodyLength} / 500</p>
+              )}
+            </div>
           </div>
-          <div className={styles.icon}>
-            <ImageUpload
-              value={photo}
-              onChange={(image) => setPhoto(image)}
-              setCustomValue={setCustomValue}
-              isPost
-              disabled={photo.length > 0}
-            />
-          </div>
+        </SimpleBar >
 
-          <div className={styles.icon} onClick={() => pollModal.onOpen()}>
-            <CgPoll size={20} color='#2a333f' />
-          </div>
-          <div className={styles.textCount}>
-            {error ? (
-              <p className={styles.lengthError}>{postBodyLength} / 500</p>
-            ) : (
-              <p>{postBodyLength} / 500</p>
-            )}
-          </div>
+        <div className={styles.postButton}>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            label='Post'
+            isButtonDisabled={!body || postBodyLength > 500}
+            ariaLabel='Publish post'
+          />
         </div>
-      </SimpleBar >
+      </>
+    ) : (
+      <BetSlip />
 
-      <div className={styles.postButton}>
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          label='Post'
-          isButtonDisabled={!body || postBodyLength > 500}
-          ariaLabel='Publish post'
-        />
-      </div>
-    </>
+    )
+
   );
 };
 

@@ -18,6 +18,11 @@ export default async function getPosts() {
 				user: true,
 				comments: true,
 				Poll: true,
+				Parlay: {
+					include: {
+						bets: true,
+					},
+				},
 			},
 		});
 

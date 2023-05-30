@@ -1,0 +1,18 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.page {
+	@include page();
+	gap: 0 !important;
+	@include breakpoint(xs) {
+		position: relative;
+		top: $gamebarHeight;
+	}
+
+	.sportsbookTableContainer {
+		background-color: $gray;
+		height: fit-content;
+		min-height: calc(100vh - 175px);
+	}
+}

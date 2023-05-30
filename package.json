@@ -21,6 +21,8 @@
     "emoji-picker-react": "^4.4.9",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "mobx": "^6.9.0",
+    "mobx-react": "^7.6.0",
     "moment": "^2.29.4",
     "next": "^13.4.1",
     "next-auth": "^4.22.1",

@@ -10,6 +10,7 @@ import { signOut } from 'next-auth/react';
 import { IoCreate } from 'react-icons/io5';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { HiBanknotes, HiOutlineBanknotes } from 'react-icons/hi2';
 
 type NavigationPanelProps = {
  currentUser: SafeUser | null
@@ -26,24 +27,30 @@ const NavigationPanel: React.FC<NavigationPanelProps> = ({ currentUser }) => {
   },
   {
    id: 1,
+   icon: HiBanknotes,
+   label: 'Sportsbook',
+   href: '/sportsbook'
+  },
+  {
+   id: 2,
    icon: FaUsers,
    label: 'Groups',
    href: `/groups`
   },
   {
-   id: 2,
+   id: 3,
    icon: FaUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
   {
-   id: 3,
+   id: 4,
    icon: FaBell,
    label: 'Notifications',
    href: `/notifications/${currentUser?.id}`
   },
   {
-   id: 4,
+   id: 5,
    icon: IoCreate,
    label: 'Create Post',
    href: '/create-post'

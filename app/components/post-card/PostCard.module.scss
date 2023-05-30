@@ -2,8 +2,10 @@
 @import '../../styles/breakpoints';
 @import '../../styles/mixins';
 
-.post {
+.post,
+.parlayPost {
 	@include postCard();
+	transition: all 200ms ease-in-out;
 	.postBody {
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;
@@ -32,4 +34,9 @@
 	.postPoll {
 		padding: 0 15px;
 	}
+}
+
+.parlayPost {
+	max-height: fit-content !important;
+	transition: all 200ms ease-in-out;
 }

@@ -22,7 +22,10 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, label, href }) => {
   <Link href={href as string} className={linkStyle}>
    <Icon size={18} />
    {label}
-  </Link >
+   {label === 'Sportsbook' && (
+    <div className={styles.betaTag}>Beta</div>
+   )}
+  </Link>
  );
 }
 

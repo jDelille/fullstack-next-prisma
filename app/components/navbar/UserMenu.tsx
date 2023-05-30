@@ -12,6 +12,7 @@ import useCreateGroupModal from '@/app/hooks/useCreateGroupModal';
 import { Group } from '@prisma/client';
 import { BiHash } from 'react-icons/bi';
 import { signOut } from 'next-auth/react';
+import { HiBanknotes } from 'react-icons/hi2';
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -35,18 +36,24 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
   },
   {
    id: 1,
+   icon: HiBanknotes,
+   label: 'Sportsbook',
+   href: '/sportsbook'
+  },
+  {
+   id: 2,
    icon: FaUsers,
    label: 'Groups',
    href: `/groups`
   },
   {
-   id: 2,
+   id: 3,
    icon: FaUserCircle,
    label: 'Profile',
    href: `/user/${currentUser?.id}`
   },
   {
-   id: 3,
+   id: 4,
    icon: FaBell,
    label: 'Notifications',
    href: `/notifications/${currentUser?.id}`

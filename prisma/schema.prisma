@@ -20,6 +20,8 @@ model Post {
   updatedAt     DateTime  @updatedAt
   Bet           Bet?      @relation(fields: [betId], references: [id])
   betId         String?   @db.ObjectId
+  Parlay        Parlay?   @relation(fields: [parlayId], references: [id])
+  parlayId      String?   @db.ObjectId
   Poll          Poll?     @relation(fields: [pollId], references: [id])
   pollId        String?   @db.ObjectId
   likedIds      String[]  @db.ObjectId
@@ -85,28 +87,36 @@ model Poll {
 }
 
 model Bet {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
   league       String
   status       String
-  homeTeam     String
-  awayTeam     String
+  homeTeam     String?
+  awayTeam     String?
+  abbreviation String?
+  team         String?
   name         String
   location     String
   favorite     Boolean
   odds         Int
   type         String
   value        Float?
-  thoughts     String
+  thoughts     String?
   wager        Float?
   payout       Float?
-  confidence   String
+  confidence   String?
   Post         Post[]
-  gameId       Int
-  homeId       Int
-  awayId       Int
+  gameId       Int?
+  homeId       Int?
+  awayId       Int?
   sport        String
-  isPrivate    Boolean? @default(false)
-  shouldNotify Boolean? @default(true)
+  parlay       Parlay? @relation(name: "ParlayBets", fields: [parlayId], references: [id])
+  parlayId     String? @map("_parlayId") @db.ObjectId
+}
+
+model Parlay {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  bets Bet[]  @relation(name: "ParlayBets")
+  Post Post[]
 }
 
 model Group {

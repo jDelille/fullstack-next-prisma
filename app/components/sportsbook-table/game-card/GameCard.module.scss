@@ -1,0 +1,113 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
+
+.gameCard {
+	padding: 10px;
+	border-radius: 4px;
+	background-color: $secondaryAccent;
+	height: fit-content;
+	.status {
+		font-size: 12px;
+		padding-bottom: 10px;
+	}
+	.teams {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		.labels {
+			display: flex;
+			font-size: 10px;
+			text-transform: uppercase;
+			border-bottom: 1px solid $border;
+			padding-bottom: 5px;
+			font-weight: 600;
+			color: $secondaryText;
+			margin-bottom: 5px;
+			@include breakpoint(xs) {
+				font-size: 9px;
+			}
+			.teamsLabel {
+				width: 260px;
+				padding-right: 25px;
+				@include breakpoint(xs) {
+					width: 140px;
+				}
+			}
+			.oddsBoxLabels {
+				font-size: 10px;
+				text-transform: uppercase;
+				display: flex;
+				width: 100%;
+				@include breakpoint(xs) {
+					font-size: 9px;
+				}
+				p {
+					flex: 1;
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+		.team {
+			display: flex;
+			align-items: center;
+			flex: 1;
+			font-size: 13px;
+			font-weight: 600;
+
+			.name {
+				display: flex;
+				gap: 5px;
+				width: 260px;
+				padding-right: 10px;
+				@include breakpoint(xs) {
+					width: 140px;
+				}
+				.displayName {
+					display: block;
+					@include breakpoint(xs) {
+						display: none;
+					}
+				}
+				.abbreviation {
+					display: none;
+					@include breakpoint(xs) {
+						display: block;
+					}
+				}
+				.score {
+					margin-left: auto;
+				}
+			}
+			.odds {
+				display: flex;
+				width: 100%;
+				flex-direction: column;
+				gap: 10px;
+				.oddBoxes {
+					display: flex;
+					background-color: royalblue;
+
+					.oddsBox {
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						background-color: $gray;
+						outline: 1px solid $border;
+						cursor: pointer;
+						&:hover {
+							background-color: lighten($gray, 5%);
+						}
+						p {
+							font-size: 13px;
+							padding: 10px 5px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

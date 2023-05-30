@@ -116,6 +116,8 @@
 			width: 100%;
 			margin: 0 auto;
 			gap: 9px !important;
+			display: flex;
+			align-items: center;
 			padding: 0;
 			text-decoration: none;
 			color: darken($white, 2%);
@@ -132,11 +134,20 @@
 		}
 	}
 
+	.betaTag {
+		font-size: 11px;
+		color: lighten($secondaryText, 5%);
+		background-color: lighten($black, 5%);
+		padding: 0 2px;
+		border-radius: 4px;
+		border: 1px solid $border;
+	}
+
 	.activeLink {
 		background-color: $lightGray;
 		color: $accent !important;
 		background: none;
-		font-weight: 500 !important;
+		font-weight: 400 !important;
 		&:hover {
 			background-color: $lightGray;
 			background: none;
