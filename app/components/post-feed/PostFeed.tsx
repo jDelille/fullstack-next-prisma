@@ -4,9 +4,10 @@ import { useState } from 'react';
 import PostCard from '../post-card/PostCard';
 import styles from './PostFeed.module.scss';
 import { SafeUser } from '@/app/types';
-import { User } from '@prisma/client';
+import { Post, User } from '@prisma/client';
 import PeopleBox from '../people-box/PeopleBox';
 import News from '../news/News';
+import { PostFeedString } from '@/app/utils/app-string/PostFeedString';
 
 type PostFeedProps = {
  posts: any;
@@ -14,92 +15,145 @@ type PostFeedProps = {
  totalBets?: number;
  users: User[] | null;
  isProfilePage?: boolean;
- user?: SafeUser | null
+ user?: SafeUser | null;
 };
 
-const PostFeed: React.FC<PostFeedProps> = ({ posts, currentUser, users, isProfilePage, user }) => {
+const PostFeed: React.FC<PostFeedProps> = ({
+ posts,
+ currentUser,
+ users,
+ isProfilePage,
+ user,
+}) => {
  const [tab, setTab] = useState('posts');
+
+ const renderPostCards = () => {
+  return posts.map((post: Post) => (
+   <PostCard
+    post={post}
+    key={post.id}
+    currentUser={currentUser}
+    hideComment={false}
+   />
+  ));
+ };
+
+ const renderBets = () => {
+  if (user?.totalBets === 0) {
+   return (
+    <div key={user.id} className={styles.noBetsMessage}>
+     {user?.name} {PostFeedString.noBetsMessage}
+    </div>
+   );
+  }
+
+  return posts
+   .filter((post: any) => post?.Bet || post?.Parlay)
+   .map((post: Post) => (
+    <PostCard
+     post={post}
+     key={post.id}
+     currentUser={currentUser}
+     hideComment={false}
+    />
+   ));
+ };
+
+ const renderPeople = () => {
+  return (
+   <div className={styles.peopleFeed}>
+    {users?.map((user) => (
+     <PeopleBox key={user?.id} user={user} />
+    ))}
+   </div>
+  );
+ };
+
+ const renderNews = () => {
+  return (
+   <div className={styles.newsFeed}>
+    <News />
+   </div>
+  );
+ };
+
+ const renderMedia = () => {
+  return (
+   <div className={styles.noBetsMessage}>
+    <p>{PostFeedString.comingSoon}</p>
+   </div>
+  );
+ };
+
+ const renderTabContent = () => {
+  switch (tab) {
+   case 'posts':
+    return renderPostCards();
+   case 'bets':
+    return renderBets();
+   case 'people':
+    return renderPeople();
+   case 'news':
+    return renderNews();
+   case 'media':
+    return renderMedia();
+   default:
+    return null;
+  }
+ };
+
+ const renderTabs = () => {
+  const tabs = [
+   {
+    key: 'posts',
+    label: PostFeedString.posts,
+    show: true,
+   },
+   {
+    key: 'bets',
+    label: PostFeedString.bets,
+    show: true,
+   },
+   {
+    key: 'people',
+    label: PostFeedString.people,
+    show: !isProfilePage,
+   },
+   {
+    key: 'news',
+    label: PostFeedString.news,
+    show: !isProfilePage,
+   },
+   {
+    key: 'media',
+    label: PostFeedString.media,
+    show: isProfilePage,
+   },
+  ];
+
+  return tabs.map((tabItem) => {
+   if (!tabItem.show) {
+    return null;
+   }
+
+   const { key, label } = tabItem;
+
+   return (
+    <p
+     key={key}
+     onClick={() => setTab(key)}
+     className={tab === key ? styles.activeTab : styles.tab}
+    >
+     {label}
+    </p>
+   );
+  });
+ };
 
  return (
   <div className={styles.postFeed}>
-   <div className={styles.feedToggle}>
-    <p
-     onClick={() => setTab('posts')}
-     className={tab === 'posts' ? styles.activeTab : styles.tab}>
-     Posts
-    </p>
-
-    <p
-     onClick={() => setTab('bets')}
-     className={tab === 'bets' ? styles.activeTab : styles.tab}>
-     Bets
-    </p>
-
-    {isProfilePage && (
-     <p
-      onClick={() => setTab('media')}
-      className={tab === 'media' ? styles.activeTab : styles.tab}>
-      Media
-     </p>
-    )}
-
-    {!isProfilePage && (
-     <>
-      <p
-       onClick={() => setTab('people')}
-       className={tab === 'people' ? styles.activeTab : styles.tab}>
-       People
-      </p>
-      <p
-       onClick={() => setTab('news')}
-       className={tab === 'news' ? styles.activeTab : styles.tab}>
-       News
-      </p>
-     </>
-    )}
-
-   </div>
-
-   {tab === 'posts' &&
-    posts.map((post: any) => (
-     <PostCard post={post} key={post.id} currentUser={currentUser} hideComment={false} />
-    ))}
-
-   {tab === 'bets' &&
-    posts.map((post: any) => {
-     if (user?.totalBets === 0) {
-      return (
-       <div key={user.id} className={styles.noBetsMessage}>{user?.name} has not made any bets yet!</div>
-      )
-
-
-     }
-     if (post?.Bet) {
-      return (
-       <PostCard post={post} key={post.id} currentUser={currentUser} hideComment={false} />
-      );
-     }
-    })}
-
-   {tab === 'people' && (
-    <div className={styles.peopleFeed}>
-     {users?.map((user) => (
-      <PeopleBox key={user?.id} user={user} />
-     ))}
-    </div>
-   )}
-
-   {tab === 'news' && (
-    <div className={styles.newsFeed}>
-     <News />
-    </div>
-   )}
-
-   {tab === 'media' && (
-    <div className={styles.noBetsMessage}>
-     <p>Media feature coming soon!</p>
-    </div>
-   )}
+   <div className={styles.feedToggle}>{renderTabs()}</div>
+   {renderTabContent()}
   </div>
  );
 };

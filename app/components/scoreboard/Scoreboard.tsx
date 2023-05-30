@@ -5,6 +5,8 @@ import GameCard from './game-card/GameCard';
 import Select from 'react-select';
 import { useState, useRef } from 'react';
 import { IoChevronForwardOutline, IoChevronBackOutline } from 'react-icons/io5'
+import { Game } from '@/app/types/Game';
+import { customStyles } from '@/app/utils/helpers';
 
 const fetcher = (...args: [RequestInfo, RequestInit?]): Promise<any> =>
  fetch(...args).then((res) => res.json());
@@ -21,47 +23,6 @@ const Scoreboard: React.FC = () => {
 
  const games = data && data.events
  // const date = data && data.day.date
-
-
- const customStyles = {
-  control: (provided: any) => ({
-   ...provided,
-   borderRadius: '4px',
-   borderColor: '#2a333f',
-   boxShadow: 'none',
-   backgroundColor: '#2a333f',
-   color: '#fcfeff',
-   cursor: 'pointer'
-  }),
-  option: (provided: any, state: any) => ({
-   ...provided,
-   backgroundColor: state.isSelected ? '#20b46a' : '#2a333f',
-   color: state.isSelected ? '#fcfeff' : '#fcfeff',
-   cursor: 'pointer',
-   ':hover': {
-    backgroundColor: state.isSelected ? '#20b46a' : '#1c2631',
-    color: state.isSelected ? '#fcfeff' : '#fcfeff'
-   }
-  }),
-  menu: (provided: any) => ({
-   ...provided,
-   backgroundColor: '#2a333f',
-
-  }),
-  menuList: (provided: any) => ({
-   ...provided,
-   backgroundColor: '#2a333f',
-   color: '#fcfeff',
-  }),
-  singleValue: (provided: any) => ({
-   ...provided,
-   color: '#fcfeff',
-  }),
-  indicatorSeparator: (provided: any) => ({
-   ...provided,
-   backgroundColor: '#fcfeff',
-  }),
- };
 
  const sports = [
   { value: 'mlb', label: 'MLB', league: 'baseball' },
@@ -89,7 +50,7 @@ const Scoreboard: React.FC = () => {
     <Select placeholder="MLB" isClearable={false} options={sports} styles={customStyles} defaultValue={sports[0]} onChange={(value) => { setSport(value?.league as string); setLeague(value?.value as string) }} />
    </div>
    <div className={styles.games} ref={gameScrollerRef} >
-    {games?.map((game: any) => (
+    {games?.map((game: Game) => (
      <GameCard key={game.id} game={game} />
     ))}
    </div >

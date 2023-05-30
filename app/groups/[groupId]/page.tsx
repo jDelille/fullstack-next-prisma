@@ -1,22 +1,16 @@
-import styles from './Page.module.scss';
 import getUserById from '@/app/actions/getUserById';
 import { SafeUser } from '@/app/types';
-import ProfileMenu from '@/app/components/menu/ProfileMenu';
-import CreatePostForm from '@/app/components/create-post/create-post-form/CreatePostForm';
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import PostFeed from '@/app/components/post-feed/PostFeed';
 import getGroupById from '@/app/actions/getGroupById';
 import getPostsByGroupId from '@/app/actions/getPostsByGroupId';
-import { FaUsers } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import FeedHeader from '@/app/components/feed-header/FeedHeader';
 import { IoArrowBack } from 'react-icons/io5';
 import getUsers from '@/app/actions/getUsers';
-import { format } from 'path';
-import { User } from '@prisma/client';
 import CreatePostFormSkeleton from '@/app/components/skeletons/create-post-form-skeleton/CreatePostFormSkeleton';
 import PostCardSkeleton from '@/app/components/skeletons/post-card-skeleton/PostCardSkeleton';
-
+import { GroupsScreenString } from '@/app/utils/app-string/GroupsScreenString';
+import styles from './Page.module.scss';
 interface IParams {
 	groupId?: string;
 }
@@ -33,7 +27,6 @@ const Group = async ({ params }: { params: IParams }) => {
 		() => import('../../components/post-feed/PostFeed'),
 		{
 			loading: () => <div>
-
 				<PostCardSkeleton />
 				<PostCardSkeleton />
 				<PostCardSkeleton />
@@ -47,7 +40,6 @@ const Group = async ({ params }: { params: IParams }) => {
 		{
 			loading: () => <div>
 				<CreatePostFormSkeleton />
-
 			</div>,
 		}
 	);
@@ -55,13 +47,15 @@ const Group = async ({ params }: { params: IParams }) => {
 	let admin: SafeUser | null = null;
 	let posts: any | null = null;
 	if (group) {
-		admin = await getUserById({ userId: group.adminId });
-		posts = await getPostsByGroupId({ groupId: group.id });
+		[admin, posts] = await Promise.all([
+			getUserById({ userId: group.adminId }),
+			getPostsByGroupId({ groupId: group.id })
+		])
 	}
 
 	return (
 		<div className={styles.page}>
-			<FeedHeader label='Back' icon={IoArrowBack} isBack />
+			<FeedHeader label={GroupsScreenString.back} icon={IoArrowBack} isBack />
 			<div className={styles.header}>
 				<div className={styles.name}>
 					<div className={styles.photo}>
@@ -73,12 +67,12 @@ const Group = async ({ params }: { params: IParams }) => {
 				</div>
 				<p className={styles.description}>{group?.description}</p>
 				<div className={styles.admin}>
-					<p>Admin</p>
+					<p>{GroupsScreenString.admin}</p>
 					<span>{admin?.name}</span>
 				</div>
 				<p className={styles.members}>
 					{group?.memberIds.length} {' '}
-					<span>members</span>
+					<span>{GroupsScreenString.members}</span>
 				</p>
 			</div>
 			<div className={styles.body}>

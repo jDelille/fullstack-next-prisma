@@ -2,6 +2,7 @@
 import Button from '../components/button/Button';
 import useCreateGroupModal from '../hooks/useCreateGroupModal';
 import useLoginModal from '../hooks/useLoginModal';
+import { GroupsScreenString } from '../utils/app-string/GroupsScreenString';
 import styles from './Page.module.scss';
 
 type CreateGroupButtonProps = {
@@ -16,12 +17,12 @@ const CreateGroupButton: React.FC<CreateGroupButtonProps> = ({ currentUserId }) 
 
  return (
   <div className={styles.createGroupButton}>
-   <p className={styles.title}>Create new group</p>
-   <p>Make a group • Invite friends • View bets in real-time</p>
+   <p className={styles.title}>{GroupsScreenString.createGroup}</p>
+   <p>{GroupsScreenString.createGroupSubtext}</p>
    <Button
-    label='Create Group'
+    label={GroupsScreenString.createGroupButtonLabel}
     onClick={currentUserId ? createGroupModal.onOpen : loginModal.onOpen}
-    ariaLabel='Create a group'
+    ariaLabel={GroupsScreenString.createGroupAriaLabel}
    />
   </div>
  );

@@ -12,20 +12,13 @@ import Scoreboard from './components/scoreboard/Scoreboard';
 import ToasterProvider from './providers/ToasterProvider';
 import MobileNavbar from './components/navbar/mobile-navbar/MobileNavbar';
 import CreateGroupModal from './components/modals/group-modal/CreateGroupModal';
-import UserBox from './components/user-box/UserBox';
 import getBetRecord from './actions/getBetRecord';
 import getNotificationByUserId from './actions/getNotificationByUserId';
-import './styles/globals.scss';
-import FollowUsers from './components/followUsers/FollowUsers';
-import getUsers from './actions/getUsers';
 import PollModal from './components/modals/poll-modal/PollModal';
-import Button from './components/button/Button';
 import AuthButtons from './components/auth-buttons/AuthButtons';
-import News from './components/news/News';
-import UserMenu from './components/navbar/UserMenu';
-import GroupsBox from './components/groups-box/GroupsBox';
 import CreatePostTextarea from './components/create-post/create-post-textarea/CreatePostTextarea';
 import NavigationPanel from './components/navigation-panel/NavigationPanel';
+import './styles/globals.scss';
 
 export const metadata = {
   title: 'Wagerly',

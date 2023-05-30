@@ -1,8 +1,9 @@
 'use client'
 
 import Button from "../components/button/Button";
-import styles from './Page.module.scss';
 import useCreateGroupModal from '../hooks/useCreateGroupModal';
+import { GroupsScreenString } from "../utils/app-string/GroupsScreenString";
+import styles from './Page.module.scss';
 
 const NoGroupMessage = () => {
  const createGroupModal = useCreateGroupModal();
@@ -10,11 +11,11 @@ const NoGroupMessage = () => {
 
  return (
   <div className={styles.noGroupMessage}>
-   <p>There are no groups</p>
+   <p>{GroupsScreenString.noGroupsMessage}</p>
    <Button
-    label='Create group'
+    label={GroupsScreenString.createGroupButtonLabel}
     onClick={createGroupModal.onOpen}
-    ariaLabel="Create group"
+    ariaLabel={GroupsScreenString.createGroupAriaLabel}
    />
   </div>
  );
