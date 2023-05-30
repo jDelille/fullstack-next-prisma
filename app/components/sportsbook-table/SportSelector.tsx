@@ -22,9 +22,10 @@ const SportSelector: React.FC<SportSelectorProps> = ({ setSport, sport, setLeagu
    <p className={sport === 'hockey' ? styles.selectedSport : styles.sport} onClick={() => { setSport('hockey'); setLeague('nhl') }}>
     Hockey
    </p>
-   <p className={sport === 'soccer' ? styles.selectedSport : styles.sport} onClick={() => { setSport('soccer'); setLeague('usa.1') }}>
+   <p className={sport === 'soccer' ? styles.selectedSportHideOnMobile : styles.sportHideOnMobile} onClick={() => { setSport('soccer'); setLeague('usa.1') }}>
     Soccer
    </p>
+
   </div>
  );
 };

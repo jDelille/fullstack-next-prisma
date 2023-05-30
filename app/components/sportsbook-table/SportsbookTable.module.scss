@@ -10,15 +10,22 @@
 	padding: 20px 0;
 	background-color: $lightGray;
 	justify-content: space-evenly;
-
+	overflow-x: auto;
+	@include breakpoint(xs) {
+		max-width: 100%;
+	}
 	.sportSelector {
 		display: flex;
 		gap: 1rem;
 		@include breakpoint(xs) {
+			max-width: 100%;
 			gap: 5px;
+			padding: 0 10px;
 		}
 		.sport,
-		.selectedSport {
+		.sportHideOnMobile,
+		.selectedSport,
+		.selectedSportHideOnMobile {
 			border: 1px solid $border;
 			padding: 6px 12px;
 			border-radius: 22px;
@@ -33,6 +40,12 @@
 		.selectedSport {
 			color: $white;
 			border: 1px solid $white;
+		}
+		.sportHideOnMobile,
+		.selectedSportHideOnMobile {
+			@include breakpoint(xs) {
+				display: none;
+			}
 		}
 	}
 }
