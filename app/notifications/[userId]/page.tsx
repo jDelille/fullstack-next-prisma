@@ -23,7 +23,7 @@ const Notifications = async ({ params }: { params: IParams }) => {
  });
 
  const DynamicNotification = dynamic(() => import('../../components/notification/Notification'), {
-  loading: () => <p>Loading...</p>
+  loading: () => <p></p>
  })
 
  return (
