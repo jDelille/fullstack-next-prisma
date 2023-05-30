@@ -17,7 +17,7 @@ const BetSlip = observer(() => {
   const [wagerAmount, setWagerAmount] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
-  const selectedBet = [...betStore.selectedBet]
+  let selectedBet = [...betStore.selectedBet]
 
   const payout = calculatePayout(wagerAmount, selectedBet.map((bet: Bet) => bet.odds));
 
@@ -45,8 +45,8 @@ const BetSlip = observer(() => {
     axios.post('/api/parlay', payload)
       .then(() => {
         toast.success('Bet posted');
+        betStore.selectedBet = [];
         router.refresh();
-        ;
       })
       .catch(() => {
         toast.error('Something went wrong');
