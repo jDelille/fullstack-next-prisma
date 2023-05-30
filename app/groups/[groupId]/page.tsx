@@ -22,9 +22,12 @@ interface IParams {
 }
 
 const Group = async ({ params }: { params: IParams }) => {
-	const group = await getGroupById(params);
-	const currentUser = await getCurrentUser();
-	const users = await getUsers()
+
+	const [group, currentUser, users] = await Promise.all([
+		getGroupById(params),
+		getCurrentUser(),
+		getUsers()
+	])
 
 	const DynamicPostFeed = dynamic(
 		() => import('../../components/post-feed/PostFeed'),
