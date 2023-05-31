@@ -31,13 +31,16 @@ const Input: React.FC<InputProps> = ({
  onChange,
  inputMode
 }) => {
+
  return (
   <div className={formatPrice ? styles.numberInputWrapper : styles.inputWrapper}>
    {!formatPrice && (
     <label className={styles.inputLabel}>{label}</label>
    )}
    {/* TODO - add money icon if wager */}
-   <MdAttachMoney className={styles.moneySymbol} size={18} color='#2a333f' />
+   {formatPrice && (
+    <MdAttachMoney className={styles.moneySymbol} size={18} color='#2a333f' />
+   )}
    <input
     id={id}
     disabled={disabled}

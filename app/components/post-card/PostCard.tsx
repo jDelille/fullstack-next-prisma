@@ -92,7 +92,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         </div>
       )}
 
-      {post?.Parlay && <PostCardParlay post={post.Parlay.bets} odds={post.Parlay.odds} wager={post.Parlay.wager} payout={post.Parlay.payout} />}
+      {post?.Parlay && (
+        <div className={styles.postParlay}>
+          <PostCardParlay post={post.Parlay.bets} odds={post.Parlay.odds}
+            wager={post.Parlay.wager} payout={post.Parlay.payout} />
+        </div>
+      )}
 
       {post?.Poll && (
         <div className={styles.postPoll}>

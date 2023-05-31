@@ -4,7 +4,6 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import { IoMdClose } from 'react-icons/io';
 import styles from './AuthModal.module.scss';
-import Heading from '../../heading/Heading';
 import Input from '../../input/Input';
 import { toast } from 'react-hot-toast';
 import useLoginModal from '@/app/hooks/useLoginModal';
@@ -17,6 +16,7 @@ const LoginModal = () => {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [error, setError] = useState('');
 
   const {
     register,
@@ -47,6 +47,7 @@ const LoginModal = () => {
 
       if (callback?.error) {
         toast.error(callback.error)
+        setError('Invalid credentials')
       }
     })
   };
@@ -75,6 +76,9 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className={styles.bodyContent}>
+      {error && error.length > 1 && (
+        <div className={styles.error}>{error}</div>
+      )}
       <Input
         id='email'
         label='Email'
@@ -83,6 +87,7 @@ const LoginModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='Email address'
       />
       <Input
         id='password'
@@ -92,6 +97,7 @@ const LoginModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='••••••••'
       />
     </div>
   )

@@ -7,9 +7,9 @@
 	flex-direction: column;
 	gap: 10px;
 	margin-bottom: 1rem;
+
 	label {
-		font-size: 16px;
-		margin-top: 10px;
+		font-size: 14px;
 		font-weight: 600;
 	}
 	.moneySymbol {
@@ -20,7 +20,7 @@
 	.input {
 		width: 100%;
 		padding: 10px;
-		border-radius: 8px;
+		border-radius: 4px;
 		outline: none;
 		height: 45px;
 		border: none;
@@ -30,6 +30,9 @@
 		::-webkit-inner-spin-button {
 			-webkit-appearance: none;
 			margin: 0;
+		}
+		&::placeholder {
+			color: darken(lightgray, 10%) !important;
 		}
 		:disabled {
 			cursor: not-allowed;

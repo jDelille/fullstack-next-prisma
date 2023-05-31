@@ -1,19 +1,17 @@
 'use client';
 import axios from 'axios';
-import { AiFillGithub } from 'react-icons/ai';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import useRegisterModal from '@/app/hooks/useRegitserModal';
 import Modal from '../Modal';
 import { IoMdClose } from 'react-icons/io';
 import styles from './AuthModal.module.scss';
-import Heading from '../../heading/Heading';
 import Input from '../../input/Input';
 import { toast } from 'react-hot-toast';
 import ImageUpload from '../../image-upload/ImageUpload';
-import Image from 'next/image';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signIn } from 'next-auth/react';
+
 const RegisterModal = () => {
 
   const registerModal = useRegisterModal();
@@ -93,6 +91,7 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='Email address (required)'
       />
       <Input
         id='name'
@@ -102,6 +101,7 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='Your name (required)'
       />
       <Input
         id='username'
@@ -111,6 +111,7 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='Your username (required)'
       />
       <Input
         id='password'
@@ -120,6 +121,7 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
+        placeholder='Your password (required)'
       />
       <div className={styles.addProfilePicture}>
         <p>Profile Picture</p>
