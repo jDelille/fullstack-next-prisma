@@ -52,6 +52,9 @@
 				font-size: 12px;
 				flex-wrap: wrap;
 				max-width: 80%;
+				@include breakpoint(xs) {
+					max-width: 75%;
+				}
 			}
 			.pay {
 				display: flex;

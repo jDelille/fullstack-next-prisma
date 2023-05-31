@@ -4,6 +4,7 @@ import SportSelector from "@/app/components/sportsbook-table/SportSelector";
 import { useEffect, useState } from "react";
 import styles from './SportsbookTable.module.scss';
 import GameCard from "./game-card/GameCard";
+import BetSlip from "../bet-slip/BetSlip";
 
 const SportsbookTable = () => {
 
@@ -56,6 +57,9 @@ const SportsbookTable = () => {
      ))}
     </div>
 
+    <div className={styles.betSlipMobile}>
+     <BetSlip isMobile />
+    </div>
 
    </div>
   </>

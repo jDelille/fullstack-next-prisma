@@ -2,6 +2,8 @@
 import { useState, useEffect, useCallback } from "react";
 import styles from './Popup.module.scss';
 import { IconType } from "react-icons";
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 type PopupProps = {
  isOpen?: boolean;
@@ -40,7 +42,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, title, body, footer, act
  return (
   <>
    <div className={styles.overlay}>
-    <div className={showPopup ? styles.popup : styles.hidePopup}>
+    <SimpleBar className={showPopup ? styles.popup : styles.hidePopup}>
      <div className={styles.popupContent}>
       <div className={styles.popupHeader}>
        {title}
@@ -54,7 +56,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, title, body, footer, act
        {body}
       </div>
      </div>
-    </div>
+    </SimpleBar>
    </div>
   </>
  );

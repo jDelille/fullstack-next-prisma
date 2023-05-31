@@ -18,7 +18,11 @@ import InfoPopup from './info-popup/InfoPopup';
 import usePlacedBetPopup from '@/app/hooks/usePlacedBetPopup';
 import useInfoPopup from '@/app/hooks/useInfoPopup';
 
-const BetSlip = observer(() => {
+type BetSlipProps = {
+  isMobile?: boolean;
+}
+
+const BetSlip: React.FC<BetSlipProps> = observer(({ isMobile }) => {
   const router = useRouter();
 
   const placedBetPopup = usePlacedBetPopup();
@@ -30,6 +34,7 @@ const BetSlip = observer(() => {
   const [addText, setAddText] = useState(false)
   const [showInfoPopup, setShowInfoPopup] = useState(false)
   const [error, setError] = useState("")
+  const [minimize, setMinimize] = useState(false)
 
   let selectedBet = [...betStore.selectedBet]
 
@@ -107,7 +112,7 @@ const BetSlip = observer(() => {
 
 
   return (
-    <div className={styles.betSlip}>
+    <div className={minimize ? styles.betSlipMinimize : styles.betSlip}>
       <div className={styles.betSlipContent}>
         <div className={selectedBet.length > 1 ? styles.shadowHeader : styles.header}>
           <p className={styles.title}>
@@ -115,6 +120,13 @@ const BetSlip = observer(() => {
             Bet Slip</p>
           {selectedBet.length > 0 && (
             <p className={styles.clear} onClick={() => betStore.clearSelectedBets()}>Clear All</p>
+          )}
+          {isMobile && !minimize && (
+            <p className={styles.minimize} onClick={() => setMinimize(true)}>Minimize</p>
+          )}
+
+          {isMobile && minimize && (
+            <p className={styles.minimize} onClick={() => setMinimize(false)}>Expand</p>
           )}
           <div className={styles.infoButton}>
             <AiFillInfoCircle color='#20b46a' size={18} onClick={() => infoPopup.onOpen()} />

@@ -1,4 +1,5 @@
 @import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
 
 .inputWrapper,
 .numberInputWrapper {
@@ -17,6 +18,9 @@
 		left: 5px;
 		top: 5px;
 		color: darken(lightgray, 10%) !important;
+		@include breakpoint(xs) {
+			top: 4px;
+		}
 	}
 	.input {
 		width: 100%;

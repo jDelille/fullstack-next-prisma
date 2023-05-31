@@ -1,7 +1,8 @@
 @import '@/app/styles/variables';
 @import '@/app/styles/breakpoints';
 
-.betSlip {
+.betSlip,
+.betSlipMinimize {
 	background-color: $white;
 	width: 100%;
 	min-height: 175px;
@@ -15,7 +16,15 @@
 	overflow-y: auto;
 
 	@include breakpoint(md) {
-		max-height: 510px;
+		max-height: 515px;
+	}
+	.minimize {
+		font-size: 13px;
+		cursor: pointer;
+		padding-right: 15px;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 	.betSlipContent {
 		width: 100%;
@@ -66,6 +75,8 @@
 		.shadowHeader,
 		.shadowFooter {
 			box-shadow: 0 0 8px 0 #00000040;
+			z-index: 99;
+			background-color: $white;
 		}
 		.noBetsMessage {
 			display: flex;
@@ -236,4 +247,12 @@
 			font-weight: 500;
 		}
 	}
+}
+
+.betSlipMinimize {
+	max-height: 42px;
+	min-height: 42px;
+	overflow-y: hidden;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
