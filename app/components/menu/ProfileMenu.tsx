@@ -22,7 +22,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ userId, username, currentUser
 
   const editProfileModal = useEditProfileModal();
 
-  const { handleFollow, handleUnfollow, isLoading } = useFollow(userId as string, currentUserId as string, setIsMenuOpen)
+  const { handleFollow, handleUnfollow, isLoading } = useFollow(userId as string, username as string, currentUserId as string, setIsMenuOpen)
 
 
   const onDeleteGroup = useCallback(
