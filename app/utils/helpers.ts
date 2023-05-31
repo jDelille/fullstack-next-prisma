@@ -1,8 +1,12 @@
+import betStore from '../store/betStore';
+
 export function calculateParlayOdds(oddsArray: number[]): number {
 	const moneylineOdds = oddsArray.map((odds) => {
 		if (odds > 0) {
+			betStore.setOdds(odds / 100 + 1);
 			return odds / 100 + 1;
 		} else {
+			betStore.setOdds(100 / Math.abs(odds) + 1);
 			return 100 / Math.abs(odds) + 1;
 		}
 	});
@@ -14,8 +18,10 @@ export function calculateParlayOdds(oddsArray: number[]): number {
 	const decimalOdds = parlayOdds - 1;
 
 	if (decimalOdds >= 2) {
+		betStore.setParlayOdds(Math.round(decimalOdds * 100 - 100));
 		return Math.round(decimalOdds * 100 - 100);
 	} else {
+		betStore.setParlayOdds(Math.round(100 / decimalOdds - 100));
 		return Math.round(100 / decimalOdds - 100);
 	}
 }
@@ -28,6 +34,7 @@ export const calculatePayout = (wager: number, oddsArray: number[]): number => {
 
 	const payoutAmount = wager * decimalOdds;
 	const formattedPayout = Number(payoutAmount.toFixed(2));
+	betStore.setPayout(Number(payoutAmount.toFixed(2)));
 	return formattedPayout;
 };
 

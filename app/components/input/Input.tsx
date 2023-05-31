@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({
    )}
    {/* TODO - add money icon if wager */}
    {formatPrice && (
-    <MdAttachMoney className={styles.moneySymbol} size={18} color='#2a333f' />
+    <p className={styles.moneySymbol}>$</p>
    )}
    <input
     id={id}

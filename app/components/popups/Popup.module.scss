@@ -1,0 +1,92 @@
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.overlay {
+	@include overlay();
+}
+
+.popup,
+.hidePopup {
+	@include modal();
+	background-color: $white;
+	color: $black;
+	.popupContent {
+		.popupHeader {
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			position: relative;
+			gap: 1rem;
+			font-size: 16px;
+			font-weight: 600;
+			justify-content: space-between;
+			svg {
+				cursor: pointer;
+			}
+		}
+		.popupBody {
+			padding: 10px;
+			font-size: 14px;
+			.betView {
+				border: 1px solid #cac8c8;
+				border-radius: 4px;
+				.money {
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					padding: 10px;
+					font-size: 12px;
+					p {
+						display: flex;
+						gap: 5px;
+						span {
+							font-weight: 600;
+						}
+					}
+				}
+				.game {
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					padding: 10px;
+					border-bottom: 1px solid #cac8c8;
+
+					.team {
+						display: flex;
+						gap: 3px;
+						font-weight: 600;
+						.odds {
+							margin-left: auto;
+						}
+					}
+					.type,
+					.matchup {
+						font-size: 12px;
+					}
+				}
+			}
+			.viewFeed,
+			.stayHere {
+				padding: 10px 0;
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+				font-size: 14px;
+				a {
+					color: $black;
+				}
+				span {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+.hidePopup {
+	transform: translateY(300px);
+	opacity: 0;
+}

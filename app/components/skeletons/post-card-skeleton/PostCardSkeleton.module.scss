@@ -5,9 +5,7 @@
 .post {
 	@include postCard();
 	height: 300px;
-	// margin-top: 1rem;
 	border-bottom: 2px solid $lightGray;
-
 	.postHeader {
 		display: flex;
 		gap: 10px;

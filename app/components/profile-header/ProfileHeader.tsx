@@ -9,6 +9,8 @@ import { format } from 'date-fns';
 import styles from './ProfileHeader.module.scss';
 import useEditProfileModal from '@/app/hooks/useEditProfileModal';
 import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
+import useFollow from '@/app/hooks/useFollow';
+import Button from '../button/Button';
 
 type ProfileHeaderProps = {
   user: SafeUser | null;
@@ -29,6 +31,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
 
   let joinedDate = format(new Date(user?.createdAt as string), 'MMMM dd, yyyy');
 
+  const { handleFollow, handleUnfollow, isLoading } = useFollow(user?.id as string, currentUserId as string)
+
   return (
     <div className={styles.profileHeader}>
       <div className={styles.top}>
@@ -48,6 +52,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           username={user?.name}
           currentUserId={currentUserId}
         />
+        {/* <Button label='Follow' onClick={() => handleFollow()} /> */}
       </div>
       <div className={styles.middle}>
         <div className={styles.bio}>

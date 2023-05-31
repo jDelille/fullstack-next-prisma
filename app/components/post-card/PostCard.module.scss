@@ -9,6 +9,7 @@
 	.postBody {
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;
+		font-size: 14px;
 		@include breakpoint(xs) {
 			font-size: 14px;
 			margin: 0;

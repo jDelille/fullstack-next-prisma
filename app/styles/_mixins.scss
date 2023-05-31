@@ -87,7 +87,6 @@
 
 @mixin postCard() {
 	width: 100%;
-	// border-radius: 6px;
 	background-color: $gray;
 	border-bottom: 1px solid $border;
 	color: $white;
@@ -104,15 +103,14 @@
 	align-items: center;
 	display: flex;
 	overflow-x: hidden;
-	// overflow-y: auto;
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 99999999;
+	z-index: 99999;
 	outline: none;
-	background-color: rgba(3, 3, 3, 0.7);
+	background-color: rgba(3, 3, 3, 0.3);
 }
 
 @mixin modal() {
@@ -120,7 +118,6 @@
 	width: 30%;
 	max-width: 450px;
 	min-width: 450px;
-	height: fit-content;
 	padding: 1rem;
 	border-radius: 12px;
 	background-color: $lightGray;

@@ -1,0 +1,31 @@
+@import '@/app/styles/breakpoints';
+@import '@/app/styles/variables';
+@import '@/app/styles/mixins';
+
+.overlay {
+	@include overlay();
+}
+
+.modal,
+.hideModal {
+	@include modal();
+	background-color: $white;
+	color: $black;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	z-index: 99999;
+	.title {
+		font-weight: 800;
+		padding-bottom: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		svg {
+			cursor: pointer;
+		}
+	}
+	.info {
+		padding-top: 10px;
+		font-size: 14px;
+	}
+}

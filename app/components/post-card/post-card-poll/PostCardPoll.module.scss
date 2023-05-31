@@ -17,14 +17,35 @@
 		flex-direction: column;
 		position: relative;
 		gap: 1rem;
-		.optionWrapper {
+		.votedOptionWrapper {
+			display: flex;
+			align-items: center;
+			position: relative;
+			width: 100%;
+			.percent {
+				position: absolute;
+				right: 0px;
+				font-weight: 500;
+				font-size: 14px;
+			}
+		}
+		.optionWrapper,
+		.selectedOptionWrapper,
+		.votedOption,
+		.leadingOption {
 			width: 100%;
 			border-radius: 4px;
 			position: relative;
 			display: flex;
-			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 			gap: 10px;
 			font-size: 14px;
+			min-height: 40px;
+			border: 1px solid $border;
+			padding: 0 10px;
+			font-weight: 500;
+			cursor: pointer;
 			.optionText {
 				display: flex;
 				align-items: center;
@@ -80,6 +101,23 @@
 				}
 			}
 		}
+
+		.selectedOptionWrapper {
+			border: 1px solid $accent;
+		}
+
+		.votedOption,
+		.leadingOption {
+			justify-content: flex-start;
+			cursor: default;
+			.vote {
+				p {
+					display: flex;
+					align-items: center;
+					gap: 5px;
+				}
+			}
+		}
 	}
 	.voteButton {
 		padding-right: 10px;
@@ -101,13 +139,18 @@
 			}
 		}
 	}
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 14px;
+		color: $secondaryText;
+	}
 	.expireDate {
 		display: flex;
 		height: 50px;
 		align-items: center;
-		color: $secondaryText;
 		gap: 5px;
-		font-size: 14px;
 		@include breakpoint(xs) {
 			font-size: 12px;
 		}

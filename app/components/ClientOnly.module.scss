@@ -2,9 +2,14 @@
 
 .loadingContent {
 	@include page();
-	padding-top: 2rem;
+	height: fit-content;
+	position: relative;
+
 	@include breakpoint(sm) {
 		padding-top: 0;
+		min-width: calc(491px - $navigationPanelWidth - 55px);
+		max-width: calc(100% - $navigationPanelWidth);
+		overflow-x: hidden;
 	}
 	@include breakpoint(xs) {
 		padding-top: 2.7rem;

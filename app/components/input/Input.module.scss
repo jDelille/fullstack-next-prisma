@@ -14,8 +14,9 @@
 	}
 	.moneySymbol {
 		position: absolute;
-		left: 0px;
+		left: 5px;
 		top: 5px;
+		color: darken(lightgray, 10%) !important;
 	}
 	.input {
 		width: 100%;

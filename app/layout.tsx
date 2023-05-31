@@ -19,6 +19,9 @@ import AuthButtons from './components/auth-buttons/AuthButtons';
 import CreatePostTextarea from './components/create-post/create-post-textarea/CreatePostTextarea';
 import NavigationPanel from './components/navigation-panel/NavigationPanel';
 import './styles/globals.scss';
+import PlacedBetPopup from './components/popups/PlacedBetPopup';
+import InfoPopup from './components/bet-slip/info-popup/InfoPopup';
+import BetInfoPopup from './components/popups/BetInfoPopup';
 
 export const metadata = {
   title: 'Wagerly',
@@ -73,7 +76,8 @@ export default async function RootLayout({
           />
           <CreateGroupModal />
           <PollModal />
-
+          <PlacedBetPopup />
+          <BetInfoPopup />
           <div className='sidebarContainer'>
             {/* <input type='text' className='searchInput' placeholder='Search' /> */}
             <div className='currentUser'>

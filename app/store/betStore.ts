@@ -3,6 +3,10 @@ import { Bet } from '../types/Bet';
 
 class BetStore {
 	selectedBet: Bet[] = [];
+	wager: number = 0;
+	payout: number = 0;
+	odds: number = 0;
+	parlayOdds: number = 0;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -10,6 +14,22 @@ class BetStore {
 
 	setSelectedBet(bet: Bet) {
 		this.selectedBet.push(bet);
+	}
+
+	setWager(wager: number) {
+		this.wager = wager;
+	}
+
+	setPayout(payout: number) {
+		this.payout = payout;
+	}
+
+	setOdds(odds: number) {
+		this.odds = odds;
+	}
+
+	setParlayOdds(paylayOdds: number) {
+		this.parlayOdds = paylayOdds;
 	}
 
 	clearSelectedBets() {
