@@ -203,8 +203,6 @@ const BetModal = () => {
 
   }, [step, odds, wagerAmount, league, match]);
 
-  console.log(errors);
-
   let bodyContent = (
     <div>
 
