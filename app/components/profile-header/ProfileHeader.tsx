@@ -31,7 +31,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
 
   let joinedDate = format(new Date(user?.createdAt as string), 'MMMM dd, yyyy');
 
-  const { handleFollow, handleUnfollow, isLoading } = useFollow(user?.id as string, currentUserId as string)
+  const { handleFollow, handleUnfollow, isLoading } = useFollow(user?.id as string, user?.username as string, currentUserId as string)
 
   return (
     <div className={styles.profileHeader}>
