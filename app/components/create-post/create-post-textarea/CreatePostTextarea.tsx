@@ -165,7 +165,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
             </div>
 
           )}
-          {/* 
+
           {postPhoto.url && (
             <div className={styles.imagePreview}>
 
@@ -183,7 +183,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
                 style={{ objectFit: 'cover' }}
               />
             </div>
-          )} */}
+          )}
 
 
           <div className={styles.createPostButtons}>
@@ -204,9 +204,9 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               />
             </div>
 
-            {/* <div className={styles.icon} onClick={() => setShowGifs(true)}>
+            <div className={styles.icon} onClick={() => setShowGifs(true)}>
               <AiOutlineFileGif color="#2a333f" size={20} />
-            </div> */}
+            </div>
             {showGifs && (
               <Gifs
                 onChange={(image) => setPhoto(image)}
@@ -236,6 +236,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
             isButtonDisabled={!body || postBodyLength > 500}
             ariaLabel='Publish post'
           />
+
         </div>
       </>
     ) : (

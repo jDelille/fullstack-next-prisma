@@ -34,7 +34,7 @@ const Gifs: React.FC<GifsProps> = ({ onChange, setCustomValue, register, errors,
      <Grid
       onGifClick={(gif, e) => { e.preventDefault(); setCustomValue('photo', gif.images.downsized) }}
       fetchGifs={fetchGifs}
-      width={500}
+      width={width}
       columns={3}
       gutter={2}
      />
