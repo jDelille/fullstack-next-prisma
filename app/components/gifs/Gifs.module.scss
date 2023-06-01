@@ -1,17 +1,26 @@
 @import '@/app/styles/variables';
 @import '@/app/styles/breakpoints';
+@import '@/app/styles/mixins';
 
+.overlay {
+	@include overlay();
+	z-index: 9999;
+}
 .gifs {
 	width: fit-content;
 	height: 500px;
-	position: absolute;
+	position: fixed;
 	top: 100px;
 	z-index: 99999;
-	padding: 0 1rem;
 	overflow-x: hidden;
-	background-color: $black;
+	background-color: $white;
 	border-radius: 6px;
 	outline: 1px solid $lightGray;
+	width: 50%;
+	max-height: 500px;
+	max-width: 500px;
+	overflow-y: auto;
+	padding: 10px 0;
 	@include breakpoint(sm) {
 		max-width: 100%;
 		height: 60vh;
@@ -21,9 +30,15 @@
 	.search {
 		position: sticky;
 		top: 0;
-		background-color: $black;
+		background-color: $white;
 		z-index: 99999999;
-		padding: 10px 0;
+		padding: 10px 1rem;
 		width: 100%;
+
+		input {
+			background-color: $white !important;
+			border: 1px solid #dadada;
+			color: $black;
+		}
 	}
 }

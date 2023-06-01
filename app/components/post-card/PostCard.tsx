@@ -69,7 +69,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>
       </div>
       {post?.photo && (
-        <div className={styles.postPhoto}>
+        <div className={post?.photo.url ? styles.postGif : styles.postPhoto}>
           <Image
             src={post?.photo.url || post?.photo}
             fill

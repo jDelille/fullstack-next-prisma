@@ -14,10 +14,11 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { CgPoll } from 'react-icons/cg';
 import Image from 'next/image';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { AiFillCloseCircle, AiOutlineFileGif, AiOutlineGif } from 'react-icons/ai';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import BetSlip from '../../bet-slip/BetSlip';
+import Gifs from '../../gifs/Gifs';
 
 type CreatePostTextareaProps = {
   userPhoto?: string;
@@ -40,6 +41,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false)
+  const [showGifs, setShowGifs] = useState(false);
 
   const {
     register,
@@ -66,6 +68,8 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
       shouldTouch: true,
     });
   };
+
+  console.log(postPhoto)
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -144,7 +148,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
           </textarea>
 
-          {photo && (
+          {photo || postPhoto.url && (
             <div className={styles.imagePreview}>
 
               <div
@@ -154,7 +158,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               </div>
 
               <Image
-                src={photo}
+                src={photo || postPhoto.url}
                 fill
                 alt='Uploaded Image'
                 className={styles.imagePreview}
@@ -164,14 +168,15 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
           )}
 
+
           <div className={styles.createPostButtons}>
-            <div
+            {/* <div
               className={styles.icon}
               onClick={() => {
                 !userId ? loginModal.onOpen() : betModal.onOpen();
               }}>
               <HiOutlineBanknotes color='#2a333f' size={21} />
-            </div>
+            </div> */}
             <div className={styles.icon}>
               <ImageUpload
                 value={photo}
@@ -182,6 +187,18 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               />
             </div>
 
+            <div className={styles.icon} onClick={() => setShowGifs(true)}>
+              <AiOutlineFileGif color="#2a333f" size={20} />
+            </div>
+            {showGifs && (
+              <Gifs
+                onChange={(image) => setPhoto(image)}
+                setCustomValue={setCustomValue}
+                register={register}
+                errors={errors}
+                setShowGifs={setShowGifs}
+              />
+            )}
             <div className={styles.icon} onClick={() => pollModal.onOpen()}>
               <CgPoll size={20} color='#2a333f' />
             </div>

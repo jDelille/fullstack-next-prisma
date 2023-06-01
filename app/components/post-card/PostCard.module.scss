@@ -15,7 +15,8 @@
 			margin: 0;
 		}
 	}
-	.postPhoto {
+	.postPhoto,
+	.postGif {
 		max-height: 400px;
 		position: relative;
 		// border: 1px solid $border;
@@ -24,6 +25,17 @@
 
 		img {
 			max-height: 400px;
+			position: relative !important;
+			width: 100%;
+			border-radius: 4px;
+			object-fit: cover;
+			cursor: zoom-in;
+		}
+	}
+	.postGif {
+		max-height: 600px;
+		img {
+			max-height: 600px;
 			position: relative !important;
 			width: 100%;
 			border-radius: 4px;

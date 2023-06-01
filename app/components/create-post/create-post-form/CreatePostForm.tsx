@@ -132,14 +132,15 @@ const CreatePostForm = ({
 								</div>
 							)}
 							{/* <AiOutlineFileGif color="#abadb1" size={23} onClick={() => setShowGifs(true)} /> */}
-							{showGifs && (
+							{/* {showGifs && (
 								<Gifs
 									onChange={(image) => setPhoto(image)}
 									setCustomValue={setCustomValue}
 									register={register}
 									errors={errors}
+									setShowGifs={setShowGifs}
 								/>
-							)}
+							)} */}
 							{userId && !isGroup && (
 								<div className={styles.icon}>
 									<ImageUpload
