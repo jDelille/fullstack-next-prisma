@@ -69,8 +69,6 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
     });
   };
 
-  console.log(postPhoto)
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
@@ -148,7 +146,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
           </textarea>
 
-          {photo || postPhoto.url && (
+          {photo && (
             <div className={styles.imagePreview}>
 
               <div
@@ -158,7 +156,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               </div>
 
               <Image
-                src={photo || postPhoto.url}
+                src={photo}
                 fill
                 alt='Uploaded Image'
                 className={styles.imagePreview}
@@ -167,6 +165,25 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
             </div>
 
           )}
+          {/* 
+          {postPhoto.url && (
+            <div className={styles.imagePreview}>
+
+              <div
+                className={styles.closeImagePreview}
+                onClick={clearPhoto}>
+                <AiFillCloseCircle size={30} />
+              </div>
+
+              <Image
+                src={postPhoto.url}
+                fill
+                alt='Uploaded Image'
+                className={styles.imagePreview}
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )} */}
 
 
           <div className={styles.createPostButtons}>
@@ -187,9 +204,9 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               />
             </div>
 
-            <div className={styles.icon} onClick={() => setShowGifs(true)}>
+            {/* <div className={styles.icon} onClick={() => setShowGifs(true)}>
               <AiOutlineFileGif color="#2a333f" size={20} />
-            </div>
+            </div> */}
             {showGifs && (
               <Gifs
                 onChange={(image) => setPhoto(image)}
