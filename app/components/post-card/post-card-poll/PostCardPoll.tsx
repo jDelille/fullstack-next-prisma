@@ -36,9 +36,9 @@ const PostCardPoll: React.FC<PostCardPollProps> = ({
   const totalVotes = option1Votes + option2Votes;
 
   const option1Width =
-    totalVotes !== 0 ? `${((option1Votes / totalVotes) * 100).toFixed(2)}%` : '';
+    totalVotes !== 0 ? `${((option1Votes / totalVotes) * 100).toFixed(0)}%` : '';
   const option2Width =
-    totalVotes !== 0 ? `${((option2Votes / totalVotes) * 100).toFixed(2)}%` : '';
+    totalVotes !== 0 ? `${((option2Votes / totalVotes) * 100).toFixed(0)}%` : '';
 
   const onVote = useCallback(
     async (pollId: string) => {
