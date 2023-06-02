@@ -55,6 +55,10 @@ body {
 		padding: 0 10px;
 	}
 
+	@include breakpoint(sm) {
+		top: $gamebarHeight;
+	}
+
 	@include breakpoint(xs) {
 		max-width: 0;
 		display: none;
