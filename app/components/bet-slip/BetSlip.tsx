@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import betStore from '@/app/store/betStore';
 import { observer } from 'mobx-react';
 import Button from '../button/Button';
@@ -14,7 +14,6 @@ import Input from '../input/Input';
 import { FieldValues, useForm } from 'react-hook-form';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-import InfoPopup from './info-popup/InfoPopup';
 import usePlacedBetPopup from '@/app/hooks/usePlacedBetPopup';
 import useInfoPopup from '@/app/hooks/useInfoPopup';
 
@@ -108,6 +107,12 @@ const BetSlip: React.FC<BetSlipProps> = observer(({ isMobile }) => {
         placedBetPopup.onOpen();
       });
   }
+
+  useEffect(() => {
+    if (selectedBet.length === 0) {
+      setError("")
+    }
+  }, [selectedBet.length])
 
 
 

@@ -1,7 +1,7 @@
 'use client';
 
 import useEditProfileModal from '@/app/hooks/useEditProfileModal';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Modal.module.scss';
 import Modal from './Modal';
@@ -13,12 +13,14 @@ import { useRouter } from 'next/navigation';
 import Textarea from '../textarea/Textarea';
 import ImageUpload from '../image-upload/ImageUpload';
 import Button from '../button/Button';
+import { Sports } from '@/app/constants/@Sports';
 
 type EditProfileModalProps = {
 	name?: string;
 	username?: string;
 	bio?: string;
 	userPhoto?: string
+	location?: string;
 }
 
 enum STEPS {
@@ -26,13 +28,17 @@ enum STEPS {
 	PASSWORD = 1
 }
 
-const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio, userPhoto }) => {
+const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio, userPhoto, location }) => {
 	const router = useRouter();
 
 	const editProfileModal = useEditProfileModal();
 	const [isLoading, setIsLoading] = useState(false);
 	const [photo, setPhoto] = useState('');
 	const [step, setStep] = useState(STEPS.DEFAULT);
+
+	let selectedSports: String[] = []
+
+	console.log(selectedSports)
 
 	const {
 		register,
@@ -45,7 +51,8 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 		defaultValues: {
 			name: '',
 			username: '',
-			bio: ''
+			bio: '',
+			location: '',
 		},
 	});
 
@@ -93,12 +100,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 
 	let bodyContent = (
 		<div className={styles.bodyContent}>
-			<p className={styles.imageUploadLabel}>Profile picture</p>
-			<ImageUpload
-				value={photo || userPhoto as string}
-				onChange={(image) => setPhoto(image)}
-				setCustomValue={setCustomValue}
-			/>
+			<div className={styles.addProfilePicture}>
+				<p className={styles.imageUploadLabel}>Profile picture</p>
+				<ImageUpload
+					value={photo || userPhoto as string}
+					onChange={(image) => setPhoto(image)}
+					setCustomValue={setCustomValue}
+				/>
+			</div>
+
 			<Input
 				id='name'
 				label='Name'
@@ -122,14 +132,30 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 			<Textarea
 				id='bio'
 				label='Bio'
-				placeholder={bio}
+				placeholder={bio || 'Let others know more about you'}
 				disabled={isLoading}
 				register={register}
 				errors={errors}
 				onChange={(e) => setCustomValue('bio', e.target.value)}
 			/>
-			{/* <div className={styles.changePasswordButton}>
-				<Button label='Change password' onClick={() => { setStep(STEPS.PASSWORD) }} />
+			{/* <Input
+				id='location'
+				label='Location'
+				disabled={isLoading}
+				register={register}
+				placeholder={location || 'Location'}
+				errors={errors}
+				type='text'
+				onChange={(e) => setCustomValue('location', e.target.value)}
+			/> */}
+			{/* <div className={styles.favoriteSports}>
+				<p>Favorite Sports</p>
+				<span>Select all that apply.</span>
+				<div className={styles.sports}>
+					{Sports.sports.map((sport) => (
+						<div key={sport} className={selectedSports.includes(sport) ? styles.selectedSport : styles.sport} onClick={() => selectedSports.push(sport)}>{sport}</div>
+					))}
+				</div>
 			</div> */}
 		</div>
 	);

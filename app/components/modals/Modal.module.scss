@@ -139,6 +139,37 @@
 					display: flex;
 					gap: 10px;
 				}
+				.favoriteSports {
+					display: flex;
+					flex-direction: column;
+					gap: 3px;
+					p {
+						font-size: 14px;
+						font-weight: 600;
+					}
+					span {
+						font-size: 12px;
+					}
+					.sports {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 10px;
+						padding: 10px 0;
+						.sport,
+						.selectedSport {
+							background-color: $black;
+							padding: 5px 20px;
+							font-weight: 400;
+							font-size: 12px;
+							outline: 1px solid $border;
+							cursor: pointer;
+						}
+						.selectedSport {
+							background-color: $accent;
+							border: none;
+						}
+					}
+				}
 			}
 			.tabs {
 				background-color: transparent;
@@ -268,11 +299,13 @@
 				height: fit-content;
 				font-size: 12px;
 				display: flex;
-				align-items: center;
 				margin-top: 10px;
-				gap: 10px;
-				padding: 2rem 0;
-
+				flex-direction: column;
+				padding-bottom: 10px;
+				img {
+					object-fit: cover;
+					border-radius: 4px !important;
+				}
 				.label {
 					padding-bottom: 10px;
 				}
@@ -281,8 +314,10 @@
 						height: 100px;
 						width: 100px;
 						background-color: $lightGray;
+						padding-bottom: 20px;
 						img {
 							object-fit: cover;
+							border-radius: 4px !important;
 						}
 					}
 				}

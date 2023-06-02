@@ -159,6 +159,11 @@ body {
 	z-index: 2;
 	color: $white;
 	padding-top: 5px;
+	@include breakpoint(md) {
+		// max-width: 280px;
+		// min-width: 200px;
+		// padding: 0 10px;
+	}
 	@include breakpoint(sm) {
 		display: none;
 	}
