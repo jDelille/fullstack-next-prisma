@@ -1,0 +1,56 @@
+@import '@/app/styles/variables';
+@import '@/app/styles/breakpoints';
+
+.textarea {
+	min-height: 130px;
+	height: fit-content;
+	resize: none;
+	border: none !important;
+	outline: none;
+	height: fit-content;
+
+	.mention {
+		background-color: #cee4e5;
+		color: $accent;
+	}
+	.suggestionBox {
+		border-radius: 4px;
+		z-index: 9999;
+		display: flex;
+		gap: 5px;
+		padding: 10px;
+		.suggestionName {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			font-size: 12px;
+			font-family: 'Open Sans', sans-serif;
+
+			p {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+				svg {
+					max-width: 15px;
+					max-height: 15px;
+				}
+				&:nth-of-type(2) {
+					color: $secondaryText;
+				}
+			}
+		}
+	}
+}
+
+.input {
+	height: fit-content;
+	resize: none;
+	border: none !important;
+	outline: none;
+	background-color: $secondaryAccent !important;
+	color: $white !important;
+ 
+	&::placeholder {
+		color: $white !important;
+	}
+}

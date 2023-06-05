@@ -14,9 +14,10 @@ type PostFeedProps = {
   posts: any;
   currentUser: SafeUser | null;
   totalBets?: number;
-  users: User[] | null;
+  users: User[];
   isProfilePage?: boolean;
   user?: SafeUser | null;
+
 };
 
 const PostFeed: React.FC<PostFeedProps> = ({
@@ -35,6 +36,7 @@ const PostFeed: React.FC<PostFeedProps> = ({
         key={post.id}
         currentUser={currentUser}
         hideComment={false}
+        users={users}
       />
     ));
   };
@@ -56,6 +58,7 @@ const PostFeed: React.FC<PostFeedProps> = ({
           key={post.id}
           currentUser={currentUser}
           hideComment={false}
+          users={users}
         />
       ));
   };

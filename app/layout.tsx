@@ -22,6 +22,7 @@ import './styles/globals.scss';
 import PlacedBetPopup from './components/popups/PlacedBetPopup';
 import InfoPopup from './components/bet-slip/info-popup/InfoPopup';
 import BetInfoPopup from './components/popups/BetInfoPopup';
+import getUsers from './actions/getUsers';
 
 export const metadata = {
   title: 'Wagerly',
@@ -36,7 +37,7 @@ export default async function RootLayout({
   // const currentUser = await getCurrentUser();
   // const users = await getUsers();
 
-  const [currentUser] = await Promise.all([getCurrentUser()]);
+  const [currentUser, users] = await Promise.all([getCurrentUser(), getUsers()]);
 
   let groups: Group[] = [];
   let record: any;
@@ -107,6 +108,7 @@ export default async function RootLayout({
                 </div> */}
                 <CreatePostTextarea
                   userId={currentUser?.id}
+                  users={users}
                 />
                 {/* <GroupsBox groups={groups} currentUser={currentUser} /> */}
                 {/* <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} /> */}

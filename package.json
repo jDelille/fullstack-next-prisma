@@ -33,6 +33,7 @@
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
+    "react-mentions": "^4.4.8",
     "react-resize-observer": "^1.1.1",
     "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.2",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/react-mentions": "^4.1.8",
     "@types/react-toggle": "^4.0.3",
     "prisma": "^4.13.0"
   }

@@ -14,6 +14,11 @@
 			font-size: 14px;
 			margin: 0;
 		}
+		a {
+			color: $accent;
+			cursor: pointer;
+			text-decoration: none;
+		}
 	}
 	.postPhoto,
 	.postGif {

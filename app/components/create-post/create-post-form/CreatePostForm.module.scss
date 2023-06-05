@@ -18,7 +18,6 @@
 	opacity: 1;
 	@include breakpoint(xs) {
 		padding-top: 45px;
-		// top: calc($gamebarHeight + 55px);
 	}
 	.inputWrapper,
 	.inputWrapperBordered {
@@ -33,6 +32,7 @@
 		min-height: 115px;
 		gap: 5px;
 		border-bottom: 2px solid $lightGray;
+		width: 100%;
 		.createPostWrapper {
 			display: flex;
 			align-items: center;

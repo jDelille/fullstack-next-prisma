@@ -9,7 +9,6 @@
 	border-radius: 4px;
 	margin-top: 15px;
 	position: relative;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	max-height: 500px;
@@ -17,15 +16,52 @@
 		min-height: fit-content;
 		max-height: 500px;
 	}
-	.textarea {
-		padding: 10px;
-		width: 100%;
-		min-height: 130px;
+	.textareaContainer {
 		height: fit-content;
-		resize: none;
-		border: none;
-		outline: none;
+		position: relative;
+
+		.textarea {
+			min-height: 130px;
+			height: fit-content;
+			resize: none;
+			border: none !important;
+			outline: none;
+			height: fit-content;
+
+			.mention {
+				background-color: #cee4e5;
+				color: $accent;
+			}
+			.suggestionBox {
+				border-radius: 4px;
+				z-index: 9999;
+				display: flex;
+				gap: 5px;
+				padding: 10px;
+				.suggestionName {
+					display: flex;
+					flex-direction: column;
+					gap: 3px;
+					font-size: 12px;
+					font-family: 'Open Sans', sans-serif;
+
+					p {
+						display: flex;
+						align-items: center;
+						gap: 3px;
+						svg {
+							max-width: 15px;
+							max-height: 15px;
+						}
+						&:nth-of-type(2) {
+							color: $secondaryText;
+						}
+					}
+				}
+			}
+		}
 	}
+
 	.imagePreview {
 		max-height: 150px;
 		min-height: 150px;
@@ -92,5 +128,10 @@
 		position: unset !important;
 		margin-left: auto;
 		width: fit-content;
+		background-color: $accent;
+		&:disabled {
+			background-color: $gray;
+			cursor: default;
+		}
 	}
 }

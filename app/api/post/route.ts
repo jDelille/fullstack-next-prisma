@@ -10,7 +10,9 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json();
-	const { photo, postBody, groupId } = body;
+	const { photo, postBody, groupId, taggedUserIds } = body;
+
+	console.log(taggedUserIds);
 
 	const newPost = await prisma.post.create({
 		data: {
@@ -18,6 +20,7 @@ export async function POST(request: Request) {
 			body: postBody,
 			photo: photo,
 			groupId,
+			taggedUserIds,
 		},
 	});
 

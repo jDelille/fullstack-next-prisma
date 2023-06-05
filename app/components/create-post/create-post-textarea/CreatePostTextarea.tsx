@@ -19,15 +19,31 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import BetSlip from '../../bet-slip/BetSlip';
 import Gifs from '../../gifs/Gifs';
+import mentionsInputStyle from './mentionsInputStyle';
+import mentionStyle from './mentionStyle';
+
+import { MentionsInput, Mention, SuggestionDataItem, OnChangeHandlerFunc } from 'react-mentions';
+import { User } from '@prisma/client';
+import VerifiedIcon from '@/app/icons/VerifiedIcon';
+import TagMentionTextarea from '../../tag-mention/TagMentionTextarea';
+
+interface ExtendedSuggestionDataItem extends SuggestionDataItem {
+  avatar?: string;
+  name?: string;
+  isVerified?: boolean;
+}
+
 
 type CreatePostTextareaProps = {
   userPhoto?: string;
   userId?: string;
+  users?: User[]
 };
 
 const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   userId,
   userPhoto,
+  users
 }) => {
   const router = useRouter();
   const betModal = useBetModal();
@@ -42,6 +58,25 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false)
   const [showGifs, setShowGifs] = useState(false);
+  const [suggestions, setSuggestions] = useState<ExtendedSuggestionDataItem[]>([]);
+  const [textareaValue, setTextareaValue] = useState("");
+  const [taggedUserIds, setTaggedUserIds] = useState<string[]>([])
+
+  useEffect(() => {
+    // Transform the usernames into SuggestionDataItem objects
+    const userSuggestions: ExtendedSuggestionDataItem[] = (users ?? []).map((user) => ({
+      id: user.id,
+      display: user.username,
+      avatar: user.photo as string,
+      name: user.name,
+      isVerified: user.isVerified
+    }));
+
+    setSuggestions(userSuggestions ?? []);
+  }, [users]);
+
+
+
 
   const {
     register,
@@ -73,6 +108,8 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
     setIsLoading(true);
 
     data.groupId = null;
+    data.taggedUserIds = taggedUserIds
+
 
     axios
       .post('/api/post', data)
@@ -113,6 +150,25 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
   const postBodyLength = body.length || 0
 
+  const handleOnChange: OnChangeHandlerFunc = async (event: {
+    target: {
+      value: string;
+    }
+  }, rawString, mentions) => {
+    let value = event.target.value;
+    value = value.replace(/\@\[(\w+)\]\(\w+\)/g, '@$1');
+    setTextareaValue(value)
+    console.log(value);
+    setCustomValue('postBody', value)
+  }
+
+  const handleOnAdd = (id: string | number, display: string) => {
+    const mentionText = `@${display}`;
+    const newText = textareaValue.replace(/@(\w+)?$/, mentionText);
+    setTextareaValue(newText);
+    setTaggedUserIds((prevIds) => [...prevIds, id as string]);
+  }
+
 
   useEffect(() => {
     if (postBodyLength > 500) {
@@ -131,30 +187,25 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   return (
     pathname && !pathname?.includes('sportsbook') ? (
       <>
-        <SimpleBar className={styles.createPost}>
-          <textarea
-            placeholder="What's on your mind?"
-            className={styles.textarea}
-            onChange={(event) => {
-              event.stopPropagation();
-              setCustomValue('postBody', event.target.value);
-            }}
-            value={body}
-            ref={textAreaRef}
-            rows={1}>
-
-
-          </textarea>
+        <div className={styles.createPost}>
+          <div className={styles.textareaContainer}>
+            <TagMentionTextarea
+              value={textareaValue}
+              placeholder="What's on your mind?"
+              onChange={handleOnChange}
+              suggestions={suggestions}
+              onAdd={handleOnAdd}
+              isTextarea={true}
+            />
+          </div>
 
           {photo && (
             <div className={styles.imagePreview}>
-
               <div
                 className={styles.closeImagePreview}
                 onClick={clearPhoto}>
                 <AiFillCloseCircle size={30} />
               </div>
-
               <Image
                 src={photo}
                 fill
@@ -163,18 +214,15 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
                 style={{ objectFit: 'cover' }}
               />
             </div>
-
           )}
 
           {postPhoto.url && (
             <div className={styles.imagePreview}>
-
               <div
                 className={styles.closeImagePreview}
                 onClick={clearPhoto}>
                 <AiFillCloseCircle size={30} />
               </div>
-
               <Image
                 src={postPhoto.url}
                 fill
@@ -185,15 +233,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
             </div>
           )}
 
-
           <div className={styles.createPostButtons}>
-            {/* <div
-              className={styles.icon}
-              onClick={() => {
-                !userId ? loginModal.onOpen() : betModal.onOpen();
-              }}>
-              <HiOutlineBanknotes color='#2a333f' size={21} />
-            </div> */}
             <div className={styles.icon}>
               <ImageUpload
                 value={photo}
@@ -227,13 +267,13 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
               )}
             </div>
           </div>
-        </SimpleBar >
+        </div >
 
         <div className={styles.postButton}>
           <Button
             onClick={handleSubmit(onSubmit)}
             label='Post'
-            isButtonDisabled={!body || postBodyLength > 500}
+            isButtonDisabled={!textareaValue || postBodyLength > 500 || textareaValue.length > 500}
             ariaLabel='Publish post'
           />
 

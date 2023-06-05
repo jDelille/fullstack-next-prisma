@@ -15,17 +15,28 @@ import ImageView from '../image-view/ImageView';
 import ConfidenceBadge from '../confidence-badge/ConfidenceBadge';
 import PostCardPoll from './post-card-poll/PostCardPoll';
 import PostCardParlay from './post-card-parlay/PostCardParlay';
+import { User } from '@prisma/client';
 
 type PostCardProps = {
   post: any;
   currentUser?: SafeUser | null;
   hideComment?: boolean;
+  users: User[]
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment, users }) => {
   const router = useRouter();
   const [isComment, setIsComment] = useState(false);
   const [imageView, setImageView] = useState('');
+
+  const taggedUsernames = post?.body?.match(/@(\w+)/g) || [];
+
+  const highlightTaggedUsernames = (body: string) => {
+    let taggedUserIds = post?.taggedUserIds;
+    const userProfileUrl = `/user/${post?.taggedUserIds[0]}`;
+    let modifiedBody = body.replace(/@(\w+)/g, `<a href=${userProfileUrl} class={styles.taggedUsername}>@$1</a>`);
+    return modifiedBody
+  };
 
   const onComment = useCallback(() => {
     setIsComment(!isComment);
@@ -65,8 +76,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         post={post}
         followingIds={currentUser?.followingIds}
       />
-      <div className={styles.postBody}>
-        <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>
+      <div className={styles.postBody} onClick={(e) => e.stopPropagation()}>
+        {/* <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p> */}
+        <p dangerouslySetInnerHTML={{ __html: highlightTaggedUsernames(post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body) }}></p>
       </div>
       {post?.photo && (
         <div className={post?.photo.url ? styles.postGif : styles.postPhoto}>
@@ -129,6 +141,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
           userPhoto={currentUser?.photo as string}
           postUser={post?.user.name}
           username={currentUser?.username}
+          users={users}
         />
       )}
       {post?.comments && isComment && !hideComment && (
