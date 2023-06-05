@@ -38,8 +38,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({ name, username, bio
 
 	let selectedSports: String[] = []
 
-	console.log(selectedSports)
-
 	const {
 		register,
 		handleSubmit,
