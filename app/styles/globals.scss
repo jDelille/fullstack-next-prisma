@@ -53,6 +53,7 @@ body {
 		max-width: 280px;
 		min-width: 280px;
 		padding: 0 10px;
+		display: none;
 	}
 
 	@include breakpoint(sm) {

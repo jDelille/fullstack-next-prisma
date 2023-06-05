@@ -34,6 +34,7 @@ const BetSlip: React.FC<BetSlipProps> = observer(({ isMobile }) => {
   const [showInfoPopup, setShowInfoPopup] = useState(false)
   const [error, setError] = useState("")
   const [minimize, setMinimize] = useState(false)
+  const [singleOdds, setSingleOdds] = useState(0)
 
   let selectedBet = [...betStore.selectedBet]
 
@@ -90,7 +91,7 @@ const BetSlip: React.FC<BetSlipProps> = observer(({ isMobile }) => {
       thoughts: thoughts,
       odds: calculateParlayOdds(selectedBet.map((bet) => bet.odds)),
       wager: wagerAmount,
-      payout
+      payout: payout
     }
 
     axios.post('/api/parlay', betPayload)
@@ -160,22 +161,29 @@ const BetSlip: React.FC<BetSlipProps> = observer(({ isMobile }) => {
                 <span>{bet.abbreviation}</span>
                 <p>{bet.team}</p>
                 <div className={styles.odds}>
-                  <span>{bet.odds}</span>
-                  {selectedBet.length < 2 && (
-                    <Input
-                      id='wager'
-                      label=''
-                      disabled={isLoading}
-                      register={register}
-                      errors={errors}
-                      type='text'
-                      inputMode="numeric"
-                      required
-                      placeholder='0.00'
-                      formatPrice
-                      onChange={(e) => setWagerAmount(e.target.value)}
-                    />
-                  )}
+                  <div className={styles.singleStake}>
+                    <div className={styles.top}><span>{bet.odds}</span>
+                      {selectedBet.length < 2 && (
+                        <Input
+                          id='wager'
+                          label=''
+                          disabled={isLoading}
+                          register={register}
+                          errors={errors}
+                          type='text'
+                          inputMode="numeric"
+                          required
+                          placeholder='0.00'
+                          formatPrice
+                          onChange={(e) => setWagerAmount(e.target.value)}
+                        />
+                      )}</div>
+
+                    {wagerAmount > 0 && (
+                      <p className={styles.payout}> ${payout}</p>
+                    )}
+                  </div>
+
                 </div>
               </div>
               <p className={styles.type}>{bet.type} <span>{bet.value}</span></p>

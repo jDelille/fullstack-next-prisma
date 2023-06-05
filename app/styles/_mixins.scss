@@ -47,8 +47,7 @@
 		margin-top: $gamebarHeight;
 	}
 	@include breakpoint(md) {
-		min-width: 600px;
-		max-width: 600px;
+		min-width: 100%;
 	}
 	@include breakpoint(sm) {
 		margin-top: $gamebarHeight;

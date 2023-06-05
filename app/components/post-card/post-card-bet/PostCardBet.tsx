@@ -30,10 +30,6 @@ const PostCardBet: React.FC<PostCardBetProps> = ({ post: bet }) => {
 				{winOrLossBadge()}
 			</div>
 
-			{/* <div className={styles.postBetHeader}>
-				<p>{bet.name}</p>
-			</div> */}
-
 			<div className={styles.postBetBody}>
 				{bet.location === 'away' ? (
 					<div className={styles.team}>

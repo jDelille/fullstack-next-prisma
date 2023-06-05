@@ -22,7 +22,7 @@ const PostCardParlay: React.FC<PostCardParlayProps> = ({ post, odds, wager, payo
     {/* parlay header */}
     <div className={styles.header}>
      <div className={styles.title}>
-      <p>Parlay ({post.length} Pick)</p>
+      <p>{post.length < 2 ? 'Single' : 'Parlay'} ({post.length} Pick)</p>
       <div className={styles.odds}>{odds}</div>
      </div>
      <div className={styles.picks}>

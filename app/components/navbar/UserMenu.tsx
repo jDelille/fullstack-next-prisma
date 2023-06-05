@@ -13,6 +13,7 @@ import { Group } from '@prisma/client';
 import { BiHash } from 'react-icons/bi';
 import { signOut } from 'next-auth/react';
 import { HiBanknotes } from 'react-icons/hi2';
+import { IoCreate } from 'react-icons/io5';
 
 type UserMenu = {
  currentUser?: SafeUser | null
@@ -58,6 +59,12 @@ const UserMenu: React.FC<UserMenu> = ({ currentUser, groups, setIsMenuOpen }) =>
    label: 'Notifications',
    href: `/notifications/${currentUser?.id}`
   },
+  {
+   id: 5,
+   icon: IoCreate,
+   label: 'Create Post',
+   href: '/create-post'
+  }
  ]
  const pathname = usePathname()
 

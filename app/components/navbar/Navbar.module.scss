@@ -121,6 +121,12 @@
 			padding: 0;
 			text-decoration: none;
 			color: darken($white, 2%);
+			&:nth-of-type(6) {
+				display: none;
+				@include breakpoint(md) {
+					display: flex;
+				}
+			}
 			&:hover {
 				background: none;
 				color: lighten($white, 5%);
