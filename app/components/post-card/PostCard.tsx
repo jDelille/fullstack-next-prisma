@@ -21,8 +21,8 @@ type PostCardProps = {
   post: any;
   currentUser?: SafeUser | null;
   hideComment?: boolean;
-  setLocalPosts: Dispatch<SetStateAction<Post[]>>
-  posts: Post[]
+  setLocalPosts?: Dispatch<SetStateAction<Post[]>>
+  posts?: Post[]
 };
 
 const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment, setLocalPosts, posts }) => {

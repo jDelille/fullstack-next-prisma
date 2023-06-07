@@ -17,8 +17,8 @@ type PostCardMenuProps = {
   setIsMenuOpen: (value: boolean) => void;
   isPinned: boolean;
   postUsername?: string
-  setLocalPosts: Dispatch<SetStateAction<Post[]>>
-  posts: Post[]
+  setLocalPosts: Dispatch<SetStateAction<Post[]>> | undefined;
+  posts: Post[] | undefined
 
 };
 
@@ -41,7 +41,9 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
 
   const onDelete = useCallback(
     (id: string) => {
-      setLocalPosts(posts.filter((post) => post.id !== postId))
+      if (setLocalPosts && posts) {
+        setLocalPosts(posts.filter((post) => post.id !== postId))
+      }
       axios
         .delete(`/api/bet/${id}`)
         .then(() => {

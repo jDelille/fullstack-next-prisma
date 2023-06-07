@@ -6,6 +6,7 @@ import FeedHeader from "@/app/components/feed-header/FeedHeader";
 import { IoArrowBack } from "react-icons/io5";
 import CommentFeed from "@/app/components/comment-feed/CommentFeed";
 import PostCardComment from "@/app/components/post-card/post-card-comment/PostCardComment";
+import postStore from "@/app/store/postStore";
 
 
 interface IParams {
@@ -16,6 +17,8 @@ const PostPage = async ({ params }: { params: IParams }) => {
 
  const post = await getPostById(params);
  const currentUser = await getCurrentUser()
+
+
 
  return (
   <div className={styles.page} >

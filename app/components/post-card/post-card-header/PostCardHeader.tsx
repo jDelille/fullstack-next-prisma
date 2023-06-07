@@ -16,8 +16,8 @@ type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
   followingIds?: string[];
-  setLocalPosts: Dispatch<SetStateAction<Post[]>>
-  posts: Post[];
+  setLocalPosts: Dispatch<SetStateAction<Post[]>> | undefined
+  posts: Post[] | undefined;
 };
 
 const PostCardHeader: React.FC<PostCardHeaderProps> = ({
