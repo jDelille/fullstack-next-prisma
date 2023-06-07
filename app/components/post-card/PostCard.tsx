@@ -8,21 +8,24 @@ import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardComment from './post-card-comment/PostCardComment';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, Dispatch, SetStateAction } from 'react';
 import CommentFeed from '../comment-feed/CommentFeed';
 import axios from 'axios';
 import ImageView from '../image-view/ImageView';
 import ConfidenceBadge from '../confidence-badge/ConfidenceBadge';
 import PostCardPoll from './post-card-poll/PostCardPoll';
 import PostCardParlay from './post-card-parlay/PostCardParlay';
+import { Post } from '@prisma/client';
 
 type PostCardProps = {
   post: any;
   currentUser?: SafeUser | null;
   hideComment?: boolean;
+  setLocalPosts: Dispatch<SetStateAction<Post[]>>
+  posts: Post[]
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment, setLocalPosts, posts }) => {
   const router = useRouter();
   const [isComment, setIsComment] = useState(false);
   const [imageView, setImageView] = useState('');
@@ -64,6 +67,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment }) =
         currentUserId={currentUser?.id}
         post={post}
         followingIds={currentUser?.followingIds}
+        setLocalPosts={setLocalPosts}
+        posts={posts}
       />
       <div className={styles.postBody}>
         <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>

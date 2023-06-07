@@ -23,12 +23,12 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, record, groups }) => {
     </div>
 
    </div>
-   <div className={styles.bottom}>
+   {/* <div className={styles.bottom}>
     <p className={styles.points}>{currentUser?.points} pts.</p>
     <p>{record.winCount} wins</p>
     <p>{record.lossCount} losses</p>
     <p>{groups?.length || 0} groups</p>
-   </div>
+   </div> */}
   </div >
  );
 }

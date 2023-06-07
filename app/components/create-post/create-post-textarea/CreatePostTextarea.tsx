@@ -1,10 +1,6 @@
 'use client';
 
-import { HiOutlineBanknotes } from 'react-icons/hi2';
 import Button from '../../button/Button';
-import styles from './CreatePostTextarea.module.scss';
-import useBetModal from '@/app/hooks/useBetModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
 import usePollModal from '@/app/hooks/usePollModal';
 import { usePathname, useRouter } from 'next/navigation';
 import ImageUpload from '../../image-upload/ImageUpload';
@@ -19,6 +15,9 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import BetSlip from '../../bet-slip/BetSlip';
 import Gifs from '../../gifs/Gifs';
+import styles from './CreatePostTextarea.module.scss';
+import postStore from '@/app/store/postStore';
+import { Post } from '@prisma/client';
 
 type CreatePostTextareaProps = {
   userPhoto?: string;
@@ -30,18 +29,18 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   userPhoto,
 }) => {
   const router = useRouter();
-  const betModal = useBetModal();
-  const loginModal = useLoginModal();
   const pollModal = usePollModal();
   const pathname = usePathname()
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-
   const [photo, setPhoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false)
   const [showGifs, setShowGifs] = useState(false);
+
+  const localPosts = postStore.posts;
+
 
   const {
     register,
@@ -73,6 +72,23 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
     setIsLoading(true);
 
     data.groupId = null;
+
+    const newPost = {
+      id: '',
+      userId: data.userId,
+      body: body,
+      photo: photo,
+      groupId: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      betId: '',
+      parlayId: '',
+      pollId: '',
+      likedIds: [], commentedIds: [], taggedUserIds: [], isPinned: false, tags: []
+    }
+
+    const updatedLocalPosts = [...localPosts, newPost];
+    postStore.setLocalPosts(updatedLocalPosts)
 
     axios
       .post('/api/post', data)
@@ -127,6 +143,14 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
     setPhoto && setPhoto('')
   }
 
+  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const inputValue = event.target.value;
+    if (inputValue.length <= 500) {
+      setCustomValue('postBody', inputValue);
+    } else {
+      setCustomValue('postBody', inputValue.slice(0, 500));
+    }
+  }
 
   return (
     pathname && !pathname?.includes('sportsbook') ? (
@@ -137,13 +161,11 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
             className={styles.textarea}
             onChange={(event) => {
               event.stopPropagation();
-              setCustomValue('postBody', event.target.value);
+              handleTextareaChange(event)
             }}
             value={body}
             ref={textAreaRef}
             rows={1}>
-
-
           </textarea>
 
           {photo && (
@@ -187,13 +209,6 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
 
 
           <div className={styles.createPostButtons}>
-            {/* <div
-              className={styles.icon}
-              onClick={() => {
-                !userId ? loginModal.onOpen() : betModal.onOpen();
-              }}>
-              <HiOutlineBanknotes color='#2a333f' size={21} />
-            </div> */}
             <div className={styles.icon}>
               <ImageUpload
                 value={photo}

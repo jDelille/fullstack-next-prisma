@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Dispatch, SetStateAction } from 'react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import PostCardMenu from '../post-card-menu/PostCardMenu';
 import styles from './PostCardHeader.module.scss';
@@ -8,6 +8,7 @@ import Avatar from '../../avatar/Avatar';
 import { AiFillPushpin } from 'react-icons/ai';
 import VerifiedIcon from '@/app/icons/VerifiedIcon';
 import useFollow from '@/app/hooks/useFollow';
+import { Post } from '@prisma/client';
 
 
 
@@ -15,12 +16,16 @@ type PostCardHeaderProps = {
   post: any;
   currentUserId?: string;
   followingIds?: string[];
+  setLocalPosts: Dispatch<SetStateAction<Post[]>>
+  posts: Post[];
 };
 
 const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   post,
   currentUserId,
   followingIds,
+  setLocalPosts,
+  posts
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { handleFollow, isLoading } = useFollow(post?.user.id, post?.user.name, currentUserId as string, setIsMenuOpen)
@@ -113,6 +118,8 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
             setIsMenuOpen={setIsMenuOpen}
             isPinned={post?.isPinned}
             postUsername={post?.user.username}
+            setLocalPosts={setLocalPosts}
+            posts={posts}
           />
         )}
       </div>

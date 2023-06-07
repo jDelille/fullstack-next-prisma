@@ -118,6 +118,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                           ? odds.spread
                           : '+' + Math.abs(odds.spread)}
                       </p>
+                      <p className={styles.oddsNumber}>{odds.homeTeamOdds.spreadOdds || -110}</p>
                     </div>
                     {/* over / under */}
                     <div className={styles.oddsBox}
@@ -135,6 +136,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                         )
                       }>
                       <p>{'O ' + Math.abs(odds.overUnder)}</p>
+                      <p className={styles.oddsNumber}>{odds.overOdds}</p>
                     </div>
                     {/* moneyline */}
                     <div className={styles.oddsBox}
@@ -175,6 +177,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                   {team.competitors[1].team.shortDisplayName}
                 </p>
                 <p className={styles.score}>{team.competitors[1].score}</p>
+
               </div>
               {odds && (
                 <div className={styles.odds}>
@@ -200,6 +203,8 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                           ? odds.spread
                           : '-' + Math.abs(odds.spread)}
                       </p>
+                      <p className={styles.oddsNumber}>{odds.awayTeamOdds.spreadOdds || -110}</p>
+
                     </div>
                     {/* over / under */}
                     <div className={styles.oddsBox} onClick={() =>
@@ -216,6 +221,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                       )
                     }>
                       <p>{'U ' + Math.abs(odds.overUnder)}</p>
+                      <p className={styles.oddsNumber}>{odds.underOdds}</p>
                     </div>
                     {/* moneyline */}
                     <div className={styles.oddsBox} onClick={() =>
@@ -235,6 +241,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, sport, league, }) => {
                           ? odds.awayTeamOdds.moneyLine
                           : '-' + Math.abs(odds.awayTeamOdds.moneyLine)}
                       </p>
+
                     </div>
                   </div>
                 </div>

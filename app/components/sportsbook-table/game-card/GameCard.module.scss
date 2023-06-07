@@ -96,13 +96,18 @@
 						align-items: center;
 						background-color: $gray;
 						outline: 1px solid $border;
+						padding: 5px;
+						justify-content: center;
+						gap: 5px;
 						cursor: pointer;
 						&:hover {
 							background-color: lighten($gray, 5%);
 						}
 						p {
 							font-size: 13px;
-							padding: 10px 5px;
+						}
+						.oddsNumber {
+							color: $accent;
 						}
 					}
 				}

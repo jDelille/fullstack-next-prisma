@@ -17,8 +17,12 @@
 	@include breakpoint(md) {
 		max-height: 515px;
 	}
+	@include breakpoint(sm) {
+		max-width: 375px;
+	}
 	@include breakpoint(xs) {
-		min-width: calc(100vw - $navigationPanelWidth - 35px);
+		max-width: calc(100vw - $navigationPanelWidth - 15px);
+		max-height: 60vh;
 	}
 	.minimize {
 		font-size: 13px;
@@ -106,6 +110,9 @@
 			padding-bottom: 0;
 			@include breakpoint(md) {
 				max-height: 224.55px;
+			}
+			@include breakpoint(xs) {
+				max-height: 600px;
 			}
 			.title {
 				text-transform: uppercase;
@@ -268,8 +275,8 @@
 }
 
 .betSlipMinimize {
-	max-height: 42px;
-	min-height: 42px;
+	max-height: 50px;
+	min-height: 50px;
 	overflow-y: hidden;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;

@@ -1,23 +1,24 @@
 @import '@/app/styles/variables';
 
 .commentMenu {
-	background-color: $black;
+	background-color: #f1f2f3;
 	border: 1px solid $lightGray;
-	width: 100px;
-	min-height: 75px;
+	width: 115px;
+	height: fit-content;
 	position: absolute;
-	top: 0rem;
-	right: 1rem;
-	border-radius: 5px;
-	padding: 10px 5px;
-	z-index: 2;
+	top: 5px;
+	right: 1.1rem;
+	border-radius: 4px;
+	padding: 5px 0;
+	color: $black;
 	p {
 		font-size: 12px;
-		padding: 3px 5px;
-		border-radius: 3px;
-		color: $secondaryText;
+		padding: 3px 10px;
+		color: $black !important;
+
 		&:hover {
-			background: $gray;
+			background: $accent;
+			color: $white !important;
 		}
 	}
 }

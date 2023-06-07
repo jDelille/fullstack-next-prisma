@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PostCard from '../post-card/PostCard';
 import styles from './PostFeed.module.scss';
 import { SafeUser } from '@/app/types';
@@ -8,7 +8,8 @@ import { Post, User } from '@prisma/client';
 import PeopleBox from '../people-box/PeopleBox';
 import News from '../news/News';
 import { PostFeedString } from '@/app/utils/app-string/PostFeedString';
-import Image from 'next/image';
+import postStore from '@/app/store/postStore';
+import { observer } from 'mobx-react';
 
 type PostFeedProps = {
   posts: any;
@@ -19,22 +20,32 @@ type PostFeedProps = {
   user?: SafeUser | null;
 };
 
-const PostFeed: React.FC<PostFeedProps> = ({
+const PostFeed: React.FC<PostFeedProps> = observer(({
   posts,
   currentUser,
   users,
   isProfilePage,
   user,
 }) => {
+  const [localPosts, setLocalPosts] = useState<Post[]>(posts)
   const [tab, setTab] = useState('posts');
 
+  const memoizedLocalPosts = useMemo(() => localPosts, [localPosts])
+
+  useEffect(() => {
+    postStore.setLocalPosts(memoizedLocalPosts)
+    console.log('rendered')
+  }, [memoizedLocalPosts])
+
   const renderPostCards = () => {
-    return posts.map((post: Post) => (
+    return localPosts.map((post: Post) => (
       <PostCard
         post={post}
         key={post.id}
         currentUser={currentUser}
         hideComment={false}
+        setLocalPosts={setLocalPosts}
+        posts={posts}
       />
     ));
   };
@@ -48,7 +59,7 @@ const PostFeed: React.FC<PostFeedProps> = ({
       );
     }
 
-    return posts
+    return localPosts
       .filter((post: any) => post?.Bet || post?.Parlay)
       .map((post: Post) => (
         <PostCard
@@ -56,6 +67,8 @@ const PostFeed: React.FC<PostFeedProps> = ({
           key={post.id}
           currentUser={currentUser}
           hideComment={false}
+          setLocalPosts={setLocalPosts}
+          posts={posts}
         />
       ));
   };
@@ -89,10 +102,6 @@ const PostFeed: React.FC<PostFeedProps> = ({
         </div>
       );
     }
-
-    // return mediaPosts.map((post: any) => (
-    //   <Image src={post.photo || post.photo.url} alt={post.id} key={post.id} width={100} height={100} />
-    // ));
   };
 
   const renderTabContent = () => {
@@ -166,6 +175,6 @@ const PostFeed: React.FC<PostFeedProps> = ({
       {renderTabContent()}
     </div>
   );
-};
+});
 
 export default PostFeed;

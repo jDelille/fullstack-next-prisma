@@ -21,15 +21,9 @@ export default async function Home() {
   return (
     <main className='main'>
       <div className='mainFeed'>
-        {/* <CreatePostForm
-          userPhoto={currentUser?.photo as string}
-          userId={currentUser?.id as string}
-          isBordered={true}
-          isComment={false}
-        /> */}
         <FeedHeader label='Explore' icon={BiHash} hasBottomMargin />
-        <Suspense fallback={<p>Loading...</p>}>
 
+        <Suspense fallback={<p>Loading...</p>}>
           <DynamicPostFeed posts={posts} currentUser={currentUser} users={users} />
         </Suspense>
       </div>

@@ -2,11 +2,12 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useCallback } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './PostCardMenu.module.scss';
 import usePinPost from '@/app/hooks/usePinPost';
 import useFollow from '@/app/hooks/useFollow';
+import { Post } from '@prisma/client';
 
 type PostCardMenuProps = {
   postId: string;
@@ -16,6 +17,9 @@ type PostCardMenuProps = {
   setIsMenuOpen: (value: boolean) => void;
   isPinned: boolean;
   postUsername?: string
+  setLocalPosts: Dispatch<SetStateAction<Post[]>>
+  posts: Post[]
+
 };
 
 const PostCardMenu: React.FC<PostCardMenuProps> = ({
@@ -25,7 +29,9 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
   isFollowing,
   setIsMenuOpen,
   isPinned,
-  postUsername
+  postUsername,
+  setLocalPosts,
+  posts
 }) => {
   const router = useRouter();
 
@@ -35,6 +41,7 @@ const PostCardMenu: React.FC<PostCardMenuProps> = ({
 
   const onDelete = useCallback(
     (id: string) => {
+      setLocalPosts(posts.filter((post) => post.id !== postId))
       axios
         .delete(`/api/bet/${id}`)
         .then(() => {

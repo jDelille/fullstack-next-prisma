@@ -18,10 +18,10 @@ import PollModal from './components/modals/poll-modal/PollModal';
 import AuthButtons from './components/auth-buttons/AuthButtons';
 import CreatePostTextarea from './components/create-post/create-post-textarea/CreatePostTextarea';
 import NavigationPanel from './components/navigation-panel/NavigationPanel';
-import './styles/globals.scss';
 import PlacedBetPopup from './components/popups/PlacedBetPopup';
-import InfoPopup from './components/bet-slip/info-popup/InfoPopup';
 import BetInfoPopup from './components/popups/BetInfoPopup';
+import UserBox from './components/user-box/UserBox';
+import './styles/globals.scss';
 
 export const metadata = {
   title: 'Wagerly',
@@ -33,14 +33,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const currentUser = await getCurrentUser();
-  // const users = await getUsers();
-
-  const [currentUser] = await Promise.all([getCurrentUser()]);
-
   let groups: Group[] = [];
   let record: any;
   let notifications: any;
+
+  const [currentUser] = await Promise.all([getCurrentUser()]);
+
+
   if (currentUser) {
     [groups, record, notifications] = await Promise.all([
       getGroupsByUserId({ userId: currentUser.id }),
@@ -48,17 +47,6 @@ export default async function RootLayout({
       getNotificationByUserId({ userId: currentUser.id }),
     ]);
   }
-
-  async function getNotifications() {
-    'use server';
-    const notifications = await prisma?.notification.findMany({
-      where: {
-        userId: currentUser?.id,
-      },
-    });
-    return notifications;
-  }
-
 
   return (
     <html lang='en'>
@@ -79,14 +67,6 @@ export default async function RootLayout({
           <PlacedBetPopup />
           <BetInfoPopup />
           <div className='sidebarContainer'>
-            {/* <input type='text' className='searchInput' placeholder='Search' /> */}
-            <div className='currentUser'>
-              {currentUser ? (
-                <p>Signed in as {currentUser?.name}</p>
-              ) : (
-                <p>Sign in to get started</p>
-              )}
-            </div>
             {!currentUser && (
               <>
                 <div className='message'>
@@ -100,19 +80,15 @@ export default async function RootLayout({
 
             {currentUser && (
               <>
-                {/* <div className='userBox'>
+                <div className='userBox'>
                   <UserBox currentUser={currentUser}
                     record={record}
                     groups={groups} />
-                </div> */}
+                </div>
                 <CreatePostTextarea
                   userId={currentUser?.id}
                 />
-                {/* <GroupsBox groups={groups} currentUser={currentUser} /> */}
-                {/* <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} /> */}
               </>
-
-
             )}
 
             <div className='disclaimer'>
@@ -138,7 +114,6 @@ export default async function RootLayout({
 
           <Footer currentUserId={currentUser?.id} />
 
-
           <div className='rightSidebar'>
             <div className='siteTitle'>
               <h1>Wagerly</h1>
@@ -148,10 +123,6 @@ export default async function RootLayout({
                 groups={groups}
                 notifications={notifications} />
             </div>
-            <div>
-              {/* <News /> */}
-            </div>
-
           </div>
         </div>
       </body>
@@ -160,21 +131,3 @@ export default async function RootLayout({
 }
 
 
-{/* <Navbar
-              currentUser={currentUser}
-              groups={groups}
-              notifications={notifications}
-            /> */}
-
-// {
-//   currentUser && (
-//     <>
-//       <UserBox
-//         currentUser={currentUser}
-//         record={record}
-//         groups={groups}
-//       />
-//       <FollowUsers users={users} currentUserId={currentUser?.id} followingIds={currentUser?.followingIds} />
-//     </>
-//   )
-// }
