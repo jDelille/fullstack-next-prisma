@@ -16,7 +16,7 @@ const UserBox: React.FC<UserBoxProps> = ({ currentUser, record, groups }) => {
  return (
   <div className={styles.userBox}>
    <div className={styles.top}>
-    <Image src={currentUser?.photo as string} alt="user-photo" width={40} height={40} />
+    <Image src={currentUser?.photo as string || '/images/placeholder.png'} alt="user-photo" width={40} height={40} />
     <div className={styles.name}>
      <p>{currentUser?.name} {currentUser?.isVerified && <VerifiedIcon />}</p>
      <span>{currentUser?.username}</span>
