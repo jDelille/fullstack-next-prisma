@@ -18,13 +18,17 @@ import Gifs from '../../gifs/Gifs';
 import styles from './CreatePostTextarea.module.scss';
 import postStore from '@/app/store/postStore';
 import { Post } from '@prisma/client';
+import commentStore from '@/app/store/commentStore';
+import CreateCommentTextarea from '../create-comment-textarea/CreateCommentTextarea';
+import postPreviewStore from '@/app/store/postPreviewStore';
+import { observer } from 'mobx-react';
 
 type CreatePostTextareaProps = {
   userPhoto?: string;
   userId?: string;
 };
 
-const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
+const CreatePostTextarea: React.FC<CreatePostTextareaProps> = observer(({
   userId,
   userPhoto,
 }) => {
@@ -40,7 +44,7 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
   const [showGifs, setShowGifs] = useState(false);
 
   const localPosts = postStore.posts;
-
+  const isComment = postPreviewStore.isOpen
 
   const {
     register,
@@ -152,6 +156,13 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
     }
   }
 
+  if (isComment) {
+    return (
+      <CreateCommentTextarea />
+    )
+  }
+
+
   return (
     pathname && !pathname?.includes('sportsbook') ? (
       <>
@@ -256,10 +267,9 @@ const CreatePostTextarea: React.FC<CreatePostTextareaProps> = ({
       </>
     ) : (
       <BetSlip />
-
     )
 
   );
-};
+});
 
 export default CreatePostTextarea;

@@ -22,6 +22,7 @@ import PlacedBetPopup from './components/popups/PlacedBetPopup';
 import BetInfoPopup from './components/popups/BetInfoPopup';
 import UserBox from './components/user-box/UserBox';
 import './styles/globals.scss';
+import PostPreview from './components/post-preview/PostPreview';
 
 export const metadata = {
   title: 'Wagerly',
@@ -85,6 +86,7 @@ export default async function RootLayout({
                     record={record}
                     groups={groups} />
                 </div>
+                <PostPreview />
                 <CreatePostTextarea
                   userId={currentUser?.id}
                 />

@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { FaRegCommentDots, FaComment } from 'react-icons/fa'
 import useLoginModal from '@/app/hooks/useLoginModal';
+import postPreviewStore from '@/app/store/postPreviewStore';
+import { Post } from '@prisma/client';
 
 type PostCardFooterProps = {
   postId: string;
@@ -17,6 +19,7 @@ type PostCardFooterProps = {
   commentCount: number
   commentArray: string[]
   hideComment?: boolean;
+  post: any
 };
 const PostCardFooter: React.FC<PostCardFooterProps> = ({
   postId,
@@ -26,7 +29,8 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
   onComment,
   commentCount,
   commentArray,
-  hideComment
+  hideComment,
+  post
 }) => {
   const [id, setId] = useState('');
   const router = useRouter();
@@ -92,9 +96,11 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
     [router]
   );
 
-
-
-
+  const openPostPreview = (post: Post) => {
+    postPreviewStore.clearPost(); // Clear the previous post (if any)
+    postPreviewStore.setOpen(true);
+    postPreviewStore.setPost(post);
+  };
 
   const hasComments = () => {
     return commentCount > 0;
@@ -112,7 +118,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         <span>{localLikeCount}</span>{' '}
       </div>
       {!hideComment && (
-        <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
+        <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment(); openPostPreview(post) }}>
           {hasComments() ? (
             <FaComment color='#20b46a' />
           ) : (

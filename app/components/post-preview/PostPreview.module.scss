@@ -1,0 +1,50 @@
+.postPreview {
+	background-color: #9baec8;
+	width: 100%;
+	height: fit-content;
+	max-height: 300px;
+	padding: 10px;
+	border-radius: 4px;
+	font-size: 13px;
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	gap: 10px;
+	.close {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		cursor: pointer;
+		padding: 2px;
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		&:hover {
+			background-color: lighten(#9baec8, 10%);
+		}
+	}
+	.postUser {
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		img {
+			border-radius: 4px;
+		}
+		p {
+			font-weight: 600;
+			span {
+				font-weight: 400;
+			}
+		}
+	}
+	.body {
+	}
+	.media {
+		max-height: 200px;
+		width: 100%;
+		img {
+			border-radius: 4px;
+		}
+	}
+}

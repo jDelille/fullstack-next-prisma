@@ -126,6 +126,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, hideComment, set
         commentCount={post.comments.length || 0}
         commentArray={post.commentedIds}
         hideComment={hideComment}
+        post={post}
       />
       {isComment && !hideComment && (
         <PostCardComment
