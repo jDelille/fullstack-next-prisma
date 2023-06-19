@@ -118,7 +118,7 @@ const PostCardFooter: React.FC<PostCardFooterProps> = ({
         <span>{localLikeCount}</span>{' '}
       </div>
       {!hideComment && (
-        <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment(); openPostPreview(post) }}>
+        <div className={styles.comment} onClick={(e) => { e.stopPropagation(); onComment() }}>
           {hasComments() ? (
             <FaComment color='#20b46a' />
           ) : (
