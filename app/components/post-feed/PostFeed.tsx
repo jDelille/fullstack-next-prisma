@@ -34,7 +34,6 @@ const PostFeed: React.FC<PostFeedProps> = observer(({
 
   useEffect(() => {
     postStore.setLocalPosts(memoizedLocalPosts)
-    console.log('rendered')
   }, [memoizedLocalPosts])
 
   const renderPostCards = () => {
